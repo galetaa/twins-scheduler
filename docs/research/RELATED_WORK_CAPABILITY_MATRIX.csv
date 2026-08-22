@@ -1,10 +1,10 @@
-work,source_type,endpoint_partitions,directed_graph,phase_or_type_control,per_instance_control,replay,property_preserving_closure,safety_separation_witness,closest_overlap
-Twins,peer-reviewed,yes,via partitions,no,no,state-loss scenarios,no,no,clone-based BFT testing and round/view scenarios
-Communication Closure,peer-reviewed,no,lossy synchronous executions,no,no,no,yes,no,property-preserving schedule normalization
-Heard-Of and closed message adversaries,peer-reviewed,no,yes,no,no,no,semantic model,no,round communication graphs and adversary languages
-Randomized BFT Testing / ByzzFuzz,peer-reviewed,no,yes,yes,yes,yes,no,no,message mutation and randomized Byzantine testing
-Netrix,peer-reviewed/tool,no,yes,yes,yes,yes,no,no,rich controlled filters monitors and replay
-ByzzBench,peer-reviewed/tool,configurable,yes,configurable,configurable,configurable,no,no,benchmark and deterministic execution infrastructure
-PERF,peer-reviewed/preprint,no,model dependent,fault-type composition,model dependent,model dependent,yes for performance models,no,formal fault-injector composition and prediction
-ByzTwin-Range,preprint,digital-twin scenarios,model dependent,model dependent,model dependent,model dependent,no,no,cyber-range and practical Byzantine experimentation
-This work,formal plus executable,defined as a special case,yes,yes,formalized,yes,yes,yes,phase-erasure preservation boundary and quorum-pivot witness
+work,endpoint_partitions,directed_delivery,phase_type_specific_control,replay,property_preserving_closure_theorem,safety_observation_separation_witness,protocol_level_conformance,mechanized_proof_or_model
+Twins,yes,through partitions/scenarios,not reported,state-loss scenarios,no,no,executes protocol implementations,not reported
+Communication Closure,no,lossy synchronous schedules,no,no,yes under stated implementation conditions,no,evaluated on consensus implementations,not reported
+Heard-Of / closed message adversaries,no,yes as round graphs,no,no,semantic characterization not this closure,no,no,not reported
+Randomized BFT Testing / ByzzFuzz,no,yes,yes,yes,no,no,executes BFT implementations,not reported
+Netrix,no,yes,yes,yes,no,no,implementation-level monitors and filters,not reported
+ByzzBench,configurable,yes,configurable,configurable,no,no,deterministic implementation benchmark,not reported
+Mallory,yes as injected faults,fault-sequence control not a phase API,no,not reported,no,no,tested deployed distributed systems,not reported
+PERF fault-injector formalization,model dependent,model dependent,fault-type composition,model dependent,performance-model reasoning not a safety closure theorem,no,model/deployment comparison,executable Maude formal models
+This work,defined special case,yes,yes,yes secondary result,yes,yes,bounded rule-level refinement only,Lean kernel proof

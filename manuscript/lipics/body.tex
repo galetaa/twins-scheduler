@@ -1,4 +1,4 @@
-\section{1. Introduction}\label{introduction}
+\section{Introduction}\label{introduction}
 
 Byzantine fault-tolerant (BFT) protocols are routinely evaluated under
 adversarial message schedules. The testing harness decides which
@@ -55,7 +55,7 @@ narrower: when closure from phase-labelled admission to one endpoint bit
 preserves finite agreement violations, and when closure-added repair
 evidence destroys the witness.
 
-\subsection{1.1 Contributions}\label{contributions}
+\subsection{Contributions}\label{contributions}
 
 The paper makes four ordered contributions.
 
@@ -90,7 +90,7 @@ The SMT queries, finite checkers, Go/Python models, and prover sources
 are evidence for these contributions rather than separate intellectual
 contributions.
 
-\subsection{1.2 Scope}\label{scope}
+\subsection{Scope}\label{scope}
 
 The scope is finite agreement safety in authenticated,
 certificate-driven locking schemas. We do not claim a vulnerability in
@@ -101,10 +101,10 @@ completeness under unbounded partial synchrony. The CometBFT connection
 is a bounded refinement to published transition rules under one explicit
 mutation, not a source-to-source proof for the production Go client.
 
-\section{2. Model and exact scheduler
+\section{Model and exact scheduler
 semantics}\label{model-and-exact-scheduler-semantics}
 
-\subsection{2.1 Protocol executions}\label{protocol-executions}
+\subsection{Protocol executions}\label{protocol-executions}
 
 A protocol is a labelled transition system
 
@@ -140,7 +140,7 @@ opportunities, scheduler-controlled edges, and any permitted replay. The
 legal language of protocol \(P\) under grammar \(G\) and bound \(B\) is
 \(L_G(P,B)\).
 
-\subsection{2.2 Safety observations and
+\subsection{Safety observations and
 typing}\label{safety-observations-and-typing}
 
 Let
@@ -179,7 +179,7 @@ This separation permits different unsafe states to map to the same
 observation without applying a state predicate to an element of
 \(\Omega\).
 
-\subsection{2.3 Admission grammars}\label{admission-grammars}
+\subsection{Admission grammars}\label{admission-grammars}
 
 Let \(V\) be the bounded set of views and \(N\) the identities. A
 type-uniform directed grammar is an admission function
@@ -241,7 +241,7 @@ emissions and deliveries are fixed. A per-instance grammar \(G_M\) and a
 replay grammar \(G_R\) are used only in the secondary replay result; the
 central separation compares \(G_T\) and \(G_D\).
 
-\subsection{2.4 Closure as a legal trace
+\subsection{Closure as a legal trace
 transformation}\label{closure-as-a-legal-trace-transformation}
 
 For a fine policy \(A_T\), closure constructs a candidate target trace
@@ -262,16 +262,16 @@ target-language legality.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.92\textwidth,height=\textheight]{../figures/figure1_scheduler_grammar.pdf}
+\includegraphics[width=0.92\textwidth]{../figures/figure1_scheduler_grammar.pdf}
 \caption{Scheduler grammars and the type-erasure map. The central
 comparison is between phase-specific admission and one type-uniform
 directed edge bit.}
 \end{figure}
 
-\section{3. When closure preserves
+\section{When closure preserves
 unsafety}\label{when-closure-preserves-unsafety}
 
-\subsection{3.1 Merged-trace lifting
+\subsection{Merged-trace lifting
 lemma}\label{merged-trace-lifting-lemma}
 
 Let \(R\subseteq S\times S\) be a preorder. Consider an original trace
@@ -302,7 +302,7 @@ current invariant. At a retained action, forward simulation advances
 both sides. At the end, all original actions have been consumed, giving
 the terminal relation. \(\square\)
 
-\subsection{3.2 Legal scheduler-closure
+\subsection{Legal scheduler-closure
 theorem}\label{legal-scheduler-closure-theorem}
 
 Assume additionally that unsafety is upward closed:
@@ -329,7 +329,10 @@ O(\operatorname{last}(C(\tau)))
 \]
 
 \textbf{Proof.} Target legality supplies a valid coarse execution. Lemma
-1 gives \(R(\operatorname{last}(\tau),\operatorname{last}(C(\tau)))\).
+1 gives
+\[
+R(\operatorname{last}(\tau),\operatorname{last}(C(\tau))).
+\]
 Upward closure transfers unsafety to the target terminal state. Applying
 \(O\) yields a member of the target unsafe-observation language.
 \(\square\)
@@ -339,9 +342,9 @@ delivered messages'' is not automatically monotone: an inserted message
 may remove future behavior relevant to the safety witness, so no
 suitable preorder with upward-closed unsafety exists.
 
-\section{4. Quorum-pivot separation}\label{quorum-pivot-separation}
+\section{Quorum-pivot separation}\label{quorum-pivot-separation}
 
-\subsection{4.1 Structural criterion}\label{structural-criterion}
+\subsection{Structural criterion}\label{structural-criterion}
 
 Let \(P\) be a bounded certificate-driven locking system with threshold
 \(q\). Consider two conflicting decision opportunities \(C_0<C_1\) for
@@ -352,10 +355,13 @@ mechanism.
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Each branch has fixed base support of \(q-1\) contributions.
+  There are two conflicting certificate opportunities \(C_0<C_1\).
 \item
-  A correct identity \(p\) is the only contribution capable of
+  A correct identity \(p\) is the unique contribution capable of
   completing both branches inside the bound.
+\item
+  Without \(p\), each branch has fixed base support of exactly \(q-1\)
+  contributions.
 \item
   An already-emitted enabling envelope \(E\) is processed before \(C_0\)
   and makes \(p\) available to the first branch.
@@ -363,14 +369,16 @@ mechanism.
   An already-emitted repair envelope \(R\) is processed after \(C_0\)
   but before \(C_1\) and makes \(p\) unavailable to the second branch.
 \item
-  \(E\) and \(R\) have the same view, sender, and receiver but distinct
-  phase labels.
+  \(E\) and \(R\) have the same view, sender, and receiver.
+\item
+  \(E\) and \(R\) have distinct phase labels.
 \item
   A phase-specific policy admits \(E\) and withholds \(R\).
 \item
-  The directed grammar has one Boolean bit for that shared edge; all
-  other productions, edges, deliveries, and phase order are fixed. Edge
-  off withholds both envelopes, and edge on processes both in the order
+  The type-uniform directed grammar has one Boolean bit for that shared
+  edge and therefore admits or rejects \(E\) and \(R\) together; all other
+  productions, edges, deliveries, and phase order are fixed. Edge off
+  withholds both envelopes, and edge on processes both in the order
   \(E<C_0<R<C_1\).
 \item
   A correct decision for value \(i\) is emitted when the corresponding
@@ -379,7 +387,7 @@ mechanism.
 \end{enumerate}
 
 \textbf{Theorem 2 (quorum-pivot separation criterion).} Every bounded
-system satisfying Premises 1--8 has an agreement-violating execution
+system satisfying Premises 1--10 has an agreement-violating execution
 under \(G_T\), while no execution in the stated \(G_D\) domain violates
 agreement:
 
@@ -406,8 +414,8 @@ This theorem is the intermediate structural result: it identifies a
 checkable mechanism without tying the statement to one hand-written
 quorum arithmetic instance.
 
-\subsection{\texorpdfstring{4.2 Parametric \(3f+1\)
-family}{4.2 Parametric 3f+1 family}}\label{parametric-3f1-family}
+\subsection{\texorpdfstring{Parametric \(3f+1\)
+family}{Parametric 3f+1 family}}\label{parametric-3f1-family}
 
 For every \(f\geq1\), let
 
@@ -439,7 +447,7 @@ shared controlled edge, the order \(E<C_0<R<C_1\), all other messages
 and edges, once-only delivery, and the absence of late repair after
 \(C_1\). The only \(G_D\) degree of freedom is the Boolean edge bit. Let
 \(P_f\) be the protocol schema with the decisions specified in Premise
-8.
+10.
 
 \textbf{Corollary 1 (parametric family).} For every \(f\geq1\),
 
@@ -454,13 +462,13 @@ behavioral result follows from Theorem 2.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.94\textwidth,height=\textheight]{../figures/figure2_quorum_pivot.pdf}
+\includegraphics[width=0.94\textwidth]{../figures/figure2_quorum_pivot.pdf}
 \caption{Quorum-pivot mechanism. The fine policy admits enabling
 evidence but withholds repair; the closed policy either loses the first
 quorum or repairs the pivot before the second.}
 \end{figure}
 
-\section{5. Diagnostic seven-premise
+\section{Diagnostic seven-premise
 boundary}\label{diagnostic-seven-premise-boundary}
 
 The structural theorem uses semantic premises. For bounded diagnosis and
@@ -569,16 +577,16 @@ theorem for all locking protocols.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.9\textwidth,height=\textheight]{../figures/figure3_premise_boundary.pdf}
+\includegraphics[width=0.9\textwidth]{../figures/figure3_premise_boundary.pdf}
 \caption{The diagnostic premise boundary. Five premises are always
 necessary; at least one of first-branch shortage or enabling-dependent
 reuse must hold.}
 \end{figure}
 
-\section{6. Bounded instantiation to Tendermint-style
+\section{Bounded instantiation to Tendermint-style
 locking}\label{bounded-instantiation-to-tendermint-style-locking}
 
-\subsection{6.1 Published rule
+\subsection{Published rule
 vocabulary}\label{published-rule-vocabulary}
 
 The CometBFT consensus specification organizes each round as
@@ -593,25 +601,19 @@ transition vocabulary, not as evidence of an implementation bug.
 The bounded instance fixes one height \(H\), rounds \(r_0=0\) and
 \(r_1=1\), values \(0\) and \(1\), and the same \(3f+1\) validator
 partition as Section 4. The controlled mutation is
-\texttt{MISSING\_LOCK\_UPDATE}: after observing a round-0 PoLC for value
+\texttt{MISSING\allowbreak\_LOCK\allowbreak\_UPDATE}: after observing a round-0 PoLC for value
 \(0\), the pivot emits \texttt{PRECOMMIT(0,H,r\_0)} but fails to persist
 \texttt{lockedValue=0} and \texttt{lockedRound=r\_0}.
 
-\subsection{6.2 Refinement map}\label{refinement-map}
+\subsection{Refinement map}\label{refinement-map}
 
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Abstract object
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Bounded Tendermint-style rule
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
+\begin{table}[t]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+\toprule
+Abstract object & Bounded Tendermint-style rule \\
+\midrule
 pivot \(p\) & correct validator required by both conflicting \(2f+1\)
 precommit sets \\
 enabling \(E\) & last \texttt{PREVOTE(0,H,r0)} from fixed Byzantine
@@ -626,7 +628,11 @@ second opportunity \(C_1\) & later round-1 value-1 precommit set
 \(B\cup C\cup\{p\}\) \\
 shared edge & same \(H,r_0,b_0,p\); labels differ only as
 \texttt{PREVOTE} versus \texttt{PRECOMMIT} \\
-\end{longtable}
+\bottomrule
+\end{tabularx}
+\caption{Refinement map from the structural criterion to the bounded
+Tendermint-style rule model.}
+\end{table}
 
 The bound fixes every other message, edge, and delivery. It processes
 the events in the order
@@ -639,7 +645,7 @@ There is no late delivery of \(R\) after \(C_1\). Thus the type-uniform
 directed domain has exactly two policies: edge off and edge on. The
 phase-specific witness admits \(E\) and rejects \(R\).
 
-\subsection{6.3 Result}\label{result}
+\subsection{Result}\label{result}
 
 \textbf{Proposition 2 (bounded Tendermint-style instantiation).} For
 every \(f\geq1\) in the supplied rule-level model:
@@ -650,7 +656,7 @@ every \(f\geq1\) in the supplied rule-level model:
   the unmutated locking rule is safe under the phase-specific witness
   and both directed policies;
 \item
-  under \texttt{MISSING\_LOCK\_UPDATE}, the phase-specific policy yields
+  under \texttt{MISSING\allowbreak\_LOCK\allowbreak\_UPDATE}, the phase-specific policy yields
   conflicting correct decisions;
 \item
   under the same mutation, both directed policies remain safe.
@@ -674,7 +680,7 @@ validate the stated refinement; they do not establish conformance of the
 entire production event loop or the existence of the mutation in
 CometBFT.
 
-\section{7. Replay erasure as a secondary closure
+\section{Replay erasure as a secondary closure
 dimension}\label{replay-erasure-as-a-secondary-closure-dimension}
 
 Phase erasure is the main result. Replay illustrates a different
@@ -742,10 +748,10 @@ state. The full and deduplicated traces then have different
 observations. The artifact includes this counterexample and a separate
 output-congruence negative control.
 
-\section{8. Evidence and formal
+\section{Evidence and formal
 assurance}\label{evidence-and-formal-assurance}
 
-\subsection{8.1 Independent finite
+\subsection{Independent finite
 checks}\label{independent-finite-checks}
 
 The final artifact includes a checker that imports neither the project
@@ -771,12 +777,13 @@ models nor the proof-certificate kernel. It verifies:
 \end{itemize}
 
 The post-audit SMT package contains positive obligations and damaged
-controls. Z3 \cite{moura2008z3} is expected to return \texttt{UNSAT} for
-the preservation obligations and \texttt{SAT} for controls that drop a
-necessary condition. Go exact arithmetic independently checks the
-parametric quorum equations.
+controls. In artifact reproduction, Z3 \cite{moura2008z3} returns
+\texttt{UNSAT} for all eight preservation obligations and \texttt{SAT}
+for all four controls that drop a necessary condition. Go
+arbitrary-precision arithmetic independently checks the parametric
+quorum equations.
 
-\subsection{8.2 Prover developments}\label{prover-developments}
+\subsection{Prover developments}\label{prover-developments}
 
 The archive contains Lean and Coq sources for scheduler semantics, typed
 unsafe observations, legal closure lifting, the structural criterion,
@@ -785,14 +792,15 @@ erasure with outputs, and the diagnostic boundary. Internal
 proof-obligation identifiers appear only in the artifact map; the paper
 uses normal theorem numbering.
 
-A purpose-built certificate checker and the SMT obligations execute in
-the supplied environment. The mature-prover source is pinned and
-source-hygiene checked. A successful Lean or Coq kernel build remains a
-release condition when the corresponding compiler is available; the
-reproduction script does not convert an absent external toolchain into a
-\texttt{PASS}.
+The primary mature-prover project is pinned to Lean 4.33.0.
+\texttt{lake build}, the per-theorem \texttt{\#print axioms} audit,
+source-hygiene checks, and \texttt{leanchecker SchedulerClosure} all
+complete successfully. The Coq development is retained as a secondary
+archival formalization and is not used to support a stronger assurance
+claim. The purpose-built certificate checker and SMT obligations provide
+independent supporting routes, not substitutes for the Lean kernel build.
 
-\subsection{8.3 Executable validation}\label{executable-validation}
+\subsection{Executable validation}\label{executable-validation}
 
 Earlier gates supply two finite locking kernels and a fuller two-round
 event loop with \texttt{PROPOSAL}, \texttt{PREVOTE}, \texttt{POLKA},
@@ -805,7 +813,7 @@ classifications. These results test the mechanism and implementation
 correspondence inside the declared bounds; they are not a statistical
 estimate of production bug prevalence.
 
-\section{9. Related work and novelty
+\section{Related work and novelty
 boundary}\label{related-work-and-novelty-boundary}
 
 Twins uses same-identity replicas and round-indexed communication
@@ -813,10 +821,12 @@ patterns to exercise equivocation, double voting, and state loss
 \cite{bano2021twins}. Randomized BFT testing provides message mutation
 and richer fault exploration \cite{winter2023randomized}. Netrix and
 ByzzBench provide controlled scheduling and evaluation infrastructure
-\cite{dragoi2024netrix,louroneto2025byzzbench}. ByzTwin-Range broadens
-practical Byzantine experimentation through a digital-twin cyber-range
-\cite{freitas2026byztwin}. None of these implementation capabilities is
-claimed as new here.
+\cite{dragoi2024netrix,louroneto2025byzzbench}. Mallory uses
+Lamport-timeline and happens-before feedback to guide distributed-system
+fault sequences \cite{meng2023mallory}. ByzTwin-Range broadens practical
+Byzantine experimentation through a digital-twin cyber-range
+\cite{freitas2026byztwin}. None of these scheduler, fuzzing, or
+implementation capabilities is claimed as new here.
 
 Communication closure is the closest conceptual result. It establishes a
 property-preserving testing reduction for a class of consensus
@@ -840,22 +850,27 @@ further rules out a novelty claim based on injector taxonomies.
 \begin{table}[t]
 \centering
 \scriptsize
-\setlength{\tabcolsep}{2.5pt}
-\begin{tabular}{lccccccc}
+\setlength{\tabcolsep}{1.7pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccccc}
 \toprule
-Work & Part. & Dir. & Phase & Inst. & Replay & Closure & Sep.\\
+Work & Part. & Dir. & Phase & Replay & Closure & Sep. & Conf. & Mech.\\
 \midrule
-Twins & Y & part. & -- & -- & state & -- & --\\
-Comm. closure & -- & lossy & -- & -- & -- & Y & --\\
-HO/msg. adv. & -- & Y & -- & -- & -- & sem. & --\\
-Rand. BFT test & -- & Y & Y & Y & Y & -- & --\\
-Netrix & -- & Y & Y & Y & Y & -- & --\\
-ByzzBench & cfg. & Y & cfg. & cfg. & cfg. & -- & --\\
-PERF & -- & model & faults & model & model & perf. & --\\
-\textbf{This work} & case & Y & Y & formal & Y & \textbf{Y} & \textbf{Y}\\
+Twins & Y & part. & -- & state & -- & -- & impl. & --\\
+Comm. closure & -- & lossy & -- & -- & Y & -- & impl. cond. & --\\
+HO/msg. adv. & -- & Y & -- & -- & sem. & -- & -- & --\\
+ByzzFuzz & -- & Y & Y & Y & -- & -- & impl. & --\\
+Netrix & -- & Y & Y & Y & -- & -- & impl. & --\\
+ByzzBench & cfg. & Y & cfg. & cfg. & -- & -- & impl. & --\\
+Mallory & Y & faults & -- & -- & -- & -- & deployed & --\\
+PERF & -- & model & faults & model & perf. & -- & model/sys. & Maude\\
+\textbf{This work} & case & Y & Y & Y & \textbf{Y} & \textbf{Y} & bounded rules & Lean\\
 \bottomrule
-\end{tabular}
-\caption{Capability map for closest work. `Closure' denotes an explicit property-preservation result; `Sep.' denotes a safety-observation separation witness.}
+\end{tabular}}
+\caption{Capability map for closest work. `Closure' is an explicit
+property-preservation result; `Sep.' is a safety-observation separation
+witness; `Conf.' distinguishes implementation execution from bounded
+rule-level refinement; `Mech.' records a mechanized formal model or proof.}
 \end{table}
 
 The table is a capability map, not a quality ranking. The novelty claim
@@ -866,7 +881,7 @@ bounded Tendermint-style refinement, exact diagnostic boundary, and
 replay theorem with both state and output congruence. Absolute novelty
 is not asserted.
 
-\section{10. Validity and limitations}\label{validity-and-limitations}
+\section{Validity and limitations}\label{validity-and-limitations}
 
 \textbf{Internal validity.} A shared specification error could affect
 the formal and executable routes. Mitigations include independent Python
@@ -888,13 +903,14 @@ and finite views. The Tendermint-style bridge is rule-level and bounded.
 Weighted stake, validator-set changes, multi-height state transfer, disk
 recovery, liveness, and pacemaker behavior are outside the theorem. The
 bridge does not show that CometBFT contains
-\texttt{MISSING\_LOCK\_UPDATE}.
+\texttt{MISSING\allowbreak\_LOCK\allowbreak\_UPDATE}.
 
-\textbf{Proof assurance.} The mathematical obligations are independently
-encoded and checked in several routes, but only an executed
-mature-prover build can remove the remaining compiler-level assurance
-condition for the Lean/Coq sources. The artifact reports that status
-explicitly.
+\textbf{Proof assurance.} Lean 4.33.0 kernel-checks the primary
+formalization, and the axiom report lists every dependency reported by
+\texttt{\#print axioms}. The independent finite checker, project-local
+certificate kernel, and SMT controls reduce shared-encoding risk but do
+not make the bounded claims unbounded. The Coq mirror remains secondary
+and unbuilt.
 
 \textbf{Responsible use.} All adversarial schedules and mutations run
 locally. No public network, assets, private keys, denial-of-service
@@ -902,7 +918,7 @@ traffic, or unauthorized access are involved. A future
 implementation-level finding should be privately minimized and disclosed
 before publication of sensitive details.
 
-\section{11. Reproducibility}\label{reproducibility}
+\section{Reproducibility}\label{reproducibility}
 
 The artifact exposes one entry point:
 
@@ -910,21 +926,19 @@ The artifact exposes one entry point:
 ./reproduce.sh
 \end{verbatim}
 
-It runs the independent proof checks, the Python and Go Tendermint-style
-bridge, cross-language comparison, project-local certificate checks, SMT
-obligations, tests, source hygiene, and manuscript/PDF checks. The final
-summary prints a separate line for each theorem package and for negative
-controls. If Lean or Coq is installed, the same entry point builds the
-pinned project and runs the axiom audit; otherwise it records the
-mature-prover step as unavailable rather than silently skipping it.
+It creates an isolated Python environment, runs the independent proof
+checks, Python and Go models, cross-language comparison, certificate
+kernels, SMT obligations and negative controls, installs or activates the
+pinned Lean toolchain, runs \texttt{lake build} and the axiom audit,
+builds the official LIPIcs source, verifies the page budget and manifests,
+and fails nonzero if any mandatory stage fails.
 
 The package preserves raw and processed outputs, fixed random seeds,
 protocol parameters, source registers, tool versions, and SHA-256
-manifests. Historical research gates are included under
-\texttt{historical/}, while the final paper, formal sources, protocol
-instantiation, and current evidence occupy the top-level project.
+manifests. Historical research gates are isolated under
+\texttt{archive/stages/}; active reproduction does not read them.
 
-\section{12. Conclusion}\label{conclusion}
+\section{Conclusion}\label{conclusion}
 
 Phase erasure can change more than the number of schedules. When
 enabling and repair evidence share one endpoint and view, but differ by
