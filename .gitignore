@@ -1,0 +1,27 @@
+.venv/
+.cache/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.lake/
+formal/lean/.lake/
+*.olean
+*.ilean
+*.trace
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.toc
+*.synctex.gz
+manuscript/lipics/build/
+release/*.tmp
+.DS_Store
+
+# Verification evidence is intentionally versioned.
+!build_logs/*.log

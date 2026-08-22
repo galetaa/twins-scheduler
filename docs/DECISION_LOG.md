@@ -64,3 +64,22 @@
   `RAW_INPUTS_SHA256SUMS`.
 - Rejected: rewrite the first commit, which would obscure the actual sequence
   of work; or accept normalization, which would violate byte preservation.
+
+## D-008 — Go module boundary
+
+- Observation: a root `go test ./...` initially traversed Go fragments inside
+  immutable historical snapshots and attempted to resolve their unrelated
+  upstream dependencies.
+- Decision: keep one active root Go module and add non-active fence modules at
+  `archive/go.mod` and `provenance/go.mod`.  These files sit above, not inside,
+  immutable snapshots.  Copied source-correspondence fragments under `models/`
+  use `.go.txt`, retaining their bytes while excluding them from compilation.
+- Rejected: modify historical snapshots; depend on `archive/stages`; or hide
+  failures by changing the documented command away from `go test ./...`.
+
+## D-009 — Root `go.sum`
+
+- Decision: omit `go.sum` while the active Go module has no third-party module
+  dependencies; `go mod tidy` intentionally produces no sum file.
+- Rejected: create a synthetic or invalid checksum entry only to satisfy a
+  cosmetic tree template.

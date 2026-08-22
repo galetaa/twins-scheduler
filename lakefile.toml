@@ -1,0 +1,8 @@
+name = "schedulerClosure"
+version = "1.0.0"
+defaultTargets = ["SchedulerClosure"]
+
+[[lean_lib]]
+name = "SchedulerClosure"
+srcDir = "formal/lean"
+

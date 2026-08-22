@@ -1,0 +1,12 @@
+import SchedulerClosure
+
+#print axioms SchedulerClosure.replay_erasure_with_outputs
+#print axioms SchedulerClosure.replay_erasure_state_observation
+#print axioms SchedulerClosure.hidden_state_counterexample
+#print axioms SchedulerClosure.legal_scheduler_closure_preserves_unsafe
+#print axioms SchedulerClosure.quorum_pivot_separation_criterion
+#print axioms SchedulerClosure.criterion_policy_separation
+#print axioms SchedulerClosure.parametric_family_separation
+#print axioms SchedulerClosure.bounded_tendermint_refines_quorum_pivot
+#print axioms SchedulerClosure.strictSeparation_eq_characterization
+#print axioms SchedulerClosure.strictSeparation_iff_three

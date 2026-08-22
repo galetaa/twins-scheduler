@@ -1,0 +1,5 @@
+clean_copy_path=<historical-clean-copy>
+exit_status=0
+elapsed_seconds=10
+source_root=<historical-source-root>
+result=PASS_WITH_EXPLICIT_EXTERNAL_BLOCKERS
