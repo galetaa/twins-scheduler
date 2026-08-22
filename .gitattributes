@@ -1,0 +1,27 @@
+# Canonical source defaults.
+*.py text eol=lf
+*.go text eol=lf
+*.lean text eol=lf
+*.v text eol=lf
+*.smt2 text eol=lf
+*.sh text eol=lf
+*.md text eol=lf
+*.tex text eol=lf
+*.bib text eol=lf
+*.csv text eol=lf
+*.json text eol=lf
+*.toml text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+
+*.zip binary
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+
+# Immutable acquisition material must remain byte-for-byte identical in Git.
+# Keep these last: the last matching attribute rule wins.
+/provenance/raw_inputs/** -text
+/provenance/source_archives/** -text
+/archive/stages/** -text

@@ -52,3 +52,15 @@
   repository and complete logs under `build_logs/`.
 - Rejected: copying `GATE_STATUS.csv` values into the release status.
 
+## D-007 — Git text conversion in immutable material
+
+- Observation: after the first import commit, a blob-level audit found that
+  the user's global `core.autocrlf=input` had normalized CRLF in some loose CSV
+  provenance files.  The original workspace, raw-input worktree copies and ZIP
+  archives were unchanged.
+- Decision: add repository attributes with `-text` for `raw_inputs`,
+  `source_archives` and `archive/stages`, then re-index those paths from the
+  unchanged copies.  Verify every indexed raw-input blob against
+  `RAW_INPUTS_SHA256SUMS`.
+- Rejected: rewrite the first commit, which would obscure the actual sequence
+  of work; or accept normalization, which would violate byte preservation.
