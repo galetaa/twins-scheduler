@@ -145,3 +145,15 @@
   describe.
 - Rejected: create an archive inside the tree being recursively archived,
   which is nondeterministic and self-referential.
+
+## D-015 — Container portability repairs
+
+- Observation: clean Debian container runs exposed three host assumptions:
+  the `python` alias, retired live-mirror TeX revisions, and scalable Latin
+  Modern font maps; a C header set was also required by the local Z3 wrapper.
+- Decision: install `python-is-python3`, `libc6-dev`, and `lmodern`; fetch the
+  already checksum-pinned TeX packages from immutable official Debian snapshot
+  URLs instead of the moving live mirror. A subsequent full container
+  reproduction passed.
+- Rejected: relax TeX revisions, disable microtype expansion, use unpinned
+  `latest`, or skip SMT in the container.
