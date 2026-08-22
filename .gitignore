@@ -31,3 +31,4 @@ release/source_integrity.log
 
 # Verification evidence is intentionally versioned.
 !build_logs/*.log
+!results/reference/**/*.log
