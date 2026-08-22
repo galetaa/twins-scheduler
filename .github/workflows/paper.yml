@@ -1,0 +1,31 @@
+name: full-artifact
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  clean-reproduction:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Build pinned reproduction image
+        run: docker build -f containers/Dockerfile -t twins-artifact .
+      - name: Run the complete reproduction contract
+        run: docker run --name twins-artifact-run -e TWINS_REPRODUCTION_RUN_ROOT=/artifact/ci-output twins-artifact
+      - name: Extract verified deliverables
+        if: always()
+        run: |
+          mkdir -p ci-artifact
+          docker cp twins-artifact-run:/artifact/ci-output/. ci-artifact/ || true
+          (cd ci-artifact && find . -type f -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS)
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: full-reproduction-evidence
+          path: ci-artifact/

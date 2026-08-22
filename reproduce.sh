@@ -4,7 +4,12 @@ set -o pipefail
 
 ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 mkdir -p "$ROOT/.cache"
-RUN_ROOT=$(mktemp -d "$ROOT/.cache/reproduction.XXXXXX")
+if [[ -n "${TWINS_REPRODUCTION_RUN_ROOT:-}" ]]; then
+  mkdir -p "$TWINS_REPRODUCTION_RUN_ROOT"
+  RUN_ROOT=$(cd "$TWINS_REPRODUCTION_RUN_ROOT" && pwd)
+else
+  RUN_ROOT=$(mktemp -d "$ROOT/.cache/reproduction.XXXXXX")
+fi
 export TWINS_OUTPUT_ROOT="$RUN_ROOT"
 export TWINS_LOG_DIR="$RUN_ROOT/build_logs"
 mkdir -p "$TWINS_LOG_DIR"

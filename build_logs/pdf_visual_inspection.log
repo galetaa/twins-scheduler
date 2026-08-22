@@ -1,0 +1,12 @@
+status=PASS
+inspection_date=2026-08-22
+method=pdftoppm contact sheet plus full-resolution spot inspection
+physical_pages=16
+pages_inspected=1-16
+clipped_text=0
+object_overlaps=0
+black_boxes=0
+replacement_or_broken_glyphs=0
+empty_required_sections=0
+identity_leaks=0
+notes=All pages were visually inspected; page 10 was additionally inspected at full resolution.

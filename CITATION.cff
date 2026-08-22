@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this artifact, please cite the accompanying anonymous manuscript."
+title: "Twins Scheduler Closure: Reproducible Artifact"
+type: software
+version: 1.0.0
+date-released: 2026-08-22
+authors:
+  - name: "Anonymous artifact authors"
+license: MIT
+abstract: >-
+  Kernel-checked and executable evidence for bounded safety-observation
+  separation caused by protocol-phase erasure in scheduler grammars.

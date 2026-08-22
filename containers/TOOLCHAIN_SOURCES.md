@@ -32,8 +32,9 @@ The installer ran with repository-local `ELAN_HOME=.cache/elan`,
   `ecae53dfd29c7b22d02a9065327c104760fb726a028b146d556732021a5977f0`
 - License: LPPL 1.3c, preserved at `vendor/lipics/LICENSE.md`.
 - TeX package overlay: Debian trixie TeX Live 2024 package revisions
-  `2024.20250309-1`/`-2`; exact package names and SHA-256 values are enforced by
-  `scripts/bootstrap.sh`.
+  `2024.20250309-1`/`-2`, fetched from official snapshot timestamps
+  `20250314T145501Z` and `20250315T025205Z`; exact URLs and SHA-256 values are
+  enforced by `scripts/bootstrap.sh`.
 
 The overlay is extracted beneath `.cache/` and does not modify the host TeX
 installation. The executed engine identifies itself as pdfTeX 1.40.26; the

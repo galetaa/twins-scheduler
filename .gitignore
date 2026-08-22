@@ -6,6 +6,7 @@ __pycache__/
 .mypy_cache/
 .ruff_cache/
 .lake/
+.work/
 formal/lean/.lake/
 *.olean
 *.ilean
@@ -21,6 +22,11 @@ formal/lean/.lake/
 *.synctex.gz
 manuscript/lipics/build/
 release/*.tmp
+release/TWINS_SCHEDULER_GIT_PROJECT_*.zip
+release/TWINS_SCHEDULER_SOURCE_RELEASE_*.tar.gz
+release/SHA256SUMS
+release/zip_integrity.log
+release/source_integrity.log
 .DS_Store
 
 # Verification evidence is intentionally versioned.

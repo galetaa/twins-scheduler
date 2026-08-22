@@ -1,0 +1,22 @@
+Downloading cpython-3.11.12-linux-x86_64-gnu (20.5MiB)
+ Downloaded cpython-3.11.12-linux-x86_64-gnu
+Using CPython 3.11.12
+Creating virtual environment at: .venv
+   Building twins-scheduler-closure @ file:///artifact
+      Built twins-scheduler-closure @ file:///artifact
+Prepared 5 packages in 859ms
+Installed 5 packages in 1ms
+ + iniconfig==2.3.0
+ + packaging==26.3
+ + pluggy==1.6.0
+ + pytest==8.3.5
+ + twins-scheduler-closure==1.0.0 (from file:///artifact)
+BOOTSTRAP PASS
+Python 3.13.5
+uv 0.6.14
+go version go1.24.4 linux/amd64
+elan 4.2.3 (b6cec7e10 2026-06-08)
+Lake version 5.0.0-src+d8b1897 (Lean version 4.33.0)
+pdfTeX 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian)
+BibTeX 0.99d (TeX Live 2025/dev/Debian)
+PAPER PASS pages=16 main_text_pages=14

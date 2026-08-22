@@ -1,0 +1,3 @@
+artifact,root,includes_git,includes_raw_inputs,includes_stage_snapshots,includes_final_pdf,integrity_command
+TWINS_SCHEDULER_GIT_PROJECT_<ISO-DATE>.zip,twins-scheduler-closure,yes,yes,yes,yes,unzip -t
+TWINS_SCHEDULER_SOURCE_RELEASE_<ISO-DATE>.tar.gz,twins-scheduler-closure,no,yes,yes,yes,tar -tzf

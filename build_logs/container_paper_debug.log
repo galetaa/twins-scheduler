@@ -1,0 +1,61 @@
+Downloading cpython-3.11.12-linux-x86_64-gnu (20.5MiB)
+ Downloaded cpython-3.11.12-linux-x86_64-gnu
+Using CPython 3.11.12
+Creating virtual environment at: .venv
+   Building twins-scheduler-closure @ file:///artifact
+      Built twins-scheduler-closure @ file:///artifact
+Prepared 5 packages in 897ms
+Installed 5 packages in 2ms
+ + iniconfig==2.3.0
+ + packaging==26.3
+ + pluggy==1.6.0
+ + pytest==8.3.5
+ + twins-scheduler-closure==1.0.0 (from file:///artifact)
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  9823  100  9823    0     0  94808      0 --:--:-- --:--:-- --:--:-- 95368
+/artifact/.cache/downloads/elan-init-464c9d28395000a2a0128e07081e4956d50eced2.sh: OK
+info: downloading installer
+info: downloading https://releases.lean-lang.org/lean4/v4.33.0/lean-4.33.0-linux.tar.zst
+info: installing /artifact/.cache/elan/toolchains/leanprover--lean4---v4.33.0
+
+leanprover/lean4:v4.33.0 installed - Lean (version 4.33.0, x86_64-unknown-linux-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)
+
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   379  100   379    0     0   1057      0 --:--:-- --:--:-- --:--:--  1058
+ 89 4872k   89 4366k    0     0  4893k      0 --:--:-- --:--:-- --:--:-- 4893k100 4872k  100 4872k    0     0  5207k      0 --:--:-- --:--:-- --:--:-- 11.5M
+/artifact/.cache/tex-debs/texlive-fonts-recommended_2024.20250309-1_all.deb: OK
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   379  100   379    0     0   2442      0 --:--:-- --:--:-- --:--:--  2445
+ 59 8540k   59 5054k    0     0  6392k      0  0:00:01 --:--:--  0:00:01 6392k100 8540k  100 8540k    0     0  7611k      0  0:00:01  0:00:01 --:--:-- 10.2M
+/artifact/.cache/tex-debs/texlive-latex-recommended_2024.20250309-1_all.deb: OK
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   361  100   361    0     0   2480      0 --:--:-- --:--:-- --:--:--  2489
+ 14 16.2M   14 2447k    0     0  5892k      0  0:00:02 --:--:--  0:00:02 5892k 80 16.2M   80 13.0M    0     0  9371k      0  0:00:01  0:00:01 --:--:-- 10.5M100 16.2M  100 16.2M    0     0  9642k      0  0:00:01  0:00:01 --:--:-- 10.5M
+/artifact/.cache/tex-debs/texlive-pictures_2024.20250309-1_all.deb: OK
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   367  100   367    0     0   2371      0 --:--:-- --:--:-- --:--:--  2383
+  9 24.0M    9 2319k    0     0  5328k      0  0:00:04 --:--:--  0:00:04 5328k 56 24.0M   56 13.4M    0     0  9607k      0  0:00:02  0:00:01  0:00:01 11.2M100 24.0M  100 24.0M    0     0  10.1M      0  0:00:02  0:00:02 --:--:-- 11.1M
+/artifact/.cache/tex-debs/texlive-latex-extra_2024.20250309-2_all.deb: OK
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   371  100   371    0     0   3408      0 --:--:-- --:--:-- --:--:--  3435
+ 20 27.6M   20 5855k    0     0  8711k      0  0:00:03 --:--:--  0:00:03 8711k 58 27.6M   58 16.2M    0     0  9904k      0  0:00:02  0:00:01  0:00:01 10.4M 94 27.6M   94 26.0M    0     0  9994k      0  0:00:02  0:00:02 --:--:-- 10.1M100 27.6M  100 27.6M    0     0   9.8M      0  0:00:02  0:00:02 --:--:-- 10.2M
+/artifact/.cache/tex-debs/texlive-plain-generic_2024.20250309-2_all.deb: OK
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   369  100   369    0     0   1508      0 --:--:-- --:--:-- --:--:--  1506
+ 12 75.6M   12 9981k    0     0  8414k      0  0:00:09  0:00:01  0:00:08 8414k 27 75.6M   27 20.8M    0     0  9768k      0  0:00:07  0:00:02  0:00:05 11.1M 41 75.6M   41 31.4M    0     0   9.8M      0  0:00:07  0:00:03  0:00:04 10.7M 55 75.6M   55 41.6M    0     0   9.9M      0  0:00:07  0:00:04  0:00:03 10.6M 69 75.6M   69 52.3M    0     0  10.0M      0  0:00:07  0:00:05  0:00:02 10.6M 83 75.6M   83 63.5M    0     0  10.2M      0  0:00:07  0:00:06  0:00:01 10.7M 98 75.6M   98 74.7M    0     0  10.4M      0  0:00:07  0:00:07 --:--:-- 10.7M100 75.6M  100 75.6M    0     0  10.4M      0  0:00:07  0:00:07 --:--:-- 10.8M
+/artifact/.cache/tex-debs/texlive-bibtex-extra_2024.20250309-2_all.deb: OK
+BOOTSTRAP PASS
+Python 3.13.5
+uv 0.6.14
+go version go1.24.4 linux/amd64
+elan 4.2.3 (b6cec7e10 2026-06-08)
+Lake version 5.0.0-src+d8b1897 (Lean version 4.33.0)
+pdfTeX 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian)
+BibTeX 0.99d (TeX Live 2025/dev/Debian)

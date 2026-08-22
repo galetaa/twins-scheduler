@@ -1,0 +1,83 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 756B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/debian:trixie-slim@sha256:3a39a0592364683e6bab97937b72cad5a8fa6dcbbee90edb3bb48c7f8e94f258
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 176B done
+#3 DONE 0.0s
+
+#4 [1/5] FROM docker.io/library/debian:trixie-slim@sha256:3a39a0592364683e6bab97937b72cad5a8fa6dcbbee90edb3bb48c7f8e94f258
+#4 DONE 0.0s
+
+#5 [2/5] RUN apt-get update && apt-get install -y --no-install-recommends     apt-utils ca-certificates curl gcc git golang-go libc6-dev libz3-4 make     poppler-utils python3 python3-pip python3-venv python-is-python3 texlive-base     texlive-binaries texlive-latex-base unzip zip &&     python3 -m pip install --break-system-packages --no-cache-dir uv==0.6.14 &&     rm -rf /var/lib/apt/lists/*
+#5 CACHED
+
+#6 [internal] load build context
+#6 transferring context: 1.09MB 0.1s done
+#6 DONE 0.2s
+
+#7 [3/5] RUN apt-get update && apt-get install -y --no-install-recommends lmodern &&     rm -rf /var/lib/apt/lists/*
+#7 0.455 Get:1 http://deb.debian.org/debian trixie InRelease [140 kB]
+#7 0.517 Get:2 http://deb.debian.org/debian trixie-updates InRelease [47.3 kB]
+#7 0.544 Get:3 http://deb.debian.org/debian-security trixie-security InRelease [43.4 kB]
+#7 0.570 Get:4 http://deb.debian.org/debian trixie/main amd64 Packages [9673 kB]
+#7 1.407 Get:5 http://deb.debian.org/debian trixie-updates/main amd64 Packages [4412 B]
+#7 1.430 Get:6 http://deb.debian.org/debian-security trixie-security/main amd64 Packages [247 kB]
+#7 2.019 Fetched 10.2 MB in 2s (5515 kB/s)
+#7 2.019 Reading package lists...
+#7 2.528 Reading package lists...
+#7 2.992 Building dependency tree...
+#7 3.107 Reading state information...
+#7 3.264 The following additional packages will be installed:
+#7 3.265   libfontenc1 xfonts-encodings xfonts-utils
+#7 3.304 The following NEW packages will be installed:
+#7 3.305   libfontenc1 lmodern xfonts-encodings xfonts-utils
+#7 3.413 0 upgraded, 4 newly installed, 0 to remove and 9 not upgraded.
+#7 3.413 Need to get 10.2 MB of archives.
+#7 3.413 After this operation, 35.2 MB of additional disk space will be used.
+#7 3.413 Get:1 http://deb.debian.org/debian trixie/main amd64 libfontenc1 amd64 1:1.1.8-1+b2 [23.3 kB]
+#7 3.450 Get:2 http://deb.debian.org/debian trixie/main amd64 xfonts-encodings all 1:1.0.4-2.2 [577 kB]
+#7 3.533 Get:3 http://deb.debian.org/debian trixie/main amd64 xfonts-utils amd64 1:7.7+7 [93.3 kB]
+#7 3.537 Get:4 http://deb.debian.org/debian trixie/main amd64 lmodern all 2.005-1 [9480 kB]
+#7 5.059 Fetched 10.2 MB in 1s (8832 kB/s)
+#7 5.075 Selecting previously unselected package libfontenc1:amd64.
+#7 5.075 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 38349 files and directories currently installed.)
+#7 5.117 Preparing to unpack .../libfontenc1_1%3a1.1.8-1+b2_amd64.deb ...
+#7 5.121 Unpacking libfontenc1:amd64 (1:1.1.8-1+b2) ...
+#7 5.139 Selecting previously unselected package xfonts-encodings.
+#7 5.141 Preparing to unpack .../xfonts-encodings_1%3a1.0.4-2.2_all.deb ...
+#7 5.144 Unpacking xfonts-encodings (1:1.0.4-2.2) ...
+#7 5.178 Selecting previously unselected package xfonts-utils.
+#7 5.180 Preparing to unpack .../xfonts-utils_1%3a7.7+7_amd64.deb ...
+#7 5.183 Unpacking xfonts-utils (1:7.7+7) ...
+#7 5.208 Selecting previously unselected package lmodern.
+#7 5.210 Preparing to unpack .../lmodern_2.005-1_all.deb ...
+#7 5.212 Unpacking lmodern (2.005-1) ...
+#7 5.436 Setting up libfontenc1:amd64 (1:1.1.8-1+b2) ...
+#7 5.442 Setting up xfonts-encodings (1:1.0.4-2.2) ...
+#7 5.449 Setting up xfonts-utils (1:7.7+7) ...
+#7 5.457 Setting up lmodern (2.005-1) ...
+#7 5.519 Processing triggers for tex-common (6.19) ...
+#7 5.559 Running mktexlsr. This may take some time... done.
+#7 5.604 Running updmap-sys. This may take some time... done.
+#7 5.747 Running mktexlsr /var/lib/texmf ... done.
+#7 5.766 Processing triggers for libc-bin (2.41-12+deb13u3) ...
+#7 DONE 5.8s
+
+#8 [4/5] WORKDIR /artifact
+#8 DONE 0.0s
+
+#9 [5/5] COPY . /artifact
+#9 DONE 0.4s
+
+#10 exporting to image
+#10 exporting layers
+#10 exporting layers 0.5s done
+#10 writing image sha256:d884a3a9b227f0e570ee20449427e01119ab8d7907d0d5c7d4c33ceb8deb3935 done
+#10 naming to docker.io/library/twins-scheduler-closure:test done
+#10 DONE 0.5s

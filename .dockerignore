@@ -1,0 +1,8 @@
+.git
+.cache
+.venv
+.lake
+.pytest_cache
+.work
+release/TWINS_SCHEDULER_GIT_PROJECT_*.zip
+release/TWINS_SCHEDULER_SOURCE_RELEASE_*.tar.gz

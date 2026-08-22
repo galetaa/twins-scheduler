@@ -7,7 +7,7 @@ ELAN_HOME=${ELAN_HOME:-"$CACHE_ROOT/elan"}
 export ELAN_HOME
 export PATH="$ELAN_HOME/bin:$PATH"
 
-required=(python uv go git curl cc pdflatex bibtex pdfinfo pdffonts pdftotext apt dpkg-deb)
+required=(python uv go git curl cc pdflatex bibtex pdfinfo pdffonts pdftotext dpkg-deb)
 for command_name in "${required[@]}"; do
   command -v "$command_name" >/dev/null || {
     echo "BOOTSTRAP FAIL missing command: $command_name" >&2
@@ -36,14 +36,6 @@ TEX_OVERLAY="$CACHE_ROOT/texlive-overlay"
 TEX_MARKER="$TEX_OVERLAY/.complete-v2024.20250309"
 if [[ ! -f "$TEX_MARKER" ]]; then
   mkdir -p "$TEX_DEBS" "$TEX_OVERLAY"
-  specs=(
-    "texlive-fonts-recommended=2024.20250309-1"
-    "texlive-latex-recommended=2024.20250309-1"
-    "texlive-pictures=2024.20250309-1"
-    "texlive-latex-extra=2024.20250309-2"
-    "texlive-plain-generic=2024.20250309-2"
-    "texlive-bibtex-extra=2024.20250309-2"
-  )
   files=(
     "texlive-fonts-recommended_2024.20250309-1_all.deb"
     "texlive-latex-recommended_2024.20250309-1_all.deb"
@@ -51,6 +43,14 @@ if [[ ! -f "$TEX_MARKER" ]]; then
     "texlive-latex-extra_2024.20250309-2_all.deb"
     "texlive-plain-generic_2024.20250309-2_all.deb"
     "texlive-bibtex-extra_2024.20250309-2_all.deb"
+  )
+  urls=(
+    "https://snapshot.debian.org/archive/debian/20250314T145501Z/pool/main/t/texlive-base/${files[0]}"
+    "https://snapshot.debian.org/archive/debian/20250314T145501Z/pool/main/t/texlive-base/${files[1]}"
+    "https://snapshot.debian.org/archive/debian/20250314T145501Z/pool/main/t/texlive-base/${files[2]}"
+    "https://snapshot.debian.org/archive/debian/20250315T025205Z/pool/main/t/texlive-extra/${files[3]}"
+    "https://snapshot.debian.org/archive/debian/20250315T025205Z/pool/main/t/texlive-extra/${files[4]}"
+    "https://snapshot.debian.org/archive/debian/20250315T025205Z/pool/main/t/texlive-extra/${files[5]}"
   )
   sums=(
     "f96805afa6f936b18c24fcaaf9de63b4b02f43de71b9195647ba01c11336b601"
@@ -60,10 +60,10 @@ if [[ ! -f "$TEX_MARKER" ]]; then
     "920cb9a3173e178c1d42f9d22378e816adcd34ca0351dfd8dc0f7eb93b5258fb"
     "dd61392705f2c0db4fce398c9d3f936b1baacee94f270c6e5f7fdbabac0fc56e"
   )
-  for index in "${!specs[@]}"; do
+  for index in "${!files[@]}"; do
     package_path="$TEX_DEBS/${files[$index]}"
     if [[ ! -f "$package_path" ]]; then
-      (cd "$TEX_DEBS" && apt download "${specs[$index]}")
+      curl -fL --retry 3 -o "$package_path" "${urls[$index]}"
     fi
     echo "${sums[$index]}  $package_path" | sha256sum -c -
     dpkg-deb -x "$package_path" "$TEX_OVERLAY"

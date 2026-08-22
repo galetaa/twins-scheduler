@@ -1,0 +1,175 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./main.tex
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+(/artifact/vendor/lipics/lipics-v2021.cls
+Document Class: lipics-v2021 2023/05/12 v3.1.3 LIPIcs articles
+
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/ba
+se/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/ba
+se/fleqn.clo)
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/ba
+se/size10.clo))
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/microt
+ype/microtype.sty
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/gr
+aphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/microt
+ype/microtype-pdftex.def)
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/microt
+ype/microtype.cfg))
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/ba
+se/inputenc.sty)
+
+Class Package fontawesome5 not installed Warning: Please install package fontaw
+esome5 on input line 535.
+
+
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/ba
+se/fontenc.sty)
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/ba
+se/textcomp.sty) (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/eucal.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/generic/soul
+/soul.sty
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/generic/soul
+/soul-ori.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/gr
+aphics/color.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/gr
+aphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+(/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
+(/usr/share/texlive/texmf-dist/tex/generic/babel-english/USenglish.ldf
+(/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf)))
+(/usr/share/texlive/texmf-dist/tex/generic/babel/locale/en/babel-usenglish.tex)
+
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/am
+smath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/am
+smath/amstext.sty
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/am
+smath/amsgen.sty))
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/am
+smath/amsbsy.sty)
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/am
+smath/amsopn.sty))
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/to
+ols/enumerate.sty)
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/gr
+aphics/graphicx.sty
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/gr
+aphics/graphics.sty
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/gr
+aphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/to
+ols/array.sty)
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/multir
+ow/multirow.sty)
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/to
+ols/tabularx.sty)
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/threep
+arttable/threeparttable.sty)
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/listin
+gs/listings.sty
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/listin
+gs/lstpatch.sty)
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/listin
+gs/lstmisc.sty)
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/listin
+gs/listings.cfg))
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/lineno
+/lineno.sty (/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
+(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/ba
+se/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/ba
+se/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/totpag
+es/totpages.sty
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/everys
+hi/everyshi.sty))
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/captio
+n/caption.sty
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/captio
+n/caption3.sty))
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/gr
+aphics/rotating.sty
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/ba
+se/ifthen.sty))
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/captio
+n/subcaption.sty)
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/generic/xstr
+ing/xstring.sty
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/generic/xstr
+ing/xstring.tex))
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/commen
+t/comment.sty Excluding comment 'comment') Excluding comment 'CCSXML'
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/clever
+ef/cleveref.sty) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/aliascnt.sty
+))
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/bookta
+bs/booktabs.sty)
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/l3
+backend/l3backend-pdftex.def)
+No file main.aux.
+
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/microt
+ype/mt-cmr.cfg)
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/xcolor
+/xcolor.sty (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/gr
+aphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/microt
+ype/mt-msa.cfg) (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/microt
+ype/mt-msb.cfg)
+[1.1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+./main.tex:52: pdfTeX error (font expansion): auto expansion is only possible w
+ith scalable fonts.
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.52 \end{titlepage}
+                    
+./main.tex:52:  ==> Fatal error occurred, no output PDF file produced!
+Transcript written on /artifact/.work/lipics.47ZivS/main.log.

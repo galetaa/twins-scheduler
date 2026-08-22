@@ -1,0 +1,11 @@
+services:
+  reproduce:
+    build:
+      context: ..
+      dockerfile: containers/Dockerfile
+    volumes:
+      - twins-cache:/artifact/.cache
+    command: ["./reproduce.sh"]
+
+volumes:
+  twins-cache: {}
