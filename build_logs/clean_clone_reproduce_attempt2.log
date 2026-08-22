@@ -1,0 +1,23 @@
+Using CPython 3.11.12
+Creating virtual environment at: .venv
+   Building twins-scheduler-closure @ file:///tmp/tmp.l4chZXzQu7/twins-scheduler-closure
+      Built twins-scheduler-closure @ file:///tmp/tmp.l4chZXzQu7/twins-scheduler-closure
+Prepared 1 package in 195ms
+warning: Failed to hardlink files; falling back to full copy. This may lead to degraded performance.
+         If the cache and target directories are on different filesystems, hardlinking may not be supported.
+         If this is intentional, set `export UV_LINK_MODE=copy` or use `--link-mode=copy` to suppress this warning.
+Installed 5 packages in 1ms
+ + iniconfig==2.3.0
+ + packaging==26.3
+ + pluggy==1.6.0
+ + pytest==8.3.5
+ + twins-scheduler-closure==1.0.0 (from file:///tmp/tmp.l4chZXzQu7/twins-scheduler-closure)
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  9823  100  9823    0     0  75713      0 --:--:-- --:--:-- --:--:-- 75561
+/tmp/tmp.l4chZXzQu7/twins-scheduler-closure/.cache/downloads/elan-init-464c9d28395000a2a0128e07081e4956d50eced2.sh: OK
+info: downloading installer
+info: downloading https://releases.lean-lang.org/lean4/v4.33.0/lean-4.33.0-linux.tar.zst
+error: could not download file from 'https://releases.lean-lang.org/lean4/v4.33.0/lean-4.33.0-linux.tar.zst' to '/tmp/tmp.l4chZXzQu7/twins-scheduler-closure/.cache/elan/tmp/yxuz2fn99xknbzbu_file'
+info: caused by: unable to write download to disk
+info: caused by: No space left on device (os error 28)

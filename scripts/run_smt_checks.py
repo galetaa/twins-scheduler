@@ -53,7 +53,7 @@ for kind, expected in (("positive", "unsat"), ("negative_controls", "sat")):
             print(output, file=sys.stderr)
             raise SystemExit(f"unexpected Z3 result for {path}")
 with (formal_results / "results.csv").open("w", newline="", encoding="utf-8") as fh:
-    writer = csv.DictWriter(fh, fieldnames=rows[0].keys())
+    writer = csv.DictWriter(fh, fieldnames=rows[0].keys(), lineterminator="\n")
     writer.writeheader(); writer.writerows(rows)
 version = subprocess.check_output([z3, "--version"], text=True, stderr=subprocess.STDOUT).strip().splitlines()[-1]
 summary = {

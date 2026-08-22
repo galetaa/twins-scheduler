@@ -157,3 +157,13 @@
   reproduction passed.
 - Rejected: relax TeX revisions, disable microtype expansion, use unpinned
   `latest`, or skip SMT in the container.
+
+## D-016 — Generated CSV line endings
+
+- Observation: the clean clone exposed that Python's default CSV writer emitted
+  CRLF while Git correctly checked the reference out as the declared LF text.
+- Decision: set `lineterminator="\n"` in the SMT result writer and regenerate
+  the reference checksum. The twelve solver outcomes and all other bytes are
+  unchanged.
+- Rejected: mark active generated CSV as binary or depend on a maintainer's
+  `core.autocrlf` setting.
