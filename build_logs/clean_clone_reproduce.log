@@ -1,0 +1,829 @@
+Using CPython 3.11.12
+Creating virtual environment at: .venv
+   Building twins-scheduler-closure @ file:///tmp/tmp.zkulWyhsf0/twins-scheduler-closure
+      Built twins-scheduler-closure @ file:///tmp/tmp.zkulWyhsf0/twins-scheduler-closure
+Prepared 1 package in 201ms
+warning: Failed to hardlink files; falling back to full copy. This may lead to degraded performance.
+         If the cache and target directories are on different filesystems, hardlinking may not be supported.
+         If this is intentional, set `export UV_LINK_MODE=copy` or use `--link-mode=copy` to suppress this warning.
+Installed 5 packages in 1ms
+ + iniconfig==2.3.0
+ + packaging==26.3
+ + pluggy==1.6.0
+ + pytest==8.3.5
+ + twins-scheduler-closure==1.0.0 (from file:///tmp/tmp.zkulWyhsf0/twins-scheduler-closure)
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  9823  100  9823    0     0  25151      0 --:--:-- --:--:-- --:--:-- 25187
+/tmp/tmp.zkulWyhsf0/twins-scheduler-closure/.cache/downloads/elan-init-464c9d28395000a2a0128e07081e4956d50eced2.sh: OK
+info: downloading installer
+info: downloading https://releases.lean-lang.org/lean4/v4.33.0/lean-4.33.0-linux.tar.zst
+info: installing /tmp/tmp.zkulWyhsf0/twins-scheduler-closure/.cache/elan/toolchains/leanprover--lean4---v4.33.0
+
+leanprover/lean4:v4.33.0 installed - Lean (version 4.33.0, x86_64-unknown-linux-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)
+
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   379  100   379    0     0   1503      0 --:--:-- --:--:-- --:--:--  1498
+100 4872k  100 4872k    0     0  6269k      0 --:--:-- --:--:-- --:--:-- 6269k
+/tmp/tmp.zkulWyhsf0/twins-scheduler-closure/.cache/tex-debs/texlive-fonts-recommended_2024.20250309-1_all.deb: OK
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   379  100   379    0     0   2161      0 --:--:-- --:--:-- --:--:--  2165
+  2 8540k    2  174k    0     0   704k      0  0:00:12 --:--:--  0:00:12  704k100 8540k  100 8540k    0     0  8678k      0 --:--:-- --:--:-- --:--:-- 11.1M
+/tmp/tmp.zkulWyhsf0/twins-scheduler-closure/.cache/tex-debs/texlive-latex-recommended_2024.20250309-1_all.deb: OK
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   361  100   361    0     0   2698      0 --:--:-- --:--:-- --:--:--  2694
+ 59 16.2M   59 9823k    0     0  9044k      0  0:00:01  0:00:01 --:--:-- 9044k100 16.2M  100 16.2M    0     0  9981k      0  0:00:01  0:00:01 --:--:-- 11.4M
+/tmp/tmp.zkulWyhsf0/twins-scheduler-closure/.cache/tex-debs/texlive-pictures_2024.20250309-1_all.deb: OK
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   367  100   367    0     0   2773      0 --:--:-- --:--:-- --:--:--  2780
+  0 24.0M    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 41 24.0M   41  9.9M    0     0  8937k      0  0:00:02  0:00:01  0:00:01 10.0M 84 24.0M   84 20.1M    0     0  9674k      0  0:00:02  0:00:02 --:--:-- 10.1M100 24.0M  100 24.0M    0     0  9825k      0  0:00:02  0:00:02 --:--:-- 10.2M
+/tmp/tmp.zkulWyhsf0/twins-scheduler-closure/.cache/tex-debs/texlive-latex-extra_2024.20250309-2_all.deb: OK
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   371  100   371    0     0   2229      0 --:--:-- --:--:-- --:--:--  2234
+  3 27.6M    3  895k    0     0  2645k      0  0:00:10 --:--:--  0:00:10 2645k 43 27.6M   43 11.9M    0     0  9450k      0  0:00:02  0:00:01  0:00:01 11.5M 83 27.6M   83 23.1M    0     0  10.0M      0  0:00:02  0:00:02 --:--:-- 11.3M100 27.6M  100 27.6M    0     0  10.1M      0  0:00:02  0:00:02 --:--:-- 11.2M
+/tmp/tmp.zkulWyhsf0/twins-scheduler-closure/.cache/tex-debs/texlive-plain-generic_2024.20250309-2_all.deb: OK
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   369  100   369    0     0   2230      0 --:--:-- --:--:-- --:--:--  2222
+ 11 75.6M   11 9053k    0     0  8493k      0  0:00:09  0:00:01  0:00:08 8493k 25 75.6M   25 19.5M    0     0  9704k      0  0:00:07  0:00:02  0:00:05 10.7M 40 75.6M   40 30.7M    0     0  10.0M      0  0:00:07  0:00:03  0:00:04 10.9M 55 75.6M   55 41.9M    0     0  10.3M      0  0:00:07  0:00:04  0:00:03 11.0M 69 75.6M   69 52.5M    0     0  10.3M      0  0:00:07  0:00:05  0:00:02 10.9M 83 75.6M   83 62.8M    0     0  10.3M      0  0:00:07  0:00:06  0:00:01 10.8M 96 75.6M   96 73.2M    0     0  10.3M      0  0:00:07  0:00:07 --:--:-- 10.7M100 75.6M  100 75.6M    0     0  10.3M      0  0:00:07  0:00:07 --:--:-- 10.6M
+/tmp/tmp.zkulWyhsf0/twins-scheduler-closure/.cache/tex-debs/texlive-bibtex-extra_2024.20250309-2_all.deb: OK
+BOOTSTRAP PASS
+Python 3.11.12
+uv 0.6.14
+go version go1.24.1 linux/amd64
+elan 4.2.3 (b6cec7e10 2026-06-08)
+Lake version 5.0.0-src+d8b1897 (Lean version 4.33.0)
+pdfTeX 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian)
+BibTeX 0.99d (TeX Live 2025/dev/Debian)
+.............                                                            [100%]
+13 passed in 0.46s
+?   	example.org/twins-scheduler-closure/src/go/cometbft_refinement	[no test files]
+ok  	example.org/twins-scheduler-closure/src/go/full_event_loop	0.001s
+ok  	example.org/twins-scheduler-closure/src/go/proof_crosscheck	0.001s
+COMETBFT_BOUNDED_REFINEMENT PASS
+cases=384 f=1..64
+baseline_safe_all=true
+missing_lock_update_phase_specific_unsafe_all=true
+missing_lock_update_directed_safe_all=true
+COMETBFT_GO_REFINEMENT PASS
+cases=384 f=1..64
+COMETBFT_CROSS_LANGUAGE PASS rows=384
+{
+  "cometbft_bridge": {
+    "cases": 768,
+    "f_range": [
+      1,
+      128
+    ],
+    "rule_level_refinement": true
+  },
+  "independence": "does not import project models, proof kernel, SMT, or prover sources",
+  "legal_closure": {
+    "counterexamples": 0,
+    "target_legality_checked": true,
+    "valid_models": 84
+  },
+  "replay": {
+    "hidden_state_counterexample": {
+      "erased": 0,
+      "full": 1
+    },
+    "positive_projection_output_congruence_pairs": 32
+  },
+  "scheduler_semantics": {
+    "closed_deliveries": 2,
+    "no_synthesis": true,
+    "once_only": true,
+    "stable_order": true,
+    "typed_deliveries": 1
+  },
+  "status": "PASS",
+  "structural_criterion": {
+    "q_values": 64,
+    "strict_separation": true
+  },
+  "unsafe_observation_typing": {
+    "observation_domain": "tuple(decisions)",
+    "unsafe_domain": "State",
+    "unsafe_observations": 1
+  }
+}
+{
+  "gate8_certificates": {
+    "T1": {
+      "base": {
+        "derived_facts": [
+          "replay_erasure_base_case"
+        ],
+        "initial_facts": [
+          "definition_deleting_nonfirst_duplicate_reduces_duplicate_count",
+          "definition_zero_duplicate_erasure_identity",
+          "premise_duplicate_emits_no_relevant_output",
+          "premise_duplicate_transition_stutters",
+          "premise_observation_extensional",
+          "premise_stable_logical_replay_key",
+          "premise_suffix_congruence"
+        ],
+        "status": "PASS",
+        "step_ids": [
+          "T1.B1"
+        ],
+        "steps_checked": 1,
+        "target": "replay_erasure_base_case"
+      },
+      "certificate_sha256": "64e49ae5ba3a12a968cc26a091ec5584a889223b837a9aa1b458a80d86807724",
+      "definitions": [
+        "definition_zero_duplicate_erasure_identity",
+        "definition_deleting_nonfirst_duplicate_reduces_duplicate_count"
+      ],
+      "final": {
+        "derived_facts": [],
+        "initial_facts": [
+          "replay_erasure_all_finite_traces"
+        ],
+        "status": "PASS",
+        "step_ids": [],
+        "steps_checked": 0,
+        "target": "replay_erasure_all_finite_traces"
+      },
+      "measure": "number_of_nonfirst_occurrences_of_stable_replay_keys",
+      "premises": [
+        "premise_stable_logical_replay_key",
+        "premise_duplicate_transition_stutters",
+        "premise_duplicate_emits_no_relevant_output",
+        "premise_suffix_congruence",
+        "premise_observation_extensional"
+      ],
+      "rule_file_sha256": "36120a5d228e06a91f548e390900173c018550c429f41b8661fa55b052da24be",
+      "rules_loaded": 5,
+      "status": "PASS",
+      "step": {
+        "derived_facts": [
+          "duplicate_measure_strictly_decreases",
+          "replay_erasure_step_case",
+          "single_duplicate_deletion_preserves_observation",
+          "single_duplicate_deletion_preserves_relevant_run"
+        ],
+        "initial_facts": [
+          "IH_replay_erasure_for_smaller_duplicate_count",
+          "definition_deleting_nonfirst_duplicate_reduces_duplicate_count",
+          "definition_zero_duplicate_erasure_identity",
+          "premise_duplicate_emits_no_relevant_output",
+          "premise_duplicate_transition_stutters",
+          "premise_observation_extensional",
+          "premise_stable_logical_replay_key",
+          "premise_suffix_congruence"
+        ],
+        "status": "PASS",
+        "step_ids": [
+          "T1.S1",
+          "T1.S2",
+          "T1.S3",
+          "T1.S4"
+        ],
+        "steps_checked": 4,
+        "target": "replay_erasure_step_case"
+      },
+      "theorem": "replay_erasure_all_finite_traces",
+      "trusted_induction_rule": "well_founded_induction_on_Nat"
+    },
+    "T2": {
+      "base": {
+        "derived_facts": [
+          "prefix_relation_base_case"
+        ],
+        "initial_facts": [
+          "case_next_event_is_closure_added",
+          "case_next_event_is_original",
+          "definition_each_merged_event_is_original_or_added",
+          "definition_empty_prefixes_same_state",
+          "definition_finite_merged_suffix_measure_decreases",
+          "definition_original_order_preserved",
+          "premise_R_reflexive",
+          "premise_R_transitive",
+          "premise_closure_added_action_R_increasing",
+          "premise_original_action_forward_simulates_R",
+          "premise_original_terminal_unsafe",
+          "premise_unsafe_upward_closed_under_R"
+        ],
+        "status": "PASS",
+        "step_ids": [
+          "T2.B1"
+        ],
+        "steps_checked": 1,
+        "target": "prefix_relation_base_case"
+      },
+      "certificate_sha256": "a24f0618d1e0a62c6c5fd03d911df3f0c0299028801a5078394b490586e3af65",
+      "definitions": [
+        "definition_empty_prefixes_same_state",
+        "definition_each_merged_event_is_original_or_added",
+        "definition_finite_merged_suffix_measure_decreases",
+        "definition_original_order_preserved"
+      ],
+      "final": {
+        "derived_facts": [
+          "closed_terminal_unsafe",
+          "closure_insertion_preserves_unsafety",
+          "terminal_states_R_related"
+        ],
+        "initial_facts": [
+          "all_merged_prefixes_R_related",
+          "case_next_event_is_closure_added",
+          "case_next_event_is_original",
+          "definition_each_merged_event_is_original_or_added",
+          "definition_empty_prefixes_same_state",
+          "definition_finite_merged_suffix_measure_decreases",
+          "definition_original_order_preserved",
+          "premise_R_reflexive",
+          "premise_R_transitive",
+          "premise_closure_added_action_R_increasing",
+          "premise_original_action_forward_simulates_R",
+          "premise_original_terminal_unsafe",
+          "premise_unsafe_upward_closed_under_R"
+        ],
+        "status": "PASS",
+        "step_ids": [
+          "T2.F1",
+          "T2.F2",
+          "T2.F3"
+        ],
+        "steps_checked": 3,
+        "target": "closure_insertion_preserves_unsafety"
+      },
+      "measure": "length_of_remaining_merged_trace_suffix",
+      "premises": [
+        "premise_R_reflexive",
+        "premise_R_transitive",
+        "premise_closure_added_action_R_increasing",
+        "premise_original_action_forward_simulates_R",
+        "premise_unsafe_upward_closed_under_R",
+        "premise_original_terminal_unsafe",
+        "case_next_event_is_closure_added",
+        "case_next_event_is_original"
+      ],
+      "rule_file_sha256": "efc22836a4b47240b4959ef206894541bd2250987cc97ab0c2c3d85b465cf989",
+      "rules_loaded": 9,
+      "status": "PASS",
+      "step": {
+        "derived_facts": [
+          "merged_suffix_measure_strictly_decreases",
+          "prefix_relation_after_added_event",
+          "prefix_relation_after_next_event",
+          "prefix_relation_after_original_event",
+          "prefix_relation_step_case"
+        ],
+        "initial_facts": [
+          "IH_prefix_relation_at_k",
+          "case_next_event_is_closure_added",
+          "case_next_event_is_original",
+          "definition_each_merged_event_is_original_or_added",
+          "definition_empty_prefixes_same_state",
+          "definition_finite_merged_suffix_measure_decreases",
+          "definition_original_order_preserved",
+          "premise_R_reflexive",
+          "premise_R_transitive",
+          "premise_closure_added_action_R_increasing",
+          "premise_original_action_forward_simulates_R",
+          "premise_original_terminal_unsafe",
+          "premise_unsafe_upward_closed_under_R"
+        ],
+        "status": "PASS",
+        "step_ids": [
+          "T2.S1",
+          "T2.S2",
+          "T2.S3",
+          "T2.S4",
+          "T2.S5"
+        ],
+        "steps_checked": 5,
+        "target": "prefix_relation_step_case"
+      },
+      "theorem": "closure_insertion_preserves_unsafety",
+      "trusted_induction_rule": "well_founded_induction_on_Nat"
+    },
+    "T3": {
+      "arithmetic": {
+        "certificate_sha256": "89868aaec6531e6dd98d59a889f51f54c8c86f0d0b07b5d20329bf63ebf619e4",
+        "equalities": [
+          {
+            "id": "T3.E1",
+            "lhs": "f+f+1",
+            "normal_form_difference": "0",
+            "rhs": "2*f+1",
+            "status": "PASS"
+          },
+          {
+            "id": "T3.E2",
+            "lhs": "f+f",
+            "normal_form_difference": "0",
+            "rhs": "2*f",
+            "status": "PASS"
+          },
+          {
+            "id": "T3.E3",
+            "lhs": "2*f+1",
+            "normal_form_difference": "0",
+            "rhs": "(2*f)+1",
+            "status": "PASS"
+          },
+          {
+            "id": "T3.E4",
+            "lhs": "f+1",
+            "normal_form_difference": "0",
+            "rhs": "1+f",
+            "status": "PASS"
+          },
+          {
+            "id": "T3.E5",
+            "lhs": "f+f+f+1",
+            "normal_form_difference": "0",
+            "rhs": "3*f+1",
+            "status": "PASS"
+          }
+        ],
+        "positive_differences": [
+          {
+            "difference": "1",
+            "id": "T3.P1",
+            "larger": "2*f+1",
+            "smaller": "2*f",
+            "status": "PASS"
+          }
+        ],
+        "status": "PASS"
+      },
+      "branch_results": {
+        "directed_edge_absent": "first quorum short by one",
+        "directed_edge_present": "second quorum short by one after repair",
+        "phase_specific": "two conflicting quorums reachable"
+      },
+      "certificate_sha256": "89868aaec6531e6dd98d59a889f51f54c8c86f0d0b07b5d20329bf63ebf619e4",
+      "conclusion": "UnsafeObs(G_D)=empty_and_UnsafeObs(G_T)=nonempty",
+      "domain": "all natural f >= 1 under the explicit protocol-schema premises",
+      "status": "PASS",
+      "theorem": "T3_parametric_quorum_pivot_separation"
+    }
+  },
+  "project_local_kernel": {
+    "T1": {
+      "finite_models": 96,
+      "finite_trace_checks": 12096,
+      "hidden_counterexample_full_erased": [
+        1,
+        0
+      ]
+    },
+    "T2": {
+      "finite_models": 32,
+      "finite_prefix_checks": 8256
+    },
+    "T3": {
+      "directed_domain_cases": 2,
+      "parameter_cases": 5
+    },
+    "T6": {
+      "assignments": 128,
+      "strict_patterns": [
+        "0111111",
+        "1101111",
+        "1111111"
+      ]
+    },
+    "certificate": "formal/project_kernel/certificate.json",
+    "certificate_sha256": "a1d067bac820560e86f3cdf62f2fc31d762a51196972d17f26507a8c939629d3",
+    "kernel_version": "1.1.0",
+    "negative_controls": {
+      "T1_remove_output_congruence": "REJECTED: T1: premises {'duplicate_projection_stutter', 'stable_key_in_projection', 'duplicate_relevant_output_empty', 'projection_congruence'} do not match corrected theorem",
+      "T1_remove_projection_congruence": "REJECTED: T1: premises {'duplicate_projection_stutter', 'output_congruence', 'stable_key_in_projection', 'duplicate_relevant_output_empty'} do not match corrected theorem",
+      "T3_deliver_repair_after_C1": "REJECTED: T3 wrong phase order",
+      "T3_move_R_to_other_view": "REJECTED: T3 E/R view differs",
+      "T6_omit_operational_equation": "REJECTED: T6 operational equation absent/changed"
+    },
+    "status": "PASS"
+  },
+  "status": "PASS",
+  "tampered_gate8_certificate": "REJECTED_AS_EXPECTED"
+}
+{
+  "z3_version": "4.13.3.0",
+  "runner": ".cache/z3cli",
+  "positive_unsat": 8,
+  "negative_sat": 4,
+  "total": 12,
+  "status": "PASS"
+}
+{
+  "status": "PASS",
+  "files_checked": 19,
+  "hits": []
+}
+{
+  "primary_mature_prover": {
+    "axiom_audit": "PASS",
+    "lake_build": "PASS",
+    "leanchecker": "PASS",
+    "prover": "Lean",
+    "report": "formal/lean/AXIOM_REPORT.md",
+    "toolchain": "leanprover/lean4:v4.33.0"
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "supporting_checks": {
+    "certificates": {
+      "gate8_certificates": {
+        "T1": {
+          "base": {
+            "derived_facts": [
+              "replay_erasure_base_case"
+            ],
+            "initial_facts": [
+              "definition_deleting_nonfirst_duplicate_reduces_duplicate_count",
+              "definition_zero_duplicate_erasure_identity",
+              "premise_duplicate_emits_no_relevant_output",
+              "premise_duplicate_transition_stutters",
+              "premise_observation_extensional",
+              "premise_stable_logical_replay_key",
+              "premise_suffix_congruence"
+            ],
+            "status": "PASS",
+            "step_ids": [
+              "T1.B1"
+            ],
+            "steps_checked": 1,
+            "target": "replay_erasure_base_case"
+          },
+          "certificate_sha256": "64e49ae5ba3a12a968cc26a091ec5584a889223b837a9aa1b458a80d86807724",
+          "definitions": [
+            "definition_zero_duplicate_erasure_identity",
+            "definition_deleting_nonfirst_duplicate_reduces_duplicate_count"
+          ],
+          "final": {
+            "derived_facts": [],
+            "initial_facts": [
+              "replay_erasure_all_finite_traces"
+            ],
+            "status": "PASS",
+            "step_ids": [],
+            "steps_checked": 0,
+            "target": "replay_erasure_all_finite_traces"
+          },
+          "measure": "number_of_nonfirst_occurrences_of_stable_replay_keys",
+          "premises": [
+            "premise_stable_logical_replay_key",
+            "premise_duplicate_transition_stutters",
+            "premise_duplicate_emits_no_relevant_output",
+            "premise_suffix_congruence",
+            "premise_observation_extensional"
+          ],
+          "rule_file_sha256": "36120a5d228e06a91f548e390900173c018550c429f41b8661fa55b052da24be",
+          "rules_loaded": 5,
+          "status": "PASS",
+          "step": {
+            "derived_facts": [
+              "duplicate_measure_strictly_decreases",
+              "replay_erasure_step_case",
+              "single_duplicate_deletion_preserves_observation",
+              "single_duplicate_deletion_preserves_relevant_run"
+            ],
+            "initial_facts": [
+              "IH_replay_erasure_for_smaller_duplicate_count",
+              "definition_deleting_nonfirst_duplicate_reduces_duplicate_count",
+              "definition_zero_duplicate_erasure_identity",
+              "premise_duplicate_emits_no_relevant_output",
+              "premise_duplicate_transition_stutters",
+              "premise_observation_extensional",
+              "premise_stable_logical_replay_key",
+              "premise_suffix_congruence"
+            ],
+            "status": "PASS",
+            "step_ids": [
+              "T1.S1",
+              "T1.S2",
+              "T1.S3",
+              "T1.S4"
+            ],
+            "steps_checked": 4,
+            "target": "replay_erasure_step_case"
+          },
+          "theorem": "replay_erasure_all_finite_traces",
+          "trusted_induction_rule": "well_founded_induction_on_Nat"
+        },
+        "T2": {
+          "base": {
+            "derived_facts": [
+              "prefix_relation_base_case"
+            ],
+            "initial_facts": [
+              "case_next_event_is_closure_added",
+              "case_next_event_is_original",
+              "definition_each_merged_event_is_original_or_added",
+              "definition_empty_prefixes_same_state",
+              "definition_finite_merged_suffix_measure_decreases",
+              "definition_original_order_preserved",
+              "premise_R_reflexive",
+              "premise_R_transitive",
+              "premise_closure_added_action_R_increasing",
+              "premise_original_action_forward_simulates_R",
+              "premise_original_terminal_unsafe",
+              "premise_unsafe_upward_closed_under_R"
+            ],
+            "status": "PASS",
+            "step_ids": [
+              "T2.B1"
+            ],
+            "steps_checked": 1,
+            "target": "prefix_relation_base_case"
+          },
+          "certificate_sha256": "a24f0618d1e0a62c6c5fd03d911df3f0c0299028801a5078394b490586e3af65",
+          "definitions": [
+            "definition_empty_prefixes_same_state",
+            "definition_each_merged_event_is_original_or_added",
+            "definition_finite_merged_suffix_measure_decreases",
+            "definition_original_order_preserved"
+          ],
+          "final": {
+            "derived_facts": [
+              "closed_terminal_unsafe",
+              "closure_insertion_preserves_unsafety",
+              "terminal_states_R_related"
+            ],
+            "initial_facts": [
+              "all_merged_prefixes_R_related",
+              "case_next_event_is_closure_added",
+              "case_next_event_is_original",
+              "definition_each_merged_event_is_original_or_added",
+              "definition_empty_prefixes_same_state",
+              "definition_finite_merged_suffix_measure_decreases",
+              "definition_original_order_preserved",
+              "premise_R_reflexive",
+              "premise_R_transitive",
+              "premise_closure_added_action_R_increasing",
+              "premise_original_action_forward_simulates_R",
+              "premise_original_terminal_unsafe",
+              "premise_unsafe_upward_closed_under_R"
+            ],
+            "status": "PASS",
+            "step_ids": [
+              "T2.F1",
+              "T2.F2",
+              "T2.F3"
+            ],
+            "steps_checked": 3,
+            "target": "closure_insertion_preserves_unsafety"
+          },
+          "measure": "length_of_remaining_merged_trace_suffix",
+          "premises": [
+            "premise_R_reflexive",
+            "premise_R_transitive",
+            "premise_closure_added_action_R_increasing",
+            "premise_original_action_forward_simulates_R",
+            "premise_unsafe_upward_closed_under_R",
+            "premise_original_terminal_unsafe",
+            "case_next_event_is_closure_added",
+            "case_next_event_is_original"
+          ],
+          "rule_file_sha256": "efc22836a4b47240b4959ef206894541bd2250987cc97ab0c2c3d85b465cf989",
+          "rules_loaded": 9,
+          "status": "PASS",
+          "step": {
+            "derived_facts": [
+              "merged_suffix_measure_strictly_decreases",
+              "prefix_relation_after_added_event",
+              "prefix_relation_after_next_event",
+              "prefix_relation_after_original_event",
+              "prefix_relation_step_case"
+            ],
+            "initial_facts": [
+              "IH_prefix_relation_at_k",
+              "case_next_event_is_closure_added",
+              "case_next_event_is_original",
+              "definition_each_merged_event_is_original_or_added",
+              "definition_empty_prefixes_same_state",
+              "definition_finite_merged_suffix_measure_decreases",
+              "definition_original_order_preserved",
+              "premise_R_reflexive",
+              "premise_R_transitive",
+              "premise_closure_added_action_R_increasing",
+              "premise_original_action_forward_simulates_R",
+              "premise_original_terminal_unsafe",
+              "premise_unsafe_upward_closed_under_R"
+            ],
+            "status": "PASS",
+            "step_ids": [
+              "T2.S1",
+              "T2.S2",
+              "T2.S3",
+              "T2.S4",
+              "T2.S5"
+            ],
+            "steps_checked": 5,
+            "target": "prefix_relation_step_case"
+          },
+          "theorem": "closure_insertion_preserves_unsafety",
+          "trusted_induction_rule": "well_founded_induction_on_Nat"
+        },
+        "T3": {
+          "arithmetic": {
+            "certificate_sha256": "89868aaec6531e6dd98d59a889f51f54c8c86f0d0b07b5d20329bf63ebf619e4",
+            "equalities": [
+              {
+                "id": "T3.E1",
+                "lhs": "f+f+1",
+                "normal_form_difference": "0",
+                "rhs": "2*f+1",
+                "status": "PASS"
+              },
+              {
+                "id": "T3.E2",
+                "lhs": "f+f",
+                "normal_form_difference": "0",
+                "rhs": "2*f",
+                "status": "PASS"
+              },
+              {
+                "id": "T3.E3",
+                "lhs": "2*f+1",
+                "normal_form_difference": "0",
+                "rhs": "(2*f)+1",
+                "status": "PASS"
+              },
+              {
+                "id": "T3.E4",
+                "lhs": "f+1",
+                "normal_form_difference": "0",
+                "rhs": "1+f",
+                "status": "PASS"
+              },
+              {
+                "id": "T3.E5",
+                "lhs": "f+f+f+1",
+                "normal_form_difference": "0",
+                "rhs": "3*f+1",
+                "status": "PASS"
+              }
+            ],
+            "positive_differences": [
+              {
+                "difference": "1",
+                "id": "T3.P1",
+                "larger": "2*f+1",
+                "smaller": "2*f",
+                "status": "PASS"
+              }
+            ],
+            "status": "PASS"
+          },
+          "branch_results": {
+            "directed_edge_absent": "first quorum short by one",
+            "directed_edge_present": "second quorum short by one after repair",
+            "phase_specific": "two conflicting quorums reachable"
+          },
+          "certificate_sha256": "89868aaec6531e6dd98d59a889f51f54c8c86f0d0b07b5d20329bf63ebf619e4",
+          "conclusion": "UnsafeObs(G_D)=empty_and_UnsafeObs(G_T)=nonempty",
+          "domain": "all natural f >= 1 under the explicit protocol-schema premises",
+          "status": "PASS",
+          "theorem": "T3_parametric_quorum_pivot_separation"
+        }
+      },
+      "project_local_kernel": {
+        "T1": {
+          "finite_models": 96,
+          "finite_trace_checks": 12096,
+          "hidden_counterexample_full_erased": [
+            1,
+            0
+          ]
+        },
+        "T2": {
+          "finite_models": 32,
+          "finite_prefix_checks": 8256
+        },
+        "T3": {
+          "directed_domain_cases": 2,
+          "parameter_cases": 5
+        },
+        "T6": {
+          "assignments": 128,
+          "strict_patterns": [
+            "0111111",
+            "1101111",
+            "1111111"
+          ]
+        },
+        "certificate": "formal/project_kernel/certificate.json",
+        "certificate_sha256": "a1d067bac820560e86f3cdf62f2fc31d762a51196972d17f26507a8c939629d3",
+        "kernel_version": "1.1.0",
+        "negative_controls": {
+          "T1_remove_output_congruence": "REJECTED: T1: premises {'duplicate_projection_stutter', 'stable_key_in_projection', 'duplicate_relevant_output_empty', 'projection_congruence'} do not match corrected theorem",
+          "T1_remove_projection_congruence": "REJECTED: T1: premises {'duplicate_projection_stutter', 'output_congruence', 'stable_key_in_projection', 'duplicate_relevant_output_empty'} do not match corrected theorem",
+          "T3_deliver_repair_after_C1": "REJECTED: T3 wrong phase order",
+          "T3_move_R_to_other_view": "REJECTED: T3 E/R view differs",
+          "T6_omit_operational_equation": "REJECTED: T6 operational equation absent/changed"
+        },
+        "status": "PASS"
+      },
+      "status": "PASS",
+      "tampered_gate8_certificate": "REJECTED_AS_EXPECTED"
+    },
+    "independent_checker": {
+      "cometbft_bridge": {
+        "cases": 768,
+        "f_range": [
+          1,
+          128
+        ],
+        "rule_level_refinement": true
+      },
+      "independence": "does not import project models, proof kernel, SMT, or prover sources",
+      "legal_closure": {
+        "counterexamples": 0,
+        "target_legality_checked": true,
+        "valid_models": 84
+      },
+      "replay": {
+        "hidden_state_counterexample": {
+          "erased": 0,
+          "full": 1
+        },
+        "positive_projection_output_congruence_pairs": 32
+      },
+      "scheduler_semantics": {
+        "closed_deliveries": 2,
+        "no_synthesis": true,
+        "once_only": true,
+        "stable_order": true,
+        "typed_deliveries": 1
+      },
+      "status": "PASS",
+      "structural_criterion": {
+        "q_values": 64,
+        "strict_separation": true
+      },
+      "unsafe_observation_typing": {
+        "observation_domain": "tuple(decisions)",
+        "unsafe_domain": "State",
+        "unsafe_observations": 1
+      }
+    },
+    "smt": {
+      "negative_sat": 4,
+      "positive_unsat": 8,
+      "runner": ".cache/z3cli",
+      "status": "PASS",
+      "total": 12,
+      "z3_version": "4.13.3.0"
+    },
+    "source_hygiene": {
+      "files_checked": 19,
+      "hits": [],
+      "status": "PASS"
+    }
+  }
+}
+TEST_ALL PASS
+✔ [2/11] Built SchedulerClosure.UnsafeObservations (374ms)
+✔ [3/11] Built SchedulerClosure.SchedulerSemantics (442ms)
+✔ [4/11] Built SchedulerClosure.QuorumPivotCriterion (412ms)
+✔ [5/11] Built SchedulerClosure.ClosureLifting (555ms)
+✔ [6/11] Built SchedulerClosure.ReplayErasure (612ms)
+✔ [7/11] Built SchedulerClosure.ParametricFamily (315ms)
+✔ [8/11] Built SchedulerClosure.PremiseBoundary (788ms)
+✔ [9/11] Built SchedulerClosure.CometBFTInstantiation (471ms)
+✔ [10/11] Built SchedulerClosure (258ms)
+Build completed successfully (11 jobs).
+'SchedulerClosure.replay_erasure_with_outputs' depends on axioms: [propext]
+'SchedulerClosure.replay_erasure_state_observation' depends on axioms: [propext]
+'SchedulerClosure.hidden_state_counterexample' does not depend on any axioms
+'SchedulerClosure.legal_scheduler_closure_preserves_unsafe' does not depend on any axioms
+'SchedulerClosure.quorum_pivot_separation_criterion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SchedulerClosure.criterion_policy_separation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SchedulerClosure.parametric_family_separation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SchedulerClosure.bounded_tendermint_refines_quorum_pivot' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SchedulerClosure.strictSeparation_eq_characterization' does not depend on any axioms
+'SchedulerClosure.strictSeparation_iff_three' does not depend on any axioms
+{
+  "status": "PASS",
+  "files_checked": 19,
+  "hits": []
+}
+BUILD_FORMAL PASS
+PAPER PASS pages=16 main_text_pages=14
+TWINS SCHEDULER REPRODUCTION: PASS
+runtime_seconds=105
+output_root=/tmp/tmp.zkulWyhsf0/twins-scheduler-closure/.cache/reproduction.kjOU8d
+python_tests=PASS
+go_tests=PASS
+cross_language=PASS
+independent_proof_checks=PASS
+project_local_kernel=PASS
+negative_controls=PASS
+smt_positive_negative=PASS
+lean_build_axioms_leanchecker=PASS
+official_lipics_build=PASS
+page_budget=PASS
+provenance_and_reference_manifests=PASS
