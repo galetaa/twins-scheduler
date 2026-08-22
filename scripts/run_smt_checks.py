@@ -5,8 +5,11 @@ from pathlib import Path
 
 project = Path(__file__).resolve().parents[1]
 root = project / "formal" / "smt"
-results_dir = project / "results" / "generated"
+output_root = Path(os.environ.get("TWINS_OUTPUT_ROOT", project))
+results_dir = output_root / "results" / "generated"
+formal_results = output_root / "formal" / "smt"
 results_dir.mkdir(parents=True, exist_ok=True)
+formal_results.mkdir(parents=True, exist_ok=True)
 
 def find_or_build_z3() -> str:
     found = shutil.which("z3")
@@ -49,7 +52,7 @@ for kind, expected in (("positive", "unsat"), ("negative_controls", "sat")):
         if not passed:
             print(output, file=sys.stderr)
             raise SystemExit(f"unexpected Z3 result for {path}")
-with (root / "results.csv").open("w", newline="", encoding="utf-8") as fh:
+with (formal_results / "results.csv").open("w", newline="", encoding="utf-8") as fh:
     writer = csv.DictWriter(fh, fieldnames=rows[0].keys())
     writer.writeheader(); writer.writerows(rows)
 version = subprocess.check_output([z3, "--version"], text=True, stderr=subprocess.STDOUT).strip().splitlines()[-1]
@@ -61,6 +64,6 @@ summary = {
     "total": len(rows),
     "status": "PASS",
 }
-(root / "summary.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
+(formal_results / "summary.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
 (results_dir / "smt_summary.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
 print(json.dumps(summary, indent=2))

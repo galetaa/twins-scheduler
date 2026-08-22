@@ -3,11 +3,13 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-GENERATED = ROOT / "results" / "generated"
+OUTPUT_ROOT = Path(os.environ.get("TWINS_OUTPUT_ROOT", ROOT))
+GENERATED = OUTPUT_ROOT / "results" / "generated"
 
 
 def load(name: str) -> object:

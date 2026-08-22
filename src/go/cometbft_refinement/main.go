@@ -140,6 +140,9 @@ func main() {
 		}
 	}
 	root := repositoryRoot()
+	if configured := os.Getenv("TWINS_OUTPUT_ROOT"); configured != "" {
+		root = configured
+	}
 	out := filepath.Join(root, "results", "generated")
 	if err := os.MkdirAll(out, 0o755); err != nil {
 		panic(err)

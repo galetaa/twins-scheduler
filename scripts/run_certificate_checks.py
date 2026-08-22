@@ -18,7 +18,8 @@ from twins_scheduler.certificate_kernel import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CERTS = ROOT / "formal" / "certificates" / "gate8"
-GENERATED = ROOT / "results" / "generated"
+OUTPUT_ROOT = Path(os.environ.get("TWINS_OUTPUT_ROOT", ROOT))
+GENERATED = OUTPUT_ROOT / "results" / "generated"
 
 
 def main() -> None:

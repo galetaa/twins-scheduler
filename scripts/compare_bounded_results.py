@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 import json
+import os
 from pathlib import Path
 root=Path(__file__).resolve().parents[1]
-out=root/'results'/'generated'
+output_root=Path(os.environ.get('TWINS_OUTPUT_ROOT',root))
+out=output_root/'results'/'generated'
 p=json.loads((out/'cometbft_refinement_results.json').read_text())
 g=json.loads((out/'cometbft_refinement_results_go.json').read_text())
 keys=['f','n','q','variant','grammar','E_delivered','R_delivered','certificate0','certificate1','left_decision','right_decision','pivot_locked_value','pivot_decided_value','agreement_violation']

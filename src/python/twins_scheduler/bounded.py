@@ -13,6 +13,7 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass
 from enum import Enum
 import json
+import os
 from pathlib import Path
 from typing import Iterable
 
@@ -157,7 +158,8 @@ def verify_refinement_family(fs: Iterable[int]) -> list[Result]:
 
 def main() -> None:
     root = Path(__file__).resolve().parents[3]
-    out = root / "results" / "generated"
+    output_root = Path(os.environ.get("TWINS_OUTPUT_ROOT", root))
+    out = output_root / "results" / "generated"
     out.mkdir(parents=True, exist_ok=True)
     rows = verify_refinement_family(range(1, 65))
     (out / "cometbft_refinement_results.json").write_text(
