@@ -1,0 +1,363 @@
+{
+  "primary_mature_prover": {
+    "axiom_audit": "PASS",
+    "lake_build": "PASS",
+    "leanchecker": "PASS",
+    "prover": "Lean",
+    "report": "formal/lean/AXIOM_REPORT.md",
+    "toolchain": "leanprover/lean4:v4.33.0"
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "supporting_checks": {
+    "certificates": {
+      "gate8_certificates": {
+        "T1": {
+          "base": {
+            "derived_facts": [
+              "replay_erasure_base_case"
+            ],
+            "initial_facts": [
+              "definition_deleting_nonfirst_duplicate_reduces_duplicate_count",
+              "definition_zero_duplicate_erasure_identity",
+              "premise_duplicate_emits_no_relevant_output",
+              "premise_duplicate_transition_stutters",
+              "premise_observation_extensional",
+              "premise_stable_logical_replay_key",
+              "premise_suffix_congruence"
+            ],
+            "status": "PASS",
+            "step_ids": [
+              "T1.B1"
+            ],
+            "steps_checked": 1,
+            "target": "replay_erasure_base_case"
+          },
+          "certificate_sha256": "64e49ae5ba3a12a968cc26a091ec5584a889223b837a9aa1b458a80d86807724",
+          "definitions": [
+            "definition_zero_duplicate_erasure_identity",
+            "definition_deleting_nonfirst_duplicate_reduces_duplicate_count"
+          ],
+          "final": {
+            "derived_facts": [],
+            "initial_facts": [
+              "replay_erasure_all_finite_traces"
+            ],
+            "status": "PASS",
+            "step_ids": [],
+            "steps_checked": 0,
+            "target": "replay_erasure_all_finite_traces"
+          },
+          "measure": "number_of_nonfirst_occurrences_of_stable_replay_keys",
+          "premises": [
+            "premise_stable_logical_replay_key",
+            "premise_duplicate_transition_stutters",
+            "premise_duplicate_emits_no_relevant_output",
+            "premise_suffix_congruence",
+            "premise_observation_extensional"
+          ],
+          "rule_file_sha256": "36120a5d228e06a91f548e390900173c018550c429f41b8661fa55b052da24be",
+          "rules_loaded": 5,
+          "status": "PASS",
+          "step": {
+            "derived_facts": [
+              "duplicate_measure_strictly_decreases",
+              "replay_erasure_step_case",
+              "single_duplicate_deletion_preserves_observation",
+              "single_duplicate_deletion_preserves_relevant_run"
+            ],
+            "initial_facts": [
+              "IH_replay_erasure_for_smaller_duplicate_count",
+              "definition_deleting_nonfirst_duplicate_reduces_duplicate_count",
+              "definition_zero_duplicate_erasure_identity",
+              "premise_duplicate_emits_no_relevant_output",
+              "premise_duplicate_transition_stutters",
+              "premise_observation_extensional",
+              "premise_stable_logical_replay_key",
+              "premise_suffix_congruence"
+            ],
+            "status": "PASS",
+            "step_ids": [
+              "T1.S1",
+              "T1.S2",
+              "T1.S3",
+              "T1.S4"
+            ],
+            "steps_checked": 4,
+            "target": "replay_erasure_step_case"
+          },
+          "theorem": "replay_erasure_all_finite_traces",
+          "trusted_induction_rule": "well_founded_induction_on_Nat"
+        },
+        "T2": {
+          "base": {
+            "derived_facts": [
+              "prefix_relation_base_case"
+            ],
+            "initial_facts": [
+              "case_next_event_is_closure_added",
+              "case_next_event_is_original",
+              "definition_each_merged_event_is_original_or_added",
+              "definition_empty_prefixes_same_state",
+              "definition_finite_merged_suffix_measure_decreases",
+              "definition_original_order_preserved",
+              "premise_R_reflexive",
+              "premise_R_transitive",
+              "premise_closure_added_action_R_increasing",
+              "premise_original_action_forward_simulates_R",
+              "premise_original_terminal_unsafe",
+              "premise_unsafe_upward_closed_under_R"
+            ],
+            "status": "PASS",
+            "step_ids": [
+              "T2.B1"
+            ],
+            "steps_checked": 1,
+            "target": "prefix_relation_base_case"
+          },
+          "certificate_sha256": "a24f0618d1e0a62c6c5fd03d911df3f0c0299028801a5078394b490586e3af65",
+          "definitions": [
+            "definition_empty_prefixes_same_state",
+            "definition_each_merged_event_is_original_or_added",
+            "definition_finite_merged_suffix_measure_decreases",
+            "definition_original_order_preserved"
+          ],
+          "final": {
+            "derived_facts": [
+              "closed_terminal_unsafe",
+              "closure_insertion_preserves_unsafety",
+              "terminal_states_R_related"
+            ],
+            "initial_facts": [
+              "all_merged_prefixes_R_related",
+              "case_next_event_is_closure_added",
+              "case_next_event_is_original",
+              "definition_each_merged_event_is_original_or_added",
+              "definition_empty_prefixes_same_state",
+              "definition_finite_merged_suffix_measure_decreases",
+              "definition_original_order_preserved",
+              "premise_R_reflexive",
+              "premise_R_transitive",
+              "premise_closure_added_action_R_increasing",
+              "premise_original_action_forward_simulates_R",
+              "premise_original_terminal_unsafe",
+              "premise_unsafe_upward_closed_under_R"
+            ],
+            "status": "PASS",
+            "step_ids": [
+              "T2.F1",
+              "T2.F2",
+              "T2.F3"
+            ],
+            "steps_checked": 3,
+            "target": "closure_insertion_preserves_unsafety"
+          },
+          "measure": "length_of_remaining_merged_trace_suffix",
+          "premises": [
+            "premise_R_reflexive",
+            "premise_R_transitive",
+            "premise_closure_added_action_R_increasing",
+            "premise_original_action_forward_simulates_R",
+            "premise_unsafe_upward_closed_under_R",
+            "premise_original_terminal_unsafe",
+            "case_next_event_is_closure_added",
+            "case_next_event_is_original"
+          ],
+          "rule_file_sha256": "efc22836a4b47240b4959ef206894541bd2250987cc97ab0c2c3d85b465cf989",
+          "rules_loaded": 9,
+          "status": "PASS",
+          "step": {
+            "derived_facts": [
+              "merged_suffix_measure_strictly_decreases",
+              "prefix_relation_after_added_event",
+              "prefix_relation_after_next_event",
+              "prefix_relation_after_original_event",
+              "prefix_relation_step_case"
+            ],
+            "initial_facts": [
+              "IH_prefix_relation_at_k",
+              "case_next_event_is_closure_added",
+              "case_next_event_is_original",
+              "definition_each_merged_event_is_original_or_added",
+              "definition_empty_prefixes_same_state",
+              "definition_finite_merged_suffix_measure_decreases",
+              "definition_original_order_preserved",
+              "premise_R_reflexive",
+              "premise_R_transitive",
+              "premise_closure_added_action_R_increasing",
+              "premise_original_action_forward_simulates_R",
+              "premise_original_terminal_unsafe",
+              "premise_unsafe_upward_closed_under_R"
+            ],
+            "status": "PASS",
+            "step_ids": [
+              "T2.S1",
+              "T2.S2",
+              "T2.S3",
+              "T2.S4",
+              "T2.S5"
+            ],
+            "steps_checked": 5,
+            "target": "prefix_relation_step_case"
+          },
+          "theorem": "closure_insertion_preserves_unsafety",
+          "trusted_induction_rule": "well_founded_induction_on_Nat"
+        },
+        "T3": {
+          "arithmetic": {
+            "certificate_sha256": "89868aaec6531e6dd98d59a889f51f54c8c86f0d0b07b5d20329bf63ebf619e4",
+            "equalities": [
+              {
+                "id": "T3.E1",
+                "lhs": "f+f+1",
+                "normal_form_difference": "0",
+                "rhs": "2*f+1",
+                "status": "PASS"
+              },
+              {
+                "id": "T3.E2",
+                "lhs": "f+f",
+                "normal_form_difference": "0",
+                "rhs": "2*f",
+                "status": "PASS"
+              },
+              {
+                "id": "T3.E3",
+                "lhs": "2*f+1",
+                "normal_form_difference": "0",
+                "rhs": "(2*f)+1",
+                "status": "PASS"
+              },
+              {
+                "id": "T3.E4",
+                "lhs": "f+1",
+                "normal_form_difference": "0",
+                "rhs": "1+f",
+                "status": "PASS"
+              },
+              {
+                "id": "T3.E5",
+                "lhs": "f+f+f+1",
+                "normal_form_difference": "0",
+                "rhs": "3*f+1",
+                "status": "PASS"
+              }
+            ],
+            "positive_differences": [
+              {
+                "difference": "1",
+                "id": "T3.P1",
+                "larger": "2*f+1",
+                "smaller": "2*f",
+                "status": "PASS"
+              }
+            ],
+            "status": "PASS"
+          },
+          "branch_results": {
+            "directed_edge_absent": "first quorum short by one",
+            "directed_edge_present": "second quorum short by one after repair",
+            "phase_specific": "two conflicting quorums reachable"
+          },
+          "certificate_sha256": "89868aaec6531e6dd98d59a889f51f54c8c86f0d0b07b5d20329bf63ebf619e4",
+          "conclusion": "UnsafeObs(G_D)=empty_and_UnsafeObs(G_T)=nonempty",
+          "domain": "all natural f >= 1 under the explicit protocol-schema premises",
+          "status": "PASS",
+          "theorem": "T3_parametric_quorum_pivot_separation"
+        }
+      },
+      "project_local_kernel": {
+        "T1": {
+          "finite_models": 96,
+          "finite_trace_checks": 12096,
+          "hidden_counterexample_full_erased": [
+            1,
+            0
+          ]
+        },
+        "T2": {
+          "finite_models": 32,
+          "finite_prefix_checks": 8256
+        },
+        "T3": {
+          "directed_domain_cases": 2,
+          "parameter_cases": 5
+        },
+        "T6": {
+          "assignments": 128,
+          "strict_patterns": [
+            "0111111",
+            "1101111",
+            "1111111"
+          ]
+        },
+        "certificate": "formal/project_kernel/certificate.json",
+        "certificate_sha256": "a1d067bac820560e86f3cdf62f2fc31d762a51196972d17f26507a8c939629d3",
+        "kernel_version": "1.1.0",
+        "negative_controls": {
+          "T1_remove_output_congruence": "REJECTED: T1: premises {'duplicate_projection_stutter', 'stable_key_in_projection', 'duplicate_relevant_output_empty', 'projection_congruence'} do not match corrected theorem",
+          "T1_remove_projection_congruence": "REJECTED: T1: premises {'duplicate_projection_stutter', 'output_congruence', 'stable_key_in_projection', 'duplicate_relevant_output_empty'} do not match corrected theorem",
+          "T3_deliver_repair_after_C1": "REJECTED: T3 wrong phase order",
+          "T3_move_R_to_other_view": "REJECTED: T3 E/R view differs",
+          "T6_omit_operational_equation": "REJECTED: T6 operational equation absent/changed"
+        },
+        "status": "PASS"
+      },
+      "status": "PASS",
+      "tampered_gate8_certificate": "REJECTED_AS_EXPECTED"
+    },
+    "independent_checker": {
+      "cometbft_bridge": {
+        "cases": 768,
+        "f_range": [
+          1,
+          128
+        ],
+        "rule_level_refinement": true
+      },
+      "independence": "does not import project models, proof kernel, SMT, or prover sources",
+      "legal_closure": {
+        "counterexamples": 0,
+        "target_legality_checked": true,
+        "valid_models": 84
+      },
+      "replay": {
+        "hidden_state_counterexample": {
+          "erased": 0,
+          "full": 1
+        },
+        "positive_projection_output_congruence_pairs": 32
+      },
+      "scheduler_semantics": {
+        "closed_deliveries": 2,
+        "no_synthesis": true,
+        "once_only": true,
+        "stable_order": true,
+        "typed_deliveries": 1
+      },
+      "status": "PASS",
+      "structural_criterion": {
+        "q_values": 64,
+        "strict_separation": true
+      },
+      "unsafe_observation_typing": {
+        "observation_domain": "tuple(decisions)",
+        "unsafe_domain": "State",
+        "unsafe_observations": 1
+      }
+    },
+    "smt": {
+      "negative_sat": 4,
+      "positive_unsat": 8,
+      "runner": ".cache/z3cli",
+      "status": "PASS",
+      "total": 12,
+      "z3_version": "4.13.3.0"
+    },
+    "source_hygiene": {
+      "files_checked": 19,
+      "hits": [],
+      "status": "PASS"
+    }
+  }
+}

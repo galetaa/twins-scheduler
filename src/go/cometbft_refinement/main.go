@@ -97,6 +97,23 @@ func boolInt(b bool) int {
 	return 0
 }
 
+func repositoryRoot() string {
+	current, err := os.Getwd()
+	if err != nil {
+		panic(err)
+	}
+	for {
+		if _, err := os.Stat(filepath.Join(current, "go.mod")); err == nil {
+			return current
+		}
+		parent := filepath.Dir(current)
+		if parent == current {
+			panic("could not locate repository root containing go.mod")
+		}
+		current = parent
+	}
+}
+
 func main() {
 	variants := []Variant{Baseline, MissingLock}
 	grammars := []Grammar{PhaseSpecific, DirectedOff, DirectedOn}
@@ -122,7 +139,7 @@ func main() {
 			panic("directed unsafe")
 		}
 	}
-	root, _ := filepath.Abs(filepath.Join("..", "..", ".."))
+	root := repositoryRoot()
 	out := filepath.Join(root, "results", "generated")
 	if err := os.MkdirAll(out, 0o755); err != nil {
 		panic(err)

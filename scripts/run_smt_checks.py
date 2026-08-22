@@ -19,7 +19,7 @@ def find_or_build_z3() -> str:
     ]
     lib = next((p for p in lib_candidates if p.exists()), None)
     cc = shutil.which("cc") or shutil.which("gcc")
-    src = project / "tools" / "z3cli.c"
+    src = project / "scripts" / "z3cli.c"
     out = project / ".cache" / "z3cli"
     out.parent.mkdir(parents=True, exist_ok=True)
     if lib and cc and src.exists():

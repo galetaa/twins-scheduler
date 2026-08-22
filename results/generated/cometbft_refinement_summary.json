@@ -1,0 +1,28 @@
+{
+  "baseline_safe_all": true,
+  "cases": 384,
+  "f_checked": [
+    1,
+    64
+  ],
+  "mutant_directed_safe_all": true,
+  "mutant_phase_specific_unsafe_all": true,
+  "phase_order": [
+    "E_PREVOTE",
+    "C0",
+    "R_PRECOMMIT",
+    "C1"
+  ],
+  "scope": "bounded rule-level instantiation; not production-client conformance",
+  "shared_edge": {
+    "different_phases": [
+      "PREVOTE",
+      "PRECOMMIT"
+    ],
+    "height": 1,
+    "receiver": "pivot",
+    "round": 0,
+    "sender": "b0"
+  },
+  "source_protocol": "CometBFT v0.39.3 consensus specification"
+}

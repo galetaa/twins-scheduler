@@ -1,0 +1,8 @@
+{
+  "z3_version": "4.13.3.0",
+  "runner": ".cache/z3cli",
+  "positive_unsat": 8,
+  "negative_sat": 4,
+  "total": 12,
+  "status": "PASS"
+}

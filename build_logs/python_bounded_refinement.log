@@ -1,0 +1,5 @@
+COMETBFT_BOUNDED_REFINEMENT PASS
+cases=384 f=1..64
+baseline_safe_all=true
+missing_lock_update_phase_specific_unsafe_all=true
+missing_lock_update_directed_safe_all=true
