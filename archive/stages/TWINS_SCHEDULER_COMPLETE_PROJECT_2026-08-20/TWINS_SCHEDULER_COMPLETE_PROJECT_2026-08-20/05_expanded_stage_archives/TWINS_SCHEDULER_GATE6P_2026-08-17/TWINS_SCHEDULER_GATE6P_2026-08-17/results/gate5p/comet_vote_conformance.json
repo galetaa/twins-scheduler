@@ -1,0 +1,10 @@
+{
+  "cases_checked": 728,
+  "controlled_mutation": "count message instances instead of unique logical validators",
+  "max_sequence_length": 5,
+  "mismatch_count": 0,
+  "mismatches": [],
+  "sequences_per_mode": 364,
+  "source_model": "CometBFT v0.40.0 VoteSet duplicate handling",
+  "status": "PASS"
+}

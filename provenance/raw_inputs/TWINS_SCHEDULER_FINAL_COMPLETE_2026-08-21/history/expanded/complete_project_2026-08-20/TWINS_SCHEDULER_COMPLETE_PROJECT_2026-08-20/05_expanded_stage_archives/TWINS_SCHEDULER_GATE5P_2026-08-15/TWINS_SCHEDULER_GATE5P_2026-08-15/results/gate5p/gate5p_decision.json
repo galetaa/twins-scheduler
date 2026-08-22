@@ -1,0 +1,25 @@
+{
+  "blocking_risk_for_publication": "The phase-coupled lemma should be proof-assistant hardened and one controlled mutation should be replayed through a fuller consensus event loop during Gate 6'.",
+  "decision": "PASS / GO TO GATE 6'",
+  "gate": "Gate 5'",
+  "implementation_correspondence": "CometBFT v0.40.0 source mapping, 728 Go/Python vote-processing conformance cases, and a controlled Go lock/replay fixture",
+  "independent_protocol_instantiation": "Tendermint-style prevote/precommit locking kernel",
+  "prohibited_claims": [
+    "production CometBFT vulnerability",
+    "universal incompleteness of partition schedules",
+    "universal minimality of phase-specific scheduling",
+    "liveness completeness",
+    "absolute novelty"
+  ],
+  "publication_scope": "Narrow theorem-and-counterexample paper; not a new testing DSL and not a production-vulnerability report.",
+  "research_readiness": "READY_FOR_FULL_RESEARCH_IMPLEMENTATION_IN_NARROW_SCOPE",
+  "reusable_formal_results": [
+    "replay-erasure theorem under stable-key idempotence",
+    "local relational closure-lifting theorem",
+    "parametric phase-coupled directed-versus-phase-specific separation",
+    "bounded terminal-delay corollary",
+    "constructive non-idempotent replay separation"
+  ],
+  "scientific_claim": "Safety-observation closure boundaries of scheduler grammars for certificate-driven locking BFT protocols",
+  "status": "PASS"
+}

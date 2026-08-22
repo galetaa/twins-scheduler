@@ -1,0 +1,13 @@
+<!-- Z3 proof obligations and negative controls. -->
+
+| Kind | Obligation | Expected | Observed | Status | Digest |
+|---|---|---|---|---|---|
+| positive_obligation | T1_REPLAY_ERASURE.horn.smt2 | ['unsat'] | 1 | PASS | 9896b893bf24 |
+| positive_obligation | T2_LOCAL_VCS.smt2 | ['unsat', 'unsat', 'unsat', 'unsat'] | 4 | PASS | 6028b980436e |
+| positive_obligation | T2_PREFIX_RELATION.horn.smt2 | ['unsat'] | 1 | PASS | 12a7f8c4fbad |
+| positive_obligation | T3_QUORUM_PIVOT.smt2 | ['unsat'] | 1 | PASS | 4ece7ce68dbd |
+| positive_obligation | T6_PREMISE_CHARACTERIZATION.smt2 | ['unsat'] | 1 | PASS | 660c6d2211c5 |
+| negative_control | NC1_DUPLICATE_NOT_STUTTERING.horn.smt2 | ['sat'] | 1 | PASS | 55246f91c22b |
+| negative_control | NC2_INSERTION_NOT_INCREASING.smt2 | ['sat'] | 1 | PASS | 7d8dff593bee |
+| negative_control | NC3_REPAIR_DOES_NOT_DISABLE_PIVOT.smt2 | ['sat'] | 1 | PASS | 64080b7f6aa6 |
+| negative_control | NC4_DROP_RQ_DISJUNCT.smt2 | ['sat'] | 1 | PASS | efb8c4caeb8e |

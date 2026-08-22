@@ -1,0 +1,36 @@
+{
+  "T1": {
+    "finite_models": 40,
+    "finite_trace_checks": 5040,
+    "hidden_counterexample_full_erased": [
+      1,
+      0
+    ]
+  },
+  "T2": {
+    "finite_models": 32,
+    "finite_prefix_checks": 8256
+  },
+  "T3": {
+    "directed_domain_cases": 2,
+    "parameter_cases": 5
+  },
+  "T6": {
+    "assignments": 128,
+    "strict_patterns": [
+      "0111111",
+      "1101111",
+      "1111111"
+    ]
+  },
+  "certificate": "certificate.json",
+  "certificate_sha256": "651dc14438de52d4cf3d1dac713e7df9eff1580b5c9e02c00fb1ec147e965386",
+  "kernel_version": "1.0.0",
+  "negative_controls": {
+    "T1_remove_projection_congruence": "REJECTED: T1: premises {'stable_key_in_projection', 'duplicate_relevant_output_empty', 'duplicate_projection_stutter'} do not match corrected theorem",
+    "T3_deliver_repair_after_C1": "REJECTED: T3 wrong phase order",
+    "T3_move_R_to_other_view": "REJECTED: T3 E/R view differs",
+    "T6_omit_operational_equation": "REJECTED: T6 operational equation absent/changed"
+  },
+  "status": "PASS"
+}

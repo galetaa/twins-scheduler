@@ -1,0 +1,21 @@
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{p{0.157\linewidth}p{0.157\linewidth}p{0.157\linewidth}p{0.157\linewidth}p{0.157\linewidth}p{0.157\linewidth}}
+\toprule
+Kind & Obligation & Expected & Observed & Status & Digest \\
+\midrule
+positive\_obligation & T1\_REPLAY\_ERASURE.horn.smt2 & ['unsat'] & 1 & PASS & 9896b893bf24 \\
+positive\_obligation & T2\_LOCAL\_VCS.smt2 & ['unsat', 'unsat', 'unsat', 'unsat'] & 4 & PASS & 6028b980436e \\
+positive\_obligation & T2\_PREFIX\_RELATION.horn.smt2 & ['unsat'] & 1 & PASS & 12a7f8c4fbad \\
+positive\_obligation & T3\_QUORUM\_PIVOT.smt2 & ['unsat'] & 1 & PASS & 4ece7ce68dbd \\
+positive\_obligation & T6\_PREMISE\_CHARACTERIZATION.smt2 & ['unsat'] & 1 & PASS & 660c6d2211c5 \\
+negative\_control & NC1\_DUPLICATE\_NOT\_STUTTERING.horn.smt2 & ['sat'] & 1 & PASS & 55246f91c22b \\
+negative\_control & NC2\_INSERTION\_NOT\_INCREASING.smt2 & ['sat'] & 1 & PASS & 7d8dff593bee \\
+negative\_control & NC3\_REPAIR\_DOES\_NOT\_DISABLE\_PIVOT.smt2 & ['sat'] & 1 & PASS & 64080b7f6aa6 \\
+negative\_control & NC4\_DROP\_RQ\_DISJUNCT.smt2 & ['sat'] & 1 & PASS & efb8c4caeb8e \\
+\bottomrule
+\end{tabular}
+\caption{Z3 proof obligations and negative controls.}
+\label{tab:table4_smt_migration}
+\end{table*}

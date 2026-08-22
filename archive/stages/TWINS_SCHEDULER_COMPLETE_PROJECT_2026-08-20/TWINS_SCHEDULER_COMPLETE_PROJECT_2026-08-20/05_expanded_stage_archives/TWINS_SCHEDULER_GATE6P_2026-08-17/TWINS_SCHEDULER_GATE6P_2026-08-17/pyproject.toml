@@ -1,0 +1,19 @@
+[project]
+name = "schedcheck"
+version = "0.6.0"
+description = "Exact checker and formal witnesses for scheduler-closure boundaries in locking BFT protocols"
+requires-python = ">=3.13"
+dependencies = []
+license = "MIT"
+authors = [{ name = "Research artifact generated for Gate 6'" }]
+
+[project.scripts]
+schedcheck = "schedcheck.cli:main"
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "."]
+testpaths = ["tests"]
+addopts = "-q"

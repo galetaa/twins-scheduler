@@ -1,0 +1,13 @@
+{
+  "project": "CometBFT",
+  "tag": "v0.40.0",
+  "commit": "0880b4d378f347ab16e54ec677ff50d803f37d62",
+  "retrieved_utc": "2026-08-15",
+  "files": {
+    "consensus.md": "https://raw.githubusercontent.com/cometbft/cometbft/0880b4d378f347ab16e54ec677ff50d803f37d62/spec/consensus/consensus.md",
+    "state.go": "https://raw.githubusercontent.com/cometbft/cometbft/0880b4d378f347ab16e54ec677ff50d803f37d62/internal/consensus/state.go",
+    "vote_set.go": "https://raw.githubusercontent.com/cometbft/cometbft/0880b4d378f347ab16e54ec677ff50d803f37d62/types/vote_set.go",
+    "LICENSE": "https://raw.githubusercontent.com/cometbft/cometbft/0880b4d378f347ab16e54ec677ff50d803f37d62/LICENSE"
+  },
+  "license": "Apache-2.0"
+}

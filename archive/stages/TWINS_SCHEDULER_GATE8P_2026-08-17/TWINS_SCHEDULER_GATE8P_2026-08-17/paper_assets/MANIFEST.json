@@ -1,0 +1,132 @@
+{
+  "generator": "scripts/generate_paper_assets.py",
+  "outputs": [
+    {
+      "bytes": 3037,
+      "path": "paper_assets/figures/figure1_scheduler_grammar.svg",
+      "sha256": "12b1a5d9d7f5ed38d010311e04a508a477d0735c90fa9ef88e1d99ceb9f6b1aa"
+    },
+    {
+      "bytes": 3197,
+      "path": "paper_assets/figures/figure2_quorum_pivot.svg",
+      "sha256": "feee5144d60b746dd44e0103d5130538a86ad120516cd78729f9aa57f59024c7"
+    },
+    {
+      "bytes": 2446,
+      "path": "paper_assets/figures/figure3_premise_characterization.svg",
+      "sha256": "8ce682cc0755fa3bb6239711b8e9b688f838c9c20497d509e6802ee79741f016"
+    },
+    {
+      "bytes": 431,
+      "path": "paper_assets/tables/table1_scheduler_grammars.csv",
+      "sha256": "44d638ce1d7e422123fc2fbbc0ea438c580c1eeae87e81fef2278c258dcf32aa"
+    },
+    {
+      "bytes": 573,
+      "path": "paper_assets/tables/table1_scheduler_grammars.md",
+      "sha256": "cf2d886a3452dc28e491fdc991eac9d5d14a6523db5014cece0c837c36856bde"
+    },
+    {
+      "bytes": 766,
+      "path": "paper_assets/tables/table1_scheduler_grammars.tex",
+      "sha256": "5e723754fd5e38d483bf6ba3d5f149c436d977167f8f7713f0da76465646b5d0"
+    },
+    {
+      "bytes": 398,
+      "path": "paper_assets/tables/table2_full_event_loop.csv",
+      "sha256": "6e9330ea2e8985a22ea3d5ea8cbc55731772e04cf15c7fe57e9608f8f46ccb1b"
+    },
+    {
+      "bytes": 556,
+      "path": "paper_assets/tables/table2_full_event_loop.md",
+      "sha256": "34aac9179a8bc77ef550c73f0d5b2c675f00271d99b96e904f89bc56ef64656e"
+    },
+    {
+      "bytes": 805,
+      "path": "paper_assets/tables/table2_full_event_loop.tex",
+      "sha256": "bdf207e26e70bf251260910c857e9287366df16256ef2d4488ed709c9f0a4d50"
+    },
+    {
+      "bytes": 346,
+      "path": "paper_assets/tables/table3_premise_characterization.csv",
+      "sha256": "75e064b1c0c9d549e97dd1c716a6a7c611cab72d9d1e847c055f76726ec5518e"
+    },
+    {
+      "bytes": 454,
+      "path": "paper_assets/tables/table3_premise_characterization.md",
+      "sha256": "2915e0eb49f21f46bf9accef98e6f24e30b8de41351f18c2d870676ff54fdc3d"
+    },
+    {
+      "bytes": 650,
+      "path": "paper_assets/tables/table3_premise_characterization.tex",
+      "sha256": "01a92873bcc331603aa2ea3ac21ed263aebc600b895011574831a777e243f21b"
+    },
+    {
+      "bytes": 774,
+      "path": "paper_assets/tables/table4_smt_migration.csv",
+      "sha256": "a3611203449daadc3d6a95127c7d79b777e1e25cc827914827bf6d3fb8f57842"
+    },
+    {
+      "bytes": 992,
+      "path": "paper_assets/tables/table4_smt_migration.md",
+      "sha256": "36a35eb85770a1837850544bee55c64aa871d7ccddaa1068293410bd0c97212b"
+    },
+    {
+      "bytes": 1241,
+      "path": "paper_assets/tables/table4_smt_migration.tex",
+      "sha256": "acbd1b86d004d60321f7e58de2d53f425e5c9c0275ff3db5cfd1649085d4289e"
+    },
+    {
+      "bytes": 1406,
+      "path": "paper_assets/tables/table5_claim_to_evidence.csv",
+      "sha256": "301f1d13c85956ab7f8724450a9de9c07face73ef053e7d825dcbdf02db0d055"
+    },
+    {
+      "bytes": 1529,
+      "path": "paper_assets/tables/table5_claim_to_evidence.md",
+      "sha256": "d1a665f4f055753aaf5f507007de16b95c3ad49db6dce2d0c6044ae94f2ebf55"
+    },
+    {
+      "bytes": 1777,
+      "path": "paper_assets/tables/table5_claim_to_evidence.tex",
+      "sha256": "80f226d84fc5dbaffe28ef42fa7d3a245e902fa80fe0120e727928cdfdd896f1"
+    },
+    {
+      "bytes": 1072,
+      "path": "paper_assets/tables/table6_validity.csv",
+      "sha256": "32c3f3a3bf9a15e26331d8317385d49bd693d4060dd8ca9892ee9a01467c0342"
+    },
+    {
+      "bytes": 1209,
+      "path": "paper_assets/tables/table6_validity.md",
+      "sha256": "5367aca38c992d7a7c4da7720011777ddcadbdd98df3345e082a0cb09e8cbc8c"
+    },
+    {
+      "bytes": 1395,
+      "path": "paper_assets/tables/table6_validity.tex",
+      "sha256": "82d13f197487a851c0f8b25c69a597aa6abe866ca3a46a16512edef0280b8de2"
+    },
+    {
+      "bytes": 506,
+      "path": "paper_assets/tables/table7_nonclaims.csv",
+      "sha256": "ca3445de0fc4958926b5b9f27b1dc635e2290ceff267c260c7548701fd748819"
+    },
+    {
+      "bytes": 615,
+      "path": "paper_assets/tables/table7_nonclaims.md",
+      "sha256": "8cc4504520fc4e119f83d52f509a5403f0f26af9078fea97a103ada406b834e2"
+    },
+    {
+      "bytes": 773,
+      "path": "paper_assets/tables/table7_nonclaims.tex",
+      "sha256": "691efdbc21e9f08a6b70bb3d2cda42d941e5104cc24afa5a61cb0e84fe8d7c4b"
+    }
+  ],
+  "source_files": [
+    "paper_data/*.json",
+    "results/gate7p/*.json",
+    "results/gate7p/*.csv",
+    "proof_outputs/smt_proof_report.json"
+  ],
+  "status": "PASS"
+}

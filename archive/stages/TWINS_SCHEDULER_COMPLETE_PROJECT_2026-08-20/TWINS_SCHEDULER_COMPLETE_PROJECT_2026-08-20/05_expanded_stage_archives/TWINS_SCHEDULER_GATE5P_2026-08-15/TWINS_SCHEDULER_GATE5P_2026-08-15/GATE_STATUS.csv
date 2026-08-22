@@ -1,0 +1,8 @@
+work_package,status,evidence
+WP5.0 novelty refresh,CONDITIONAL PASS,gate5p/prior_art_delta.md
+WP5.1 abstract protocol class,PASS,spec/protocol_class.md
+WP5.2 closure theorem/counterexample,PASS,spec/gate5p_theorems.md; results/gate5p/closure_theorem_checks.json; results/gate5p/phase_coupled_family.json
+WP5.3 second natural kernel,PASS,results/gate5p/tendermint_language_matrix.csv
+WP5.4 implementation correspondence,CONDITIONAL PASS,results/gate5p/cometbft_source_mapping.json; results/gate5p/comet_vote_conformance.json; results/gate5p/implementation_correspondence.json
+WP5.5 publication kill test,PASS WITH NARROW CLAIM,gate5p/PUBLICATION_DECISION.md
+Gate 5' overall,PASS / GO TO GATE 6',results/gate5p/gate5p_decision.json

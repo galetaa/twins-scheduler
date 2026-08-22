@@ -1,0 +1,8 @@
+version = 1
+revision = 3
+requires-python = "==3.13.*"
+
+[[package]]
+name = "twins-gate0-3-pilot"
+version = "0.1.0"
+source = { virtual = "." }

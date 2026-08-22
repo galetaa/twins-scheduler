@@ -1,0 +1,22 @@
+schedcheck exact pilot
+artifact_date=2026-08-12
+randomness=false
+all_inclusions_hold=true
+full_adjacent_safety_hierarchy_witnessed=true
+
+protocol=ECHO_GATE grammar=G_P_PARTITION policies=5 executions=5 observations=3 unsafe=0
+protocol=ECHO_GATE grammar=G_D_DIRECTED_VIEW policies=64 executions=64 observations=4 unsafe=1
+protocol=ECHO_GATE grammar=G_T_TYPE_SPECIFIC policies=4096 executions=4096 observations=4 unsafe=1
+protocol=ECHO_GATE grammar=G_M_PER_MESSAGE policies=15 executions=15 observations=4 unsafe=1
+protocol=TYPE_SPLIT grammar=G_P_PARTITION policies=5 executions=5 observations=4 unsafe=0
+protocol=TYPE_SPLIT grammar=G_D_DIRECTED_VIEW policies=64 executions=64 observations=4 unsafe=0
+protocol=TYPE_SPLIT grammar=G_T_TYPE_SPECIFIC policies=4096 executions=4096 observations=9 unsafe=2
+protocol=TYPE_SPLIT grammar=G_M_PER_MESSAGE policies=65 executions=65 observations=9 unsafe=2
+protocol=INSTANCE_ORDER grammar=G_P_PARTITION policies=5 executions=5 observations=4 unsafe=0
+protocol=INSTANCE_ORDER grammar=G_D_DIRECTED_VIEW policies=64 executions=64 observations=4 unsafe=0
+protocol=INSTANCE_ORDER grammar=G_T_TYPE_SPECIFIC policies=64 executions=64 observations=4 unsafe=0
+protocol=INSTANCE_ORDER grammar=G_M_PER_MESSAGE policies=65 executions=65 observations=9 unsafe=2
+protocol=TWIN_BRANCH_CONTROL grammar=G_P_PARTITION policies=15 executions=15 observations=9 unsafe=2
+protocol=TWIN_BRANCH_CONTROL grammar=G_D_DIRECTED_VIEW policies=4096 executions=4096 observations=9 unsafe=2
+protocol=TWIN_BRANCH_CONTROL grammar=G_T_TYPE_SPECIFIC policies=4096 executions=4096 observations=9 unsafe=2
+protocol=TWIN_BRANCH_CONTROL grammar=G_M_PER_MESSAGE policies=65 executions=65 observations=9 unsafe=2

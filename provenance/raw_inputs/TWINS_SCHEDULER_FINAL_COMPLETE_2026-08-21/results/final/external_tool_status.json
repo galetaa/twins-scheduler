@@ -1,0 +1,6 @@
+{
+  "lean_kernel_build": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+  "coq_kernel_build": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+  "official_lipics_class_build": "NOT_RUN_CLASS_UNAVAILABLE",
+  "strict_mature_prover_requested": "0"
+}

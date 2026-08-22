@@ -1,0 +1,9 @@
+resource,license,used_in_executable_pilot,copied_code,notes
+Gate 0-3 closure code,MIT,yes,no external code,Original standard-library implementation
+Python 3.13.5,PSF License,yes,no,Runtime only
+uv 0.10.0,Apache-2.0 OR MIT,yes,no,Runner/lockfile tool
+Twins paper,CC BY 4.0,no,no,Scientific citation only
+asonnino/twins-simulator,Apache-2.0,no,no,Repository metadata/documentation only
+runtimeverification/vlsm,BSD-3-Clause,no,no,Repository metadata/paper result only
+joaomlneto/byzzbench,MIT,no,no,Repository metadata only
+relab/hotstuff,MIT,no,no,Documentation only; no code incorporated

@@ -1,0 +1,14 @@
+{
+  "event_order_seed_range": [
+    0,
+    255
+  ],
+  "go": "go version go1.23.2 linux/amd64",
+  "network_access_during_checks": "none",
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+  "public_network_interaction": "none",
+  "python": "3.13.5",
+  "pythonhashseed_required_for_reproduction": "0",
+  "random_seed_for_parameter_sensitivity": 60617,
+  "runtime_dependencies": []
+}

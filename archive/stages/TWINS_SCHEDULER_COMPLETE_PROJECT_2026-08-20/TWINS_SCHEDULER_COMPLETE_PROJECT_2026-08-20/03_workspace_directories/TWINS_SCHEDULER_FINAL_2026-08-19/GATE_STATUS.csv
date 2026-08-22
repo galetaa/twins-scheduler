@@ -1,0 +1,17 @@
+item,status,blocking,evidence
+Independent proof audit integration,PASS,no,proof_review/INDEPENDENT_AUDIT_INTEGRATION.md
+T1 corrected formal source,PASS,no,formal/lean/SchedulerClosure/T1ReplayErasure.lean
+T2 corrected formal source,PASS,no,formal/lean/SchedulerClosure/T2ClosureLifting.lean
+T3 explicit operational formal source,PASS,no,formal/lean/SchedulerClosure/T3QuorumPivot.lean
+T6 operational equation and exact boundary,PASS,no,formal/lean/SchedulerClosure/T6PremiseBoundary.lean
+Forbidden-token source hygiene,PASS,no,build_logs/formal_source_hygiene.log
+Lean kernel build,NOT RUN,yes,build_logs/kernel_check_attempt.log
+Axiom report,NOT RUN,yes,formal/lean/AxiomAudit.lean
+Prior-art refresh,CONDITIONAL PASS,no,prior_art/PRIOR_ART_UPDATE_2026-08-19.md
+Revised manuscript,PASS,no,manuscript/FULL_MANUSCRIPT_REVISED_2026-08-19.md
+Official LIPIcs source conversion,PASS,no,submission/lipics/main_lipics.tex
+Official LIPIcs class build,NOT RUN,yes,submission/lipics/OFFICIAL_CLASS_BLOCKER.md
+A4 review PDF build,PASS,no,manuscript/TWINS_SCHEDULER_LIPICS_REVIEW_2026-08-19.pdf
+15-page main-text budget,PASS,no,build_logs/page_budget_check.log
+Submission metadata,INCOMPLETE,yes,submission/lipics/METADATA_STATUS.md
+Overall,CONDITIONAL PASS / SUBMISSION HOLD,yes,EXECUTIVE_DECISION.md

@@ -1,0 +1,119 @@
+{
+  "ablations": [
+    {
+      "ablated_premise": "first_base_short_by_one",
+      "classification": "REDUNDANT_IN_THIS_CONSTRUCTION",
+      "diagnosis": "separation survives",
+      "directed_unsafe": false,
+      "strict_separation_after_ablation": true,
+      "type_specific_unsafe": true
+    },
+    {
+      "ablated_premise": "second_base_short_by_one",
+      "classification": "NECESSARY_FOR_THIS_CONSTRUCTION",
+      "diagnosis": "G_D gains the unsafe witness",
+      "directed_unsafe": true,
+      "strict_separation_after_ablation": false,
+      "type_specific_unsafe": true
+    },
+    {
+      "ablated_premise": "second_pivot_requires_enabling_evidence",
+      "classification": "REDUNDANT_IN_THIS_CONSTRUCTION",
+      "diagnosis": "separation survives",
+      "directed_unsafe": false,
+      "strict_separation_after_ablation": true,
+      "type_specific_unsafe": true
+    },
+    {
+      "ablated_premise": "repair_disables_pivot",
+      "classification": "NECESSARY_FOR_THIS_CONSTRUCTION",
+      "diagnosis": "G_D gains the unsafe witness",
+      "directed_unsafe": true,
+      "strict_separation_after_ablation": false,
+      "type_specific_unsafe": true
+    },
+    {
+      "ablated_premise": "repair_precedes_second_quorum_opportunity",
+      "classification": "NECESSARY_FOR_THIS_CONSTRUCTION",
+      "diagnosis": "G_D gains the unsafe witness",
+      "directed_unsafe": true,
+      "strict_separation_after_ablation": false,
+      "type_specific_unsafe": true
+    },
+    {
+      "ablated_premise": "enabling_and_repair_share_endpoint_edge",
+      "classification": "NECESSARY_FOR_THIS_CONSTRUCTION",
+      "diagnosis": "G_D gains the unsafe witness",
+      "directed_unsafe": true,
+      "strict_separation_after_ablation": false,
+      "type_specific_unsafe": true
+    },
+    {
+      "ablated_premise": "phase_specific_grammar_can_split_E_and_R",
+      "classification": "NECESSARY_FOR_THIS_CONSTRUCTION",
+      "diagnosis": "G_T loses the unsafe witness",
+      "directed_unsafe": false,
+      "strict_separation_after_ablation": false,
+      "type_specific_unsafe": false
+    }
+  ],
+  "baseline": {
+    "directed": [
+      {
+        "deliver_E": false,
+        "deliver_R": false,
+        "first_certificate": false,
+        "first_support": 2,
+        "second_certificate": false,
+        "second_support": 2,
+        "unsafe": false
+      },
+      {
+        "deliver_E": true,
+        "deliver_R": true,
+        "first_certificate": true,
+        "first_support": 3,
+        "second_certificate": false,
+        "second_support": 2,
+        "unsafe": false
+      }
+    ],
+    "directed_unsafe": false,
+    "premises": {
+      "enabling_and_repair_share_endpoint_edge": true,
+      "f": 1,
+      "first_base_short_by_one": true,
+      "phase_specific_grammar_can_split_E_and_R": true,
+      "repair_disables_pivot": true,
+      "repair_precedes_second_quorum_opportunity": true,
+      "second_base_short_by_one": true,
+      "second_pivot_requires_enabling_evidence": true
+    },
+    "strict_separation": true,
+    "type_specific": [
+      {
+        "deliver_E": true,
+        "deliver_R": false,
+        "first_certificate": true,
+        "first_support": 3,
+        "second_certificate": true,
+        "second_support": 3,
+        "unsafe": true
+      }
+    ],
+    "type_specific_unsafe": true
+  },
+  "necessary_premises": [
+    "second_base_short_by_one",
+    "repair_disables_pivot",
+    "repair_precedes_second_quorum_opportunity",
+    "enabling_and_repair_share_endpoint_edge",
+    "phase_specific_grammar_can_split_E_and_R"
+  ],
+  "redundant_premises": [
+    "first_base_short_by_one",
+    "second_pivot_requires_enabling_evidence"
+  ],
+  "scope": "necessity for the supplied two-branch construction, not universal protocol-class necessity",
+  "status": "PASS"
+}

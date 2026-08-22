@@ -1,0 +1,16 @@
+{
+  "T1_checked_proof_passes": true,
+  "T2_checked_proof_passes": true,
+  "T3_checked_certificate_passes": true,
+  "T3_independent_bigint_crosscheck_passes": true,
+  "event_order_sensitivity_passes": true,
+  "exact_premise_characterization_passes": true,
+  "gate5_prerequisite_passes": true,
+  "go_full_event_loop_passes": true,
+  "go_python_full_event_loop_conforms": true,
+  "one_at_a_time_premise_ablation_passes": true,
+  "parameter_sensitivity_passes": true,
+  "pinned_source_mapping_still_passes": true,
+  "python_full_event_loop_passes": true,
+  "status": "PASS"
+}

@@ -1,0 +1,15 @@
+{
+  "assurance_boundary": "small auditable proof script; not equivalent to a mature proof assistant kernel or independent peer review",
+  "bytes": 19959,
+  "nonblank_noncomment_lines": 431,
+  "path": "src/schedcheck/gate6/proof_kernel.py",
+  "physical_lines": 503,
+  "runtime_dependencies": [],
+  "sha256": "5cbcf482bcdcd9cbeb12ea633ef32454d660e675cb9ff6e39f90b86081718856",
+  "trusted_primitives": [
+    "finite Horn-rule application",
+    "well-founded induction schema on natural-number measures",
+    "exact univariate integer-polynomial normalization",
+    "dedicated quorum-branch certificate checks"
+  ]
+}

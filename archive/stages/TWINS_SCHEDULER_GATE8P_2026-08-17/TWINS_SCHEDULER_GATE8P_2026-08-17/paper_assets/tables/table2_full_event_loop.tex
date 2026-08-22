@@ -1,0 +1,18 @@
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{p{0.157\linewidth}p{0.157\linewidth}p{0.157\linewidth}p{0.157\linewidth}p{0.157\linewidth}p{0.157\linewidth}}
+\toprule
+Grammar & Variant & Violation & Decisions & POLKA & COMMIT \\
+\midrule
+G\_T\_TYPE\_SPECIFIC & BASELINE & no & H1=0 & [0] & [0] \\
+G\_D\_ROUND0\_EDGE\_OFF & BASELINE & no & H3=1, P=1 & [1] & [1] \\
+G\_D\_ROUND0\_EDGE\_ON & BASELINE & no & H1=0, P=0 & [0] & [0] \\
+G\_T\_TYPE\_SPECIFIC & MISSING\_LOCK\_UPDATE & YES & H1=0, H3=1, P=1 & [0, 1] & [0, 1] \\
+G\_D\_ROUND0\_EDGE\_OFF & MISSING\_LOCK\_UPDATE & no & H3=1, P=1 & [1] & [1] \\
+G\_D\_ROUND0\_EDGE\_ON & MISSING\_LOCK\_UPDATE & no & H1=0, P=0 & [0] & [0] \\
+\bottomrule
+\end{tabular}
+\caption{Fuller two-round event-loop outcomes.}
+\label{tab:table2_full_event_loop}
+\end{table*}

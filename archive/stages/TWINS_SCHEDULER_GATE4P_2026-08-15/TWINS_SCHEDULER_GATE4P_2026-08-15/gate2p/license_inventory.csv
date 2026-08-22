@@ -1,0 +1,6 @@
+component,role,license,bundled,version_or_commit,notes
+schedcheck,original exact checker,MIT,yes,0.2.0,"Top-level LICENSE"
+relab/hotstuff source snapshot,semantic evidence,MIT,yes,3179c6e62929294961acbfd9bf8445769716a121,"Upstream LICENSE preserved in inputs/hotstuff_snapshot/LICENSE"
+CPython,runtime,PSF License,no,3.13.5,"External runtime; no Python binaries bundled"
+uv,environment utility,Apache-2.0 OR MIT,no,0.10.0,"Optional; artifact runtime has no third-party Python dependencies"
+pytest,development test runner,MIT,no,9.0.2,"Optional; stdlib selfcheck is authoritative for reproduction"

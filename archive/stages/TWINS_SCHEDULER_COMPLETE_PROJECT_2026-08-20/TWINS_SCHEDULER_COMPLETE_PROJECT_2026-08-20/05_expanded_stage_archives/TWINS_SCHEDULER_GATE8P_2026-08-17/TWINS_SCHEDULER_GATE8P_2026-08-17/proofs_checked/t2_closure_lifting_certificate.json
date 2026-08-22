@@ -1,0 +1,85 @@
+{
+  "theorem": "closure_insertion_preserves_unsafety",
+  "premises": [
+    "premise_R_reflexive",
+    "premise_R_transitive",
+    "premise_closure_added_action_R_increasing",
+    "premise_original_action_forward_simulates_R",
+    "premise_unsafe_upward_closed_under_R",
+    "premise_original_terminal_unsafe",
+    "case_next_event_is_closure_added",
+    "case_next_event_is_original"
+  ],
+  "definitions": [
+    "definition_empty_prefixes_same_state",
+    "definition_each_merged_event_is_original_or_added",
+    "definition_finite_merged_suffix_measure_decreases",
+    "definition_original_order_preserved"
+  ],
+  "induction": {
+    "measure": "length_of_remaining_merged_trace_suffix",
+    "base": {
+      "target": "prefix_relation_base_case",
+      "steps": [
+        {
+          "id": "T2.B1",
+          "rule": "t2_base_reflexive",
+          "conclusion": "prefix_relation_base_case"
+        }
+      ]
+    },
+    "step": {
+      "induction_hypothesis": "IH_prefix_relation_at_k",
+      "measure_decrease_fact": "merged_suffix_measure_strictly_decreases",
+      "target": "prefix_relation_step_case",
+      "steps": [
+        {
+          "id": "T2.S1",
+          "rule": "t2_added_event_case",
+          "conclusion": "prefix_relation_after_added_event"
+        },
+        {
+          "id": "T2.S2",
+          "rule": "t2_original_event_case",
+          "conclusion": "prefix_relation_after_original_event"
+        },
+        {
+          "id": "T2.S3",
+          "rule": "t2_complete_event_case_split",
+          "conclusion": "prefix_relation_after_next_event"
+        },
+        {
+          "id": "T2.S4",
+          "rule": "t2_measure_decrease",
+          "conclusion": "merged_suffix_measure_strictly_decreases"
+        },
+        {
+          "id": "T2.S5",
+          "rule": "t2_inductive_step",
+          "conclusion": "prefix_relation_step_case"
+        }
+      ]
+    },
+    "result": "all_merged_prefixes_R_related"
+  },
+  "final": {
+    "target": "closure_insertion_preserves_unsafety",
+    "steps": [
+      {
+        "id": "T2.F1",
+        "rule": "t2_terminal_relation",
+        "conclusion": "terminal_states_R_related"
+      },
+      {
+        "id": "T2.F2",
+        "rule": "t2_upward_unsafe",
+        "conclusion": "closed_terminal_unsafe"
+      },
+      {
+        "id": "T2.F3",
+        "rule": "t2_theorem_conclusion",
+        "conclusion": "closure_insertion_preserves_unsafety"
+      }
+    ]
+  }
+}

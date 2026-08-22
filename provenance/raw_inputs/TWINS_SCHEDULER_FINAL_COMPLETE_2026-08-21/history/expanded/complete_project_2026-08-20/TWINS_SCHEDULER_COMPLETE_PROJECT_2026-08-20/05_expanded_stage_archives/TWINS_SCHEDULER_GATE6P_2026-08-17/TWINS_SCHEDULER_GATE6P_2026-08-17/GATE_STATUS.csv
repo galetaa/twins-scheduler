@@ -1,0 +1,8 @@
+work_package,status,evidence
+WP6.1 T1/T2 proof hardening,PASS,results/gate6p/t1_replay_erasure_proof_check.json; results/gate6p/t2_closure_lifting_proof_check.json
+WP6.2 T3 proof hardening,PASS,results/gate6p/t3_quorum_pivot_proof_check.json; results/gate6p/t3_bigint_crosscheck.json
+WP6.3 fuller event-loop mutation,PASS,results/gate6p/full_event_loop_go.json; results/gate6p/full_event_loop_conformance.json
+WP6.4 necessity characterization,PASS,results/gate6p/premise_characterization.json
+WP6.5 artifact hardening,CONDITIONAL PASS,scripts/reproduce_gate6p.sh; scripts/selfcheck_gate6p.py; final clean-copy verification is performed during packaging
+WP6.6 paper claim freeze,PASS WITH NARROW CLAIM,gate6p/PAPER_CLAIM_FREEZE.md
+Gate 6' overall,PASS / GO TO GATE 7',results/gate6p/gate6p_decision.json

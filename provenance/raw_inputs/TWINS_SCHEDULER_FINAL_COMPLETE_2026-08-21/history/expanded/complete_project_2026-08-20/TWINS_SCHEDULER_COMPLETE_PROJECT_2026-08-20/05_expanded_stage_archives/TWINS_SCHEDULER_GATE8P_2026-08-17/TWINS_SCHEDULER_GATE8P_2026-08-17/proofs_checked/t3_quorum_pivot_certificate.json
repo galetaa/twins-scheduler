@@ -1,0 +1,52 @@
+{
+  "theorem": "T3_parametric_quorum_pivot_separation",
+  "domain": "natural f >= 1",
+  "construction": {
+    "n": "3*f+1",
+    "q": "2*f+1",
+    "B": "f",
+    "A": "f",
+    "C": "f",
+    "pivot": "1",
+    "Q0": "2*f+1",
+    "Q1": "2*f+1",
+    "intersection": "f+1",
+    "base_support": "2*f"
+  },
+  "equalities": [
+    {"id": "T3.E1", "lhs": "f+f+1", "rhs": "2*f+1"},
+    {"id": "T3.E2", "lhs": "f+f", "rhs": "2*f"},
+    {"id": "T3.E3", "lhs": "2*f+1", "rhs": "(2*f)+1"},
+    {"id": "T3.E4", "lhs": "f+1", "rhs": "1+f"},
+    {"id": "T3.E5", "lhs": "f+f+f+1", "rhs": "3*f+1"}
+  ],
+  "positive_differences": [
+    {
+      "id": "T3.P1",
+      "larger": "2*f+1",
+      "smaller": "2*f",
+      "difference": "1"
+    }
+  ],
+  "branches": {
+    "phase_specific": {
+      "deliver_E": true,
+      "deliver_R": false,
+      "first_support": "2*f+1",
+      "second_support": "2*f+1"
+    },
+    "directed_edge_absent": {
+      "deliver_E": false,
+      "deliver_R": false,
+      "first_support": "2*f"
+    },
+    "directed_edge_present": {
+      "deliver_E": true,
+      "deliver_R": true,
+      "repair_disables_pivot": true,
+      "first_support": "2*f+1",
+      "second_support": "2*f"
+    }
+  },
+  "conclusion": "UnsafeObs(G_D)=empty_and_UnsafeObs(G_T)=nonempty"
+}

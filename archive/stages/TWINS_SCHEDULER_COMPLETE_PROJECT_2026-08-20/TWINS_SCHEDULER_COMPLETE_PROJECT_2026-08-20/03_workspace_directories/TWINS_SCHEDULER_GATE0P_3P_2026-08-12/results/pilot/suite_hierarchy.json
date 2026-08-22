@@ -1,0 +1,139 @@
+{
+  "adjacent_strict_on_safety_observations": [
+    {
+      "absent_from_weaker": true,
+      "observation": "A=0|B=1",
+      "protocol": "ECHO_GATE",
+      "stronger": "G_D_DIRECTED_VIEW",
+      "weaker": "G_P_PARTITION",
+      "witness": {
+        "delivered_by_phase": [
+          [
+            "start-a",
+            "start-b"
+          ],
+          []
+        ],
+        "events": [
+          "p0:EMIT:start-a:L->A:START",
+          "p0:DELIVER:start-a:L->A:START",
+          "p0:EMIT:start-b:L->B:START",
+          "p0:DELIVER:start-b:L->B:START",
+          "p0:BARRIER:A=-|B=-",
+          "p1:EMIT:echo-a-b:A->B:ECHO=0",
+          "p1:DROP:echo-a-b:A->B:ECHO=0",
+          "p1:EMIT:echo-b-a:B->A:ECHO=1",
+          "p1:DROP:echo-b-a:B->A:ECHO=1",
+          "p1:BARRIER:A=0|B=1"
+        ],
+        "grammar": "G_D_DIRECTED_VIEW",
+        "observation": "A=0|B=1",
+        "protocol": "ECHO_GATE",
+        "schedule_data": {
+          "edges": "L>A,L>B"
+        },
+        "schedule_id": "L>A,L>B",
+        "unsafe": true
+      }
+    },
+    {
+      "absent_from_weaker": true,
+      "observation": "A=0|B=1",
+      "protocol": "TYPE_SPLIT",
+      "stronger": "G_T_TYPE_SPECIFIC",
+      "weaker": "G_D_DIRECTED_VIEW",
+      "witness": {
+        "delivered_by_phase": [
+          [
+            "primary-a",
+            "fallback-b"
+          ]
+        ],
+        "events": [
+          "p0:EMIT:primary-a:L->A:PRIMARY_CERT=0",
+          "p0:DELIVER:primary-a:L->A:PRIMARY_CERT=0",
+          "p0:EMIT:primary-b:L->B:PRIMARY_CERT=0",
+          "p0:DROP:primary-b:L->B:PRIMARY_CERT=0",
+          "p0:EMIT:fallback-a:L->A:FALLBACK_CERT=1",
+          "p0:DROP:fallback-a:L->A:FALLBACK_CERT=1",
+          "p0:EMIT:fallback-b:L->B:FALLBACK_CERT=1",
+          "p0:DELIVER:fallback-b:L->B:FALLBACK_CERT=1",
+          "p0:BARRIER:A=0|B=1"
+        ],
+        "grammar": "G_T_TYPE_SPECIFIC",
+        "observation": "A=0|B=1",
+        "protocol": "TYPE_SPLIT",
+        "schedule_data": {
+          "type_edges": "FALLBACK_CERT:L>B,PRIMARY_CERT:L>A"
+        },
+        "schedule_id": "FALLBACK_CERT:L>B,PRIMARY_CERT:L>A",
+        "unsafe": true
+      }
+    },
+    {
+      "absent_from_weaker": true,
+      "observation": "A=0|B=1",
+      "protocol": "INSTANCE_ORDER",
+      "stronger": "G_M_PER_MESSAGE",
+      "weaker": "G_T_TYPE_SPECIFIC",
+      "witness": {
+        "delivered_by_phase": [
+          [
+            "cert0-a",
+            "cert1-b"
+          ]
+        ],
+        "events": [
+          "p0:EMIT:cert0-a:L->A:CERT=0",
+          "p0:EMIT:cert0-b:L->B:CERT=0",
+          "p0:EMIT:cert1-a:L->A:CERT=1",
+          "p0:EMIT:cert1-b:L->B:CERT=1",
+          "p0:DELIVER:cert0-a:L->A:CERT=0",
+          "p0:DELIVER:cert1-b:L->B:CERT=1",
+          "p0:DROP:cert0-b:L->B:CERT=0",
+          "p0:DROP:cert1-a:L->A:CERT=1",
+          "p0:BARRIER:A=0|B=1"
+        ],
+        "grammar": "G_M_PER_MESSAGE",
+        "observation": "A=0|B=1",
+        "protocol": "INSTANCE_ORDER",
+        "schedule_data": {
+          "delivery_sequence": "p0:[cert0-a,cert1-b]"
+        },
+        "schedule_id": "p0:[cert0-a,cert1-b]",
+        "unsafe": true
+      }
+    }
+  ],
+  "all_inclusions_hold": true,
+  "full_adjacent_safety_hierarchy_witnessed": true,
+  "grammar_order": [
+    "G_P_PARTITION",
+    "G_D_DIRECTED_VIEW",
+    "G_T_TYPE_SPECIFIC",
+    "G_M_PER_MESSAGE"
+  ],
+  "inclusions_by_protocol": {
+    "ECHO_GATE": {
+      "G_D_DIRECTED_VIEW_SUBSET_G_T_TYPE_SPECIFIC": true,
+      "G_P_PARTITION_SUBSET_G_D_DIRECTED_VIEW": true,
+      "G_T_TYPE_SPECIFIC_SUBSET_G_M_PER_MESSAGE": true
+    },
+    "INSTANCE_ORDER": {
+      "G_D_DIRECTED_VIEW_SUBSET_G_T_TYPE_SPECIFIC": true,
+      "G_P_PARTITION_SUBSET_G_D_DIRECTED_VIEW": true,
+      "G_T_TYPE_SPECIFIC_SUBSET_G_M_PER_MESSAGE": true
+    },
+    "TWIN_BRANCH_CONTROL": {
+      "G_D_DIRECTED_VIEW_SUBSET_G_T_TYPE_SPECIFIC": true,
+      "G_P_PARTITION_SUBSET_G_D_DIRECTED_VIEW": true,
+      "G_T_TYPE_SPECIFIC_SUBSET_G_M_PER_MESSAGE": true
+    },
+    "TYPE_SPLIT": {
+      "G_D_DIRECTED_VIEW_SUBSET_G_T_TYPE_SPECIFIC": true,
+      "G_P_PARTITION_SUBSET_G_D_DIRECTED_VIEW": true,
+      "G_T_TYPE_SPECIFIC_SUBSET_G_M_PER_MESSAGE": true
+    }
+  },
+  "unrestricted_partition_normal_form_refuted": true
+}

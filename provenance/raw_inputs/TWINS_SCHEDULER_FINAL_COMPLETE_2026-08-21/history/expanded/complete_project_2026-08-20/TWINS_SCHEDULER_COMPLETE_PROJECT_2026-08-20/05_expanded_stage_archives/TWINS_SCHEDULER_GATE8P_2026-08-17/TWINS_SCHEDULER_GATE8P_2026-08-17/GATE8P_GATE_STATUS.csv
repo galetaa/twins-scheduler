@@ -1,0 +1,9 @@
+gate_or_wp,status,evidence,blocking_action
+Gate 8′,CONDITIONAL PASS / MANUSCRIPT COMPLETE / SUBMISSION HOLD,"complete manuscript, working PDF, claim audit, refreshed novelty map, reproducible artifact",close proof assurance; refresh prior art; compile official LIPIcs; specialist mapping review
+WP8.1 — Complete connected manuscript,PASS,,
+WP8.2 — Sentence-level claim-to-evidence audit,PASS,,
+WP8.3 — Submission-level proof assurance,FAIL_BLOCKING,,complete independent review or kernel-checked proof
+WP8.4 — Prior-art and novelty refresh,CONDITIONAL_PASS,,repeat search on submission date
+WP8.5 — Natural protocol assumption map,CONDITIONAL_PASS,,specialist construct-validity review
+WP8.6 — Venue and artifact adaptation,PASS_WITH_FORMAT_RECHECK,,official LIPIcs A4 conversion and page-count check
+WP8.7 — Final submission decision,SUBMISSION_HOLD,,all blockers must close

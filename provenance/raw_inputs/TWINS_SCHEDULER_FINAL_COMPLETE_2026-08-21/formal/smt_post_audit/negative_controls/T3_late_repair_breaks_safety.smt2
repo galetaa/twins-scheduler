@@ -1,0 +1,10 @@
+(set-logic QF_LIA)
+; Edge is on, but repair is delivered after C1 rather than before it.
+(declare-const f Int)
+(assert (>= f 1))
+(define-fun q () Int (+ (* 2 f) 1))
+(define-fun base () Int (* 2 f))
+(define-fun c0 () Bool (>= (+ base 1) q))
+(define-fun c1 () Bool (>= (+ base 1) q))
+(assert (and c0 c1))
+(check-sat)

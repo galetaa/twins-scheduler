@@ -1,0 +1,22 @@
+{
+  "coq": {
+    "build": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+    "relied_on_for_claim": false,
+    "source_complete": true
+  },
+  "executed_kernel": {
+    "kind": "purpose-built proof-certificate kernel",
+    "negative_controls": "4/4 rejected",
+    "result": "PASS",
+    "result_file": "project_kernel/kernel_result.json",
+    "trusted_base": "project_kernel/proof_kernel.py + CPython semantics + paper-to-certificate mapping"
+  },
+  "lean": {
+    "build": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+    "relied_on_for_claim": false,
+    "source_complete": true,
+    "target": "Lean 4.32.2"
+  },
+  "status": "PASS_PROJECT_LOCAL_KERNEL__MATURE_PROVER_UNBUILT",
+  "submission_blocker": "Mature-prover kernel build remains open if required by venue/reviewer."
+}

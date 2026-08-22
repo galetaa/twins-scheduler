@@ -1,0 +1,6 @@
+gate,status,decision,blocking_unknown,next_action
+"Gate 0' — novelty","CONDITIONAL PASS","Richer schedulers and graph adversaries are known; residual claim is closure-preserving safety completeness for a natural BFT class.","Possible absorption by communication-closure/refinement prior art.","Repeat targeted search after exact theorem statement and locking instantiation."
+"Gate 1' — formal model","PASS","Four grammars, observation language, embeddings, closures and falsifiers are explicit.","Actual Go executor refinement not yet proved.","Build executable conformance adapter in Gate 4'."
+"Gate 2' — resources","PASS","Stdlib-only exact checker, pinned sources, local deterministic reproduction.","None for current pilot.","Preserve hashes and run clean reproduction."
+"Gate 3' — decisive mechanism pilot","CONDITIONAL PASS / GO WITH NARROWING","Strict adjacent safety hierarchy and closure-destruction mechanism found.","Separators are diagnostic machines rather than a standard locking protocol.","Run locking-kernel mutant validation before topic approval."
+"Overall","ТРЕБУЕТ СУЖЕНИЯ","Continue only with closure-preservation theorem or natural BFT separation.","Naturalness and publication-level novelty.","Do not build a full new testing platform yet."

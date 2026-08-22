@@ -1,0 +1,7 @@
+Grammar,Control authority,Direct extension
+G_P,symmetric partition relation,G_D: relax partition symmetry
+G_D,"endpoint direction, type-uniform",G_T: retain phase/type labels; G_D1: add bounded terminal delay
+G_D1,time for terminal evidence,—
+G_T,endpoint direction and phase/type,G_M: retain instance identity/order
+G_M,individual instance delivery and order,G_R: permit replay
+G_R,bounded replay of stable logical messages,—

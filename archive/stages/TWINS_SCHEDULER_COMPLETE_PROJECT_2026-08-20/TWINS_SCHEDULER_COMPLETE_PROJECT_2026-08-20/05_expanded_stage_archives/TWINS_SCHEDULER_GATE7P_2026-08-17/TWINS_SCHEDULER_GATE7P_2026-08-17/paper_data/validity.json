@@ -1,0 +1,38 @@
+[
+  {
+    "category": "Internal",
+    "control": "independent Go/Python event loops; FIFO, LIFO, and 256 seeded orders",
+    "residual": "bounded local fixture, not a full production client",
+    "risk": "checker or event-order artifact"
+  },
+  {
+    "category": "Construct",
+    "control": "claims use exact unsafe-observation language and explicit closure counterfactuals",
+    "residual": "no probability-of-discovery claim",
+    "risk": "scheduler expressiveness confused with bug prevalence"
+  },
+  {
+    "category": "External",
+    "control": "two locking abstractions and a parametric quorum construction",
+    "residual": "no universal HotStuff/Tendermint claim",
+    "risk": "overgeneralization from explicit schemas"
+  },
+  {
+    "category": "Conclusion",
+    "control": "symbolic Z3 obligations separated from bounded regression evidence",
+    "residual": "protocol-to-schema mapping remains an instantiation obligation",
+    "risk": "finite search mistaken for proof"
+  },
+  {
+    "category": "Proof assurance",
+    "control": "SMT/CHC, custom certificate kernel, Go arithmetic, and two event-loop implementations",
+    "residual": "external human proof review or Lean migration remains desirable before submission",
+    "risk": "formalization error shared across routes"
+  },
+  {
+    "category": "Novelty",
+    "control": "dated and scoped novelty statement with source register",
+    "residual": "absence of found work is not proof of absence",
+    "risk": "hidden refinement/testing prior art"
+  }
+]

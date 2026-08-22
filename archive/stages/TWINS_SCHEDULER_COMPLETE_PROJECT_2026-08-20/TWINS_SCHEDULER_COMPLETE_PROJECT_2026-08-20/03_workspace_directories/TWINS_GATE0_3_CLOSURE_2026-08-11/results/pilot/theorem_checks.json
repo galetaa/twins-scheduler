@@ -1,0 +1,16 @@
+{
+  "2": {
+    "AB_equals_AE": true,
+    "AT_embeds_in_AE": true,
+    "every_unsafe_observation_has_two_branch_subwitness": true,
+    "snapshot_active_one_equals_AE": true,
+    "static_k_min_equals_width_for_all_AE_observations": true
+  },
+  "3": {
+    "AB_equals_AE": true,
+    "AT_embeds_in_AE": true,
+    "every_unsafe_observation_has_two_branch_subwitness": true,
+    "snapshot_active_one_equals_AE": true,
+    "static_k_min_equals_width_for_all_AE_observations": true
+  }
+}

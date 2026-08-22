@@ -1,0 +1,742 @@
+{
+  "bounds": {
+    "correct_replicas": 3,
+    "value_counts": [
+      2,
+      3
+    ]
+  },
+  "experiments": {
+    "2": {
+      "AB": {
+        "branch_sets": [
+          [],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "language_size": 125,
+        "per_branch_set": {
+          "0": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "0,1": {
+            "observations": 125,
+            "states": 211,
+            "transitions": 564
+          },
+          "1": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "empty": {
+            "observations": 1,
+            "states": 1,
+            "transitions": 0
+          }
+        },
+        "states_explored_sum": 280,
+        "transitions_explored_sum": 714,
+        "unsafe_size": 24
+      },
+      "AE": {
+        "branch_sets": [
+          [],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "language_size": 125,
+        "per_branch_set": {
+          "0": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "0,1": {
+            "observations": 125,
+            "states": 211,
+            "transitions": 564
+          },
+          "1": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "empty": {
+            "observations": 1,
+            "states": 1,
+            "transitions": 0
+          }
+        },
+        "states_explored_sum": 280,
+        "transitions_explored_sum": 714,
+        "unsafe_size": 24
+      },
+      "AT_GENESIS_STATIC_0": {
+        "branch_sets": [
+          []
+        ],
+        "language_size": 1,
+        "per_branch_set": {
+          "empty": {
+            "observations": 1,
+            "states": 1,
+            "transitions": 0
+          }
+        },
+        "states_explored_sum": 1,
+        "transitions_explored_sum": 0,
+        "unsafe_size": 0
+      },
+      "AT_GENESIS_STATIC_1": {
+        "branch_sets": [
+          [],
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "language_size": 53,
+        "per_branch_set": {
+          "0": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "1": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "empty": {
+            "observations": 1,
+            "states": 1,
+            "transitions": 0
+          }
+        },
+        "states_explored_sum": 69,
+        "transitions_explored_sum": 150,
+        "unsafe_size": 0
+      },
+      "AT_GENESIS_STATIC_2": {
+        "branch_sets": [
+          [],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "language_size": 125,
+        "per_branch_set": {
+          "0": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "0,1": {
+            "observations": 125,
+            "states": 211,
+            "transitions": 564
+          },
+          "1": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "empty": {
+            "observations": 1,
+            "states": 1,
+            "transitions": 0
+          }
+        },
+        "states_explored_sum": 280,
+        "transitions_explored_sum": 714,
+        "unsafe_size": 24
+      },
+      "AT_GENESIS_STATIC_3": {
+        "branch_sets": [
+          [],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "language_size": 125,
+        "per_branch_set": {
+          "0": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "0,1": {
+            "observations": 125,
+            "states": 211,
+            "transitions": 564
+          },
+          "1": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "empty": {
+            "observations": 1,
+            "states": 1,
+            "transitions": 0
+          }
+        },
+        "states_explored_sum": 280,
+        "transitions_explored_sum": 714,
+        "unsafe_size": 24
+      },
+      "AT_SNAPSHOT_ACTIVE_REUSE_0": {
+        "branch_sets": [
+          []
+        ],
+        "language_size": 1,
+        "per_branch_set": {
+          "empty": {
+            "observations": 1,
+            "states": 1,
+            "transitions": 0
+          }
+        },
+        "states_explored_sum": 1,
+        "transitions_explored_sum": 0,
+        "unsafe_size": 0
+      },
+      "AT_SNAPSHOT_ACTIVE_REUSE_1": {
+        "branch_sets": [
+          [],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "language_size": 125,
+        "per_branch_set": {
+          "0": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "0,1": {
+            "observations": 125,
+            "states": 211,
+            "transitions": 564
+          },
+          "1": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "empty": {
+            "observations": 1,
+            "states": 1,
+            "transitions": 0
+          }
+        },
+        "states_explored_sum": 280,
+        "transitions_explored_sum": 714,
+        "unsafe_size": 24
+      }
+    },
+    "3": {
+      "AB": {
+        "branch_sets": [
+          [],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            2
+          ]
+        ],
+        "language_size": 343,
+        "per_branch_set": {
+          "0": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "0,1": {
+            "observations": 125,
+            "states": 211,
+            "transitions": 564
+          },
+          "0,1,2": {
+            "observations": 343,
+            "states": 694,
+            "transitions": 1953
+          },
+          "0,2": {
+            "observations": 125,
+            "states": 211,
+            "transitions": 564
+          },
+          "1": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "1,2": {
+            "observations": 125,
+            "states": 211,
+            "transitions": 564
+          },
+          "2": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "empty": {
+            "observations": 1,
+            "states": 1,
+            "transitions": 0
+          }
+        },
+        "states_explored_sum": 1430,
+        "transitions_explored_sum": 3870,
+        "unsafe_size": 96
+      },
+      "AE": {
+        "branch_sets": [
+          [],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            2
+          ]
+        ],
+        "language_size": 343,
+        "per_branch_set": {
+          "0": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "0,1": {
+            "observations": 125,
+            "states": 211,
+            "transitions": 564
+          },
+          "0,1,2": {
+            "observations": 343,
+            "states": 694,
+            "transitions": 1953
+          },
+          "0,2": {
+            "observations": 125,
+            "states": 211,
+            "transitions": 564
+          },
+          "1": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "1,2": {
+            "observations": 125,
+            "states": 211,
+            "transitions": 564
+          },
+          "2": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "empty": {
+            "observations": 1,
+            "states": 1,
+            "transitions": 0
+          }
+        },
+        "states_explored_sum": 1430,
+        "transitions_explored_sum": 3870,
+        "unsafe_size": 96
+      },
+      "AT_GENESIS_STATIC_0": {
+        "branch_sets": [
+          []
+        ],
+        "language_size": 1,
+        "per_branch_set": {
+          "empty": {
+            "observations": 1,
+            "states": 1,
+            "transitions": 0
+          }
+        },
+        "states_explored_sum": 1,
+        "transitions_explored_sum": 0,
+        "unsafe_size": 0
+      },
+      "AT_GENESIS_STATIC_1": {
+        "branch_sets": [
+          [],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ],
+        "language_size": 79,
+        "per_branch_set": {
+          "0": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "1": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "2": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "empty": {
+            "observations": 1,
+            "states": 1,
+            "transitions": 0
+          }
+        },
+        "states_explored_sum": 103,
+        "transitions_explored_sum": 225,
+        "unsafe_size": 0
+      },
+      "AT_GENESIS_STATIC_2": {
+        "branch_sets": [
+          [],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "language_size": 295,
+        "per_branch_set": {
+          "0": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "0,1": {
+            "observations": 125,
+            "states": 211,
+            "transitions": 564
+          },
+          "0,2": {
+            "observations": 125,
+            "states": 211,
+            "transitions": 564
+          },
+          "1": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "1,2": {
+            "observations": 125,
+            "states": 211,
+            "transitions": 564
+          },
+          "2": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "empty": {
+            "observations": 1,
+            "states": 1,
+            "transitions": 0
+          }
+        },
+        "states_explored_sum": 736,
+        "transitions_explored_sum": 1917,
+        "unsafe_size": 72
+      },
+      "AT_GENESIS_STATIC_3": {
+        "branch_sets": [
+          [],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            2
+          ]
+        ],
+        "language_size": 343,
+        "per_branch_set": {
+          "0": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "0,1": {
+            "observations": 125,
+            "states": 211,
+            "transitions": 564
+          },
+          "0,1,2": {
+            "observations": 343,
+            "states": 694,
+            "transitions": 1953
+          },
+          "0,2": {
+            "observations": 125,
+            "states": 211,
+            "transitions": 564
+          },
+          "1": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "1,2": {
+            "observations": 125,
+            "states": 211,
+            "transitions": 564
+          },
+          "2": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "empty": {
+            "observations": 1,
+            "states": 1,
+            "transitions": 0
+          }
+        },
+        "states_explored_sum": 1430,
+        "transitions_explored_sum": 3870,
+        "unsafe_size": 96
+      },
+      "AT_SNAPSHOT_ACTIVE_REUSE_0": {
+        "branch_sets": [
+          []
+        ],
+        "language_size": 1,
+        "per_branch_set": {
+          "empty": {
+            "observations": 1,
+            "states": 1,
+            "transitions": 0
+          }
+        },
+        "states_explored_sum": 1,
+        "transitions_explored_sum": 0,
+        "unsafe_size": 0
+      },
+      "AT_SNAPSHOT_ACTIVE_REUSE_1": {
+        "branch_sets": [
+          [],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            2
+          ]
+        ],
+        "language_size": 343,
+        "per_branch_set": {
+          "0": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "0,1": {
+            "observations": 125,
+            "states": 211,
+            "transitions": 564
+          },
+          "0,1,2": {
+            "observations": 343,
+            "states": 694,
+            "transitions": 1953
+          },
+          "0,2": {
+            "observations": 125,
+            "states": 211,
+            "transitions": 564
+          },
+          "1": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "1,2": {
+            "observations": 125,
+            "states": 211,
+            "transitions": 564
+          },
+          "2": {
+            "observations": 27,
+            "states": 34,
+            "transitions": 75
+          },
+          "empty": {
+            "observations": 1,
+            "states": 1,
+            "transitions": 0
+          }
+        },
+        "states_explored_sum": 1430,
+        "transitions_explored_sum": 3870,
+        "unsafe_size": 96
+      }
+    }
+  },
+  "pilot_id": "BP-TWINS-FC-01-CLOSURE",
+  "semantics": {
+    "asynchronous_unbounded_delay": true,
+    "authenticated_sender": true,
+    "clone_specific_delivery": true,
+    "deterministic_local_machine": true,
+    "independent_interleavings_erased": true,
+    "output_suppression": true,
+    "physical_clone_ids_erased": true,
+    "snapshot_replay_from_genesis": true
+  }
+}

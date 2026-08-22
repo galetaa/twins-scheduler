@@ -1,0 +1,9 @@
+Require Import SchedulerClosure.T1ReplayErasure.
+Require Import SchedulerClosure.T2ClosureLifting.
+Require Import SchedulerClosure.T3QuorumPivot.
+Require Import SchedulerClosure.T6PremiseBoundary.
+Print Assumptions replay_erasure.
+Print Assumptions closure_preserves_unsafe.
+Print Assumptions quorum_pivot.
+Print Assumptions strict_closed.
+Print Assumptions strict_three.

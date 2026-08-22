@@ -1,0 +1,19 @@
+[project]
+name = "schedcheck"
+version = "0.2.0"
+description = "Exact bounded checker for safety expressiveness of scheduler grammars"
+requires-python = ">=3.13"
+dependencies = []
+license = "MIT"
+authors = [{ name = "Research artifact generated for Gate 0'-3'" }]
+
+[project.scripts]
+schedcheck = "schedcheck.cli:main"
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-q"

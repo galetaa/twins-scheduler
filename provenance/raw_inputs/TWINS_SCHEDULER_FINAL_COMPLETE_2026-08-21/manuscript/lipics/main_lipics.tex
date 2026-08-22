@@ -1,0 +1,62 @@
+\documentclass[a4paper,USenglish,cleveref,autoref,thm-restate,anonymous]{lipics-v2021}
+
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\UnsafeObs}{\mathsf{UnsafeObs}}
+
+\title{Phase Erasure Can Hide Agreement-Violation Witnesses in Certificate-Driven Locking BFT Protocols}
+\titlerunning{Phase Erasure Can Hide Agreement-Violation Witnesses}
+\author{Anonymous Author}{Anonymous Institution}{anonymous@example.invalid}{}{}
+\authorrunning{Anonymous Author}
+\Copyright{Anonymous Author}
+\ccsdesc[500]{Theory of computation~Distributed algorithms}
+\ccsdesc[500]{Computer systems organization~Dependable and fault-tolerant systems and networks}
+\ccsdesc[300]{Software and its engineering~Formal methods}
+\keywords{Byzantine fault tolerance, consensus testing, scheduler semantics, communication closure, safety, formal methods}
+\category{}
+\relatedversion{}
+\supplement{}
+\funding{}
+\acknowledgements{}
+
+\EventEditors{Anonymous}
+\EventNoEds{1}
+\EventLongTitle{30th International Conference on Principles of Distributed Systems (OPODIS 2026)}
+\EventShortTitle{OPODIS 2026}
+\EventAcronym{OPODIS}
+\EventYear{2026}
+\EventDate{December 9--11, 2026}
+\EventLocation{Madrid, Spain}
+\EventLogo{}
+\SeriesVolume{0}
+\ArticleNo{0}
+
+\begin{document}
+
+\begin{titlepage}
+\centering
+\vspace*{22mm}
+{\LARGE\bfseries Phase Erasure Can Hide Agreement-Violation Witnesses in Certificate-Driven Locking BFT Protocols\par}
+\vspace{12mm}
+\begin{minipage}{0.88\textwidth}
+\textbf{Abstract.}
+Fault-injection frameworks for Byzantine fault-tolerant protocols expose different amounts of control over message delivery. We characterize when closing phase-specific admission to one type-uniform directed endpoint graph preserves finite agreement safety and when closure-added repair evidence disables a unique correct quorum pivot, deleting the violation witness. We give a legal relational preservation theorem, a structural separation criterion, a parametric $3f+1$ family, a bounded Tendermint-style rule-level instantiation, and a replay-erasure theorem requiring state and output congruence.
+\end{minipage}
+\vfill
+{\small Best student paper eligibility: not specified in the research brief.\par}
+\end{titlepage}
+
+\maketitle
+
+\begin{abstract}
+Fault-injection frameworks for Byzantine fault-tolerant protocols expose different amounts of control over message delivery. Some choose one partition or directed endpoint graph for an entire view, whereas others distinguish message phases, individual instances, or replay. We study closure from phase-specific admission to one type-uniform directed endpoint graph for finite certificate-driven locking systems. A legal relational theorem gives sufficient conditions for preserving an unsafe terminal state. A structural quorum-pivot criterion and a parametric $3f+1$ family show the boundary: closure-added repair evidence can disable the unique correct contributor required by two conflicting quorums. We instantiate the mechanism in bounded Tendermint-style rules under a controlled missing-lock mutation. A secondary theorem proves exact replay erasure only under state and output congruence, duplicate stutter, and silent output. No production-client vulnerability, universal hierarchy, or liveness result is claimed.
+\end{abstract}
+
+\input{body}
+
+\bibliographystyle{plainurl}
+\bibliography{references}
+\end{document}

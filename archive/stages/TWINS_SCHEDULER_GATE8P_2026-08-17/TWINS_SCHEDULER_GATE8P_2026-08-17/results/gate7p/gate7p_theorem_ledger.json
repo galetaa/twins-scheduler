@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "theorems": [
+    {
+      "formal_route": "Z3 CHC plus project-local induction certificate",
+      "id": "T1",
+      "result": "PASS",
+      "scope": "finite traces; repeated deliveries are protocol-relevant stutters and emit no relevant output",
+      "statement": "Replay erasure under stable-key idempotence and state-based safety observations."
+    },
+    {
+      "formal_route": "Z3 local VCs and CHC prefix invariant plus project-local induction certificate",
+      "id": "T2",
+      "result": "PASS_WITH_EXPLICIT_INSTANTIATION_OBLIGATION",
+      "scope": "conditional theorem; each protocol instantiation must supply a meaningful preorder",
+      "statement": "Closure-added actions preserve finite unsafety under a preorder with increasing insertions, forward simulation, transitivity, and upward-closed Unsafe."
+    },
+    {
+      "formal_route": "Z3 QF_LIA, exact Go big integers, and Go/Python event-loop validation",
+      "id": "T3",
+      "result": "PASS",
+      "scope": "existential protocol schema; not universal scheduler incompleteness",
+      "statement": "For every f>=1, the explicit quorum-pivot schema separates phase-specific scheduling from both type-uniform directed edge choices."
+    },
+    {
+      "formal_route": "Z3 symbolic equivalence and exhaustive 128-assignment checker",
+      "id": "T6",
+      "result": "PASS",
+      "scope": "exact only for the supplied seven-flag model",
+      "statement": "The supplied seven-flag operational model is strict exactly under S2 ∧ D ∧ T ∧ E ∧ X ∧ (S1 ∨ Rq)."
+    }
+  ]
+}

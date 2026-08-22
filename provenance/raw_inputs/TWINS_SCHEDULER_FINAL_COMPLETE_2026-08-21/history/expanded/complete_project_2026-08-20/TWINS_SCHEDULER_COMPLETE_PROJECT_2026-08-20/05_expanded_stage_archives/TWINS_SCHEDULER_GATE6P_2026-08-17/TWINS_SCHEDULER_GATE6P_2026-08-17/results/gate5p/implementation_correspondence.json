@@ -1,0 +1,56 @@
+{
+  "fixture_checks": {
+    "baseline_lock_blocks_conflict": true,
+    "controlled_lock_omission_enables_conflict": true,
+    "instance_counting_replay_reaches_spurious_quorum": true,
+    "lock_established_before_precommit": true,
+    "unique_vote_replay_is_inert": true
+  },
+  "fixture_result": {
+    "baseline_locked_before_precommit": true,
+    "baseline_rejects_conflict": true,
+    "instance_quorum_after_replay": true,
+    "mutation_supports_conflict": true,
+    "unique_first_added": true,
+    "unique_quorum_after_replay": false,
+    "unique_replay_added": false
+  },
+  "go_test_command": "go test ./...",
+  "go_test_status": "PASS",
+  "scope": "Executable correspondence for vote de-duplication and lock-before-precommit ordering only; not a full CometBFT consensus conformance test.",
+  "source": {
+    "commit": "0880b4d378f347ab16e54ec677ff50d803f37d62",
+    "files": {
+      "LICENSE": "https://raw.githubusercontent.com/cometbft/cometbft/0880b4d378f347ab16e54ec677ff50d803f37d62/LICENSE",
+      "consensus.md": "https://raw.githubusercontent.com/cometbft/cometbft/0880b4d378f347ab16e54ec677ff50d803f37d62/spec/consensus/consensus.md",
+      "state.go": "https://raw.githubusercontent.com/cometbft/cometbft/0880b4d378f347ab16e54ec677ff50d803f37d62/internal/consensus/state.go",
+      "vote_set.go": "https://raw.githubusercontent.com/cometbft/cometbft/0880b4d378f347ab16e54ec677ff50d803f37d62/types/vote_set.go"
+    },
+    "license": "Apache-2.0",
+    "project": "CometBFT",
+    "retrieved_utc": "2026-08-15",
+    "tag": "v0.40.0"
+  },
+  "source_checks": {
+    "duplicate_vote_contract_present": true,
+    "duplicate_vote_return_present": true,
+    "lock_assignment_precedes_precommit_call": true,
+    "precommit_step_specified": true
+  },
+  "source_hashes": {
+    "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "MANIFEST.sha256": "b218eb6cd16f78c0a3cfab13a2ac0c8df02be264807c534396f4a5c08b0e5cd9",
+    "SOURCE.json": "93cf689479b65f033c84cb294fa8fe3b2fce37ccd3ae72323ece973f0d416ea1",
+    "consensus.md": "d0c92013ec522c2cab1e6d874b65a394ab40f1b502bf38f714ebdaa1fb62bcad",
+    "state.go": "a739de4e3461ce6aa27b63cd29c09ed67879db251057c41fe3790db70a21286d",
+    "vote_set.go": "cf9897a2739df2d7cc56929d878eca22525ec203a3b85d17831f12ff3acb1c08"
+  },
+  "source_locations": {
+    "duplicate_contract_line": 154,
+    "duplicate_return_line": 213,
+    "lock_assignment_line": 1548,
+    "precommit_spec_line": 168,
+    "subsequent_precommit_call_line": 1554
+  },
+  "status": "PASS"
+}

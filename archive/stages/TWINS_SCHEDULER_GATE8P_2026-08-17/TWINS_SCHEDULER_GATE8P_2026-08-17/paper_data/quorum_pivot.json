@@ -1,0 +1,22 @@
+{
+  "mechanism": "G_T delivers E and omits R on one edge; G_D couples both labels, so either the first quorum is short or repair disables p before the second quorum.",
+  "messages": {
+    "E": "enabling evidence",
+    "R": "later repair/terminal evidence"
+  },
+  "parameters": {
+    "f_domain": "f>=1",
+    "n": "3f+1",
+    "q": "2f+1"
+  },
+  "quorums": {
+    "Q0": "B union A union {p}",
+    "Q1": "B union C union {p}"
+  },
+  "sets": {
+    "A": "f honest left",
+    "B": "f Byzantine",
+    "C": "f honest right",
+    "p": "one honest pivot"
+  }
+}

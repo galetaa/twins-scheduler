@@ -1,0 +1,73 @@
+{
+  "gate": "Gate 8′",
+  "date": "2026-08-17",
+  "topic": "Safety-observation closure boundaries of scheduler grammars for certificate-driven locking BFT protocols",
+  "paper_title": "Phase Erasure Can Hide Agreement-Violation Witnesses in Certificate-Driven Locking BFT Protocols",
+  "status": "CONDITIONAL_PASS_MANUSCRIPT_COMPLETE_SUBMISSION_HOLD",
+  "submission_ready": false,
+  "primary_candidate_venue": "OPODIS 2026",
+  "venue_fit": "PLAUSIBLE_NOT_GUARANTEED",
+  "blocking_items": [
+    "independent human proof review or successful kernel-checked Lean/Coq/Isabelle development",
+    "submission-date prior-art and engineering search refresh",
+    "official LIPIcs A4 conversion and 15-page recheck",
+    "specialist review of the natural-protocol assumption map"
+  ],
+  "completed": {
+    "full_manuscript": true,
+    "working_pdf": true,
+    "claim_evidence_audit": true,
+    "novelty_refresh": true,
+    "reviewer_objection_matrix": true,
+    "venue_adaptation": true,
+    "ai_disclosure_draft": true,
+    "artifact_appendix": true,
+    "legacy_exact_kernel_archive": true
+  },
+  "proof_assurance": {
+    "smt_chc": "PASS",
+    "small_certificate_kernel": "PASS",
+    "independent_arithmetic": "PASS",
+    "dual_implementation": "PASS",
+    "lean_kernel_check": "NOT_COMPLETED_TOOLCHAIN_UNAVAILABLE",
+    "external_human_review": "NOT_COMPLETED"
+  },
+  "next_irreversible_step": "Obtain independent proof review or complete a clean kernel-checked proof-assistant build before submission.",
+  "work_packages": [
+    {
+      "id": "WP8.1",
+      "name": "Complete connected manuscript",
+      "status": "PASS"
+    },
+    {
+      "id": "WP8.2",
+      "name": "Sentence-level claim-to-evidence audit",
+      "status": "PASS"
+    },
+    {
+      "id": "WP8.3",
+      "name": "Submission-level proof assurance",
+      "status": "FAIL_BLOCKING"
+    },
+    {
+      "id": "WP8.4",
+      "name": "Prior-art and novelty refresh",
+      "status": "CONDITIONAL_PASS"
+    },
+    {
+      "id": "WP8.5",
+      "name": "Natural protocol assumption map",
+      "status": "CONDITIONAL_PASS"
+    },
+    {
+      "id": "WP8.6",
+      "name": "Venue and artifact adaptation",
+      "status": "PASS_WITH_FORMAT_RECHECK"
+    },
+    {
+      "id": "WP8.7",
+      "name": "Final submission decision",
+      "status": "SUBMISSION_HOLD"
+    }
+  ]
+}

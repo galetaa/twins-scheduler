@@ -1,0 +1,13 @@
+sat
+(
+  (define-fun f () Int
+    1)
+  (define-fun directed_present_second () Int
+    (+ (* 2 f) 1))
+  (define-fun directed_present_first () Int
+    (+ (* 2 f) 1))
+  (define-fun base () Int
+    (* 2 f))
+  (define-fun q () Int
+    (+ (* 2 f) 1))
+)

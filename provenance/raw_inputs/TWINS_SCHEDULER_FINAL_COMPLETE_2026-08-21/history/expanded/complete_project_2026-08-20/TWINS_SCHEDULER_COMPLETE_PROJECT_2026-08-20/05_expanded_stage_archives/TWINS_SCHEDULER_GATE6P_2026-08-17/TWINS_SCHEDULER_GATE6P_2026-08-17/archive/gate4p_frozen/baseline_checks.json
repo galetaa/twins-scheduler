@@ -1,0 +1,45 @@
+{
+  "checks": {
+    "DUPLICATE_REPLAY": {
+      "G_D1_DIRECTED_DELAY1": true,
+      "G_D_DIRECTED_VIEW": true,
+      "G_M_PER_MESSAGE": true,
+      "G_P_PARTITION": true,
+      "G_R_PER_MESSAGE_REPLAY1": true,
+      "G_T_TYPE_SPECIFIC": true
+    },
+    "LOCK_OMISSION": {
+      "G_D1_DIRECTED_DELAY1": true,
+      "G_D_DIRECTED_VIEW": true,
+      "G_M_PER_MESSAGE": true,
+      "G_P_PARTITION": true,
+      "G_R_PER_MESSAGE_REPLAY1": true,
+      "G_T_TYPE_SPECIFIC": true
+    },
+    "QC_GUARD": {
+      "G_D1_DIRECTED_DELAY1": true,
+      "G_D_DIRECTED_VIEW": true,
+      "G_M_PER_MESSAGE": true,
+      "G_P_PARTITION": true,
+      "G_R_PER_MESSAGE_REPLAY1": true,
+      "G_T_TYPE_SPECIFIC": true
+    },
+    "TIMEOUT_CLASSIFICATION": {
+      "G_D1_DIRECTED_DELAY1": true,
+      "G_D_DIRECTED_VIEW": true,
+      "G_M_PER_MESSAGE": true,
+      "G_P_PARTITION": true,
+      "G_R_PER_MESSAGE_REPLAY1": true,
+      "G_T_TYPE_SPECIFIC": true
+    },
+    "VALIDATION_OMISSION_CONTROL": {
+      "G_D1_DIRECTED_DELAY1": true,
+      "G_D_DIRECTED_VIEW": true,
+      "G_M_PER_MESSAGE": true,
+      "G_P_PARTITION": true,
+      "G_R_PER_MESSAGE_REPLAY1": true,
+      "G_T_TYPE_SPECIFIC": true
+    }
+  },
+  "status": "PASS"
+}

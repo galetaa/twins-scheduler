@@ -1,0 +1,5 @@
+REPRODUCTION PASS
+baseline=/mnt/data/TWINS_SCHEDULER_GATE0P_3P_2026-08-12/results/pilot
+output=/mnt/data/TWINS_SCHEDULER_GATE0P_3P_2026-08-12/results/reproduction
+python=Python 3.13.5
+core_files_byte_identical=9

@@ -1,0 +1,3 @@
+unsat
+(forall ((A (Array Int (Array Int Bool))) (B Int) (C Int))
+  (! (= (Prefix A B C) (select (select A B) C)) :weight 0))

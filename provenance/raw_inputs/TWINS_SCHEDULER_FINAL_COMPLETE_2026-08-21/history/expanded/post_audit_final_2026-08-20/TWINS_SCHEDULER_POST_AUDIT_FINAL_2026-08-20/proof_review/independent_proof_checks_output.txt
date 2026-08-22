@@ -1,0 +1,54 @@
+{
+  "T1": {
+    "erased_relevant": 0,
+    "full_relevant": 1,
+    "weak_noninterference_refuted": true
+  },
+  "T2": {
+    "counterexamples": 0,
+    "prefix_checks": 8256,
+    "valid_models": 32
+  },
+  "T3": {
+    "bounded_directed_domain": [
+      "off",
+      "on"
+    ],
+    "parameter_cases": 5,
+    "phase_order": [
+      "E",
+      "C0",
+      "R",
+      "C1"
+    ],
+    "policies": {
+      "off": {
+        "agreement_violation": false,
+        "certificate0": false,
+        "certificate1": false
+      },
+      "on": {
+        "agreement_violation": false,
+        "certificate0": true,
+        "certificate1": false
+      },
+      "phase": {
+        "agreement_violation": true,
+        "certificate0": true,
+        "certificate1": true
+      }
+    },
+    "same_view": true
+  },
+  "T6": {
+    "assignments": 128,
+    "mismatches": 0,
+    "patterns": [
+      "0111111",
+      "1101111",
+      "1111111"
+    ]
+  },
+  "independence": "does not import project models or proof kernel",
+  "status": "PASS"
+}

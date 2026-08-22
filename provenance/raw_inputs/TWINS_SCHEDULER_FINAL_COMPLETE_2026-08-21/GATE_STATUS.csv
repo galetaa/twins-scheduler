@@ -1,0 +1,22 @@
+gate,item,status,evidence,blocking_action
+FINAL,Exact scheduler semantics,PASS,"manuscript Section 2; formal/lean/SchedulerClosure/SchedulerSemantics.lean; independent checker",none
+FINAL,UnsafeObs typing,PASS,"manuscript Section 2.2; UnsafeObservations.lean; independent checker",none
+FINAL,Legal relational closure theorem,PASS,"manuscript Section 3; ClosureLifting.lean; 84 finite legal models",none
+FINAL,Structural quorum-pivot criterion,PASS,"manuscript Section 4.1; QuorumPivotCriterion.lean; independent q=1..64",none
+FINAL,Parametric P_f B_f family,PASS,"manuscript Section 4.2; ParametricFamily.lean; project kernel",none
+FINAL,Seven-premise diagnostic boundary,PASS,"manuscript Section 5; PremiseBoundary.lean; 128 assignments",none
+FINAL,Bounded CometBFT Tendermint rule-level instantiation,PASS_BOUNDED,"protocol_instantiation; Python and Go models; 384 matching rows; independent 768 cases",do not extend claim to production conformance
+FINAL,Replay projection and output congruence,PASS,"manuscript Section 7; ReplayErasure.lean; kernel 1.1.0; SMT",none
+ASSURANCE,Independent final checker,PASS,"results/final/final_independent_checks.json",none
+ASSURANCE,Project-local proof kernel 1.1.0,PASS,"results/final/project_kernel_result_final.json; five controls rejected",none
+ASSURANCE,Z3 post-audit obligations,PASS,"formal/smt_post_audit/summary.json; 8 UNSAT and 4 SAT controls",none
+ASSURANCE,Lean and Coq source hygiene,PASS,"results/final/formal_source_hygiene.json",none
+ASSURANCE,Lean kernel build,NOT_RUN_TOOLCHAIN_UNAVAILABLE,"results/final/external_tool_status.json",run lake build and AxiomAudit.lean locally or in CI
+ASSURANCE,Coq kernel build,NOT_RUN_TOOLCHAIN_UNAVAILABLE,"results/final/external_tool_status.json",compile parallel Coq route if used
+PRIOR_ART,21 August 2026 refresh,CONDITIONAL_PASS,"prior_art/PRIOR_ART_UPDATE_2026-08-21.md; related-work matrix",refresh on submission date
+MANUSCRIPT,Final Markdown paper,PASS,"manuscript/FULL_MANUSCRIPT_FINAL_2026-08-21.md",none
+MANUSCRIPT,A4 review PDF,PASS,"manuscript/TWINS_SCHEDULER_FINAL_MANUSCRIPT_2026-08-21.pdf; PDF verification",none
+MANUSCRIPT,Official LIPIcs source tree,PASS_SOURCE_ONLY,"manuscript/lipics",install official class and compile
+MANUSCRIPT,Official LIPIcs class build,NOT_RUN_CLASS_UNAVAILABLE,"results/final/external_tool_status.json",compile with current official author package
+ARTIFACT,One-command reproduction,PASS_WITH_EXTERNAL_PROBES,"reproduce.sh; results/final/reproduction_final.log",none
+OVERALL,Scientific revision,CONDITIONAL_PASS_COMPLETE_REVISION_SUBMISSION_HOLD,"REVIEWER_COMPLETION_MATRIX.md; FINALIZATION_REPORT.md",mature prover and official class builds before submission

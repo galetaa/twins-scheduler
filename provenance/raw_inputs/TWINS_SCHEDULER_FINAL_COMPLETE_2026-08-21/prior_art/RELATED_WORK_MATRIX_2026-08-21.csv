@@ -1,0 +1,10 @@
+work,source_type,endpoint_partitions,directed_graph,phase_or_type_control,per_instance_control,replay,property_preserving_closure,safety_separation_witness,closest_overlap
+Twins,peer-reviewed,yes,via partitions,no,no,state-loss scenarios,no,no,clone-based BFT testing and round/view scenarios
+Communication Closure,peer-reviewed,no,lossy synchronous executions,no,no,no,yes,no,property-preserving schedule normalization
+Heard-Of and closed message adversaries,peer-reviewed,no,yes,no,no,no,semantic model,no,round communication graphs and adversary languages
+Randomized BFT Testing / ByzzFuzz,peer-reviewed,no,yes,yes,yes,yes,no,no,message mutation and randomized Byzantine testing
+Netrix,peer-reviewed/tool,no,yes,yes,yes,yes,no,no,rich controlled filters monitors and replay
+ByzzBench,peer-reviewed/tool,configurable,yes,configurable,configurable,configurable,no,no,benchmark and deterministic execution infrastructure
+PERF,peer-reviewed/preprint,no,model dependent,fault-type composition,model dependent,model dependent,yes for performance models,no,formal fault-injector composition and prediction
+ByzTwin-Range,preprint,digital-twin scenarios,model dependent,model dependent,model dependent,model dependent,no,no,cyber-range and practical Byzantine experimentation
+This work,formal plus executable,defined as a special case,yes,yes,formalized,yes,yes,yes,phase-erasure preservation boundary and quorum-pivot witness

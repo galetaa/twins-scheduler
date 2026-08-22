@@ -1,0 +1,71 @@
+[
+  {
+    "case_id": "TM_LOCK_OMISSION",
+    "closed_observation": "H1=0|H2=0|H3=-",
+    "closed_policies": [
+      "out(T0)={H1,H2};in(T0)={H1,H2}",
+      "out(T1)={H2,H3};in(T1)={H2,H3}"
+    ],
+    "closed_unsafe": false,
+    "closure": "erase_phase_labels_to_directed_round_graph",
+    "mechanism_confirmed": true,
+    "source_observation": "H1=0|H2=1|H3=-",
+    "source_unsafe": true
+  },
+  {
+    "case_id": "TM_LOCK_OMISSION",
+    "closed_observation": "H1=0|H2=0|H3=-",
+    "closed_policies": [
+      "out(T0)={H1,H2};in(T0)={H1,H2}",
+      "out(T1)={H1,H3};in(T1)={H1,H3}"
+    ],
+    "closed_unsafe": false,
+    "closure": "erase_terminal_delay_by_immediate_delivery",
+    "mechanism_confirmed": true,
+    "source_observation": "H1=0|H2=0|H3=1",
+    "source_unsafe": true
+  },
+  {
+    "case_id": "TM_VALID_ROUND_GUARD",
+    "closed_observation": "H1=0|H2=0|H3=-",
+    "closed_policies": [
+      "out(T0)={H1,H2};in(T0)={H1,H2}",
+      "out(T1)={H2,H3};in(T1)={H2,H3}"
+    ],
+    "closed_unsafe": false,
+    "closure": "erase_phase_labels_to_directed_round_graph",
+    "mechanism_confirmed": true,
+    "source_observation": "H1=0|H2=1|H3=-",
+    "source_unsafe": true
+  },
+  {
+    "case_id": "TM_VALID_ROUND_GUARD",
+    "closed_observation": "H1=0|H2=0|H3=-",
+    "closed_policies": [
+      "out(T0)={H1,H2};in(T0)={H1,H2}",
+      "out(T1)={H1,H3};in(T1)={H1,H3}"
+    ],
+    "closed_unsafe": false,
+    "closure": "erase_terminal_delay_by_immediate_delivery",
+    "mechanism_confirmed": true,
+    "source_observation": "H1=0|H2=0|H3=1",
+    "source_unsafe": true
+  },
+  {
+    "case_id": "TM_DUPLICATE_REPLAY",
+    "causally_unavailable_after_deduplication": [
+      "r1:s2:r1-polka-T0-H1:T0->H1:POLKA[value=0,signers=3]",
+      "r1:s3:r1-precommit-H1-T0:H1->T0:PRECOMMIT[value=0]",
+      "r1:s4:r1-commit-T0-H1:T0->H1:COMMIT[value=0,signers=3]",
+      "r2:s2:r2-polka-T1-H2:T1->H2:POLKA[value=1,signers=3]",
+      "r2:s3:r2-precommit-H2-T1:H2->T1:PRECOMMIT[value=1]",
+      "r2:s4:r2-commit-T1-H2:T1->H2:COMMIT[value=1,signers=3]"
+    ],
+    "closed_observation": "H1=-|H2=-|H3=-",
+    "closed_unsafe": false,
+    "closure": "deduplicate_logical_votes",
+    "mechanism_confirmed": true,
+    "source_observation": "H1=0|H2=1|H3=-",
+    "source_unsafe": true
+  }
+]

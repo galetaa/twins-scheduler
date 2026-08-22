@@ -1,0 +1,8 @@
+<!-- Frozen claim-to-evidence ledger. -->
+
+| Claim | Scope | Formal evidence | Executable evidence | Status |
+|---|---|---|---|---|
+| T1 replay erasure under stable-key idempotence | finite traces; protocol-relevant state includes any pending protocol output; state-based safety observation | proofs_smt/T1_REPLAY_ERASURE.horn.smt2 | proof_outputs/smt_proof_report.json; proofs_checked/t1_replay_erasure_certificate.json | Z3 CHC UNSAT plus small-kernel certificate; implementation assumptions remain per-instance obligations |
+| T2 relational closure lifting | conditional theorem under preorder, increasing insertions, forward simulation, and upward-closed Unsafe | proofs_smt/T2_LOCAL_VCS.smt2; proofs_smt/T2_PREFIX_RELATION.horn.smt2 | proof_outputs/smt_proof_report.json; proofs_checked/t2_closure_lifting_certificate.json | Z3 discharges local VCs and induction skeleton; full generic induction also checked by the independent small certificate kernel |
+| T3 parametric quorum-pivot separation | explicit two-branch certificate-driven schema for every integer f>=1 | proofs_smt/T3_QUORUM_PIVOT.smt2 | results/gate7p/t3_bigint_crosscheck.json; results/gate7p/full_event_loop_conformance.json | Z3 QF_LIA UNSAT plus independent Go big-integer and Go/Python event-loop checks |
+| T6 exact seven-flag characterization | the supplied Boolean operational construction only | proofs_smt/T6_PREMISE_CHARACTERIZATION.smt2 | results/gate7p/premise_truth_table.csv | Z3 symbolic equivalence UNSAT and all 128 assignments reproduced |

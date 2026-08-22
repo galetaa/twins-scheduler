@@ -1,0 +1,32 @@
+name                                 type              encoding         emb sub uni object ID
+------------------------------------ ----------------- ---------------- --- --- --- ---------
+SBDPOB+NotoSerif-ExtraBold           CID TrueType      Identity-H       yes yes yes      4  0
+OOAIOX+NotoSerif-Regular             CID TrueType      Identity-H       yes yes yes      6  0
+TUAWRM+CMMI10                        Type 1C           Builtin          yes yes yes      8  0
+POREEX+CMSY10                        Type 1C           Builtin          yes yes yes      9  0
+COJZPY+CMR10                         Type 1C           Builtin          yes yes yes     10  0
+AQHTCP+CMMI9                         Type 1C           Builtin          yes yes yes     16  0
+PYMPGJ+CMSY9                         Type 1C           Builtin          yes yes yes     17  0
+GOBXMA+CMR9                          Type 1C           Builtin          yes yes yes     18  0
+MNCVWC+NotoSerif-Italic              CID TrueType      Identity-H       yes yes yes     19  0
+IUIFJU+CMR7                          Type 1C           Builtin          yes yes yes     25  0
+TODMMV+CMMI7                         Type 1C           Builtin          yes yes yes     26  0
+HPJGUD+NotoSansMono-Regular          CID TrueType      Identity-H       yes yes yes     27  0
+DTQLKC+NotoSans-Regular              CID TrueType      Identity-H       yes yes yes     29  0
+ZRLKOZ+CMEX10                        Type 1C           Builtin          yes yes yes     35  0
+BCIJOU+CMSY7                         Type 1C           Builtin          yes yes yes     36  0
+AOALIH+CMR5                          Type 1C           Builtin          yes yes yes     61  0
+VLBULA+DejaVuSans-Bold               TrueType          WinAnsi          yes yes yes     41  0
+GURTCG+DejaVuSans                    TrueType          WinAnsi          yes yes yes     47  0
+VYJTSO+DejaVuSans                    CID TrueType      Identity-H       yes yes yes     53  0
+BRSECD+MSAM10                        Type 1C           Builtin          yes yes yes     66  0
+JFVFEV+DejaVuSans-Bold               TrueType          WinAnsi          yes yes yes     71  0
+PTJAWA+DejaVuSans                    TrueType          WinAnsi          yes yes yes     77  0
+ABIJNF+DejaVuSans                    CID TrueType      Identity-H       yes yes yes     83  0
+WROHVK+DejaVuSans-Bold               CID TrueType      Identity-H       yes yes yes     90  0
+IBNKWB+CMMI5                         Type 1C           Builtin          yes yes yes    102  0
+HXBKBN+MSBM10                        Type 1C           Builtin          yes yes yes    103  0
+AZFRAP+DejaVuSans-Bold               TrueType          WinAnsi          yes yes yes    108  0
+SNPDFZ+DejaVuSans-Bold               CID TrueType      Identity-H       yes yes yes    114  0
+LMBDYA+DejaVuSans                    TrueType          WinAnsi          yes yes yes    121  0
+YIRNEY+DejaVuSans                    CID TrueType      Identity-H       yes yes yes    127  0

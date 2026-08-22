@@ -1,0 +1,7 @@
+grammar,mutation,unsafe,decisions,locks,polka_rounds,commit_rounds
+G_T_TYPE_SPECIFIC,BASELINE,False,"[{""replica"": ""H1"", ""value"": 0}]","{""H1"": ""0@0"", ""H3"": ""none"", ""P"": ""0@0""}",[0],[0]
+G_D_ROUND0_EDGE_OFF,BASELINE,False,"[{""replica"": ""H3"", ""value"": 1}, {""replica"": ""P"", ""value"": 1}]","{""H1"": ""none"", ""H3"": ""1@1"", ""P"": ""1@1""}",[1],[1]
+G_D_ROUND0_EDGE_ON,BASELINE,False,"[{""replica"": ""H1"", ""value"": 0}, {""replica"": ""P"", ""value"": 0}]","{""H1"": ""0@0"", ""H3"": ""none"", ""P"": ""0@0""}",[0],[0]
+G_T_TYPE_SPECIFIC,MISSING_LOCK_UPDATE,True,"[{""replica"": ""H1"", ""value"": 0}, {""replica"": ""H3"", ""value"": 1}, {""replica"": ""P"", ""value"": 1}]","{""H1"": ""none"", ""H3"": ""none"", ""P"": ""none""}","[0, 1]","[0, 1]"
+G_D_ROUND0_EDGE_OFF,MISSING_LOCK_UPDATE,False,"[{""replica"": ""H3"", ""value"": 1}, {""replica"": ""P"", ""value"": 1}]","{""H1"": ""none"", ""H3"": ""none"", ""P"": ""none""}",[1],[1]
+G_D_ROUND0_EDGE_ON,MISSING_LOCK_UPDATE,False,"[{""replica"": ""H1"", ""value"": 0}, {""replica"": ""P"", ""value"": 0}]","{""H1"": ""none"", ""H3"": ""none"", ""P"": ""none""}",[0],[0]

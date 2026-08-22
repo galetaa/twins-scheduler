@@ -1,0 +1,235 @@
+
+== Gate 7 core evidence ==
+{
+  "checks": {
+    "bigint_crosscheck": true,
+    "event_order_sensitivity": true,
+    "go_event_loop": true,
+    "go_python_conformance": true,
+    "parameter_sensitivity": true,
+    "premise_characterization": true,
+    "python_event_loop": true,
+    "small_kernel_t1": true,
+    "small_kernel_t2": true,
+    "small_kernel_t3": true,
+    "source_mapping": true
+  },
+  "counts": {
+    "bigint_cases": 1028,
+    "event_loop_cases": 6,
+    "event_order_case_runs": 1548,
+    "parameter_cases": 512,
+    "premise_assignments": 128
+  },
+  "frozen_scope": "finite agreement observations in explicit certificate-driven locking schemas",
+  "status": "PASS"
+}
+{
+  "checks": [
+    {
+      "expected": [
+        "unsat"
+      ],
+      "kind": "positive_obligation",
+      "logic": "HORN",
+      "name": "T1_REPLAY_ERASURE.horn.smt2",
+      "observed_unsat_count": 1,
+      "purpose": "Unbounded finite-prefix equality invariant under stable-key stuttering.",
+      "source_sha256": "9896b893bf2425a2e75382f56e497898eb845abb5e67dc1d39959a4650999e45",
+      "status": "PASS",
+      "stderr_sha256": "94c25c1924606d09d8c2f356e781d089aca4b2f1938869570624a18a32306347",
+      "stdout_bytes": 245,
+      "stdout_sha256": "25a3f33a9052c2c9610fc6b3d88216bc617af32823e364c3df7bd029cd85bbf8"
+    },
+    {
+      "expected": [
+        "unsat",
+        "unsat",
+        "unsat",
+        "unsat"
+      ],
+      "kind": "positive_obligation",
+      "logic": "AUFLIA",
+      "name": "T2_LOCAL_VCS.smt2",
+      "observed_unsat_count": 4,
+      "purpose": "Transitivity, increasing insertion, forward simulation, and upward closure.",
+      "source_sha256": "6028b980436e19c01247c2e3a920497c53f2e4c51146b699a932f4f2f56ea08f",
+      "status": "PASS",
+      "stderr_sha256": "94c25c1924606d09d8c2f356e781d089aca4b2f1938869570624a18a32306347",
+      "stdout_bytes": 10765,
+      "stdout_sha256": "a7193fa9549557652acc8de788fcd768538d54ecdf870d15e0a7b0b94a1646f5"
+    },
+    {
+      "expected": [
+        "unsat"
+      ],
+      "kind": "positive_obligation",
+      "logic": "HORN",
+      "name": "T2_PREFIX_RELATION.horn.smt2",
+      "observed_unsat_count": 1,
+      "purpose": "Finite-prefix induction skeleton, composed with the local VCs and the separate certificate proof.",
+      "source_sha256": "12a7f8c4fbad851acda9e073797637f3bee8a7881059270149c85119e55b9e79",
+      "status": "PASS",
+      "stderr_sha256": "94c25c1924606d09d8c2f356e781d089aca4b2f1938869570624a18a32306347",
+      "stdout_bytes": 125,
+      "stdout_sha256": "36cea34674bcb384e42f4d0aeeb4d7282d6cb58727b6d80e55b994d1514a7b53"
+    },
+    {
+      "expected": [
+        "unsat"
+      ],
+      "kind": "positive_obligation",
+      "logic": "QF_LIA",
+      "name": "T3_QUORUM_PIVOT.smt2",
+      "observed_unsat_count": 1,
+      "purpose": "Exact parametric quorum arithmetic and both directed branches for every f>=1.",
+      "source_sha256": "4ece7ce68dbd5773b9439e5a04d9fa682ec357fa752ece38e5a18a60d99b683b",
+      "status": "PASS",
+      "stderr_sha256": "94c25c1924606d09d8c2f356e781d089aca4b2f1938869570624a18a32306347",
+      "stdout_bytes": 2199,
+      "stdout_sha256": "10edf65fc573481a64227882487768e2d84cf82c2480a021704f7e3deb52fd6a"
+    },
+    {
+      "expected": [
+        "unsat"
+      ],
+      "kind": "positive_obligation",
+      "logic": "QF_LIA",
+      "name": "T6_PREMISE_CHARACTERIZATION.smt2",
+      "observed_unsat_count": 1,
+      "purpose": "Exact symbolic equivalence of the operational and Boolean seven-flag models.",
+      "source_sha256": "660c6d2211c5a767a875372958d682fcc5f2dbf87925861c303b647828916995",
+      "status": "PASS",
+      "stderr_sha256": "94c25c1924606d09d8c2f356e781d089aca4b2f1938869570624a18a32306347",
+      "stdout_bytes": 19349,
+      "stdout_sha256": "dc118a7283f102a64cdc3a82d5896e62b842d0e94921487cffb131c7f5cb128c"
+    },
+    {
+      "expected": [
+        "sat"
+      ],
+      "kind": "negative_control",
+      "logic": "HORN",
+      "name": "NC1_DUPLICATE_NOT_STUTTERING.horn.smt2",
+      "observed_sat_count": 1,
+      "purpose": "Removing stable-key stuttering permits replay and erased executions to diverge.",
+      "source_sha256": "55246f91c22b7a9da33b75102c5d4c38b5b324ebf6e5b50045911f47f8f4ff89",
+      "status": "PASS",
+      "stderr_sha256": "94c25c1924606d09d8c2f356e781d089aca4b2f1938869570624a18a32306347",
+      "stdout_bytes": 4,
+      "stdout_sha256": "d9dbf94b05b8314af9ca7f2034e92685c33447917605a7243b1099c693a12e5e"
+    },
+    {
+      "expected": [
+        "sat"
+      ],
+      "kind": "negative_control",
+      "logic": "QF_LIA",
+      "name": "NC2_INSERTION_NOT_INCREASING.smt2",
+      "observed_sat_count": 1,
+      "purpose": "If a closure-added action is not R-increasing, an unsafe original state can",
+      "source_sha256": "7d8dff593beeace0c1f4b8b4423d4c2d738632c1cfc5a0ba0291802d4ef3e84b",
+      "status": "PASS",
+      "stderr_sha256": "94c25c1924606d09d8c2f356e781d089aca4b2f1938869570624a18a32306347",
+      "stdout_bytes": 80,
+      "stdout_sha256": "c40f3d3a4e3f7ce781c79471e6faf9ef25230f672bfd46c07f9417bdf6cc235d"
+    },
+    {
+      "expected": [
+        "sat"
+      ],
+      "kind": "negative_control",
+      "logic": "QF_LIA",
+      "name": "NC3_REPAIR_DOES_NOT_DISABLE_PIVOT.smt2",
+      "observed_sat_count": 1,
+      "purpose": "If repair fails to disable the pivot, the directed edge-present branch can",
+      "source_sha256": "64080b7f6aa66752f9fb78c15aedb5529ddfc922d10f00ff6999f8c6c564bf38",
+      "status": "PASS",
+      "stderr_sha256": "94c25c1924606d09d8c2f356e781d089aca4b2f1938869570624a18a32306347",
+      "stdout_bytes": 246,
+      "stdout_sha256": "42b9d6b3ca5d5525fbc12ab434005e5c7e51487e4797343640944416bd060b47"
+    },
+    {
+      "expected": [
+        "sat"
+      ],
+      "kind": "negative_control",
+      "logic": "QF_LIA",
+      "name": "NC4_DROP_RQ_DISJUNCT.smt2",
+      "observed_sat_count": 1,
+      "purpose": "Pattern 0111111 is a genuine strict assignment.  A wrong characterization",
+      "source_sha256": "efb8c4caeb8e5ea6464cc15efcec9d808d0b6becfe1055306bee2ccf66d28be2",
+      "status": "PASS",
+      "stderr_sha256": "94c25c1924606d09d8c2f356e781d089aca4b2f1938869570624a18a32306347",
+      "stdout_bytes": 396,
+      "stdout_sha256": "26c48d8a2f2a3bb57bbce65e5cc1d49861efd60cb14b9663248da0b267283696"
+    }
+  ],
+  "external_review": "NOT_PERFORMED",
+  "invocation": "SMT-LIB 2 through a minimal Z3 C-API loader",
+  "pinned_version": "4.13.3.0",
+  "prover": "Microsoft Z3",
+  "scope": {
+    "discharged": [
+      "T1 unbounded finite-prefix equality invariant under explicit replay premises",
+      "T2 local first-order VCs and finite-prefix induction skeleton",
+      "T3 exact parametric quorum arithmetic",
+      "T6 exact seven-flag symbolic equivalence"
+    ],
+    "not_discharged": [
+      "full production-client refinement",
+      "liveness, timers, weighted quorums, or resource-visible replay",
+      "universal scheduler minimality or incompleteness"
+    ]
+  },
+  "status": "PASS",
+  "trust_boundary": [
+    "Z3 4.13.3.0 runtime and SMT/CHC engines",
+    "SMT/CHC encodings and statement-to-encoding mapping",
+    "minimal C loader",
+    "for T2 generic induction composition: the separate small certificate kernel"
+  ],
+  "version": "4.13.3.0",
+  "wrapper_build": {
+    "binary_sha256": "0559cf951ed6a89923b9efb84fb832df97448ae0465ec7156cafc7efce365751",
+    "compiler": "cc (Debian 14.2.0-19) 14.2.0",
+    "source_sha256": "8ddbe7656e92180dc7106bc235b60ec2739a736edc655c51556f1e556a14e948",
+    "z3_full_version": "4.13.3.0"
+  }
+}
+{"outputs": 24, "status": "PASS"}
+test_go_python_conformance (test_event_loop.EventLoopTests.test_go_python_conformance) ... ok
+test_order_sensitivity (test_event_loop.EventLoopTests.test_order_sensitivity) ... ok
+test_python_boundary (test_event_loop.EventLoopTests.test_python_boundary) ... ok
+test_exact_premise_characterization (test_formal.FormalTests.test_exact_premise_characterization) ... ok
+test_parameter_sensitivity (test_formal.FormalTests.test_parameter_sensitivity) ... ok
+test_small_certificates (test_formal.FormalTests.test_small_certificates) ... ok
+test_tampered_t1_rejected (test_formal.FormalTests.test_tampered_t1_rejected) ... ok
+test_event_loop_classification (test_gate7p.Gate7CoreTests.test_event_loop_classification) ... ok
+test_exact_premise_characterization (test_gate7p.Gate7CoreTests.test_exact_premise_characterization) ... ok
+test_pinned_source_mapping (test_gate7p.Gate7CoreTests.test_pinned_source_mapping) ... ok
+test_small_order_sensitivity (test_gate7p.Gate7CoreTests.test_small_order_sensitivity) ... ok
+test_t1_certificate (test_gate7p.Gate7CoreTests.test_t1_certificate) ... ok
+test_t2_certificate (test_gate7p.Gate7CoreTests.test_t2_certificate) ... ok
+test_t3_certificate (test_gate7p.Gate7CoreTests.test_t3_certificate) ... ok
+test_assets (test_outputs.OutputTests.test_assets) ... ok
+test_decision (test_outputs.OutputTests.test_decision) ... ok
+test_smt_report (test_outputs.OutputTests.test_smt_report) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.659s
+
+OK
+CORE EVIDENCE PASS
+SMT PROOF MIGRATION PASS
+PAPER ASSETS PASS
+UNIT TESTS PASS (17)
+GATE 7' DECISION PASS / GO TO GATE 8' MANUSCRIPT; SUBMISSION HOLD
+GATE 7' SELF-CHECK PASS
+CORE MANIFEST PASS
+ARTIFACT MANIFEST PASS
+GATE 7' REPRODUCTION PASS
+
+== Gate 5 legacy exact kernels ==
+TWINS_SCHEDULER_GATE5P_2026-08-15.zip: OK
+Terminated

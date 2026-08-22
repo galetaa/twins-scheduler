@@ -1,0 +1,82 @@
+{
+  "T1": {
+    "erased_relevant": 0,
+    "full_relevant": 1,
+    "weak_noninterference_refuted": true
+  },
+  "T2": {
+    "counterexamples": 0,
+    "prefix_checks": 8256,
+    "valid_models": 32
+  },
+  "T3": {
+    "bounded_directed_domain": [
+      "off",
+      "on"
+    ],
+    "parameter_cases": 5,
+    "phase_order": [
+      "E",
+      "C0",
+      "R",
+      "C1"
+    ],
+    "policies": {
+      "off": {
+        "agreement_violation": false,
+        "certificate0": false,
+        "certificate1": false
+      },
+      "on": {
+        "agreement_violation": false,
+        "certificate0": true,
+        "certificate1": false
+      },
+      "phase": {
+        "agreement_violation": true,
+        "certificate0": true,
+        "certificate1": true
+      }
+    },
+    "same_view": true
+  },
+  "T6": {
+    "assignments": 128,
+    "mismatches": 0,
+    "patterns": [
+      "0111111",
+      "1101111",
+      "1111111"
+    ]
+  },
+  "independence": "does not import project models or proof kernel",
+  "status": "PASS"
+}
+usage: proof_kernel.py [-h] [--json-output JSON_OUTPUT] [--negative-controls]
+                       certificate
+proof_kernel.py: error: unrecognized arguments: /mnt/data/TWINS_SCHEDULER_POST_AUDIT_FINAL_2026-08-20/results/reproduction/project_kernel_result.json
+Command exited with non-zero status 2
+	Command being timed: "/mnt/data/TWINS_SCHEDULER_POST_AUDIT_FINAL_2026-08-20/scripts/reproduce_post_audit.sh"
+	User time (seconds): 2.51
+	System time (seconds): 0.50
+	Percent of CPU this job got: 135%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:02.22
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 111716
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 42738
+	Voluntary context switches: 41
+	Involuntary context switches: 42
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 2
+exit_status=2

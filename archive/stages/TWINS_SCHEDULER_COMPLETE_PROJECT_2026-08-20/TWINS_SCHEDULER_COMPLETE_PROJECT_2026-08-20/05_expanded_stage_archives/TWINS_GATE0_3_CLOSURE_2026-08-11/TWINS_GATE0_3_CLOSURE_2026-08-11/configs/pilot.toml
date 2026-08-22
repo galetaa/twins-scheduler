@@ -1,0 +1,19 @@
+[pilot]
+id = "BP-TWINS-FC-01-CLOSURE"
+correct_replicas = 3
+value_counts = [2, 3]
+static_clone_caps = [0, 1, 2, 3]
+dynamic_active_caps = [0, 1]
+observation = "terminal_lock_and_decision"
+validate_quotient_with_event_bfs = true
+emit_all_unsafe_rows = true
+
+[semantics]
+authenticated_sender = true
+deterministic_local_machine = true
+clone_specific_delivery = true
+output_suppression = true
+asynchronous_unbounded_delay = true
+physical_clone_ids_erased = true
+independent_interleavings_erased = true
+snapshot_replay_from_genesis = true

@@ -1,0 +1,8 @@
+ablated_premise,strict_separation_after_ablation,type_specific_unsafe,directed_unsafe,classification,diagnosis
+first_base_short_by_one,True,True,False,REDUNDANT_IN_THIS_CONSTRUCTION,separation survives
+second_base_short_by_one,False,True,True,NECESSARY_FOR_THIS_CONSTRUCTION,G_D gains the unsafe witness
+second_pivot_requires_enabling_evidence,True,True,False,REDUNDANT_IN_THIS_CONSTRUCTION,separation survives
+repair_disables_pivot,False,True,True,NECESSARY_FOR_THIS_CONSTRUCTION,G_D gains the unsafe witness
+repair_precedes_second_quorum_opportunity,False,True,True,NECESSARY_FOR_THIS_CONSTRUCTION,G_D gains the unsafe witness
+enabling_and_repair_share_endpoint_edge,False,True,True,NECESSARY_FOR_THIS_CONSTRUCTION,G_D gains the unsafe witness
+phase_specific_grammar_can_split_E_and_R,False,False,False,NECESSARY_FOR_THIS_CONSTRUCTION,G_T loses the unsafe witness

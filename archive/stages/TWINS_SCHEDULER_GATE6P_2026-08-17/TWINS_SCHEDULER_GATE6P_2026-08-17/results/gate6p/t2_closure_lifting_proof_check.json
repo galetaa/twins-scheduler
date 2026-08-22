@@ -1,0 +1,114 @@
+{
+  "base": {
+    "derived_facts": [
+      "prefix_relation_base_case"
+    ],
+    "initial_facts": [
+      "case_next_event_is_closure_added",
+      "case_next_event_is_original",
+      "definition_each_merged_event_is_original_or_added",
+      "definition_empty_prefixes_same_state",
+      "definition_finite_merged_suffix_measure_decreases",
+      "definition_original_order_preserved",
+      "premise_R_reflexive",
+      "premise_R_transitive",
+      "premise_closure_added_action_R_increasing",
+      "premise_original_action_forward_simulates_R",
+      "premise_original_terminal_unsafe",
+      "premise_unsafe_upward_closed_under_R"
+    ],
+    "status": "PASS",
+    "step_ids": [
+      "T2.B1"
+    ],
+    "steps_checked": 1,
+    "target": "prefix_relation_base_case"
+  },
+  "certificate_sha256": "a24f0618d1e0a62c6c5fd03d911df3f0c0299028801a5078394b490586e3af65",
+  "definitions": [
+    "definition_empty_prefixes_same_state",
+    "definition_each_merged_event_is_original_or_added",
+    "definition_finite_merged_suffix_measure_decreases",
+    "definition_original_order_preserved"
+  ],
+  "final": {
+    "derived_facts": [
+      "closed_terminal_unsafe",
+      "closure_insertion_preserves_unsafety",
+      "terminal_states_R_related"
+    ],
+    "initial_facts": [
+      "all_merged_prefixes_R_related",
+      "case_next_event_is_closure_added",
+      "case_next_event_is_original",
+      "definition_each_merged_event_is_original_or_added",
+      "definition_empty_prefixes_same_state",
+      "definition_finite_merged_suffix_measure_decreases",
+      "definition_original_order_preserved",
+      "premise_R_reflexive",
+      "premise_R_transitive",
+      "premise_closure_added_action_R_increasing",
+      "premise_original_action_forward_simulates_R",
+      "premise_original_terminal_unsafe",
+      "premise_unsafe_upward_closed_under_R"
+    ],
+    "status": "PASS",
+    "step_ids": [
+      "T2.F1",
+      "T2.F2",
+      "T2.F3"
+    ],
+    "steps_checked": 3,
+    "target": "closure_insertion_preserves_unsafety"
+  },
+  "measure": "length_of_remaining_merged_trace_suffix",
+  "premises": [
+    "premise_R_reflexive",
+    "premise_R_transitive",
+    "premise_closure_added_action_R_increasing",
+    "premise_original_action_forward_simulates_R",
+    "premise_unsafe_upward_closed_under_R",
+    "premise_original_terminal_unsafe",
+    "case_next_event_is_closure_added",
+    "case_next_event_is_original"
+  ],
+  "rule_file_sha256": "efc22836a4b47240b4959ef206894541bd2250987cc97ab0c2c3d85b465cf989",
+  "rules_loaded": 9,
+  "status": "PASS",
+  "step": {
+    "derived_facts": [
+      "merged_suffix_measure_strictly_decreases",
+      "prefix_relation_after_added_event",
+      "prefix_relation_after_next_event",
+      "prefix_relation_after_original_event",
+      "prefix_relation_step_case"
+    ],
+    "initial_facts": [
+      "IH_prefix_relation_at_k",
+      "case_next_event_is_closure_added",
+      "case_next_event_is_original",
+      "definition_each_merged_event_is_original_or_added",
+      "definition_empty_prefixes_same_state",
+      "definition_finite_merged_suffix_measure_decreases",
+      "definition_original_order_preserved",
+      "premise_R_reflexive",
+      "premise_R_transitive",
+      "premise_closure_added_action_R_increasing",
+      "premise_original_action_forward_simulates_R",
+      "premise_original_terminal_unsafe",
+      "premise_unsafe_upward_closed_under_R"
+    ],
+    "status": "PASS",
+    "step_ids": [
+      "T2.S1",
+      "T2.S2",
+      "T2.S3",
+      "T2.S4",
+      "T2.S5"
+    ],
+    "steps_checked": 5,
+    "target": "prefix_relation_step_case"
+  },
+  "theorem": "closure_insertion_preserves_unsafety",
+  "trusted_induction_rule": "well_founded_induction_on_Nat"
+}

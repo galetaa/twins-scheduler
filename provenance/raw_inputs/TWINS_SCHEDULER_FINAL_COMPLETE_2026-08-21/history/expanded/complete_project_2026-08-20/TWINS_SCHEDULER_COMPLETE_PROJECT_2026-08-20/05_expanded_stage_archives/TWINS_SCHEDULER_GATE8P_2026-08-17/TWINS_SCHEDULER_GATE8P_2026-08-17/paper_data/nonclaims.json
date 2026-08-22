@@ -1,0 +1,9 @@
+[
+  "No production vulnerability in CometBFT, HotStuff, Tendermint, or another deployed client.",
+  "No universal incompleteness of partition or directed scheduler grammars.",
+  "No universal minimality of phase/type-specific scheduling.",
+  "No liveness theorem or unbounded partial-synchrony completeness result.",
+  "No estimate of real-bug prevalence or probability of discovery.",
+  "No claim that the isolated event loop is a production-client conformance proof.",
+  "No claim of absolute novelty."
+]

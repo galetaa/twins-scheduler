@@ -1,0 +1,118 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=18mm,includeheadfoot]{geometry}
+\usepackage{fontspec}
+\setmainfont{Noto Serif}
+\setsansfont{Noto Sans}
+\setmonofont{Noto Sans Mono}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\setkeys{Gin}{keepaspectratio}
+\usepackage{booktabs,longtable,array,tabularx}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{bookmark}
+\usepackage{fancyvrb}
+\usepackage{fvextra}
+\usepackage{upquote}
+\usepackage{csquotes}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage{etoolbox}
+\usepackage{url}
+\usepackage{multirow}
+\usepackage{makecell}
+\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue,pdfauthor={Anonymous submission draft},pdftitle={$title$}}
+\setlist{nosep,leftmargin=*}
+\setlength{\parindent}{1em}
+\setlength{\parskip}{0.25em}
+\setlength{\emergencystretch}{2em}
+\captionsetup{font=small,labelfont=bf}
+\titleformat{\section}{\large\bfseries}{}{0em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
+\titleformat{\subsubsection}{\normalsize\itshape}{}{0em}{}
+\titlespacing*{\section}{0pt}{1.0em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.8em}{0.25em}
+\titlespacing*{\subsubsection}{0pt}{0.65em}{0.2em}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newcommand{\UnsafeObs}{\mathsf{UnsafeObs}}
+\newcommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\providecommand{\pandocbounded}[1]{#1}
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+\let\@cite@ofmt\@firstofone
+\def\@biblabel#1{}
+\def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2]
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
+  \ifodd #1
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
+  \fi
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\dimexpr\linewidth-\csllabelwidth\relax}{\strut#1\strut}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Anonymous Gate 8′ submission draft}
+\rhead{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.2pt}
+\begin{document}
+
+\begin{titlepage}
+\centering
+\vspace*{22mm}
+{\LARGE\bfseries $title$\par}
+\vspace{14mm}
+{\large Anonymous submission draft\par}
+\vspace{8mm}
+{\small Evidence cut-off: 17 August 2026\par}
+\vfill
+\begin{minipage}{0.88\textwidth}
+\textbf{Abstract.}
+$abstract$
+\end{minipage}
+\vfill
+{\small Best student paper eligibility: not specified in the research brief.\par}
+{\small This cover page is a working OPODIS-style submission cover, not final metadata.\par}
+\end{titlepage}
+
+\begin{center}
+{\LARGE\bfseries $title$\par}
+\vspace{1.0em}
+{\large Anonymous submission draft\par}
+\end{center}
+
+\begin{abstract}
+$abstract$
+\end{abstract}
+
+$if(keywords)$
+\noindent\textbf{Keywords:} $for(keywords)$$keywords$$sep$, $endfor$
+\vspace{0.6em}
+$endif$
+
+$body$
+
+\end{document}

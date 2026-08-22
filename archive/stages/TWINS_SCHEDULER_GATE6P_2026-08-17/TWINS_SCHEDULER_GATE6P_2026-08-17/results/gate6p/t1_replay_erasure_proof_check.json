@@ -1,0 +1,77 @@
+{
+  "base": {
+    "derived_facts": [
+      "replay_erasure_base_case"
+    ],
+    "initial_facts": [
+      "definition_deleting_nonfirst_duplicate_reduces_duplicate_count",
+      "definition_zero_duplicate_erasure_identity",
+      "premise_duplicate_emits_no_relevant_output",
+      "premise_duplicate_transition_stutters",
+      "premise_observation_extensional",
+      "premise_stable_logical_replay_key",
+      "premise_suffix_congruence"
+    ],
+    "status": "PASS",
+    "step_ids": [
+      "T1.B1"
+    ],
+    "steps_checked": 1,
+    "target": "replay_erasure_base_case"
+  },
+  "certificate_sha256": "64e49ae5ba3a12a968cc26a091ec5584a889223b837a9aa1b458a80d86807724",
+  "definitions": [
+    "definition_zero_duplicate_erasure_identity",
+    "definition_deleting_nonfirst_duplicate_reduces_duplicate_count"
+  ],
+  "final": {
+    "derived_facts": [],
+    "initial_facts": [
+      "replay_erasure_all_finite_traces"
+    ],
+    "status": "PASS",
+    "step_ids": [],
+    "steps_checked": 0,
+    "target": "replay_erasure_all_finite_traces"
+  },
+  "measure": "number_of_nonfirst_occurrences_of_stable_replay_keys",
+  "premises": [
+    "premise_stable_logical_replay_key",
+    "premise_duplicate_transition_stutters",
+    "premise_duplicate_emits_no_relevant_output",
+    "premise_suffix_congruence",
+    "premise_observation_extensional"
+  ],
+  "rule_file_sha256": "36120a5d228e06a91f548e390900173c018550c429f41b8661fa55b052da24be",
+  "rules_loaded": 5,
+  "status": "PASS",
+  "step": {
+    "derived_facts": [
+      "duplicate_measure_strictly_decreases",
+      "replay_erasure_step_case",
+      "single_duplicate_deletion_preserves_observation",
+      "single_duplicate_deletion_preserves_relevant_run"
+    ],
+    "initial_facts": [
+      "IH_replay_erasure_for_smaller_duplicate_count",
+      "definition_deleting_nonfirst_duplicate_reduces_duplicate_count",
+      "definition_zero_duplicate_erasure_identity",
+      "premise_duplicate_emits_no_relevant_output",
+      "premise_duplicate_transition_stutters",
+      "premise_observation_extensional",
+      "premise_stable_logical_replay_key",
+      "premise_suffix_congruence"
+    ],
+    "status": "PASS",
+    "step_ids": [
+      "T1.S1",
+      "T1.S2",
+      "T1.S3",
+      "T1.S4"
+    ],
+    "steps_checked": 4,
+    "target": "replay_erasure_step_case"
+  },
+  "theorem": "replay_erasure_all_finite_traces",
+  "trusted_induction_rule": "well_founded_induction_on_Nat"
+}

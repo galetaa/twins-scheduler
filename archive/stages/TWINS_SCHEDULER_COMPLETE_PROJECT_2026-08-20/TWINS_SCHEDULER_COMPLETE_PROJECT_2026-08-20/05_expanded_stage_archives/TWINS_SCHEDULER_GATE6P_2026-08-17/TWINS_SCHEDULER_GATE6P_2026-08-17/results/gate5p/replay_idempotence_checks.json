@@ -1,0 +1,13 @@
+{
+  "alphabet_size": 3,
+  "counterexamples": [],
+  "max_sequence_length": 5,
+  "minimal_non_idempotent_separation": [
+    "B",
+    "H1",
+    "H1"
+  ],
+  "non_idempotent_processing_has_strict_separation": true,
+  "replay_erasure_holds_for_idempotent_processing": true,
+  "sequences_checked": 364
+}

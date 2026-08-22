@@ -1,0 +1,14 @@
+id,title,authors_or_org,year,type,identifier_or_version,role
+S01,Twins: BFT Systems Made Robust,"Bano; Sonnino; Chursin; Perelman; Li; Ching; Malkhi",2022,peer-reviewed,10.4230/LIPIcs.OPODIS.2021.7,clone and partition testing baseline
+S02,Testing Consensus Implementations Using Communication Closure,"Dragoi; Enea; Kulahcioglu Ozkan; Majumdar; Niksic",2020,peer-reviewed,10.1145/3428278,closest property-preserving schedule transformation
+S03,The Heard-Of Model,"Charron-Bost; Schiper",2009,peer-reviewed,10.1007/s00446-009-0084-6,round communication abstraction
+S04,A Characterization of Consensus Solvability for Closed Message Adversaries,"Winkler; Schmid; Moses",2020,peer-reviewed,10.4230/LIPIcs.OPODIS.2019.17,directed message-adversary languages
+S05,Randomized Testing of Byzantine Fault Tolerant Algorithms,"Winter; Buse; de Graaf; von Gleissenthall; Kulahcioglu Ozkan",2023,peer-reviewed,10.1145/3586053,message mutation and randomized testing
+S06,A Domain Specific Language for Testing Distributed Protocol Implementations,"Dragoi; Nagendra; Srivas",2024,peer-reviewed,10.1007/978-3-031-67321-4_6,phase and message control baseline
+S07,A Benchmark Framework for Byzantine Fault Tolerance Testing Algorithms,"Louro Neto; Kulahcioglu Ozkan",2025,peer-reviewed,10.4230/OASIcs.FMBC.2025.13,benchmark infrastructure
+S08,Validating Labelled State and Message Production Systems,"Barreto et al.",2022,preprint,arXiv:2202.12662,formal Byzantine/equivocation neighboring result
+S09,Functional Reasoning for Distributed Systems with Failures,"Ni; van Renesse; Morrisett",2025,preprint plus Rocq,arXiv:2510.12131,mechanized refinement neighboring result
+S10,A Formal Framework for Predicting Distributed System Performance under Faults,"Zhou; Liu; Zhou; Wang; Zhang",2026,FM 2026 preprint,arXiv:2602.19088,fault-injector formalization threat
+S11,"Trust, but Verify: ByzTwin-Range, a Digital Twin Cyber-Range for Byzantine Faults","Freitas; Soares; Martins",2026,preprint,arXiv:2604.18049,scenario-generation engineering threat
+S12,CometBFT consensus specification,CometBFT Project,2026,official specification,v0.39.3 commit prefix 49b8283,natural protocol-rule instantiation
+S13,relab HotStuff Twins semantics,relab,2026,open engineering artifact,commit 3179c6e62929294961acbfd9bf8445769716a121,concrete partition harness semantics

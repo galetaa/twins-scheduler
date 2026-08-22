@@ -1,0 +1,27 @@
+{
+  "allowed_next_claim": "Necessary and sufficient (or sharply sufficient plus separation) closure-preservation conditions under which view-partition schedules preserve all safety-violating observations of richer message schedulers for a natural class of view-based BFT protocol implementations.",
+  "disallowed_claims": [
+    "The current pilot proves that relab/hotstuff misses a real HotStuff safety bug.",
+    "All partition-based Twins implementations are incomplete for every BFT protocol.",
+    "A richer scheduler API is itself a novel scientific contribution.",
+    "The one-view bounded model covers cross-view late delivery, replay, timing, or liveness."
+  ],
+  "gate_0_prime": {
+    "reason": "The implementation-specific partition restriction is real and richer schedulers are known; novelty survives only as a property-preserving characterization for a natural protocol class, not as a richer fault-injection API.",
+    "status": "CONDITIONAL_PASS"
+  },
+  "gate_1_prime": {
+    "reason": "Four scheduler grammars, safety observations, embeddings, counterexamples, and explicit abstraction limits are formalized.",
+    "status": "PASS"
+  },
+  "gate_2_prime": {
+    "reason": "The exact checker is standard-library-only, locally reproducible, source-pinned, and does not require a blockchain node, solver, network service, or dataset.",
+    "status": "PASS"
+  },
+  "gate_3_prime": {
+    "reason": "Every adjacent grammar inclusion is strict on safety observations, and each least natural closure destroys its designated witness.",
+    "status": "PASS_GO_WITH_NARROWING"
+  },
+  "next_gate": "Gate 4': instantiate one correct locking protocol plus seeded implementation mutants, check actual executor conformance, and seek a protocol-class closure theorem or a natural minimal separation.",
+  "overall_status": "ТРЕБУЕТ СУЖЕНИЯ"
+}

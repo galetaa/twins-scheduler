@@ -1,0 +1,4 @@
+resource,version_or_date,identifier,url,role,status
+CometBFT release,v0.39.3,commit-prefix 49b8283,https://github.com/cometbft/cometbft/releases/tag/v0.39.3,release pin,verified via official GitHub release page
+CometBFT consensus specification,v0.39.3,spec/consensus/consensus.md,https://github.com/cometbft/cometbft/blob/v0.39.3/spec/consensus/consensus.md,protocol rules,verified via official repository
+CometBFT signing specification,v0.38,validator signing,https://docs.cometbft.com/v0.38/spec/consensus/signing,signing/locking context,verified via official documentation

@@ -1,0 +1,11 @@
+assumption,AE,AT_total,AT_active,scientific_effect
+Deterministic replayable transition,required,required,required,Enables branch replay
+Validator-only message validity,required,required,required,Excludes mutation faults
+Clone-specific input delivery,allowed,allowed,allowed,Without it branches cannot diverge
+Suppression of undelivered outputs,allowed,allowed,allowed,Enables static unfolding without extra observations
+Unbounded asynchronous delay,allowed,allowed,allowed,Enables sequential branch generation
+Physical clone ID erased,yes,yes,yes,Required for shared protocol identity
+Total clone histories capped,no,yes,no,Produces chain-cover hierarchy
+Simultaneously active slots capped,no,implicit,yes,Collapses to one with restart/replay
+Restart or snapshot reuse,dynamic copies,no,yes,Eliminates active-count hierarchy
+Per-view partition syntax,not modeled,not modeled,not modeled,Potential concrete-harness pivot

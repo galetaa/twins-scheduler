@@ -1,0 +1,25 @@
+{
+  "artifact_date": "2026-08-12",
+  "determinism": {
+    "PYTHONHASHSEED": "0",
+    "enumeration": "exhaustive over every finite policy/execution in the declared bounds",
+    "random_seed": null,
+    "randomness_used": false
+  },
+  "platform": {
+    "machine": "x86_64",
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+    "release": "6.18.35",
+    "system": "Linux"
+  },
+  "python": {
+    "executable": "/opt/pyvenv/bin/python",
+    "implementation": "CPython",
+    "version": "3.13.5"
+  },
+  "runtime_dependencies": [],
+  "tools": {
+    "pytest": "pytest 9.0.2",
+    "uv": "uv 0.10.0"
+  }
+}

@@ -1,0 +1,5 @@
+Source hygiene scan
+date_utc=2026-08-20T17:36:34Z
+forbidden_pattern=sorry|admit|Admitted|explicit axiom/Axiom declaration|unsafe def
+forbidden_constructs=0
+status=PASS

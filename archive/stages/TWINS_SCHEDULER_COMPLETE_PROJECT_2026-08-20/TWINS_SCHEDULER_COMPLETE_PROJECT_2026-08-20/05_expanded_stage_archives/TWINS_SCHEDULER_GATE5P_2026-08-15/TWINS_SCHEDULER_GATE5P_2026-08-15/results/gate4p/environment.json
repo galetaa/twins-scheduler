@@ -1,0 +1,29 @@
+{
+  "conformance": {
+    "cases": 134,
+    "claims_checked": [
+      "same-partition bypass",
+      "drop-type filtering across partitions",
+      "out-of-scenario drop-all rule",
+      "sender-view message admission",
+      "future-view pending queue",
+      "idle-tick global-view advancement"
+    ],
+    "fixed_cases": 6,
+    "go_version": "go version go1.23.2 linux/amd64",
+    "python_version": "3.13.5",
+    "random_cases": 128,
+    "scope_limit": "The fixture checks pinned network admission and queue semantics only; it does not execute the consensus event loops.",
+    "seed": 20260815,
+    "source_commit": "3179c6e62929294961acbfd9bf8445769716a121",
+    "source_file": "inputs/hotstuff_snapshot/network.go",
+    "source_sha256": "4419845a04729c23ba31cd2fb37daf792e1c1a10fba32f29163f60c6506f3c55",
+    "status": "PASS"
+  },
+  "network_go_sha256": "4419845a04729c23ba31cd2fb37daf792e1c1a10fba32f29163f60c6506f3c55",
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "pythonhashseed_required": "0",
+  "runtime_dependencies": [],
+  "source_commit": "3179c6e62929294961acbfd9bf8445769716a121"
+}

@@ -1,0 +1,29 @@
+name: Lean kernel check
+
+on:
+  push:
+    paths:
+      - 'formal/lean/**'
+      - '.github/workflows/lean.yml'
+  pull_request:
+    paths:
+      - 'formal/lean/**'
+      - '.github/workflows/lean.yml'
+  workflow_dispatch:
+
+jobs:
+  lean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build pinned Lean development and audit axioms
+        uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: formal/lean
+          build: true
+          leanchecker: true
+          nanoda: true
+          nanoda-allow-sorry: false
+      - name: Print theorem assumptions
+        working-directory: formal/lean
+        run: lake env lean AxiomAudit.lean | tee ../../results/final/lean_axiom_audit_ci.log

@@ -1,0 +1,24 @@
+{
+  "checks": {
+    "bigint_crosscheck": true,
+    "event_order_sensitivity": true,
+    "go_event_loop": true,
+    "go_python_conformance": true,
+    "parameter_sensitivity": true,
+    "premise_characterization": true,
+    "python_event_loop": true,
+    "small_kernel_t1": true,
+    "small_kernel_t2": true,
+    "small_kernel_t3": true,
+    "source_mapping": true
+  },
+  "counts": {
+    "bigint_cases": 1028,
+    "event_loop_cases": 6,
+    "event_order_case_runs": 1548,
+    "parameter_cases": 512,
+    "premise_assignments": 128
+  },
+  "frozen_scope": "finite agreement observations in explicit certificate-driven locking schemas",
+  "status": "PASS"
+}

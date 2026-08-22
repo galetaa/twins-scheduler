@@ -1,0 +1,6 @@
+id,name,status,evidence,residual
+WP7.1,Minimal artifact extraction,PASS,15 decisive Gate 6′ files reproduce byte-for-byte; the archive is standalone.,Historical Gate 0′–5′ exploration is excluded from the core evidence path.
+WP7.2,Mature-prover migration,PASS_WITH_EXPLICIT_TCB_AND_SUBMISSION_HOLD,5 positive SMT/CHC files produced 8 UNSAT results; 4 damaged controls produced SAT.,No external human review and no kernel-checked Lean build; production protocol-to-schema refinement is not mechanized.
+WP7.3,Automated figures and tables,PASS,24 paper assets are regenerated from versioned JSON/CSV evidence.,Venue-specific layout and typography remain Gate 8′ work.
+WP7.4,Offline reproducibility contract,PASS,"Pinned host instructions, one-command offline runner, manifests, and a clean-copy verification record are included.",The supplied Lean scaffold and a container build are not part of the verified route.
+WP7.5,Manuscript-ready evidence skeleton,PASS,"Abstract, paper skeleton, evidence index, seven tables, and three figures are linked to machine-readable sources.",The complete prose manuscript and venue adaptation remain Gate 8′ work.

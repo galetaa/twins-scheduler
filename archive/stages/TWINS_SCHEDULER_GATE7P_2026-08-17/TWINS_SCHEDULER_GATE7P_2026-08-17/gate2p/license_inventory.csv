@@ -1,0 +1,8 @@
+component,role,license,bundled,version_or_commit,notes
+schedcheck,original exact checker,MIT,yes,0.1.0,Top-level LICENSE
+relab/hotstuff source snapshot,engineering semantic provenance,MIT,yes,3179c6e62929294961acbfd9bf8445769716a121,Upstream LICENSE preserved in inputs/hotstuff_snapshot/LICENSE
+CometBFT source snapshot,official protocol semantics and implementation correspondence,Apache-2.0,yes,0880b4d378f347ab16e54ec677ff50d803f37d62,Upstream LICENSE preserved in inputs/cometbft_v0.40.0/LICENSE
+CPython,runtime,PSF License,no,3.13.5,External runtime; no Python binaries bundled
+Go,runtime and independent executable route,BSD-3-Clause,no,1.23.2,External runtime; no Go toolchain bundled
+Microsoft Z3,SMT/CHC solver,MIT,no,4.13.3.0,External libz3 runtime; only minimal loader source is bundled
+GCC-compatible cc,C compiler for minimal loader,GPL-family toolchain,no,14.2.0,External host toolchain

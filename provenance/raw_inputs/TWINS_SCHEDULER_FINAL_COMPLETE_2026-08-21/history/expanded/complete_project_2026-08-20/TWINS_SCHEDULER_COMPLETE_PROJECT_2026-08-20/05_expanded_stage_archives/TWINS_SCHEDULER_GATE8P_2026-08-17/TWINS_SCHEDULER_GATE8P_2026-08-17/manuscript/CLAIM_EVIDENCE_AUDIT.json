@@ -1,0 +1,275 @@
+{
+  "date": "2026-08-17",
+  "claims": [
+    {
+      "id": "C01",
+      "location": "Abstract; §1",
+      "claim": "Phase/type erasure can remove a finite agreement-violation witness in an explicit certificate-driven locking schema.",
+      "kind": "central theorem claim",
+      "evidence": "proofs/03_PHASE_COUPLED_SEPARATION.md; proofs_smt/T3_QUORUM_PIVOT.smt2; proof_outputs/T3_QUORUM_PIVOT.out; results/gate7p/t3_quorum_pivot_proof_check.json",
+      "status": "PASS",
+      "scope": "Existential schema family; not a universal statement about all BFT protocols."
+    },
+    {
+      "id": "C02",
+      "location": "Abstract; §3",
+      "claim": "Closure-added actions preserve finite unsafety under a preorder with increasing insertions, forward simulation, transitivity, and upward-closed Unsafe.",
+      "kind": "conditional theorem",
+      "evidence": "proofs/02_RELATIONAL_CLOSURE_LIFTING.md; proofs_smt/T2_LOCAL_VCS.smt2; proofs_smt/T2_PREFIX_RELATION.horn.smt2; proof_outputs/T2_LOCAL_VCS.out; proof_outputs/T2_PREFIX_RELATION_horn.out",
+      "status": "PASS_WITH_CONDITION",
+      "scope": "Every protocol instantiation must supply and justify a meaningful preorder."
+    },
+    {
+      "id": "C03",
+      "location": "Abstract; §4",
+      "claim": "For every f≥1, n=3f+1 and q=2f+1 admit the stated quorum-pivot separation between G_T and both G_D edge choices.",
+      "kind": "parametric theorem",
+      "evidence": "proofs_checked/T3_QUORUM_PIVOT_CHECKED_PROOF.md; proofs_smt/T3_QUORUM_PIVOT.smt2; results/gate7p/t3_bigint_crosscheck.json; implementation_fixture/proof_crosscheck/",
+      "status": "PASS",
+      "scope": "Exact arithmetic and branch construction for the supplied schema."
+    },
+    {
+      "id": "C04",
+      "location": "Abstract; §5",
+      "claim": "The supplied seven-flag model is strict exactly under S2 ∧ D ∧ T ∧ E_d ∧ X ∧ (S1 ∨ R_q).",
+      "kind": "exact characterization",
+      "evidence": "proofs_smt/T6_PREMISE_CHARACTERIZATION.smt2; proof_outputs/T6_PREMISE_CHARACTERIZATION.out; results/gate7p/premise_truth_table.csv; results/gate7p/premise_characterization.json",
+      "status": "PASS",
+      "scope": "Exact only for the supplied seven-flag operational abstraction."
+    },
+    {
+      "id": "C05",
+      "location": "Abstract; §6",
+      "claim": "Exact replay is observationally erasable under stable-key idempotence and a state-based safety observation.",
+      "kind": "conditional theorem",
+      "evidence": "proofs/01_REPLAY_ERASURE_THEOREM.md; proofs_smt/T1_REPLAY_ERASURE.horn.smt2; proof_outputs/T1_REPLAY_ERASURE_horn.out; results/gate7p/t1_replay_erasure_proof_check.json",
+      "status": "PASS_WITH_CONDITION",
+      "scope": "No timer, output, resource, voting-power, or future-behavior effect from duplicates."
+    },
+    {
+      "id": "C06",
+      "location": "§6.2",
+      "claim": "Counting message instances rather than unique logical contributions creates a replay-only quorum counterexample.",
+      "kind": "constructive counterexample",
+      "evidence": "proofs/01_REPLAY_ERASURE_THEOREM.md; legacy_evidence/TWINS_SCHEDULER_GATE5P_2026-08-15.zip",
+      "status": "PASS",
+      "scope": "Controlled defective accumulator; not an allegation about a client."
+    },
+    {
+      "id": "C07",
+      "location": "§2.3",
+      "claim": "The constructive embeddings G_P⊆G_D⊆G_T⊆G_M⊆G_R and G_D⊆G_D1 hold in the artifact models.",
+      "kind": "model property",
+      "evidence": "paper_data/scheduler_grammars.json; legacy_evidence/TWINS_SCHEDULER_GATE5P_2026-08-15.zip",
+      "status": "PASS",
+      "scope": "No inclusion claimed between G_D1 and G_T."
+    },
+    {
+      "id": "C08",
+      "location": "§4.2",
+      "claim": "Under G_T, admitting E while withholding R lets the pivot support both conflicting branches.",
+      "kind": "mechanism claim",
+      "evidence": "proofs/03_PHASE_COUPLED_SEPARATION.md; manuscript/figures/figure2_quorum_pivot.svg; results/gate7p/t3_quorum_pivot_proof_check.json",
+      "status": "PASS",
+      "scope": "Depends on the controlled defective transition and no replacement contributor."
+    },
+    {
+      "id": "C09",
+      "location": "§4.3",
+      "claim": "Under type-uniform G_D, edge-off leaves the first branch at q−1 and edge-on delivers repair before the second branch, leaving it at q−1.",
+      "kind": "mechanism claim",
+      "evidence": "proofs_checked/T3_QUORUM_PIVOT_CHECKED_PROOF.md; proofs_smt/T3_QUORUM_PIVOT.smt2; implementation_fixture/full_event_loop/",
+      "status": "PASS",
+      "scope": "Two branch choices in the defined closure model."
+    },
+    {
+      "id": "C10",
+      "location": "§5",
+      "claim": "Exactly three of 128 premise assignments are strict: 0111111, 1101111, and 1111111.",
+      "kind": "exhaustive finite result",
+      "evidence": "results/gate7p/premise_truth_table.csv; results/gate7p/premise_characterization.json; proof_outputs/T6_PREMISE_CHARACTERIZATION.out",
+      "status": "PASS",
+      "scope": "Bit order is fixed by the artifact documentation."
+    },
+    {
+      "id": "C11",
+      "location": "§7.1",
+      "claim": "Two independent bounded locking kernels reproduce the same zero/nonzero scheduler-detection classes for the selected controlled defects.",
+      "kind": "cross-model executable result",
+      "evidence": "legacy_evidence/TWINS_SCHEDULER_GATE5P_2026-08-15.zip; legacy_evidence/TWINS_SCHEDULER_GATE5P_CROSS_PROTOCOL_MATRIX_2026-08-15.csv",
+      "status": "PASS",
+      "scope": "Bounded kernels, not production clients."
+    },
+    {
+      "id": "C12",
+      "location": "§7.2",
+      "claim": "The fuller event loop is safe for the baseline under all three checked grammars and unsafe only for G_T under MISSING_LOCK_UPDATE.",
+      "kind": "executable result",
+      "evidence": "results/gate7p/full_event_loop_matrix.csv; implementation_fixture/full_event_loop/main.go",
+      "status": "PASS",
+      "scope": "Six controlled terminal cases."
+    },
+    {
+      "id": "C13",
+      "location": "§7.3",
+      "claim": "The independent Go and Python fuller event-loop implementations agree on all six terminal cases.",
+      "kind": "differential conformance result",
+      "evidence": "results/gate7p/full_event_loop_conformance.json; results/gate7p/full_event_loop_go.json; results/gate7p/full_event_loop_python.json",
+      "status": "PASS",
+      "scope": "Agreement covers the selected terminal signatures and safety classification."
+    },
+    {
+      "id": "C14",
+      "location": "§7.3",
+      "claim": "FIFO, LIFO, and 256 seeded random queue orders preserve the classification across 1,548 case runs.",
+      "kind": "sensitivity result",
+      "evidence": "results/gate7p/event_order_sensitivity.json",
+      "status": "PASS",
+      "scope": "Robustness to the enumerated event-order policies, not arbitrary unbounded scheduling."
+    },
+    {
+      "id": "C15",
+      "location": "§8.1",
+      "claim": "Five positive SMT/CHC files yield eight expected UNSAT outcomes.",
+      "kind": "solver result",
+      "evidence": "proof_outputs/smt_proof_report.json; proof_outputs/T1_REPLAY_ERASURE_horn.out; proof_outputs/T2_LOCAL_VCS.out; proof_outputs/T2_PREFIX_RELATION_horn.out; proof_outputs/T3_QUORUM_PIVOT.out; proof_outputs/T6_PREMISE_CHARACTERIZATION.out",
+      "status": "PASS",
+      "scope": "Solver-checked encodings; the statement-to-encoding map remains in the trusted base."
+    },
+    {
+      "id": "C16",
+      "location": "§8.1",
+      "claim": "Four deliberately damaged controls yield SAT.",
+      "kind": "negative-control result",
+      "evidence": "proof_outputs/smt_proof_report.json; proofs_smt/negative_controls/; proof_outputs/NC*.out",
+      "status": "PASS",
+      "scope": "Confirms that removal of selected premises is observable to the encoding."
+    },
+    {
+      "id": "C17",
+      "location": "§8.2",
+      "claim": "Exact Go big-integer arithmetic cross-checks 1,028 parameter cases.",
+      "kind": "independent arithmetic check",
+      "evidence": "results/gate7p/t3_bigint_crosscheck.json; implementation_fixture/proof_crosscheck/",
+      "status": "PASS",
+      "scope": "Arithmetic construction, not full protocol semantics."
+    },
+    {
+      "id": "C18",
+      "location": "§8.4; §10.5",
+      "claim": "The proof route is solver-checked with an explicit trusted computing base but is not kernel-checked in Lean.",
+      "kind": "proof-assurance status",
+      "evidence": "proof_review/PROOF_ASSURANCE_REPORT.md; proofs_checked/TRUSTED_COMPUTING_BASE.md; formal/lean/BUILD_ATTEMPT_2026-08-17.md",
+      "status": "PASS_AS_LIMITATION",
+      "scope": "Submission blocker until independent review or successful mature proof-assistant build."
+    },
+    {
+      "id": "C19",
+      "location": "§9.1",
+      "claim": "Twins uses shared-identity replicas and round-indexed communication patterns to exercise Byzantine scenarios.",
+      "kind": "prior-art fact",
+      "evidence": "Bano et al., OPODIS 2021, DOI 10.4230/LIPIcs.OPODIS.2021.7",
+      "status": "PASS",
+      "scope": "Prior art; no novelty claim for clone/partition testing."
+    },
+    {
+      "id": "C20",
+      "location": "§9.2",
+      "claim": "Directed per-round communication graphs and message-adversary languages predate this work.",
+      "kind": "prior-art fact",
+      "evidence": "Charron-Bost & Schiper 2009; Winkler, Schmid & Moses, OPODIS 2019, DOI 10.4230/LIPIcs.OPODIS.2019.17",
+      "status": "PASS",
+      "scope": "The directed-graph model is not claimed as new."
+    },
+    {
+      "id": "C21",
+      "location": "§9.2",
+      "claim": "Communication-closure testing already gives property-preserving reductions for a suitable class of consensus implementations.",
+      "kind": "prior-art fact",
+      "evidence": "Drăgoi et al., OOPSLA 2020, DOI 10.1145/3428278",
+      "status": "PASS",
+      "scope": "Current contribution is the phase-erasure safety-observation boundary, not communication closure in general."
+    },
+    {
+      "id": "C22",
+      "location": "§9.3–9.4",
+      "claim": "Message filters, mutations, replay-capable testing, and benchmark infrastructure are existing engineering capabilities.",
+      "kind": "prior-art fact",
+      "evidence": "Winter et al. 2023 DOI 10.1145/3586053; Drăgoi et al. Netrix 2024 DOI 10.1007/978-3-031-67321-4_6; Louro Neto & Ozkan 2025 DOI 10.4230/OASIcs.FMBC.2025.13",
+      "status": "PASS",
+      "scope": "A richer API is explicitly excluded from the contribution."
+    },
+    {
+      "id": "C23",
+      "location": "§9.5",
+      "claim": "No inspected source as of 17 August 2026 was found to combine phase erasure, finite agreement-observation preservation, the honest-pivot repair mechanism, and the replay boundary.",
+      "kind": "search-limited novelty claim",
+      "evidence": "gate8p/PRIOR_ART_AND_NOVELTY_REFRESH_2026-08-17.md; manuscript/references.bib",
+      "status": "CONDITIONAL_PASS",
+      "scope": "Absence of a found source is not proof of absolute novelty; update immediately before submission."
+    },
+    {
+      "id": "C24",
+      "location": "§10.2",
+      "claim": "CometBFT/HotStuff terminology motivates the schema, but full production protocol-to-schema refinement is not established.",
+      "kind": "construct-validity limitation",
+      "evidence": "gate8p/NATURAL_PROTOCOL_ASSUMPTION_MAP.md; inputs/cometbft_v0.40.0/; gate2p/source_manifest.csv",
+      "status": "PASS_AS_LIMITATION",
+      "scope": "No production vulnerability or full conformance claim."
+    },
+    {
+      "id": "C25",
+      "location": "§11",
+      "claim": "The decisive Gate 7 evidence is reproducible offline with one command and hash verification.",
+      "kind": "artifact claim",
+      "evidence": "scripts/reproduce_gate7p.sh; REPRODUCTION_VERIFICATION.md; ARTIFACT_MANIFEST.sha256; CORE_RESULTS.sha256",
+      "status": "PASS",
+      "scope": "Gate 8 reproduction additionally compiles the manuscript and audits claims."
+    },
+    {
+      "id": "C26",
+      "location": "§11",
+      "claim": "The legacy exact-kernel evidence is independently reproducible from the nested Gate 5 archive.",
+      "kind": "artifact claim",
+      "evidence": "legacy_evidence/TWINS_SCHEDULER_GATE5P_2026-08-15.zip; legacy_evidence/TWINS_SCHEDULER_GATE5P_2026-08-15.zip.sha256",
+      "status": "PASS",
+      "scope": "Gate 8 reproduction executes this route unless explicitly disabled."
+    },
+    {
+      "id": "C27",
+      "location": "Cover; submission package",
+      "claim": "The current working PDF has a separate cover page and an anonymous manuscript body.",
+      "kind": "format claim",
+      "evidence": "manuscript/TWINS_SCHEDULER_FULL_MANUSCRIPT_2026-08-17.pdf; submission/OPODIS_2026_ADAPTATION.md",
+      "status": "PASS",
+      "scope": "Final LIPIcs compilation and metadata are still required."
+    },
+    {
+      "id": "C28",
+      "location": "§13",
+      "claim": "Substantial language-model assistance is disclosed and human authors remain accountable.",
+      "kind": "transparency claim",
+      "evidence": "submission/AI_DISCLOSURE_DRAFT.md; manuscript/FULL_MANUSCRIPT.md",
+      "status": "PASS_DRAFT",
+      "scope": "Must be reviewed and retained under the final venue policy."
+    },
+    {
+      "id": "C29",
+      "location": "§10.7",
+      "claim": "The paper does not claim a production vulnerability, universal scheduler incompleteness/minimality, liveness, prevalence, full conformance, or absolute novelty.",
+      "kind": "nonclaim boundary",
+      "evidence": "paper_data/nonclaims.json; manuscript/FULL_MANUSCRIPT.md; gate6p/PAPER_CLAIM_FREEZE.md",
+      "status": "PASS",
+      "scope": "Any future edit must preserve these exclusions unless new evidence is added."
+    },
+    {
+      "id": "C30",
+      "location": "Gate 8 decision",
+      "claim": "The manuscript is complete enough for external review but not ready for submission because proof assurance remains unresolved.",
+      "kind": "decision claim",
+      "evidence": "gate8p/PROOF_ASSURANCE_BLOCKER.md; gate8p/REVIEWER_2_OBJECTION_MATRIX.md; results/gate8p/gate8p_decision.json",
+      "status": "PASS",
+      "scope": "Submission hold is procedural and epistemic, not a claim that the theorem is false."
+    }
+  ]
+}

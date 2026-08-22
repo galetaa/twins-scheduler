@@ -1,0 +1,32 @@
+{
+  "claim_freeze": "Phase/type erasure can remove finite agreement-violation witnesses in an explicit certificate-driven locking schema because closure-added repair evidence disables a unique honest quorum pivot; exact replay is erasable only under stable-key idempotence.",
+  "decision": "PASS / GO TO GATE 7'",
+  "gate": "Gate 6'",
+  "gate6_new_evidence": [
+    "checked proof scripts for T1 and T2 with explicit trusted assumptions",
+    "exact polynomial and branch certificate for T3",
+    "independent Go math/big cross-check for 1,028 parameters including a 400-digit f",
+    "full two-round Go event loop with proposal, prevote, POLKA, precommit, and COMMIT",
+    "independent Python mirror with 6/6 exact conformance cases",
+    "258 queue strategies/seeds and 1,548 case runs with unchanged safety classification",
+    "complete 2^7 premise truth table and exact Boolean characterization for the supplied construction"
+  ],
+  "prohibited_claims": [
+    "production CometBFT or HotStuff vulnerability",
+    "universal incompleteness of partition or directed schedules",
+    "universal minimality of G_T",
+    "liveness or unbounded partial-synchrony completeness",
+    "bug prevalence or discovery probability",
+    "absolute novelty"
+  ],
+  "publication_readiness": "NOT_YET_SUBMISSION_READY: Gate 7 must freeze the artifact, regenerate tables/figures, and obtain independent human proof review or migrate the small proofs to a mature prover.",
+  "research_status": "READY_FOR_REPRODUCIBLE_PAPER_AND_ARTIFACT_BUILD_IN_NARROW_SCOPE",
+  "residual_risks": [
+    "the checked proof kernel is deliberately small but is not Lean/Coq/Isabelle",
+    "the fuller event loop is an isolated local fixture, not the complete CometBFT implementation",
+    "T3 is an existence/separation theorem for an explicit schema, not a universal scheduler-minimality theorem",
+    "novelty remains conditional on the enumerated search and possible hidden engineering prior art"
+  ],
+  "scientific_claim": "Safety-observation closure boundaries of scheduler grammars for certificate-driven locking BFT protocols",
+  "status": "PASS"
+}

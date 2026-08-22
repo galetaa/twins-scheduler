@@ -1,0 +1,44 @@
+# Gate 4' mutation catalogue. These are semantic protocol variants in the
+# bounded locking kernel, not claims about defects in relab/hotstuff.
+
+[baseline]
+name = "BASELINE"
+lock_on_precommit_qc = true
+check_justify_value = true
+strict_unlock_view = true
+timeout_qc_acts_as_precommit = false
+timeout_path_updates_lock = true
+count_unique_voters = true
+receiver_validation_omission = ""
+
+[missing_lock_update]
+name = "MISSING_LOCK_UPDATE"
+lock_on_precommit_qc = false
+mechanism = "An honest replica precommits after valid evidence but fails to retain the lock."
+expected_minimal_capability = "message-phase separation or one-view delayed commit evidence"
+
+[wrong_qc_guard]
+name = "WRONG_QC_GUARD"
+check_justify_value = false
+strict_unlock_view = false
+mechanism = "A justification for another value and an equal view is accepted as an unlock proof."
+expected_minimal_capability = "message-phase separation or one-view delayed commit evidence"
+
+[timeout_as_precommit]
+name = "TIMEOUT_AS_PRECOMMIT"
+timeout_qc_acts_as_precommit = true
+timeout_path_updates_lock = false
+mechanism = "A value-labelled timeout certificate is treated as precommit evidence without establishing a lock."
+expected_minimal_capability = "separate inbound PREVOTE and PRECOMMIT phases"
+
+[duplicate_vote_counting]
+name = "DUPLICATE_VOTE_COUNTING"
+count_unique_voters = false
+mechanism = "The quorum counter counts message instances instead of logical signer identities."
+expected_minimal_capability = "bounded replay"
+
+[receiver_validation_omission]
+name = "RECEIVER_VALIDATION_OMISSION"
+receiver_validation_omission = "H3"
+mechanism = "One receiver accepts a forged commit certificate with one signer."
+role = "positive control visible under partitions"

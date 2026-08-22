@@ -1,0 +1,37 @@
+{
+  "T1": {
+    "finite_models": 96,
+    "finite_trace_checks": 12096,
+    "hidden_counterexample_full_erased": [
+      1,
+      0
+    ]
+  },
+  "T2": {
+    "finite_models": 32,
+    "finite_prefix_checks": 8256
+  },
+  "T3": {
+    "directed_domain_cases": 2,
+    "parameter_cases": 5
+  },
+  "T6": {
+    "assignments": 128,
+    "strict_patterns": [
+      "0111111",
+      "1101111",
+      "1111111"
+    ]
+  },
+  "certificate": "/mnt/data/_work_final/TWINS_SCHEDULER_FINAL_COMPLETE_2026-08-21/formal/project_kernel/certificate.json",
+  "certificate_sha256": "a1d067bac820560e86f3cdf62f2fc31d762a51196972d17f26507a8c939629d3",
+  "kernel_version": "1.1.0",
+  "negative_controls": {
+    "T1_remove_output_congruence": "REJECTED: T1: premises {'duplicate_projection_stutter', 'stable_key_in_projection', 'duplicate_relevant_output_empty', 'projection_congruence'} do not match corrected theorem",
+    "T1_remove_projection_congruence": "REJECTED: T1: premises {'duplicate_projection_stutter', 'output_congruence', 'stable_key_in_projection', 'duplicate_relevant_output_empty'} do not match corrected theorem",
+    "T3_deliver_repair_after_C1": "REJECTED: T3 wrong phase order",
+    "T3_move_R_to_other_view": "REJECTED: T3 E/R view differs",
+    "T6_omit_operational_equation": "REJECTED: T6 operational equation absent/changed"
+  },
+  "status": "PASS"
+}

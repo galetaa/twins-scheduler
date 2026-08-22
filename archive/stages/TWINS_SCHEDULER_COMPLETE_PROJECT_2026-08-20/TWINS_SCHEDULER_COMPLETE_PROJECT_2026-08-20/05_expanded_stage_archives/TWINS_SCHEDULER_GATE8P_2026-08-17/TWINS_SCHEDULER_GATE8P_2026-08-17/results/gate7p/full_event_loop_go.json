@@ -1,0 +1,2517 @@
+{
+  "cases": [
+    {
+      "commit_rounds": [
+        0
+      ],
+      "decisions": [
+        {
+          "replica": "H1",
+          "value": 0
+        }
+      ],
+      "grammar": "G_T_TYPE_SPECIFIC",
+      "locks": {
+        "H1": "0@0",
+        "H3": "none",
+        "P": "0@0"
+      },
+      "log": [
+        {
+          "action": "ROUND_START",
+          "detail": "round=0 value=0",
+          "index": 0
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 1,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 0,
+            "to": "H1",
+            "value": 0
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 2,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 0,
+            "to": "P",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 3,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 0,
+            "to": "H1",
+            "value": 0
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 4,
+          "message": {
+            "from": "H1",
+            "phase": "PREVOTE",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 5,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 0,
+            "to": "P",
+            "value": 0
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 6,
+          "message": {
+            "from": "P",
+            "phase": "PREVOTE",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 7,
+          "message": {
+            "from": "H1",
+            "phase": "PREVOTE",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 8,
+          "message": {
+            "from": "P",
+            "phase": "PREVOTE",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "CERTIFICATE",
+          "detail": "POLKA formed round=0 value=0",
+          "index": 9
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 10,
+          "message": {
+            "from": "B",
+            "phase": "POLKA",
+            "round": 0,
+            "to": "H1",
+            "value": 0
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 11,
+          "message": {
+            "from": "B",
+            "phase": "POLKA",
+            "round": 0,
+            "to": "P",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 12,
+          "message": {
+            "from": "B",
+            "phase": "POLKA",
+            "round": 0,
+            "to": "H1",
+            "value": 0
+          }
+        },
+        {
+          "action": "STATE",
+          "detail": "H1 locks value=0 round=0",
+          "index": 13
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 14,
+          "message": {
+            "from": "H1",
+            "phase": "PRECOMMIT",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 15,
+          "message": {
+            "from": "B",
+            "phase": "POLKA",
+            "round": 0,
+            "to": "P",
+            "value": 0
+          }
+        },
+        {
+          "action": "STATE",
+          "detail": "P locks value=0 round=0",
+          "index": 16
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 17,
+          "message": {
+            "from": "P",
+            "phase": "PRECOMMIT",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 18,
+          "message": {
+            "from": "H1",
+            "phase": "PRECOMMIT",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 19,
+          "message": {
+            "from": "P",
+            "phase": "PRECOMMIT",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "CERTIFICATE",
+          "detail": "COMMIT formed round=0 value=0",
+          "index": 20
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 21,
+          "message": {
+            "from": "B",
+            "phase": "COMMIT",
+            "round": 0,
+            "to": "H1",
+            "value": 0
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 22,
+          "message": {
+            "from": "B",
+            "phase": "COMMIT",
+            "round": 0,
+            "to": "P",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 23,
+          "message": {
+            "from": "B",
+            "phase": "COMMIT",
+            "round": 0,
+            "to": "H1",
+            "value": 0
+          }
+        },
+        {
+          "action": "STATE",
+          "detail": "H1 decides value=0 round=0",
+          "index": 24
+        },
+        {
+          "action": "DROP",
+          "detail": "blocked by selected scheduler grammar",
+          "index": 25,
+          "message": {
+            "from": "B",
+            "phase": "COMMIT",
+            "round": 0,
+            "to": "P",
+            "value": 0
+          }
+        },
+        {
+          "action": "ROUND_START",
+          "detail": "round=1 value=1",
+          "index": 26
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 27,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 1,
+            "to": "P",
+            "value": 1
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 28,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 1,
+            "to": "H3",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 29,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 1,
+            "to": "P",
+            "value": 1
+          }
+        },
+        {
+          "action": "REJECT",
+          "detail": "proposal conflicts with persistent lock or decision",
+          "index": 30,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 1,
+            "to": "P",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 31,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 1,
+            "to": "H3",
+            "value": 1
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 32,
+          "message": {
+            "from": "H3",
+            "phase": "PREVOTE",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 33,
+          "message": {
+            "from": "H3",
+            "phase": "PREVOTE",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        }
+      ],
+      "mutation": "BASELINE",
+      "polka_rounds": [
+        0
+      ],
+      "unsafe": false
+    },
+    {
+      "commit_rounds": [
+        1
+      ],
+      "decisions": [
+        {
+          "replica": "H3",
+          "value": 1
+        },
+        {
+          "replica": "P",
+          "value": 1
+        }
+      ],
+      "grammar": "G_D_ROUND0_EDGE_OFF",
+      "locks": {
+        "H1": "none",
+        "H3": "1@1",
+        "P": "1@1"
+      },
+      "log": [
+        {
+          "action": "ROUND_START",
+          "detail": "round=0 value=0",
+          "index": 0
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 1,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 0,
+            "to": "H1",
+            "value": 0
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 2,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 0,
+            "to": "P",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 3,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 0,
+            "to": "H1",
+            "value": 0
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 4,
+          "message": {
+            "from": "H1",
+            "phase": "PREVOTE",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "DROP",
+          "detail": "blocked by selected scheduler grammar",
+          "index": 5,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 0,
+            "to": "P",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 6,
+          "message": {
+            "from": "H1",
+            "phase": "PREVOTE",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "ROUND_START",
+          "detail": "round=1 value=1",
+          "index": 7
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 8,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 1,
+            "to": "P",
+            "value": 1
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 9,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 1,
+            "to": "H3",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 10,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 1,
+            "to": "P",
+            "value": 1
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 11,
+          "message": {
+            "from": "P",
+            "phase": "PREVOTE",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 12,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 1,
+            "to": "H3",
+            "value": 1
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 13,
+          "message": {
+            "from": "H3",
+            "phase": "PREVOTE",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 14,
+          "message": {
+            "from": "P",
+            "phase": "PREVOTE",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 15,
+          "message": {
+            "from": "H3",
+            "phase": "PREVOTE",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        },
+        {
+          "action": "CERTIFICATE",
+          "detail": "POLKA formed round=1 value=1",
+          "index": 16
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 17,
+          "message": {
+            "from": "B",
+            "phase": "POLKA",
+            "round": 1,
+            "to": "P",
+            "value": 1
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 18,
+          "message": {
+            "from": "B",
+            "phase": "POLKA",
+            "round": 1,
+            "to": "H3",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 19,
+          "message": {
+            "from": "B",
+            "phase": "POLKA",
+            "round": 1,
+            "to": "P",
+            "value": 1
+          }
+        },
+        {
+          "action": "STATE",
+          "detail": "P locks value=1 round=1",
+          "index": 20
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 21,
+          "message": {
+            "from": "P",
+            "phase": "PRECOMMIT",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 22,
+          "message": {
+            "from": "B",
+            "phase": "POLKA",
+            "round": 1,
+            "to": "H3",
+            "value": 1
+          }
+        },
+        {
+          "action": "STATE",
+          "detail": "H3 locks value=1 round=1",
+          "index": 23
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 24,
+          "message": {
+            "from": "H3",
+            "phase": "PRECOMMIT",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 25,
+          "message": {
+            "from": "P",
+            "phase": "PRECOMMIT",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 26,
+          "message": {
+            "from": "H3",
+            "phase": "PRECOMMIT",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        },
+        {
+          "action": "CERTIFICATE",
+          "detail": "COMMIT formed round=1 value=1",
+          "index": 27
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 28,
+          "message": {
+            "from": "B",
+            "phase": "COMMIT",
+            "round": 1,
+            "to": "P",
+            "value": 1
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 29,
+          "message": {
+            "from": "B",
+            "phase": "COMMIT",
+            "round": 1,
+            "to": "H3",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 30,
+          "message": {
+            "from": "B",
+            "phase": "COMMIT",
+            "round": 1,
+            "to": "P",
+            "value": 1
+          }
+        },
+        {
+          "action": "STATE",
+          "detail": "P decides value=1 round=1",
+          "index": 31
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 32,
+          "message": {
+            "from": "B",
+            "phase": "COMMIT",
+            "round": 1,
+            "to": "H3",
+            "value": 1
+          }
+        },
+        {
+          "action": "STATE",
+          "detail": "H3 decides value=1 round=1",
+          "index": 33
+        }
+      ],
+      "mutation": "BASELINE",
+      "polka_rounds": [
+        1
+      ],
+      "unsafe": false
+    },
+    {
+      "commit_rounds": [
+        0
+      ],
+      "decisions": [
+        {
+          "replica": "H1",
+          "value": 0
+        },
+        {
+          "replica": "P",
+          "value": 0
+        }
+      ],
+      "grammar": "G_D_ROUND0_EDGE_ON",
+      "locks": {
+        "H1": "0@0",
+        "H3": "none",
+        "P": "0@0"
+      },
+      "log": [
+        {
+          "action": "ROUND_START",
+          "detail": "round=0 value=0",
+          "index": 0
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 1,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 0,
+            "to": "H1",
+            "value": 0
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 2,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 0,
+            "to": "P",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 3,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 0,
+            "to": "H1",
+            "value": 0
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 4,
+          "message": {
+            "from": "H1",
+            "phase": "PREVOTE",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 5,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 0,
+            "to": "P",
+            "value": 0
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 6,
+          "message": {
+            "from": "P",
+            "phase": "PREVOTE",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 7,
+          "message": {
+            "from": "H1",
+            "phase": "PREVOTE",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 8,
+          "message": {
+            "from": "P",
+            "phase": "PREVOTE",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "CERTIFICATE",
+          "detail": "POLKA formed round=0 value=0",
+          "index": 9
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 10,
+          "message": {
+            "from": "B",
+            "phase": "POLKA",
+            "round": 0,
+            "to": "H1",
+            "value": 0
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 11,
+          "message": {
+            "from": "B",
+            "phase": "POLKA",
+            "round": 0,
+            "to": "P",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 12,
+          "message": {
+            "from": "B",
+            "phase": "POLKA",
+            "round": 0,
+            "to": "H1",
+            "value": 0
+          }
+        },
+        {
+          "action": "STATE",
+          "detail": "H1 locks value=0 round=0",
+          "index": 13
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 14,
+          "message": {
+            "from": "H1",
+            "phase": "PRECOMMIT",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 15,
+          "message": {
+            "from": "B",
+            "phase": "POLKA",
+            "round": 0,
+            "to": "P",
+            "value": 0
+          }
+        },
+        {
+          "action": "STATE",
+          "detail": "P locks value=0 round=0",
+          "index": 16
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 17,
+          "message": {
+            "from": "P",
+            "phase": "PRECOMMIT",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 18,
+          "message": {
+            "from": "H1",
+            "phase": "PRECOMMIT",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 19,
+          "message": {
+            "from": "P",
+            "phase": "PRECOMMIT",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "CERTIFICATE",
+          "detail": "COMMIT formed round=0 value=0",
+          "index": 20
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 21,
+          "message": {
+            "from": "B",
+            "phase": "COMMIT",
+            "round": 0,
+            "to": "H1",
+            "value": 0
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 22,
+          "message": {
+            "from": "B",
+            "phase": "COMMIT",
+            "round": 0,
+            "to": "P",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 23,
+          "message": {
+            "from": "B",
+            "phase": "COMMIT",
+            "round": 0,
+            "to": "H1",
+            "value": 0
+          }
+        },
+        {
+          "action": "STATE",
+          "detail": "H1 decides value=0 round=0",
+          "index": 24
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 25,
+          "message": {
+            "from": "B",
+            "phase": "COMMIT",
+            "round": 0,
+            "to": "P",
+            "value": 0
+          }
+        },
+        {
+          "action": "STATE",
+          "detail": "P decides value=0 round=0",
+          "index": 26
+        },
+        {
+          "action": "ROUND_START",
+          "detail": "round=1 value=1",
+          "index": 27
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 28,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 1,
+            "to": "P",
+            "value": 1
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 29,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 1,
+            "to": "H3",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 30,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 1,
+            "to": "P",
+            "value": 1
+          }
+        },
+        {
+          "action": "REJECT",
+          "detail": "proposal conflicts with persistent lock or decision",
+          "index": 31,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 1,
+            "to": "P",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 32,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 1,
+            "to": "H3",
+            "value": 1
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 33,
+          "message": {
+            "from": "H3",
+            "phase": "PREVOTE",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 34,
+          "message": {
+            "from": "H3",
+            "phase": "PREVOTE",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        }
+      ],
+      "mutation": "BASELINE",
+      "polka_rounds": [
+        0
+      ],
+      "unsafe": false
+    },
+    {
+      "commit_rounds": [
+        0,
+        1
+      ],
+      "decisions": [
+        {
+          "replica": "H1",
+          "value": 0
+        },
+        {
+          "replica": "H3",
+          "value": 1
+        },
+        {
+          "replica": "P",
+          "value": 1
+        }
+      ],
+      "grammar": "G_T_TYPE_SPECIFIC",
+      "locks": {
+        "H1": "none",
+        "H3": "none",
+        "P": "none"
+      },
+      "log": [
+        {
+          "action": "ROUND_START",
+          "detail": "round=0 value=0",
+          "index": 0
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 1,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 0,
+            "to": "H1",
+            "value": 0
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 2,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 0,
+            "to": "P",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 3,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 0,
+            "to": "H1",
+            "value": 0
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 4,
+          "message": {
+            "from": "H1",
+            "phase": "PREVOTE",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 5,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 0,
+            "to": "P",
+            "value": 0
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 6,
+          "message": {
+            "from": "P",
+            "phase": "PREVOTE",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 7,
+          "message": {
+            "from": "H1",
+            "phase": "PREVOTE",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 8,
+          "message": {
+            "from": "P",
+            "phase": "PREVOTE",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "CERTIFICATE",
+          "detail": "POLKA formed round=0 value=0",
+          "index": 9
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 10,
+          "message": {
+            "from": "B",
+            "phase": "POLKA",
+            "round": 0,
+            "to": "H1",
+            "value": 0
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 11,
+          "message": {
+            "from": "B",
+            "phase": "POLKA",
+            "round": 0,
+            "to": "P",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 12,
+          "message": {
+            "from": "B",
+            "phase": "POLKA",
+            "round": 0,
+            "to": "H1",
+            "value": 0
+          }
+        },
+        {
+          "action": "MUTATION",
+          "detail": "H1 omits persistent lock update",
+          "index": 13
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 14,
+          "message": {
+            "from": "H1",
+            "phase": "PRECOMMIT",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 15,
+          "message": {
+            "from": "B",
+            "phase": "POLKA",
+            "round": 0,
+            "to": "P",
+            "value": 0
+          }
+        },
+        {
+          "action": "MUTATION",
+          "detail": "P omits persistent lock update",
+          "index": 16
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 17,
+          "message": {
+            "from": "P",
+            "phase": "PRECOMMIT",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 18,
+          "message": {
+            "from": "H1",
+            "phase": "PRECOMMIT",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 19,
+          "message": {
+            "from": "P",
+            "phase": "PRECOMMIT",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "CERTIFICATE",
+          "detail": "COMMIT formed round=0 value=0",
+          "index": 20
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 21,
+          "message": {
+            "from": "B",
+            "phase": "COMMIT",
+            "round": 0,
+            "to": "H1",
+            "value": 0
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 22,
+          "message": {
+            "from": "B",
+            "phase": "COMMIT",
+            "round": 0,
+            "to": "P",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 23,
+          "message": {
+            "from": "B",
+            "phase": "COMMIT",
+            "round": 0,
+            "to": "H1",
+            "value": 0
+          }
+        },
+        {
+          "action": "STATE",
+          "detail": "H1 decides value=0 round=0",
+          "index": 24
+        },
+        {
+          "action": "DROP",
+          "detail": "blocked by selected scheduler grammar",
+          "index": 25,
+          "message": {
+            "from": "B",
+            "phase": "COMMIT",
+            "round": 0,
+            "to": "P",
+            "value": 0
+          }
+        },
+        {
+          "action": "ROUND_START",
+          "detail": "round=1 value=1",
+          "index": 26
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 27,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 1,
+            "to": "P",
+            "value": 1
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 28,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 1,
+            "to": "H3",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 29,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 1,
+            "to": "P",
+            "value": 1
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 30,
+          "message": {
+            "from": "P",
+            "phase": "PREVOTE",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 31,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 1,
+            "to": "H3",
+            "value": 1
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 32,
+          "message": {
+            "from": "H3",
+            "phase": "PREVOTE",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 33,
+          "message": {
+            "from": "P",
+            "phase": "PREVOTE",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 34,
+          "message": {
+            "from": "H3",
+            "phase": "PREVOTE",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        },
+        {
+          "action": "CERTIFICATE",
+          "detail": "POLKA formed round=1 value=1",
+          "index": 35
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 36,
+          "message": {
+            "from": "B",
+            "phase": "POLKA",
+            "round": 1,
+            "to": "P",
+            "value": 1
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 37,
+          "message": {
+            "from": "B",
+            "phase": "POLKA",
+            "round": 1,
+            "to": "H3",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 38,
+          "message": {
+            "from": "B",
+            "phase": "POLKA",
+            "round": 1,
+            "to": "P",
+            "value": 1
+          }
+        },
+        {
+          "action": "MUTATION",
+          "detail": "P omits persistent lock update",
+          "index": 39
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 40,
+          "message": {
+            "from": "P",
+            "phase": "PRECOMMIT",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 41,
+          "message": {
+            "from": "B",
+            "phase": "POLKA",
+            "round": 1,
+            "to": "H3",
+            "value": 1
+          }
+        },
+        {
+          "action": "MUTATION",
+          "detail": "H3 omits persistent lock update",
+          "index": 42
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 43,
+          "message": {
+            "from": "H3",
+            "phase": "PRECOMMIT",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 44,
+          "message": {
+            "from": "P",
+            "phase": "PRECOMMIT",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 45,
+          "message": {
+            "from": "H3",
+            "phase": "PRECOMMIT",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        },
+        {
+          "action": "CERTIFICATE",
+          "detail": "COMMIT formed round=1 value=1",
+          "index": 46
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 47,
+          "message": {
+            "from": "B",
+            "phase": "COMMIT",
+            "round": 1,
+            "to": "P",
+            "value": 1
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 48,
+          "message": {
+            "from": "B",
+            "phase": "COMMIT",
+            "round": 1,
+            "to": "H3",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 49,
+          "message": {
+            "from": "B",
+            "phase": "COMMIT",
+            "round": 1,
+            "to": "P",
+            "value": 1
+          }
+        },
+        {
+          "action": "STATE",
+          "detail": "P decides value=1 round=1",
+          "index": 50
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 51,
+          "message": {
+            "from": "B",
+            "phase": "COMMIT",
+            "round": 1,
+            "to": "H3",
+            "value": 1
+          }
+        },
+        {
+          "action": "STATE",
+          "detail": "H3 decides value=1 round=1",
+          "index": 52
+        }
+      ],
+      "mutation": "MISSING_LOCK_UPDATE",
+      "polka_rounds": [
+        0,
+        1
+      ],
+      "unsafe": true
+    },
+    {
+      "commit_rounds": [
+        1
+      ],
+      "decisions": [
+        {
+          "replica": "H3",
+          "value": 1
+        },
+        {
+          "replica": "P",
+          "value": 1
+        }
+      ],
+      "grammar": "G_D_ROUND0_EDGE_OFF",
+      "locks": {
+        "H1": "none",
+        "H3": "none",
+        "P": "none"
+      },
+      "log": [
+        {
+          "action": "ROUND_START",
+          "detail": "round=0 value=0",
+          "index": 0
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 1,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 0,
+            "to": "H1",
+            "value": 0
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 2,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 0,
+            "to": "P",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 3,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 0,
+            "to": "H1",
+            "value": 0
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 4,
+          "message": {
+            "from": "H1",
+            "phase": "PREVOTE",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "DROP",
+          "detail": "blocked by selected scheduler grammar",
+          "index": 5,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 0,
+            "to": "P",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 6,
+          "message": {
+            "from": "H1",
+            "phase": "PREVOTE",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "ROUND_START",
+          "detail": "round=1 value=1",
+          "index": 7
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 8,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 1,
+            "to": "P",
+            "value": 1
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 9,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 1,
+            "to": "H3",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 10,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 1,
+            "to": "P",
+            "value": 1
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 11,
+          "message": {
+            "from": "P",
+            "phase": "PREVOTE",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 12,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 1,
+            "to": "H3",
+            "value": 1
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 13,
+          "message": {
+            "from": "H3",
+            "phase": "PREVOTE",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 14,
+          "message": {
+            "from": "P",
+            "phase": "PREVOTE",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 15,
+          "message": {
+            "from": "H3",
+            "phase": "PREVOTE",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        },
+        {
+          "action": "CERTIFICATE",
+          "detail": "POLKA formed round=1 value=1",
+          "index": 16
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 17,
+          "message": {
+            "from": "B",
+            "phase": "POLKA",
+            "round": 1,
+            "to": "P",
+            "value": 1
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 18,
+          "message": {
+            "from": "B",
+            "phase": "POLKA",
+            "round": 1,
+            "to": "H3",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 19,
+          "message": {
+            "from": "B",
+            "phase": "POLKA",
+            "round": 1,
+            "to": "P",
+            "value": 1
+          }
+        },
+        {
+          "action": "MUTATION",
+          "detail": "P omits persistent lock update",
+          "index": 20
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 21,
+          "message": {
+            "from": "P",
+            "phase": "PRECOMMIT",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 22,
+          "message": {
+            "from": "B",
+            "phase": "POLKA",
+            "round": 1,
+            "to": "H3",
+            "value": 1
+          }
+        },
+        {
+          "action": "MUTATION",
+          "detail": "H3 omits persistent lock update",
+          "index": 23
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 24,
+          "message": {
+            "from": "H3",
+            "phase": "PRECOMMIT",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 25,
+          "message": {
+            "from": "P",
+            "phase": "PRECOMMIT",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 26,
+          "message": {
+            "from": "H3",
+            "phase": "PRECOMMIT",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        },
+        {
+          "action": "CERTIFICATE",
+          "detail": "COMMIT formed round=1 value=1",
+          "index": 27
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 28,
+          "message": {
+            "from": "B",
+            "phase": "COMMIT",
+            "round": 1,
+            "to": "P",
+            "value": 1
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 29,
+          "message": {
+            "from": "B",
+            "phase": "COMMIT",
+            "round": 1,
+            "to": "H3",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 30,
+          "message": {
+            "from": "B",
+            "phase": "COMMIT",
+            "round": 1,
+            "to": "P",
+            "value": 1
+          }
+        },
+        {
+          "action": "STATE",
+          "detail": "P decides value=1 round=1",
+          "index": 31
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 32,
+          "message": {
+            "from": "B",
+            "phase": "COMMIT",
+            "round": 1,
+            "to": "H3",
+            "value": 1
+          }
+        },
+        {
+          "action": "STATE",
+          "detail": "H3 decides value=1 round=1",
+          "index": 33
+        }
+      ],
+      "mutation": "MISSING_LOCK_UPDATE",
+      "polka_rounds": [
+        1
+      ],
+      "unsafe": false
+    },
+    {
+      "commit_rounds": [
+        0
+      ],
+      "decisions": [
+        {
+          "replica": "H1",
+          "value": 0
+        },
+        {
+          "replica": "P",
+          "value": 0
+        }
+      ],
+      "grammar": "G_D_ROUND0_EDGE_ON",
+      "locks": {
+        "H1": "none",
+        "H3": "none",
+        "P": "none"
+      },
+      "log": [
+        {
+          "action": "ROUND_START",
+          "detail": "round=0 value=0",
+          "index": 0
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 1,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 0,
+            "to": "H1",
+            "value": 0
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 2,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 0,
+            "to": "P",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 3,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 0,
+            "to": "H1",
+            "value": 0
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 4,
+          "message": {
+            "from": "H1",
+            "phase": "PREVOTE",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 5,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 0,
+            "to": "P",
+            "value": 0
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 6,
+          "message": {
+            "from": "P",
+            "phase": "PREVOTE",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 7,
+          "message": {
+            "from": "H1",
+            "phase": "PREVOTE",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 8,
+          "message": {
+            "from": "P",
+            "phase": "PREVOTE",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "CERTIFICATE",
+          "detail": "POLKA formed round=0 value=0",
+          "index": 9
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 10,
+          "message": {
+            "from": "B",
+            "phase": "POLKA",
+            "round": 0,
+            "to": "H1",
+            "value": 0
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 11,
+          "message": {
+            "from": "B",
+            "phase": "POLKA",
+            "round": 0,
+            "to": "P",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 12,
+          "message": {
+            "from": "B",
+            "phase": "POLKA",
+            "round": 0,
+            "to": "H1",
+            "value": 0
+          }
+        },
+        {
+          "action": "MUTATION",
+          "detail": "H1 omits persistent lock update",
+          "index": 13
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 14,
+          "message": {
+            "from": "H1",
+            "phase": "PRECOMMIT",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 15,
+          "message": {
+            "from": "B",
+            "phase": "POLKA",
+            "round": 0,
+            "to": "P",
+            "value": 0
+          }
+        },
+        {
+          "action": "MUTATION",
+          "detail": "P omits persistent lock update",
+          "index": 16
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 17,
+          "message": {
+            "from": "P",
+            "phase": "PRECOMMIT",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 18,
+          "message": {
+            "from": "H1",
+            "phase": "PRECOMMIT",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 19,
+          "message": {
+            "from": "P",
+            "phase": "PRECOMMIT",
+            "round": 0,
+            "to": "B",
+            "value": 0
+          }
+        },
+        {
+          "action": "CERTIFICATE",
+          "detail": "COMMIT formed round=0 value=0",
+          "index": 20
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 21,
+          "message": {
+            "from": "B",
+            "phase": "COMMIT",
+            "round": 0,
+            "to": "H1",
+            "value": 0
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 22,
+          "message": {
+            "from": "B",
+            "phase": "COMMIT",
+            "round": 0,
+            "to": "P",
+            "value": 0
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 23,
+          "message": {
+            "from": "B",
+            "phase": "COMMIT",
+            "round": 0,
+            "to": "H1",
+            "value": 0
+          }
+        },
+        {
+          "action": "STATE",
+          "detail": "H1 decides value=0 round=0",
+          "index": 24
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 25,
+          "message": {
+            "from": "B",
+            "phase": "COMMIT",
+            "round": 0,
+            "to": "P",
+            "value": 0
+          }
+        },
+        {
+          "action": "STATE",
+          "detail": "P decides value=0 round=0",
+          "index": 26
+        },
+        {
+          "action": "ROUND_START",
+          "detail": "round=1 value=1",
+          "index": 27
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 28,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 1,
+            "to": "P",
+            "value": 1
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 29,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 1,
+            "to": "H3",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 30,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 1,
+            "to": "P",
+            "value": 1
+          }
+        },
+        {
+          "action": "REJECT",
+          "detail": "proposal conflicts with persistent lock or decision",
+          "index": 31,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 1,
+            "to": "P",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 32,
+          "message": {
+            "from": "B",
+            "phase": "PROPOSAL",
+            "round": 1,
+            "to": "H3",
+            "value": 1
+          }
+        },
+        {
+          "action": "ENQUEUE",
+          "detail": "message entered deterministic FIFO event loop",
+          "index": 33,
+          "message": {
+            "from": "H3",
+            "phase": "PREVOTE",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        },
+        {
+          "action": "DELIVER",
+          "detail": "delivered by deterministic FIFO scheduler",
+          "index": 34,
+          "message": {
+            "from": "H3",
+            "phase": "PREVOTE",
+            "round": 1,
+            "to": "B",
+            "value": 1
+          }
+        }
+      ],
+      "mutation": "MISSING_LOCK_UPDATE",
+      "polka_rounds": [
+        0
+      ],
+      "unsafe": false
+    }
+  ],
+  "checks": {
+    "all_baselines_safe": true,
+    "directed_edge_off_mutant_safe": true,
+    "directed_edge_on_mutant_safe": true,
+    "type_specific_mutant_unsafe": true
+  },
+  "status": "PASS"
+}

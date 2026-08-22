@@ -1,0 +1,11 @@
+{
+  "bounded_terminal_delay_transfers": true,
+  "correct_baselines_safe_in_both_kernels": true,
+  "counterfactual_closures_work_in_both_kernels": true,
+  "gate4_frozen_integrity": true,
+  "mapped_mechanisms_preserve_zero_nonzero_class": true,
+  "phase_coupled_guard_error_transfers": true,
+  "phase_coupled_lock_omission_transfers": true,
+  "replay_boundary_transfers": true,
+  "status": "PASS"
+}

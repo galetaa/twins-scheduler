@@ -1,0 +1,131 @@
+{
+  "locking_fragility_counterexample": {
+    "closed_state": "FragileState(decisions=frozenset({0}), prepared0=True, prepared1=False, pivot_available=False)",
+    "closed_trace": [
+      "E0",
+      "R0",
+      "D0",
+      "E1",
+      "D1"
+    ],
+    "conditions": {
+      "added_message_failures": [
+        {
+          "message": "R0",
+          "state": "FragileState(decisions=frozenset(), prepared0=False, prepared1=False, pivot_available=True)",
+          "target": "FragileState(decisions=frozenset({0}), prepared0=False, prepared1=False, pivot_available=False)"
+        },
+        {
+          "message": "R0",
+          "state": "FragileState(decisions=frozenset(), prepared0=False, prepared1=True, pivot_available=True)",
+          "target": "FragileState(decisions=frozenset({0}), prepared0=False, prepared1=True, pivot_available=False)"
+        },
+        {
+          "message": "R0",
+          "state": "FragileState(decisions=frozenset(), prepared0=True, prepared1=False, pivot_available=True)",
+          "target": "FragileState(decisions=frozenset({0}), prepared0=True, prepared1=False, pivot_available=False)"
+        },
+        {
+          "message": "R0",
+          "state": "FragileState(decisions=frozenset(), prepared0=True, prepared1=True, pivot_available=True)",
+          "target": "FragileState(decisions=frozenset({0}), prepared0=True, prepared1=True, pivot_available=False)"
+        },
+        {
+          "message": "R0",
+          "state": "FragileState(decisions=frozenset({0}), prepared0=False, prepared1=False, pivot_available=True)",
+          "target": "FragileState(decisions=frozenset({0}), prepared0=False, prepared1=False, pivot_available=False)"
+        },
+        {
+          "message": "R0",
+          "state": "FragileState(decisions=frozenset({0}), prepared0=False, prepared1=True, pivot_available=True)",
+          "target": "FragileState(decisions=frozenset({0}), prepared0=False, prepared1=True, pivot_available=False)"
+        },
+        {
+          "message": "R0",
+          "state": "FragileState(decisions=frozenset({0}), prepared0=True, prepared1=False, pivot_available=True)",
+          "target": "FragileState(decisions=frozenset({0}), prepared0=True, prepared1=False, pivot_available=False)"
+        },
+        {
+          "message": "R0",
+          "state": "FragileState(decisions=frozenset({0}), prepared0=True, prepared1=True, pivot_available=True)",
+          "target": "FragileState(decisions=frozenset({0}), prepared0=True, prepared1=True, pivot_available=False)"
+        },
+        {
+          "message": "R0",
+          "state": "FragileState(decisions=frozenset({1}), prepared0=False, prepared1=False, pivot_available=True)",
+          "target": "FragileState(decisions=frozenset({0, 1}), prepared0=False, prepared1=False, pivot_available=False)"
+        },
+        {
+          "message": "R0",
+          "state": "FragileState(decisions=frozenset({1}), prepared0=False, prepared1=True, pivot_available=True)",
+          "target": "FragileState(decisions=frozenset({0, 1}), prepared0=False, prepared1=True, pivot_available=False)"
+        },
+        {
+          "message": "R0",
+          "state": "FragileState(decisions=frozenset({1}), prepared0=True, prepared1=False, pivot_available=True)",
+          "target": "FragileState(decisions=frozenset({0, 1}), prepared0=True, prepared1=False, pivot_available=False)"
+        },
+        {
+          "message": "R0",
+          "state": "FragileState(decisions=frozenset({1}), prepared0=True, prepared1=True, pivot_available=True)",
+          "target": "FragileState(decisions=frozenset({0, 1}), prepared0=True, prepared1=True, pivot_available=False)"
+        },
+        {
+          "message": "R0",
+          "state": "FragileState(decisions=frozenset({0, 1}), prepared0=False, prepared1=False, pivot_available=True)",
+          "target": "FragileState(decisions=frozenset({0, 1}), prepared0=False, prepared1=False, pivot_available=False)"
+        },
+        {
+          "message": "R0",
+          "state": "FragileState(decisions=frozenset({0, 1}), prepared0=False, prepared1=True, pivot_available=True)",
+          "target": "FragileState(decisions=frozenset({0, 1}), prepared0=False, prepared1=True, pivot_available=False)"
+        },
+        {
+          "message": "R0",
+          "state": "FragileState(decisions=frozenset({0, 1}), prepared0=True, prepared1=False, pivot_available=True)",
+          "target": "FragileState(decisions=frozenset({0, 1}), prepared0=True, prepared1=False, pivot_available=False)"
+        },
+        {
+          "message": "R0",
+          "state": "FragileState(decisions=frozenset({0, 1}), prepared0=True, prepared1=True, pivot_available=True)",
+          "target": "FragileState(decisions=frozenset({0, 1}), prepared0=True, prepared1=True, pivot_available=False)"
+        }
+      ],
+      "forward_simulation_failures": [],
+      "status": "FAIL",
+      "unsafe_upward_failures": []
+    },
+    "failed_premise": "R0 removes the pivot's future conflicting action",
+    "original_state": "FragileState(decisions=frozenset({0, 1}), prepared0=True, prepared1=True, pivot_available=True)",
+    "original_trace": [
+      "E0",
+      "D0",
+      "E1",
+      "D1"
+    ],
+    "unsafe_after": false,
+    "unsafe_before": true
+  },
+  "monotone_example": {
+    "closed_state": "MonotoneState(decisions=frozenset({0, 1}), evidence=frozenset({'extra'}))",
+    "closed_trace": [
+      "D0",
+      "EXTRA",
+      "D1"
+    ],
+    "conditions": {
+      "added_message_failures": [],
+      "forward_simulation_failures": [],
+      "status": "PASS",
+      "unsafe_upward_failures": []
+    },
+    "original_state": "MonotoneState(decisions=frozenset({0, 1}), evidence=frozenset())",
+    "original_trace": [
+      "D0",
+      "D1"
+    ],
+    "unsafe_preserved": true
+  },
+  "status": "PASS",
+  "theorem": "If closure-added messages are R-increasing, every original transition is forward-simulated by R, and the unsafe predicate is upward closed under R, then inserting any finite sequence of closure-added messages while preserving the order of original messages preserves unsafety."
+}

@@ -1,0 +1,9 @@
+{
+  "cc": "cc (Debian 14.2.0-19) 14.2.0",
+  "go": "go version go1.23.2 linux/amd64",
+  "network_access_during_checks": "none",
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+  "python": "3.13.5",
+  "python_runtime_dependencies": [],
+  "z3": "4.13.3.0"
+}

@@ -1,0 +1,46 @@
+{
+  "rules": [
+    {
+      "name": "t1_base_from_zero_duplicate_identity",
+      "requires": ["definition_zero_duplicate_erasure_identity"],
+      "concludes": "replay_erasure_base_case",
+      "category": "definition_unfolding"
+    },
+    {
+      "name": "t1_delete_one_duplicate_run",
+      "requires": [
+        "premise_duplicate_transition_stutters",
+        "premise_duplicate_emits_no_relevant_output",
+        "premise_suffix_congruence"
+      ],
+      "concludes": "single_duplicate_deletion_preserves_relevant_run",
+      "category": "equational_congruence"
+    },
+    {
+      "name": "t1_delete_one_duplicate_observation",
+      "requires": [
+        "single_duplicate_deletion_preserves_relevant_run",
+        "premise_observation_extensional"
+      ],
+      "concludes": "single_duplicate_deletion_preserves_observation",
+      "category": "observation_congruence"
+    },
+    {
+      "name": "t1_measure_decrease",
+      "requires": ["definition_deleting_nonfirst_duplicate_reduces_duplicate_count"],
+      "concludes": "duplicate_measure_strictly_decreases",
+      "category": "well_founded_measure"
+    },
+    {
+      "name": "t1_inductive_step",
+      "requires": [
+        "single_duplicate_deletion_preserves_observation",
+        "duplicate_measure_strictly_decreases",
+        "IH_replay_erasure_for_smaller_duplicate_count",
+        "premise_stable_logical_replay_key"
+      ],
+      "concludes": "replay_erasure_step_case",
+      "category": "well_founded_induction_step"
+    }
+  ]
+}

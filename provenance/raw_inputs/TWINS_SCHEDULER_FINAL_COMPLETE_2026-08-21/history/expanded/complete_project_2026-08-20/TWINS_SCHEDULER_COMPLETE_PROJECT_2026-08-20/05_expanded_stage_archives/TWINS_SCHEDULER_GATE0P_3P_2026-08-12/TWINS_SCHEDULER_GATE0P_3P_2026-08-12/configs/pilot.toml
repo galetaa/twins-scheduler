@@ -1,0 +1,35 @@
+artifact_date = "2026-08-12"
+model_revision = "scheduler-grammar-pilot-v1"
+randomness = false
+python = "3.13.5"
+
+[scope]
+logical_views = 1
+micro_stages_per_protocol = "1 or 2"
+property = "agreement over decisions of designated correct replicas"
+cross_view_late_delivery = false
+replay = false
+real_time = false
+liveness = false
+message_fabrication = false
+
+[grammars]
+order = [
+  "G_P_PARTITION",
+  "G_D_DIRECTED_VIEW",
+  "G_T_TYPE_SPECIFIC",
+  "G_M_PER_MESSAGE",
+]
+
+[protocols]
+models = [
+  "ECHO_GATE",
+  "TYPE_SPLIT",
+  "INSTANCE_ORDER",
+  "TWIN_BRANCH_CONTROL",
+]
+
+[upstream]
+repository = "relab/hotstuff"
+commit = "3179c6e62929294961acbfd9bf8445769716a121"
+retrieved = "2026-08-12"

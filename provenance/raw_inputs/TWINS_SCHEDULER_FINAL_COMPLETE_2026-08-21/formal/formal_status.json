@@ -1,0 +1,48 @@
+{
+  "status": "CONDITIONAL_PASS_COMPLETE_SCIENTIFIC_REVISION_SUBMISSION_HOLD",
+  "lean": {
+    "target": "leanprover/lean4:v4.33.0",
+    "source_complete": true,
+    "source_hygiene": "PASS",
+    "local_build": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+    "axiom_audit": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+    "ci_workflow": ".github/workflows/lean.yml",
+    "relied_on_for_claim": false
+  },
+  "coq": {
+    "source_complete": true,
+    "source_hygiene": "PASS",
+    "local_build": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+    "relied_on_for_claim": false
+  },
+  "executed_project_kernel": {
+    "version": "1.1.0",
+    "result": "PASS",
+    "finite_replay_models": 96,
+    "finite_replay_traces": 12096,
+    "closure_models": 32,
+    "closure_prefix_checks": 8256,
+    "negative_controls": "5/5 rejected",
+    "result_file": "results/final/project_kernel_result_final.json"
+  },
+  "external_smt": {
+    "solver": "Z3 4.13.3.0",
+    "positive_unsat": 8,
+    "negative_sat": 4,
+    "result": "PASS"
+  },
+  "independent_protocol_bridge": {
+    "protocol": "CometBFT/Tendermint-style locking, source pin v0.39.3",
+    "scope": "bounded rule-level refinement; not production-client conformance",
+    "python_cases": 384,
+    "go_cases": 384,
+    "cross_language": "PASS",
+    "independent_cases": 768,
+    "result": "PASS_BOUNDED"
+  },
+  "submission_blockers": [
+    "execute a mature Lean or Coq kernel build and review its axiom/assumption report",
+    "compile the official-class LIPIcs source with the current Dagstuhl author package",
+    "refresh prior art and supply author metadata on the submission date"
+  ]
+}

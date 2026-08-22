@@ -1,0 +1,21 @@
+sat
+(
+  (define-fun X () Bool
+    true)
+  (define-fun T () Bool
+    true)
+  (define-fun Eshare () Bool
+    true)
+  (define-fun D () Bool
+    true)
+  (define-fun Rq () Bool
+    true)
+  (define-fun S1 () Bool
+    false)
+  (define-fun S2 () Bool
+    true)
+  (define-fun actualStrict () Bool
+    (and S2 D T Eshare X (or S1 Rq)))
+  (define-fun wrongPrediction () Bool
+    (and S2 D T Eshare X S1))
+)

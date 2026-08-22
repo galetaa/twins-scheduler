@@ -1,0 +1,12 @@
+{
+  "all_serialized_witnesses_pass_independent_oracle": true,
+  "bounded_terminal_delay_exposes_both_phase_coupled_mutants": true,
+  "directed_embeds_in_terminal_delay": true,
+  "grammar_lattice_inclusions_hold": true,
+  "lock_omission_phase_separation": true,
+  "partition_positive_control": true,
+  "replay_is_required_for_non_idempotent_vote_counting": true,
+  "selected_closures_destroy_witnesses": true,
+  "tendermint_baseline_safe_in_all_bounded_grammars": true,
+  "valid_round_guard_phase_separation": true
+}

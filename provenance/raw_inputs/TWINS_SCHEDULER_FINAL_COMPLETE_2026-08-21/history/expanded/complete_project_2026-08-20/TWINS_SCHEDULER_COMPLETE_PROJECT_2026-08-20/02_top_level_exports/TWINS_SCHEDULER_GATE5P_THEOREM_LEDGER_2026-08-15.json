@@ -1,0 +1,42 @@
+{
+  "T1_replay_erasure": {
+    "analytical_status": "PROVED_BY_FINITE_TRACE_INDUCTION",
+    "executable_status": "PASS",
+    "statement": "For handlers whose transition depends only on the set of stable logical vote keys, deleting replay copies preserves state, quorum, and every state-based safety observation.",
+    "strict_boundary_status": "PASS"
+  },
+  "T2_local_closure_lifting": {
+    "analytical_status": "PROVED_BY_INSERTION_INDUCTION",
+    "executable_status": "PASS",
+    "negative_boundary": "PASS",
+    "statement": "If closure-added messages are R-increasing, every original transition is forward-simulated by R, and the unsafe predicate is upward closed under R, then inserting any finite sequence of closure-added messages while preserving the order of original messages preserves unsafety."
+  },
+  "T3_phase_coupled_separation": {
+    "analytical_status": "PROVED_FROM_QUORUM_INTERSECTION_AND_EDGE_COUPLING",
+    "checked_fault_bounds": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "executable_status": "PASS",
+    "family_check_status": "PASS",
+    "kernels": 2,
+    "natural_instances": 4,
+    "statement": "For n=3f+1 and q=2f+1, if the unique honest quorum-intersection pivot must receive enabling evidence E and a later repair/terminal message R shares the same directed edge, then a type-uniform view graph cannot both form the first quorum and keep the pivot available for a conflicting quorum. A phase-specific schedule can deliver E while omitting R; bounded late delivery can defer R past round two."
+  },
+  "T4_bounded_terminal_delay": {
+    "analytical_status": "PROVED_AS_CONDITIONAL_COROLLARY",
+    "executable_status": "PASS",
+    "statement": "When the only coupled repair is terminal and can be postponed past the conflicting view without changing other enabling transitions, one-view delay simulates the relevant phase-specific witness."
+  },
+  "T5_non_idempotent_replay_separation": {
+    "analytical_status": "CONSTRUCTIVE_COUNTEREXAMPLE",
+    "executable_status": "PASS",
+    "statement": "Counting message instances instead of stable logical signer keys admits a finite replay trace that reaches a spurious quorum."
+  }
+}

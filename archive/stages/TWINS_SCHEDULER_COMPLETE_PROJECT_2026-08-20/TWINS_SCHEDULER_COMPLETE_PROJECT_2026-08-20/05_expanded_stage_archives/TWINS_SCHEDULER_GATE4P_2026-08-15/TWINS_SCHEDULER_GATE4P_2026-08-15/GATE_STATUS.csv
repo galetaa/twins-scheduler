@@ -1,0 +1,7 @@
+gate,status,decision,blocking_item
+Gate 0',CONDITIONAL PASS,"scheduler-normal-form novelty retained only as property-preserving characterization","refresh communication-adversary and conformance prior art before publication claim"
+Gate 1',PASS,"scheduler grammars and safety observations formally defined","none"
+Gate 2',PASS,"local dependency-free checker and pinned sources available","none"
+Gate 3',CONDITIONAL PASS,"strict safety hierarchy on diagnostic machines","natural protocol validation required"
+Gate 4',PASS / CONDITIONAL GO,"natural locking separations, temporal/replay map, independent oracle, network conformance","protocol-class theorem and second natural protocol"
+Overall,REQUIRES NARROWING,"continue only toward formal characterization","no large framework until Gate 5'"

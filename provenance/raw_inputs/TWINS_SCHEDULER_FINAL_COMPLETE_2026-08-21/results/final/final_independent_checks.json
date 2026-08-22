@@ -1,0 +1,40 @@
+{
+  "cometbft_bridge": {
+    "cases": 768,
+    "f_range": [
+      1,
+      128
+    ],
+    "rule_level_refinement": true
+  },
+  "independence": "does not import project models, proof kernel, SMT, or prover sources",
+  "legal_closure": {
+    "counterexamples": 0,
+    "target_legality_checked": true,
+    "valid_models": 84
+  },
+  "replay": {
+    "hidden_state_counterexample": {
+      "erased": 0,
+      "full": 1
+    },
+    "positive_projection_output_congruence_pairs": 32
+  },
+  "scheduler_semantics": {
+    "closed_deliveries": 2,
+    "no_synthesis": true,
+    "once_only": true,
+    "stable_order": true,
+    "typed_deliveries": 1
+  },
+  "status": "PASS",
+  "structural_criterion": {
+    "q_values": 64,
+    "strict_separation": true
+  },
+  "unsafe_observation_typing": {
+    "observation_domain": "tuple(decisions)",
+    "unsafe_domain": "State",
+    "unsafe_observations": 1
+  }
+}

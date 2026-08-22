@@ -1,0 +1,84 @@
+{
+  "rules": [
+    {
+      "name": "t2_base_reflexive",
+      "requires": [
+        "premise_R_reflexive",
+        "definition_empty_prefixes_same_state"
+      ],
+      "concludes": "prefix_relation_base_case",
+      "category": "relation_reflexivity"
+    },
+    {
+      "name": "t2_added_event_case",
+      "requires": [
+        "IH_prefix_relation_at_k",
+        "case_next_event_is_closure_added",
+        "premise_closure_added_action_R_increasing",
+        "premise_R_transitive"
+      ],
+      "concludes": "prefix_relation_after_added_event",
+      "category": "relation_transitivity"
+    },
+    {
+      "name": "t2_original_event_case",
+      "requires": [
+        "IH_prefix_relation_at_k",
+        "case_next_event_is_original",
+        "premise_original_action_forward_simulates_R"
+      ],
+      "concludes": "prefix_relation_after_original_event",
+      "category": "forward_simulation"
+    },
+    {
+      "name": "t2_complete_event_case_split",
+      "requires": [
+        "prefix_relation_after_added_event",
+        "prefix_relation_after_original_event",
+        "definition_each_merged_event_is_original_or_added"
+      ],
+      "concludes": "prefix_relation_after_next_event",
+      "category": "exhaustive_case_split"
+    },
+    {
+      "name": "t2_measure_decrease",
+      "requires": ["definition_finite_merged_suffix_measure_decreases"],
+      "concludes": "merged_suffix_measure_strictly_decreases",
+      "category": "well_founded_measure"
+    },
+    {
+      "name": "t2_inductive_step",
+      "requires": [
+        "prefix_relation_after_next_event",
+        "merged_suffix_measure_strictly_decreases"
+      ],
+      "concludes": "prefix_relation_step_case",
+      "category": "well_founded_induction_step"
+    },
+    {
+      "name": "t2_terminal_relation",
+      "requires": [
+        "all_merged_prefixes_R_related",
+        "definition_original_order_preserved"
+      ],
+      "concludes": "terminal_states_R_related",
+      "category": "prefix_to_terminal"
+    },
+    {
+      "name": "t2_upward_unsafe",
+      "requires": [
+        "terminal_states_R_related",
+        "premise_original_terminal_unsafe",
+        "premise_unsafe_upward_closed_under_R"
+      ],
+      "concludes": "closed_terminal_unsafe",
+      "category": "unsafe_upward_closure"
+    },
+    {
+      "name": "t2_theorem_conclusion",
+      "requires": ["closed_terminal_unsafe"],
+      "concludes": "closure_insertion_preserves_unsafety",
+      "category": "theorem_packaging"
+    }
+  ]
+}

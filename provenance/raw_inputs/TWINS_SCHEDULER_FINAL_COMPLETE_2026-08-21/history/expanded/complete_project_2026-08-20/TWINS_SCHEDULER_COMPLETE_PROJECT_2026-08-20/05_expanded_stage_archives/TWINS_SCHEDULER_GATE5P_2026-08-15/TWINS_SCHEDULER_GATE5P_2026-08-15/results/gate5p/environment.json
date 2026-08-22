@@ -1,0 +1,9 @@
+{
+  "cometbft_tag": "v0.40.0",
+  "cometbft_tag_commit": "0880b4d378f347ab16e54ec677ff50d803f37d62",
+  "go": "go version go1.23.2 linux/amd64",
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+  "python": "3.13.5",
+  "randomness": "none in exact searches; deterministic corpus enumeration",
+  "runtime_dependencies": []
+}

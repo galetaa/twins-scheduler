@@ -1,0 +1,680 @@
+{
+  "checked_fault_bounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "rows": [
+    {
+      "byzantine": [
+        "B0"
+      ],
+      "delay1_unsafe": true,
+      "directed_policies": [
+        {
+          "E_to_pivot": false,
+          "R_to_pivot": false,
+          "first_certificate": false,
+          "first_support": 2,
+          "second_certificate": false,
+          "second_support": 2,
+          "unsafe": false
+        },
+        {
+          "E_to_pivot": true,
+          "R_to_pivot": true,
+          "first_certificate": true,
+          "first_support": 3,
+          "second_certificate": false,
+          "second_support": 2,
+          "unsafe": false
+        }
+      ],
+      "directed_unsafe": false,
+      "f": 1,
+      "intersection": [
+        "B0",
+        "P"
+      ],
+      "left_only": [
+        "A0"
+      ],
+      "n": 4,
+      "pivot": "P",
+      "q0": [
+        "B0",
+        "P",
+        "A0"
+      ],
+      "q0_size": 3,
+      "q1": [
+        "B0",
+        "P",
+        "C0"
+      ],
+      "q1_size": 3,
+      "quorum": 3,
+      "right_only": [
+        "C0"
+      ],
+      "status": "PASS",
+      "type_specific_unsafe": true
+    },
+    {
+      "byzantine": [
+        "B0",
+        "B1"
+      ],
+      "delay1_unsafe": true,
+      "directed_policies": [
+        {
+          "E_to_pivot": false,
+          "R_to_pivot": false,
+          "first_certificate": false,
+          "first_support": 4,
+          "second_certificate": false,
+          "second_support": 4,
+          "unsafe": false
+        },
+        {
+          "E_to_pivot": true,
+          "R_to_pivot": true,
+          "first_certificate": true,
+          "first_support": 5,
+          "second_certificate": false,
+          "second_support": 4,
+          "unsafe": false
+        }
+      ],
+      "directed_unsafe": false,
+      "f": 2,
+      "intersection": [
+        "B0",
+        "B1",
+        "P"
+      ],
+      "left_only": [
+        "A0",
+        "A1"
+      ],
+      "n": 7,
+      "pivot": "P",
+      "q0": [
+        "B0",
+        "B1",
+        "P",
+        "A0",
+        "A1"
+      ],
+      "q0_size": 5,
+      "q1": [
+        "B0",
+        "B1",
+        "P",
+        "C0",
+        "C1"
+      ],
+      "q1_size": 5,
+      "quorum": 5,
+      "right_only": [
+        "C0",
+        "C1"
+      ],
+      "status": "PASS",
+      "type_specific_unsafe": true
+    },
+    {
+      "byzantine": [
+        "B0",
+        "B1",
+        "B2"
+      ],
+      "delay1_unsafe": true,
+      "directed_policies": [
+        {
+          "E_to_pivot": false,
+          "R_to_pivot": false,
+          "first_certificate": false,
+          "first_support": 6,
+          "second_certificate": false,
+          "second_support": 6,
+          "unsafe": false
+        },
+        {
+          "E_to_pivot": true,
+          "R_to_pivot": true,
+          "first_certificate": true,
+          "first_support": 7,
+          "second_certificate": false,
+          "second_support": 6,
+          "unsafe": false
+        }
+      ],
+      "directed_unsafe": false,
+      "f": 3,
+      "intersection": [
+        "B0",
+        "B1",
+        "B2",
+        "P"
+      ],
+      "left_only": [
+        "A0",
+        "A1",
+        "A2"
+      ],
+      "n": 10,
+      "pivot": "P",
+      "q0": [
+        "B0",
+        "B1",
+        "B2",
+        "P",
+        "A0",
+        "A1",
+        "A2"
+      ],
+      "q0_size": 7,
+      "q1": [
+        "B0",
+        "B1",
+        "B2",
+        "P",
+        "C0",
+        "C1",
+        "C2"
+      ],
+      "q1_size": 7,
+      "quorum": 7,
+      "right_only": [
+        "C0",
+        "C1",
+        "C2"
+      ],
+      "status": "PASS",
+      "type_specific_unsafe": true
+    },
+    {
+      "byzantine": [
+        "B0",
+        "B1",
+        "B2",
+        "B3"
+      ],
+      "delay1_unsafe": true,
+      "directed_policies": [
+        {
+          "E_to_pivot": false,
+          "R_to_pivot": false,
+          "first_certificate": false,
+          "first_support": 8,
+          "second_certificate": false,
+          "second_support": 8,
+          "unsafe": false
+        },
+        {
+          "E_to_pivot": true,
+          "R_to_pivot": true,
+          "first_certificate": true,
+          "first_support": 9,
+          "second_certificate": false,
+          "second_support": 8,
+          "unsafe": false
+        }
+      ],
+      "directed_unsafe": false,
+      "f": 4,
+      "intersection": [
+        "B0",
+        "B1",
+        "B2",
+        "B3",
+        "P"
+      ],
+      "left_only": [
+        "A0",
+        "A1",
+        "A2",
+        "A3"
+      ],
+      "n": 13,
+      "pivot": "P",
+      "q0": [
+        "B0",
+        "B1",
+        "B2",
+        "B3",
+        "P",
+        "A0",
+        "A1",
+        "A2",
+        "A3"
+      ],
+      "q0_size": 9,
+      "q1": [
+        "B0",
+        "B1",
+        "B2",
+        "B3",
+        "P",
+        "C0",
+        "C1",
+        "C2",
+        "C3"
+      ],
+      "q1_size": 9,
+      "quorum": 9,
+      "right_only": [
+        "C0",
+        "C1",
+        "C2",
+        "C3"
+      ],
+      "status": "PASS",
+      "type_specific_unsafe": true
+    },
+    {
+      "byzantine": [
+        "B0",
+        "B1",
+        "B2",
+        "B3",
+        "B4"
+      ],
+      "delay1_unsafe": true,
+      "directed_policies": [
+        {
+          "E_to_pivot": false,
+          "R_to_pivot": false,
+          "first_certificate": false,
+          "first_support": 10,
+          "second_certificate": false,
+          "second_support": 10,
+          "unsafe": false
+        },
+        {
+          "E_to_pivot": true,
+          "R_to_pivot": true,
+          "first_certificate": true,
+          "first_support": 11,
+          "second_certificate": false,
+          "second_support": 10,
+          "unsafe": false
+        }
+      ],
+      "directed_unsafe": false,
+      "f": 5,
+      "intersection": [
+        "B0",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "P"
+      ],
+      "left_only": [
+        "A0",
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ],
+      "n": 16,
+      "pivot": "P",
+      "q0": [
+        "B0",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "P",
+        "A0",
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ],
+      "q0_size": 11,
+      "q1": [
+        "B0",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "P",
+        "C0",
+        "C1",
+        "C2",
+        "C3",
+        "C4"
+      ],
+      "q1_size": 11,
+      "quorum": 11,
+      "right_only": [
+        "C0",
+        "C1",
+        "C2",
+        "C3",
+        "C4"
+      ],
+      "status": "PASS",
+      "type_specific_unsafe": true
+    },
+    {
+      "byzantine": [
+        "B0",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5"
+      ],
+      "delay1_unsafe": true,
+      "directed_policies": [
+        {
+          "E_to_pivot": false,
+          "R_to_pivot": false,
+          "first_certificate": false,
+          "first_support": 12,
+          "second_certificate": false,
+          "second_support": 12,
+          "unsafe": false
+        },
+        {
+          "E_to_pivot": true,
+          "R_to_pivot": true,
+          "first_certificate": true,
+          "first_support": 13,
+          "second_certificate": false,
+          "second_support": 12,
+          "unsafe": false
+        }
+      ],
+      "directed_unsafe": false,
+      "f": 6,
+      "intersection": [
+        "B0",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "P"
+      ],
+      "left_only": [
+        "A0",
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5"
+      ],
+      "n": 19,
+      "pivot": "P",
+      "q0": [
+        "B0",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "P",
+        "A0",
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5"
+      ],
+      "q0_size": 13,
+      "q1": [
+        "B0",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "P",
+        "C0",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5"
+      ],
+      "q1_size": 13,
+      "quorum": 13,
+      "right_only": [
+        "C0",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5"
+      ],
+      "status": "PASS",
+      "type_specific_unsafe": true
+    },
+    {
+      "byzantine": [
+        "B0",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6"
+      ],
+      "delay1_unsafe": true,
+      "directed_policies": [
+        {
+          "E_to_pivot": false,
+          "R_to_pivot": false,
+          "first_certificate": false,
+          "first_support": 14,
+          "second_certificate": false,
+          "second_support": 14,
+          "unsafe": false
+        },
+        {
+          "E_to_pivot": true,
+          "R_to_pivot": true,
+          "first_certificate": true,
+          "first_support": 15,
+          "second_certificate": false,
+          "second_support": 14,
+          "unsafe": false
+        }
+      ],
+      "directed_unsafe": false,
+      "f": 7,
+      "intersection": [
+        "B0",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "P"
+      ],
+      "left_only": [
+        "A0",
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "A6"
+      ],
+      "n": 22,
+      "pivot": "P",
+      "q0": [
+        "B0",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "P",
+        "A0",
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "A6"
+      ],
+      "q0_size": 15,
+      "q1": [
+        "B0",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "P",
+        "C0",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6"
+      ],
+      "q1_size": 15,
+      "quorum": 15,
+      "right_only": [
+        "C0",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6"
+      ],
+      "status": "PASS",
+      "type_specific_unsafe": true
+    },
+    {
+      "byzantine": [
+        "B0",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7"
+      ],
+      "delay1_unsafe": true,
+      "directed_policies": [
+        {
+          "E_to_pivot": false,
+          "R_to_pivot": false,
+          "first_certificate": false,
+          "first_support": 16,
+          "second_certificate": false,
+          "second_support": 16,
+          "unsafe": false
+        },
+        {
+          "E_to_pivot": true,
+          "R_to_pivot": true,
+          "first_certificate": true,
+          "first_support": 17,
+          "second_certificate": false,
+          "second_support": 16,
+          "unsafe": false
+        }
+      ],
+      "directed_unsafe": false,
+      "f": 8,
+      "intersection": [
+        "B0",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7",
+        "P"
+      ],
+      "left_only": [
+        "A0",
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "A6",
+        "A7"
+      ],
+      "n": 25,
+      "pivot": "P",
+      "q0": [
+        "B0",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7",
+        "P",
+        "A0",
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "A6",
+        "A7"
+      ],
+      "q0_size": 17,
+      "q1": [
+        "B0",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7",
+        "P",
+        "C0",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7"
+      ],
+      "q1_size": 17,
+      "quorum": 17,
+      "right_only": [
+        "C0",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7"
+      ],
+      "status": "PASS",
+      "type_specific_unsafe": true
+    }
+  ],
+  "status": "PASS",
+  "theorem_shape": "For n=3f+1 and q=2f+1, if the unique honest quorum-intersection pivot must receive enabling evidence E and a later repair/terminal message R shares the same directed edge, then a type-uniform view graph cannot both form the first quorum and keep the pivot available for a conflicting quorum. A phase-specific schedule can deliver E while omitting R; bounded late delivery can defer R past round two."
+}

@@ -1,0 +1,178 @@
+{
+  "format": "scheduler-closure-proof-certificate",
+  "kernel_version": "1.0.0",
+  "theorems": {
+    "T1": {
+      "counterexample": {
+        "erased_trace": [
+          "X",
+          "Y"
+        ],
+        "expected_erased_relevant": 0,
+        "expected_full_relevant": 1,
+        "initial": [
+          0,
+          1
+        ],
+        "trace": [
+          "X",
+          "X",
+          "Y"
+        ]
+      },
+      "finite_validation": {
+        "events": 2,
+        "max_trace_length": 5,
+        "projection_values": 2,
+        "states": 2
+      },
+      "premises": [
+        "stable_key_in_projection",
+        "projection_congruence",
+        "duplicate_projection_stutter",
+        "duplicate_relevant_output_empty"
+      ],
+      "proof": {
+        "cases": [
+          {
+            "measure_decreases": false,
+            "name": "empty",
+            "uses": [
+              "reflexivity"
+            ]
+          },
+          {
+            "measure_decreases": true,
+            "name": "duplicate",
+            "uses": [
+              "duplicate_projection_stutter",
+              "induction_hypothesis"
+            ]
+          },
+          {
+            "measure_decreases": true,
+            "name": "fresh",
+            "uses": [
+              "projection_congruence",
+              "induction_hypothesis"
+            ]
+          }
+        ],
+        "measure": "remaining_trace_length",
+        "method": "structural_induction"
+      },
+      "statement": "projection_congruent_replay_erasure"
+    },
+    "T2": {
+      "finite_validation": {
+        "inserted_actions": 1,
+        "max_merged_length": 4,
+        "original_actions": 1,
+        "states": 2
+      },
+      "premises": [
+        "initial_relation",
+        "relation_transitive",
+        "inserted_action_increasing",
+        "retained_action_forward_simulation",
+        "unsafe_upward_closed"
+      ],
+      "proof": {
+        "cases": [
+          {
+            "measure_decreases": false,
+            "name": "empty",
+            "uses": [
+              "initial_relation"
+            ]
+          },
+          {
+            "measure_decreases": true,
+            "name": "inserted",
+            "uses": [
+              "inserted_action_increasing",
+              "relation_transitive",
+              "induction_hypothesis"
+            ]
+          },
+          {
+            "measure_decreases": true,
+            "name": "retained",
+            "uses": [
+              "retained_action_forward_simulation",
+              "induction_hypothesis"
+            ]
+          }
+        ],
+        "measure": "remaining_trace_length",
+        "method": "structural_induction"
+      },
+      "statement": "relational_closure_lifting"
+    },
+    "T3": {
+      "decision_semantics": {
+        "certificate0": "correct_left_decides_0",
+        "certificate1": "correct_right_decides_1"
+      },
+      "directed_domain": [
+        false,
+        true
+      ],
+      "facts": [
+        "same_sender",
+        "same_receiver",
+        "same_view",
+        "phase_order_E_C0_R_C1",
+        "directed_domain_exactly_edge_off_on",
+        "certificates_induce_distinct_correct_decisions"
+      ],
+      "messages": {
+        "E": {
+          "phase": "enabling",
+          "receiver": "p",
+          "sender": "b",
+          "view": 0
+        },
+        "R": {
+          "phase": "repair",
+          "receiver": "p",
+          "sender": "b",
+          "view": 0
+        }
+      },
+      "parameters": [
+        1,
+        2,
+        10,
+        1000000,
+        9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
+      ],
+      "phase_order": [
+        "E",
+        "C0",
+        "R",
+        "C1"
+      ],
+      "statement": "parametric_quorum_pivot_separation"
+    },
+    "T6": {
+      "closed_form": "S2 and D and T and Ed and X and (S1 or Rq)",
+      "expected_patterns": [
+        "0111111",
+        "1101111",
+        "1111111"
+      ],
+      "field_order": [
+        "S1",
+        "S2",
+        "Rq",
+        "D",
+        "T",
+        "Ed",
+        "X"
+      ],
+      "operational_equation": "U(e,r)=(!S1 or e) and (!S2 or ((!Rq or e) and not(r and D and T)))",
+      "statement": "seven_premise_exact_boundary"
+    }
+  }
+}

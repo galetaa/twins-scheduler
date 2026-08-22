@@ -1,0 +1,5 @@
+clean_copy_path=/mnt/data/_work_final/clean_copy_final
+exit_status=0
+elapsed_seconds=10
+source_root=/mnt/data/_work_final/TWINS_SCHEDULER_FINAL_COMPLETE_2026-08-21
+result=PASS_WITH_EXPLICIT_EXTERNAL_BLOCKERS

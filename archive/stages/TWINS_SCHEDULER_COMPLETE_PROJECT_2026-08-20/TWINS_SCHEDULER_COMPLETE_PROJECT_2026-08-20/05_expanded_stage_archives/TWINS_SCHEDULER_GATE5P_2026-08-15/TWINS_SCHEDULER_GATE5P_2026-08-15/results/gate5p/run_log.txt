@@ -1,0 +1,12 @@
+gate5p_status=PASS
+tendermint_status=PASS
+closure_status=PASS
+phase_finite_status=True
+phase_family_status=PASS
+source_mapping=PASS
+go_conformance=PASS
+implementation_fixture=PASS
+cross_protocol=PASS
+replay_sequences_checked=364
+go_cases_checked=728
+phase_fault_bounds_checked=8

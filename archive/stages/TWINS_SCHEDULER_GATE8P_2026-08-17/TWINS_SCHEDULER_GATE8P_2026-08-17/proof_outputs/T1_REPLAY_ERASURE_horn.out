@@ -1,0 +1,6 @@
+unsat
+(forall ((A (Array Int (Array Int Int))) (B Int) (C Int) (D (Array Int Bool)))
+  (! (let ((a!1 (not (>= (+ B (* (- 1) C)) 1)))
+           (a!2 (not (<= (+ B (* (- 1) C)) (- 1)))))
+       (= (Reach A B C D) (and a!1 a!2)))
+     :weight 0))

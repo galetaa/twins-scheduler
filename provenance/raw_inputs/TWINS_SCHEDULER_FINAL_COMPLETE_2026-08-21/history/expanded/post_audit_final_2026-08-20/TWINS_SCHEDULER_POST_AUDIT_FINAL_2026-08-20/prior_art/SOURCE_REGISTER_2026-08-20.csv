@@ -1,0 +1,13 @@
+source_id,title,year,type,stable_identifier,open_artifact,novelty_threat
+PA01,Twins: BFT Systems Made Robust,2021,peer-reviewed paper,10.4230/LIPIcs.OPODIS.2021.7,yes,high
+PA02,Testing Consensus Implementations Using Communication Closure,2021,peer-reviewed paper,10.1145/3428278,partial,very high
+PA03,The Heard-Of Model,2009,peer-reviewed paper,10.1007/s00446-009-0082-6,no,high
+PA04,Characterizing Asynchronous Message-Passing Models Through Rounds,2019,peer-reviewed paper,10.4230/LIPIcs.OPODIS.2019.17,no,medium-high
+PA05,Validating Labelled State and Message Production Systems,2022,preprint,arXiv:2202.12662,yes,high
+PA06,Systematic Testing of Distributed Systems with Netrix,2023,preprint/artifact,arXiv:2303.05893,yes,high
+PA07,ByzzBench: Benchmarking Fault-Tolerant Distributed Systems,2025,peer-reviewed paper/artifact,10.4230/OASIcs.FMBC.2025.13,yes,medium-high
+PA08,ByzzFuzz: Automated Byzantine Fault Injection,2022,technical paper/artifact,public paper and repository,yes,medium-high
+PA09,PERF: A Framework for Specifying and Reasoning About Fault Injectors,2026,preprint,arXiv:2602.19088,unknown,high
+PA10,Improving the Validation of BFT Consensus Protocols with Enhanced Fault Injection and Scenario Generation,2026,preprint,arXiv:2604.18049,unknown,high
+PA11,relab/hotstuff Twins implementation,2026,source repository,github.com/relab/hotstuff,yes,high
+PA12,CometBFT consensus specification,2026,official specification,docs.cometbft.com/main/spec/consensus/consensus,yes,medium

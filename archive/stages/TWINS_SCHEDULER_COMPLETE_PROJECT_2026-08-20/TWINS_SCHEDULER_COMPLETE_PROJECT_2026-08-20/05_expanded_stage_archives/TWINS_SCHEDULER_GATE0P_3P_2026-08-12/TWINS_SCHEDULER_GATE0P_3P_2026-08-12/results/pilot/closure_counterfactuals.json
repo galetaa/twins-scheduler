@@ -1,0 +1,46 @@
+[
+  {
+    "boundary": "G_P_PARTITION_vs_G_D_DIRECTED_VIEW",
+    "closed_observation": "A=-|B=-",
+    "closed_schedule": "{A,B,L}",
+    "closure": "weak-component equivalence closure",
+    "interpretation": "Adding the reverse/transitive links forced by a partition delivers peer echoes and removes the split decision.",
+    "protocol": "ECHO_GATE",
+    "strong_observation": "A=0|B=1",
+    "strong_schedule": "L>A,L>B",
+    "unsafe_preserved": false
+  },
+  {
+    "boundary": "G_D_DIRECTED_VIEW_vs_G_T_TYPE_SPECIFIC",
+    "closed_observation": "A=0|B=0",
+    "closed_schedule": "L>A,L>B",
+    "closure": "message-type erasure by endpoint union",
+    "interpretation": "Enabling both certificate types on every used edge makes both replicas accept the canonical primary certificate.",
+    "protocol": "TYPE_SPLIT",
+    "strong_observation": "A=0|B=1",
+    "strong_schedule": "FALLBACK_CERT:L>B,PRIMARY_CERT:L>A",
+    "unsafe_preserved": false
+  },
+  {
+    "boundary": "G_T_TYPE_SPECIFIC_vs_G_M_PER_MESSAGE",
+    "closed_observation": "A=0|B=0",
+    "closed_schedule": "CERT:L>A,CERT:L>B",
+    "closure": "same-type instance completion with canonical FIFO order",
+    "interpretation": "Delivering every instance on each selected type-edge in emission order makes both replicas accept certificate 0.",
+    "protocol": "INSTANCE_ORDER",
+    "strong_observation": "A=0|B=1",
+    "strong_schedule": "p0:[cert0-a,cert1-b]",
+    "unsafe_preserved": false
+  },
+  {
+    "boundary": "positive_control",
+    "closed_observation": "A=0|B=1",
+    "closed_schedule": "{A,T0}/{B,T1}",
+    "closure": "not applicable",
+    "interpretation": "A classic branch-separable Twins witness is already expressible by the partition grammar.",
+    "protocol": "TWIN_BRANCH_CONTROL",
+    "strong_observation": "A=0|B=1",
+    "strong_schedule": "{A,T0}/{B,T1}",
+    "unsafe_preserved": true
+  }
+]

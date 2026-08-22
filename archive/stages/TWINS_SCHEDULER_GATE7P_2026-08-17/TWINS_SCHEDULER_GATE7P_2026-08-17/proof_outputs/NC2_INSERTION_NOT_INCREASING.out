@@ -1,0 +1,7 @@
+sat
+(
+  (define-fun closed () Int
+    0)
+  (define-fun original () Int
+    1)
+)

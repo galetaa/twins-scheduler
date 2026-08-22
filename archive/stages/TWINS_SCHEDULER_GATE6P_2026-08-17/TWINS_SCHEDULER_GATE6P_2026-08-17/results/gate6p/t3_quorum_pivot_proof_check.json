@@ -1,0 +1,62 @@
+{
+  "arithmetic": {
+    "certificate_sha256": "89868aaec6531e6dd98d59a889f51f54c8c86f0d0b07b5d20329bf63ebf619e4",
+    "equalities": [
+      {
+        "id": "T3.E1",
+        "lhs": "f+f+1",
+        "normal_form_difference": "0",
+        "rhs": "2*f+1",
+        "status": "PASS"
+      },
+      {
+        "id": "T3.E2",
+        "lhs": "f+f",
+        "normal_form_difference": "0",
+        "rhs": "2*f",
+        "status": "PASS"
+      },
+      {
+        "id": "T3.E3",
+        "lhs": "2*f+1",
+        "normal_form_difference": "0",
+        "rhs": "(2*f)+1",
+        "status": "PASS"
+      },
+      {
+        "id": "T3.E4",
+        "lhs": "f+1",
+        "normal_form_difference": "0",
+        "rhs": "1+f",
+        "status": "PASS"
+      },
+      {
+        "id": "T3.E5",
+        "lhs": "f+f+f+1",
+        "normal_form_difference": "0",
+        "rhs": "3*f+1",
+        "status": "PASS"
+      }
+    ],
+    "positive_differences": [
+      {
+        "difference": "1",
+        "id": "T3.P1",
+        "larger": "2*f+1",
+        "smaller": "2*f",
+        "status": "PASS"
+      }
+    ],
+    "status": "PASS"
+  },
+  "branch_results": {
+    "directed_edge_absent": "first quorum short by one",
+    "directed_edge_present": "second quorum short by one after repair",
+    "phase_specific": "two conflicting quorums reachable"
+  },
+  "certificate_sha256": "89868aaec6531e6dd98d59a889f51f54c8c86f0d0b07b5d20329bf63ebf619e4",
+  "conclusion": "UnsafeObs(G_D)=empty_and_UnsafeObs(G_T)=nonempty",
+  "domain": "all natural f >= 1 under the explicit protocol-schema premises",
+  "status": "PASS",
+  "theorem": "T3_parametric_quorum_pivot_separation"
+}

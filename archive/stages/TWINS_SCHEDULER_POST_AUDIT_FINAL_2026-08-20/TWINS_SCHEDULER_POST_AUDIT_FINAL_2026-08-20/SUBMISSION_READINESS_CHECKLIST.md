@@ -1,0 +1,21 @@
+# Submission-readiness checklist
+
+- [x] T1 projection congruence formalized.
+- [x] T1 hidden-state counterexample included in the paper and executable checks.
+- [x] T2 prefix induction written explicitly.
+- [x] T3 same endpoint and same view formalized.
+- [x] T3 phase order `E<C0<R<C1` formalized.
+- [x] T3 complete bounded directed domain formalized.
+- [x] T3 correct decision transitions formalized.
+- [x] T6 operational equation included in the paper.
+- [x] T6 exact three assignments independently checked.
+- [x] Historical Gate 8 evidence rerun successfully.
+- [x] Post-audit Z3 positive and negative controls pass.
+- [x] Project-local proof-certificate kernel passes.
+- [x] Revised A4 review PDF built and visually inspected.
+- [x] Full official-class LIPIcs source tree prepared.
+- [ ] Lean or Coq clean kernel build completed.
+- [ ] Lean `#print axioms` or Coq `Print Assumptions`/`coqchk` report completed.
+- [ ] Official `lipics-v2021.cls` PDF build completed.
+- [ ] Author metadata and best-student-paper eligibility supplied by the authors.
+- [ ] Venue-specific prior-art refresh repeated immediately before submission.

@@ -1,0 +1,19 @@
+gate,item,status,evidence,blocking_action
+POST_AUDIT,T1 projection congruence and hidden-state boundary,PASS,"formal source; independent checker; project kernel; Z3; manuscript Section 6",none
+POST_AUDIT,T2 relational closure lifting,PASS,"formal source; independent checker; project kernel; Z3; manuscript Section 3",none
+POST_AUDIT,T3 fully bounded operational separation,PASS,"same view; fixed order; Bool domain; correct decisions; independent checker; project kernel; Z3; manuscript Section 4",none
+POST_AUDIT,T6 operational seven-premise boundary,PASS,"U(e,r); closed form; exact 128 enumeration; project kernel; Z3; manuscript Section 5",none
+ASSURANCE,Independent proof checker,PASS,"proof_review/independent_proof_checks_results.json",none
+ASSURANCE,Project-local proof-certificate kernel,PASS,"formal/project_kernel/kernel_result.json; 4/4 damaged controls rejected",none
+ASSURANCE,External Z3 post-audit obligations,PASS,"formal/smt_post_audit/summary.json; 8 UNSAT and 4 SAT controls",none
+ASSURANCE,Lean source hygiene,PASS,"formal/logs/source_hygiene.log",run pinned Lean build and #print axioms
+ASSURANCE,Lean kernel build,NOT RUN,"formal/logs/toolchain_probe.log",install pinned Lean toolchain and run lake build
+ASSURANCE,Coq source hygiene,PASS,"formal/logs/source_hygiene.log",run coqc and coqchk or Print Assumptions
+ASSURANCE,Coq kernel build,NOT RUN,"formal/logs/toolchain_probe.log",install compatible Coq and compile
+HISTORICAL,Inherited Gate 8 reproduction,PASS,"results/rechecks/inherited_gate8_reproduction.log",none
+PRIOR_ART,20 August 2026 novelty refresh,CONDITIONAL PASS,"prior_art/PRIOR_ART_UPDATE_2026-08-20.md",repeat search immediately before submission
+MANUSCRIPT,Revised Markdown manuscript,PASS,"manuscript/FULL_MANUSCRIPT_REVISED_2026-08-20.md",none
+MANUSCRIPT,A4 review PDF,PASS,"manuscript/TWINS_SCHEDULER_LIPICS_REVIEW_2026-08-20.pdf; build and visual logs",none
+MANUSCRIPT,Official LIPIcs source conversion,PASS,"manuscript/lipics/main_lipics.tex; body.tex; appendix.tex; references.bib",none
+MANUSCRIPT,Official LIPIcs class build,NOT RUN/FAILED BEFORE COMPILATION,"manuscript/lipics/build_logs/official_lipics_build.log",install official lipics-v2021.cls and run latexmk
+OVERALL,Project scientific result,CONDITIONAL PASS,"all post-audit corrections closed; external infrastructure blockers explicit",mature-prover build and official-class build before submission

@@ -1,0 +1,14 @@
+{
+  "PYTHONHASHSEED": "0",
+  "config_sha256": "145fe693184099403439a7b7c84e92d75cb31866f8d7d848dac13294e9d3ad50",
+  "cwd": "/mnt/data/TWINS_GATE0_3_CLOSURE_2026-08-11",
+  "environment_variables_recorded": [
+    "PYTHONHASHSEED"
+  ],
+  "executable": "/opt/pyvenv/bin/python",
+  "git": "git version 2.47.3",
+  "machine": "x86_64",
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "uv": "uv 0.10.0"
+}

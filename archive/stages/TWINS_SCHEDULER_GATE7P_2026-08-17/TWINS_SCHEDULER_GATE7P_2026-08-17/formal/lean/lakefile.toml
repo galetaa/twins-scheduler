@@ -1,0 +1,6 @@
+name = "gate7"
+version = "0.1.0"
+defaultTargets = ["Gate7"]
+
+[[lean_lib]]
+name = "Gate7"

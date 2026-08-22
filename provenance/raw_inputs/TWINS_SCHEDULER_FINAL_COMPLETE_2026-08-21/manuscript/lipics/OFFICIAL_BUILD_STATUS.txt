@@ -1,0 +1,2 @@
+official_lipics_build=NOT_RUN_CLASS_UNAVAILABLE
+required_class=lipics-v2021 v2021.1.3

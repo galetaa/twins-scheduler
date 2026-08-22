@@ -1,0 +1,14 @@
+test_ab_equals_ae (test_adversary_embedding.AdversaryEmbeddingTests.test_ab_equals_ae) ... ok
+test_binary_static_two_covers_all_unsafe (test_adversary_embedding.AdversaryEmbeddingTests.test_binary_static_two_covers_all_unsafe) ... ok
+test_reusable_snapshot_one_active_slot_equals_ae (test_adversary_embedding.AdversaryEmbeddingTests.test_reusable_snapshot_one_active_slot_equals_ae) ... ok
+test_static_twins_embeds_and_is_monotone (test_adversary_embedding.AdversaryEmbeddingTests.test_static_twins_embeds_and_is_monotone) ... ok
+test_every_unsafe_profile_has_two_branch_core (test_canonicalization.CanonicalizationTests.test_every_unsafe_profile_has_two_branch_core) ... ok
+test_round_trip (test_canonicalization.CanonicalizationTests.test_round_trip) ... ok
+test_width_and_snapshot_collapse (test_canonicalization.CanonicalizationTests.test_width_and_snapshot_collapse) ... ok
+test_event_bfs_matches_closed_form_quotient (test_protocol.ProtocolTests.test_event_bfs_matches_closed_form_quotient) ... ok
+test_unsafe_requires_two_decision_values (test_protocol.ProtocolTests.test_unsafe_requires_two_decision_values) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.234s
+
+OK

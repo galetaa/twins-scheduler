@@ -1,0 +1,41 @@
+{
+  "T1_replay_erasure": {
+    "proof_result": "results/gate6p/t1_replay_erasure_proof_check.json",
+    "residual_obligation": "Map stable-key idempotence assumptions to each studied implementation; the theorem does not erase equivocations or side-effectful callbacks.",
+    "statement": "Deleting non-first deliveries of stable replay keys preserves protocol-relevant finite behavior and state-based safety observations under explicit stutter, no-output, suffix-congruence, and observation-extensionality assumptions.",
+    "status": "CHECKED_BY_SMALL_TRUSTED_PROOF_SCRIPT"
+  },
+  "T2_relational_closure_lifting": {
+    "proof_result": "results/gate6p/t2_closure_lifting_proof_check.json",
+    "residual_obligation": "Each protocol instantiation must discharge the local R-monotonicity and forward-simulation premises; locking repair messages can violate them.",
+    "statement": "R-increasing closure insertions preserve finite unsafety when original steps forward-simulate R and Unsafe is upward closed under R.",
+    "status": "CHECKED_BY_SMALL_TRUSTED_PROOF_SCRIPT"
+  },
+  "T3_parametric_quorum_pivot_separation": {
+    "fuller_loop_validation": "results/gate6p/full_event_loop_go.json",
+    "independent_crosscheck": "results/gate6p/t3_bigint_crosscheck.json",
+    "proof_result": "results/gate6p/t3_quorum_pivot_proof_check.json",
+    "scope": "existential separation for an explicit protocol schema, not universal incompleteness of directed or partition schedules",
+    "statement": "For every f>=1 the supplied n=3f+1, q=2f+1 two-branch schema admits a phase-specific unsafe execution while both type-uniform directed edge choices remain safe.",
+    "status": "CHECKED_CERTIFICATE_PLUS_INDEPENDENT_BIGINT_CROSSCHECK"
+  },
+  "T4_terminal_delay_boundary": {
+    "source": "results/gate5p/gate5p_theorem_ledger.json",
+    "status": "INHERITED_CONDITIONAL_COROLLARY_WITH_REGRESSION_EVIDENCE"
+  },
+  "T5_non_idempotent_replay_separation": {
+    "source": "results/gate5p/gate5p_theorem_ledger.json",
+    "status": "INHERITED_CONSTRUCTIVE_BOUNDARY"
+  },
+  "T6_boolean_premise_characterization": {
+    "assignments_checked": 128,
+    "scope": "exact for the supplied seven-flag two-branch model; not a universal protocol-class characterization",
+    "statement": "second_base_short_by_one AND repair_disables_pivot AND repair_precedes_second_quorum_opportunity AND enabling_and_repair_share_endpoint_edge AND phase_specific_grammar_can_split_E_and_R AND (first_base_short_by_one OR second_pivot_requires_enabling_evidence)",
+    "status": "EXHAUSTIVE_EXACT_FOR_SUPPLIED_SEVEN_FLAG_MODEL",
+    "strict_patterns": [
+      "0111111",
+      "1101111",
+      "1111111"
+    ]
+  }
+}

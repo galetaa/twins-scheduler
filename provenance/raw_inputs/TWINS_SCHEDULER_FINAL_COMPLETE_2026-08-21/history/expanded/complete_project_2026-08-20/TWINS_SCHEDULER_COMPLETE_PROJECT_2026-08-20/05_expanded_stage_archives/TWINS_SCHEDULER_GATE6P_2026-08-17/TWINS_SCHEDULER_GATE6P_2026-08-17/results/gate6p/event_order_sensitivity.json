@@ -1,0 +1,24 @@
+{
+  "case_runs_checked": 1548,
+  "classification_failures": [],
+  "distinct_terminal_signatures_per_case": {
+    "G_D_ROUND0_EDGE_OFF/BASELINE": 1,
+    "G_D_ROUND0_EDGE_OFF/MISSING_LOCK_UPDATE": 1,
+    "G_D_ROUND0_EDGE_ON/BASELINE": 1,
+    "G_D_ROUND0_EDGE_ON/MISSING_LOCK_UPDATE": 1,
+    "G_T_TYPE_SPECIFIC/BASELINE": 1,
+    "G_T_TYPE_SPECIFIC/MISSING_LOCK_UPDATE": 1
+  },
+  "queue_strategies": [
+    "fifo",
+    "lifo",
+    "seeded_random"
+  ],
+  "random_seed_range": [
+    0,
+    255
+  ],
+  "runs_checked": 258,
+  "scope": "bounded causal event-order sensitivity within the supplied two-round fixture; not a partial-synchrony or liveness result",
+  "status": "PASS"
+}

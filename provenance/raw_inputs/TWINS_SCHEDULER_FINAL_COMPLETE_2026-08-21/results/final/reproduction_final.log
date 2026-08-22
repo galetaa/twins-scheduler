@@ -1,0 +1,133 @@
+--- independent theorem checks ---
+{
+  "cometbft_bridge": {
+    "cases": 768,
+    "f_range": [
+      1,
+      128
+    ],
+    "rule_level_refinement": true
+  },
+  "independence": "does not import project models, proof kernel, SMT, or prover sources",
+  "legal_closure": {
+    "counterexamples": 0,
+    "target_legality_checked": true,
+    "valid_models": 84
+  },
+  "replay": {
+    "hidden_state_counterexample": {
+      "erased": 0,
+      "full": 1
+    },
+    "positive_projection_output_congruence_pairs": 32
+  },
+  "scheduler_semantics": {
+    "closed_deliveries": 2,
+    "no_synthesis": true,
+    "once_only": true,
+    "stable_order": true,
+    "typed_deliveries": 1
+  },
+  "status": "PASS",
+  "structural_criterion": {
+    "q_values": 64,
+    "strict_separation": true
+  },
+  "unsafe_observation_typing": {
+    "observation_domain": "tuple(decisions)",
+    "unsafe_domain": "State",
+    "unsafe_observations": 1
+  }
+}
+independent theorem checks                   PASS
+--- bounded CometBFT Python refinement ---
+COMETBFT_BOUNDED_REFINEMENT PASS
+cases=384 f=1..64
+baseline_safe_all=true
+missing_lock_update_phase_specific_unsafe_all=true
+missing_lock_update_directed_safe_all=true
+bounded CometBFT Python refinement           PASS
+--- bounded CometBFT Go refinement ---
+COMETBFT_GO_REFINEMENT PASS
+cases=384 f=1..64
+bounded CometBFT Go refinement               PASS
+--- Python/Go terminal-row comparison ---
+COMETBFT_CROSS_LANGUAGE PASS rows=384
+Python/Go terminal-row comparison            PASS
+--- bounded refinement pytest ---
+...                                                                      [100%]
+3 passed in 0.03s
+bounded refinement pytest                    PASS
+--- project-local proof certificate ---
+{
+  "T1": {
+    "finite_models": 96,
+    "finite_trace_checks": 12096,
+    "hidden_counterexample_full_erased": [
+      1,
+      0
+    ]
+  },
+  "T2": {
+    "finite_models": 32,
+    "finite_prefix_checks": 8256
+  },
+  "T3": {
+    "directed_domain_cases": 2,
+    "parameter_cases": 5
+  },
+  "T6": {
+    "assignments": 128,
+    "strict_patterns": [
+      "0111111",
+      "1101111",
+      "1111111"
+    ]
+  },
+  "certificate": "/mnt/data/_work_final/TWINS_SCHEDULER_FINAL_COMPLETE_2026-08-21/formal/project_kernel/certificate.json",
+  "certificate_sha256": "a1d067bac820560e86f3cdf62f2fc31d762a51196972d17f26507a8c939629d3",
+  "kernel_version": "1.1.0",
+  "negative_controls": {
+    "T1_remove_output_congruence": "REJECTED: T1: premises {'duplicate_projection_stutter', 'stable_key_in_projection', 'duplicate_relevant_output_empty', 'projection_congruence'} do not match corrected theorem",
+    "T1_remove_projection_congruence": "REJECTED: T1: premises {'duplicate_projection_stutter', 'output_congruence', 'stable_key_in_projection', 'duplicate_relevant_output_empty'} do not match corrected theorem",
+    "T3_deliver_repair_after_C1": "REJECTED: T3 wrong phase order",
+    "T3_move_R_to_other_view": "REJECTED: T3 E/R view differs",
+    "T6_omit_operational_equation": "REJECTED: T6 operational equation absent/changed"
+  },
+  "status": "PASS"
+}
+project-local proof certificate              PASS
+--- SMT obligations and controls ---
+{
+  "z3_version": "4.13.3.0",
+  "runner": "results/final/z3cli",
+  "positive_unsat": 8,
+  "negative_sat": 4,
+  "total": 12,
+  "status": "PASS"
+}
+SMT obligations and controls                 PASS
+--- formal source hygiene ---
+{
+  "status": "PASS",
+  "files_checked": 19,
+  "hits": []
+}
+formal source hygiene                        PASS
+--- A4 review PDF build ---
+review_pdf_build=PASS
+physical_pages=13
+output=/mnt/data/_work_final/TWINS_SCHEDULER_FINAL_COMPLETE_2026-08-21/manuscript/TWINS_SCHEDULER_FINAL_MANUSCRIPT_2026-08-21.pdf
+A4 review PDF build                          PASS
+Lean pinned project build                    NOT_RUN_TOOLCHAIN_UNAVAILABLE
+Coq source build                             NOT_RUN_TOOLCHAIN_UNAVAILABLE
+official LIPIcs class build                  NOT_RUN_CLASS_UNAVAILABLE
+
+T1 replay erasure with output congruence     PASS
+T2 legal relational closure                  PASS
+structural quorum-pivot criterion            PASS
+parametric P_f/B_f family                    PASS
+diagnostic seven-premise boundary            PASS
+bounded CometBFT rule-level refinement       PASS
+negative controls                            PASS
+final reproduction                           PASS_WITH_EXPLICIT_EXTERNAL_BLOCKERS

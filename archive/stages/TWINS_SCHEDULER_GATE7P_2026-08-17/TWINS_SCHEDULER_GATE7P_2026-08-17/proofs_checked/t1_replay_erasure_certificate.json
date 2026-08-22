@@ -1,0 +1,59 @@
+{
+  "theorem": "replay_erasure_all_finite_traces",
+  "premises": [
+    "premise_stable_logical_replay_key",
+    "premise_duplicate_transition_stutters",
+    "premise_duplicate_emits_no_relevant_output",
+    "premise_suffix_congruence",
+    "premise_observation_extensional"
+  ],
+  "definitions": [
+    "definition_zero_duplicate_erasure_identity",
+    "definition_deleting_nonfirst_duplicate_reduces_duplicate_count"
+  ],
+  "induction": {
+    "measure": "number_of_nonfirst_occurrences_of_stable_replay_keys",
+    "base": {
+      "target": "replay_erasure_base_case",
+      "steps": [
+        {
+          "id": "T1.B1",
+          "rule": "t1_base_from_zero_duplicate_identity",
+          "conclusion": "replay_erasure_base_case"
+        }
+      ]
+    },
+    "step": {
+      "induction_hypothesis": "IH_replay_erasure_for_smaller_duplicate_count",
+      "measure_decrease_fact": "duplicate_measure_strictly_decreases",
+      "target": "replay_erasure_step_case",
+      "steps": [
+        {
+          "id": "T1.S1",
+          "rule": "t1_delete_one_duplicate_run",
+          "conclusion": "single_duplicate_deletion_preserves_relevant_run"
+        },
+        {
+          "id": "T1.S2",
+          "rule": "t1_delete_one_duplicate_observation",
+          "conclusion": "single_duplicate_deletion_preserves_observation"
+        },
+        {
+          "id": "T1.S3",
+          "rule": "t1_measure_decrease",
+          "conclusion": "duplicate_measure_strictly_decreases"
+        },
+        {
+          "id": "T1.S4",
+          "rule": "t1_inductive_step",
+          "conclusion": "replay_erasure_step_case"
+        }
+      ]
+    },
+    "result": "replay_erasure_all_finite_traces"
+  },
+  "final": {
+    "target": "replay_erasure_all_finite_traces",
+    "steps": []
+  }
+}

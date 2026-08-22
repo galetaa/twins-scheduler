@@ -1,0 +1,1510 @@
+# Единый исследовательский отчёт
+
+**Дата запуска и завершения поиска:** 11 августа 2026 года.  
+**Основной источник требований:** исследовательский бриф версии 2.0. fileciteturn0file0
+
+Для разделения уровней утверждений используются пометки:
+
+- **[Бриф]** — прямо следует из приложенного файла;
+- **[Литература]** — подтверждается опубликованными источниками;
+- **[Вывод анализа]** — синтез нескольких источников или оценка;
+- **[Спекулятивная гипотеза]** — предлагаемое утверждение, которое ещё предстоит проверить;
+- **[Рабочее предположение]** — необходимое допущение, отсутствующее в брифе.
+
+---
+
+# РАЗДЕЛ 1. ИЗВЛЕЧЁННЫЙ БРИФ
+
+## 1.1. Нормализованное содержание
+
+| Параметр | Нормализованное содержание | Опора в брифе |
+|---|---|---|
+| **Область** | Блокчейн и технологии распределённых реестров как объект Computer Science, без финансового анализа токенов. | §§1.1, 1.4, 20 |
+| **Подобласть** | Заранее не выбрана. На первом проходе должны сравниваться consensus/BFT, networking, formal methods, smart contracts, composability, rollups, data availability, cross-chain, privacy, parallel execution, state representation и protocol diagnostics. | §§1.2, 15, 19 |
+| **Уровень анализа** | Протокольный и системный: сообщения, состояния узлов, safety, liveness, finality, consistency, adversarial scheduling и межуровневые зависимости. | §§1.3–1.4 |
+| **Тип и уровень работы** | Магистерская работа по прикладной информатике, ориентированная на самостоятельную научную статью. | §§7.1–7.2 |
+| **Тип исследования** | Теоретико-вычислительный: формальная или математическая модель плюс самостоятельная вычислительная, симуляционная, model-checking или прототипная проверка. | §§4.1–4.4 |
+| **Предполагаемый результат** | Публикуемый научный тезис: новый механизм, модель, abstraction, bound, impossibility result, формализация или различающее предсказание; не только инструмент или прирост метрики. | §§3, 4.2, 5, 9 |
+| **Интересы автора** | Структурные представления сложных объектов, графовые и временные модели, ML, программирование и вычислительные эксперименты; при этом блокчейн-специфичная подобласть пока не выбрана. | §§2.1, 10, 19 |
+| **Обязательные направления** | Рассматривать блокчейн как распределённую систему; формулировать механизм, модель противника, фальсификатор и проверяемое следствие; сохранять смысл за пределами одной сети или реализации. | §§1, 5, 16–17 |
+| **Нежелательные направления** | Цена и торговля, tokenomics без вопроса безопасности, адресная классификация, очередная GNN, сравнение TPS, новый dApp, benchmark-only работа, новая архитектура без научного тезиса. | §§1.1, 2.2, 6, 13.4 |
+| **Доступные данные** | Открытые блоки и события, код клиентов, спецификации, testnets, smart-contract corpora, vulnerability datasets, аудиты, синтетические workloads и самостоятельно сгенерированные traces. | §11 |
+| **Доступные материалы** | Open-source клиенты, симуляторы, model checkers, fuzzing и symbolic-execution frameworks, локальные testnets, protocol specifications и открытые исследовательские артефакты. | §§10.2, 11.2–11.4 |
+| **Участники и организации** | Подтверждён доступ к научному руководителю или предметному эксперту. Закрытое сотрудничество с blockchain-компанией не предполагается. | §§12.3, 13.3 |
+| **Оборудование** | Собственный мощный компьютер и мощная видеокарта; допустимы локальные multi-node testnets, симуляции, model checking, fuzzing и ML среднего/высокого размера. | §§10.5, 13.1 |
+| **Освоенные методы** | Сильное программирование и ML, графовые модели, representation learning, computational experiments, сравнение представлений и абляции. | §§2.1, 10.1–10.2 |
+| **Допустимые новые методы** | Distributed algorithms, cryptography, stochastic processes, queueing theory, temporal logic, formal semantics, process calculi, model checking, theorem proving, program verification и program synthesis. | §§10.2–10.3 |
+| **Срок** | Жёсткого срока нет, но это не разрешение превращать работу в многолетнее создание новой платформы. | §7.4 |
+| **Объём** | Должен соответствовать одной узкой научной статье. Точный объём в страницах или словах не установлен. | §§3.3, 7.4 |
+| **Язык и география** | Жёстких языковых и географических ограничений нет; основная литература предполагается англоязычной. | §§12.2, 13.3 |
+| **Этика** | Только локальные, симуляционные, forked-state или контролируемые testnet-эксперименты; запрещены эксплуатация live-систем, DoS, кража активов, market manipulation и несанкционированный доступ. | §13.2 |
+| **Формальные требования кафедры** | Специальных требований университета или журнала пока нет. | §7.3 |
+| **Критерий подходящей темы** | Прохождение ворот научной содержательности, независимости от инженерных деталей, реализуемости, публикационного потенциала и вклада отрицательного результата. | §§16–17 |
+| **Приоритеты** | Потенциальная новизна → реализуемость → вероятность публикации → практическая значимость. | §9 |
+| **Профиль риска** | High-risk/high-reward, но риск должен быть научным, а не сводиться к дорогой инфраструктуре или трудному коду. | §8 |
+
+Все перечисленные положения являются нормализацией §§1–22 брифа без замены его требований типовым представлением о магистерской работе. fileciteturn0file0
+
+## 1.2. Прямые требования, сильнее всего влияющие на выбор
+
+1. Основной вклад должен быть **свойством, механизмом, моделью или границей**, а не инструментом.
+2. Вопрос должен быть **независим от конкретной сети**, даже если эксперимент проводится на одной–двух реализациях.
+3. Должны быть явно заданы **наблюдаемые следствия, фальсификатор, модель сети и противника**.
+4. Эксперимент должен проверять теоретическое утверждение, а не подменять его.
+5. Исследование должно воспроизводиться на одном компьютере, в симуляторе или локальной сети.
+6. Отрицательный результат должен устанавливать границу, невозможность, эквивалентность или недостаточность механизма.
+7. ML допустим только как вспомогательный способ проверить системную гипотезу. fileciteturn0file0
+
+## 1.3. Запреты и нежелательные направления
+
+Исключены финансовое прогнозирование, трейдинг, арбитраж, token analytics, описательная on-chain аналитика, классификация адресов, создание dApp, очередной explorer, сравнение TPS и применение GNN/Transformer без нового системного механизма. Не подходят также темы, где отрицательный результат означает лишь отсутствие прироста accuracy, latency или throughput. fileciteturn0file0
+
+## 1.4. Внутренние противоречия и напряжения
+
+**Строгого логического противоречия в брифе не обнаружено.** Есть пять существенных напряжений.
+
+1. **High-risk/high-reward против реализуемости и публикационности.**  
+   Это требует не исключать рискованные формализмы, но строить тему так, чтобы упрощённая версия уже давала статью. Консервативное решение — основная тема с формальным lower bound и небольшим model-checking экспериментом; более сложное обобщение оставить расширением.
+
+2. **Широкая область первого поиска против узости одной статьи.**  
+   Сравнить нужно разные подобласти, но итоговый вопрос должен относиться к одному механизму и одному различающему эксперименту.
+
+3. **Сильная ML-компетенция против запрета на исследовательское смещение.**  
+   ML не включается в обязательный вклад ни одной основной темы. Он возможен лишь после появления формального oracle или диагностического свойства.
+
+4. **Отсутствие жёсткого срока против запрета на чрезмерно широкую программу.**  
+   Каждая тема ниже имеет пилот, критерий остановки и способ сужения.
+
+5. **Бриф требует две центральные темы, а текущий запрос — три полные карточки.**  
+   Это не содержательное противоречие: ниже разработаны три карточки, из них отдельно выделены две центральные — сбалансированная и high-risk/high-reward.
+
+## 1.5. Сведения, которых нет
+
+- **В брифе не указано:** конкретное предпочтение между consensus, networking, formal methods, parallel execution и data availability.
+- **В брифе не указано:** permissionless или permissioned setting.
+- **В брифе не указано:** предпочтение между Layer 1, Layer 2 и cross-chain.
+- **В брифе не указано:** конкретная сеть, клиент или виртуальная машина.
+- **В брифе не указано:** точная целевая конференция или журнал.
+- **В брифе не указано:** требуемая глубина полного формального доказательства.
+- **В брифе не указано:** точный объём статьи в страницах или словах.
+- **В брифе не указано:** точная календарная дата завершения исследования.
+- **В брифе не указано:** допустимая продолжительность одного вычислительного эксперимента.
+- **В брифе не указано:** наличие archive-node доступа.
+- **В брифе не указано:** наличие платного облачного бюджета.
+- **В брифе не указано:** наличие доступа к платным полнотекстовым базам.
+- **В брифе не указано:** предпочтительный язык реализации.
+- **В брифе не указано:** текущий уровень работы с blockchain clients, Solidity, Move, model checkers и proof assistants.
+- **В брифе не указано:** доступ к участникам или организациям, кроме научного руководителя/эксперта.
+- **В брифе не указано:** готовность проводить пользовательские или экспертные интервью; при этом качественные методы прямо не должны быть центральными.
+
+## 1.6. Рабочие предположения
+
+- **Рабочее предположение, не содержащееся в брифе:** закрытые datasets, коммерческие archive nodes, платные базы и корпоративная телеметрия считаются недоступными до подтверждения обратного.
+- **Рабочее предположение, не содержащееся в брифе:** базовая экспериментальная среда — один Linux-совместимый workstation, контейнеры и локальная сеть.
+- **Рабочее предположение, не содержащееся в брифе:** для первой статьи достаточно доказательства или контрпримера для абстрактного класса протоколов и валидации на одной эталонной модели плюс одной–двух открытых реализациях.
+- **Рабочее предположение, не содержащееся в брифе:** машинное обучение не входит в обязательный вклад и используется только как вспомогательная эвристика после определения формального oracle.
+- **Рабочее предположение, не содержащееся в брифе:** публикационный потенциал оценивается относительно профильной площадки по distributed systems, security, formal methods или programming languages, поскольку конкретная площадка не выбрана.
+
+---
+
+# РАЗДЕЛ 2. КРАТКАЯ КАРТА ОБЛАСТИ
+
+Классическая теория consensus показывает, что свойства протокола неотделимы от модели времени и отказов. FLP устанавливает невозможность гарантированной детерминированной терминальности в полностью асинхронной системе даже при одном crash fault; модель partial synchrony Dwork–Lynch–Stockmeyer вводит условия, при которых consensus снова становится достижимым. PBFT и HotStuff превращают эти основания в практически ориентированные Byzantine state-machine replication protocols; HotStuff, в частности, работает в частично синхронной модели и связывает progress с периодом после восстановления синхронности. ([dl.acm.org](https://dl.acm.org/doi/10.1145/3149.214121))
+
+Однако **доказательство liveness и диагностика причины отсутствия progress — разные задачи**. Теория diagnosability дискретно-событийных систем формализует, можно ли различить классы скрытых отказов по наблюдаемым событиям. Muteness failure detectors обнаруживают прекращение ожидаемого поведения процесса, а PeerReview использует защищённые журналы для accountability. В blockchain-литературе отдельно развиты liveness checking HotStuff, активное восстановление P2P topology и детекторы eclipse attacks, но эти направления обычно либо проверяют наличие нарушения, либо распознают конкретную атаку, а не устанавливают минимальные условия различимости двух причин одного наблюдаемого stall. ([ieeexplore.ieee.org](https://ieeexplore.ieee.org/document/412626/))
+
+Верификация и тестирование клиентов уже являются плотной областью. Fluffy использует межклиентный differential oracle для Ethereum; Tyr моделирует behaviour divergence; LOKI строит state-aware модель consensus; FORKY специализируется на fork handling. На 2026 год также заявлена принятая в ASE работа SpecTrum по specification-guided differential fuzzing Ethereum consensus clients. Поэтому «ещё один fuzzer» имеет слабую novelty delta; содержательный резерв остаётся в формальном определении того, какие различия traces являются семантическими, а какие вызваны допустимой перестановкой независимых событий. ([usenix.org](https://www.usenix.org/conference/osdi21/presentation/yang))
+
+В parallel smart-contract execution сформировались теория перестановочности транзакций, Block-STM, conflict specifications, speculative execution и operation-level concurrency. Главная цель большинства системных работ — детерминированное ускорение исполнения. Научно интересный остаточный вопрос состоит не в новом scheduler, а в точной **границе наблюдаемой эквивалентности**: достаточно ли совпадения final state или необходимо сохранять также status, return data, receipts, logs, resource accounting и другие consensus-visible эффекты. Ближайшая угроза новизне — формальная теория observable equivalence Bartoletti–Galletta–Murgia, поэтому тема жизнеспособна только как проверка достаточности конкретных conflict specifications для расширенной наблюдаемой семантики. ([lmcs.episciences.org](https://lmcs.episciences.org/8722))
+
+Rollup security также быстро формализуется. Alloy-модель ZK rollups рассматривает forced transactions и censorship resistance; общий iUC framework моделирует L2 как stateful machines с adversarial scheduling и timing assumptions; fAmulet ищет finalization-failure bugs; denial-of-sequencing показывает отдельный liveness-механизм. Поэтому широкая тема «формальная безопасность rollups» уже слишком близка к prior art. Более узкий вопрос — совместимость временных обещаний разных компонентов — остаётся возможным, но риск совпадения высок. ([arxiv.org](https://arxiv.org/abs/2406.16219))
+
+В data availability sampling эволюция идёт от coded Merkle trees и probabilistic availability proofs к формальному криптографическому определению DAS, FRI-based constructions, PeerDAS и сетевым протоколам PANDAS/Honeybee. Появились также targeted-sampling attacks и работа 2026 года, прямо связывающая DAS с сетевой маршрутизацией. Открытый, но рискованный вопрос — не новая схема кодирования, а композиционная soundness при коррелированных sample observations и адаптивном сетевом противнике. ([dl.acm.org](https://dl.acm.org/doi/10.1007/978-3-030-51280-4_8))
+
+**[Вывод анализа]** В рамках ресурсов брифа наиболее исследуемы: граница диагностируемости сетевых причин; достаточность наблюдаемой семантики параллельного исполнения; корреляционно-устойчивая DAS soundness; как более насыщенные резервные направления — временная композиция L2 и каузальный differential oracle.
+
+---
+
+# РАЗДЕЛ 3. ПЯТЬ КАНДИДАТОВ
+
+## 3.1. Генерация и дедупликация
+
+Внутренний пул составил **28 вариантов**, полученных через разрешение противоречий, проверку скрытых допущений, поиск граничных условий, альтернативные механизмы, различение теорий, перенос diagnosability и database serializability, Bit–Spark–Flip и Purpose–Mechanism–Evaluation.
+
+Варианты были объединены в восемь проблемных кластеров. Удалены темы, которые:
+
+- отличались только сетью или клиентом;
+- сводились к новому fuzzer/scheduler/ML-модели;
+- требовали крупной инфраструктуры;
+- не имели фальсификатора;
+- зависели от одного сложного технического успеха;
+- утрачивали вклад при нулевом результате;
+- были непосредственно покрыты близкой работой.
+
+Остались пять содержательно различающихся кандидатов.
+
+## 3.2. Сравнительная таблица
+
+| Рабочее название | Научная проблема | Основной вопрос | Предполагаемый вклад | Соответствие брифу | Данные | Сложность | Риск близкой работы | Отрицательный результат | Главный риск | Вердикт |
+|---|---|---|---|---|---|---|---|---|---|---|
+| **A. Идентифицируемость причин остановки финализации** | Одинаковый finality stall может быть вызван Byzantine withholding или допустимой задержкой | Когда эти причины различимы и какова минимальная телеметрия? | Impossibility/sufficiency boundary и минимальный observation set | Очень высокое | Синтетические protocol traces, model checker, локальная BFT-сеть | Высокая | Средний | Очень информативен: нижняя граница наблюдаемости | Generic diagnosability/accountability prior art может покрывать ядро | **Основная рекомендация** |
+| **B. Композиция временных гарантий optimistic rollup** | Локальная liveness компонентов не обязательно даёт end-to-end liveness | Какие deadline relations достаточны для progress? | Timed assume–guarantee criterion | Высокое | Спецификации и сгенерированные traces | Высокая | Высокий | Информативен: counterexample или incompatibility theorem | General L2 framework может уже выражать нужное свойство | **Сильный резерв** |
+| **C. Каузально-инвариантный differential oracle** | Total-order comparison смешивает допустимую перестановку и семантическую divergence | Какая partial-order equivalence сохраняет consensus failures? | Формальный oracle и property-preserving quotient traces | Высокое | Open-source clients и synthetic schedules | Высокая | Очень высокий | Высок: предел применимости differential testing | Очень плотная fuzzing-литература и SpecTrum 2026 | **Резерв после аудита** |
+| **D. Достаточность conflict specifications для consensus-visible semantics** | Final-state serializability может быть слабее полного consensus-visible equivalence | Какие зависимости нужно учитывать, чтобы параллельное исполнение сохраняло все наблюдаемые эффекты? | Resource-observable serializability и условия достаточности | Очень высокое | Синтетические smart contracts, открытые VM и test suites | Средняя–высокая | Средне-высокий | Очень высок: теорема эквивалентности или минимальный counterexample | Теория observable equivalence 2021 может быть уже достаточно общей | **Наиболее надёжная** |
+| **E. Корреляционно-устойчивая DAS soundness** | Номинальное число samples может завышать гарантию при зависимых наблюдениях | Как correlation/adaptive censorship изменяют false-accept bound? | Composition theorem между crypto DAS и P2P observation process | Очень высокая | Симуляции, аналитические модели, открытые PeerDAS/P2P specs | Очень высокая | Средне-высокий | Максимально высок: impossibility/lower bound | Targeted sampling и network-aware DAS 2025–2026 могут пересекаться | **High-risk/high-reward** |
+
+---
+
+## 3.3. Кандидат A — идентифицируемость причин finality stall
+
+### Purpose–Mechanism–Prediction–Evaluation
+
+**Purpose.** Определить не просто факт отсутствия progress, а принципиальную различимость его причины при частичной наблюдаемости.
+
+**Mechanism.** Протокол представляется как timed labelled transition system. Два класса скрытых причин — \(F_W\), selective Byzantine withholding, и \(F_D\), admissible network delay/partition — проецируются наблюдением \(h_S\) на набор телеметрии \(S\). Причины диагностируемы, если после заданной границы не существует traces из разных классов с одинаковой проекцией.
+
+**Prediction.** Ledger-only observation недостаточно; до GST или без известной delay bound некоторые причины неразличимы; после GST ограниченный набор authenticated receive/timeout/QC events может сделать отдельные пары причин различимыми.
+
+**Evaluation.** Model checking конечной HotStuff-like модели, генерация контрпримеров, затем discrete-event simulation или локальный testnet.
+
+### Ближайшие работы
+
+1. **Sampath et al., “Diagnosability of Discrete-Event Systems”, 1995.**  
+   Purpose — fault isolation по частичным наблюдениям; mechanism — отсутствие бесконечно продолжающихся observationally equivalent normal/faulty traces; implication — формальная граница диагностируемости; evaluation — анализ автоматов. Это главный источник переносимого формализма и одновременно угроза новизне: новая работа не может заявлять изобретение diagnosability как таковой. DOI 10.1109/9.412626. ([ieeexplore.ieee.org](https://ieeexplore.ieee.org/document/412626/))
+
+2. **Doudou et al., “Muteness Failure Detectors”, 1999.**  
+   Purpose — обнаружение процессов, переставших выдавать ожидаемые сообщения; mechanism — failure detector для muteness; implication — возможность строить Byzantine consensus поверх такого детектора; evaluation — спецификация и реализация. Отличие предлагаемой темы — не подозрение в muteness, а различение злонамеренного withholding и допустимого delay при минимальной телеметрии. DOI 10.1007/3-540-48254-7_7. ([link.springer.com](https://link.springer.com/chapter/10.1007/3-540-48254-7_7))
+
+3. **Haeberlen, Kuznetsov, Druschel, “PeerReview”, SOSP 2007.**  
+   Purpose — accountability; mechanism — tamper-evident logs и cross-checking; implication — возможность доказать observable misbehavior при достаточном логировании; evaluation — distributed-system prototype. Угроза новизне состоит в том, что полные защищённые журналы могут уже обеспечивать более сильное свойство; предлагаемая delta — минимальность телеметрии и невозможность различения при более слабом наблюдении. DOI 10.1145/1294261.1294279. ([dl.acm.org](https://dl.acm.org/doi/10.1145/1294261.1294279))
+
+4. **Decouchant, Kulahcioglu Ozkan, Zhou, “Liveness Checking of the HotStuff Protocol Family”, PRDC 2023.**  
+   Purpose — выявление liveness violations; mechanism — temperature и lasso detection поверх state abstractions; prediction — снижение false positives относительно time-bounded checks; evaluation — HotStuff family и Twins. Работа отвечает, существует ли liveness violation, но не устанавливает идентифицируемость его сетевой причины. DOI 10.1109/PRDC59308.2023.00029; arXiv:2310.09006. ([arxiv.org](https://arxiv.org/abs/2310.09006))
+
+5. **TxProbe, TopoShot и eclipse-attack detection.**  
+   Эти работы показывают, что отдельные элементы скрытой P2P topology и конкретные attack conditions можно восстанавливать активными probes или специализированными сигналами. Они не дают общего pairwise diagnosability criterion для consensus stalls, но угрожают слишком широкому заявлению о «первой диагностике сети». ([arxiv.org](https://arxiv.org/abs/1812.00942))
+
+### Novelty delta
+
+- **Уже сделано:** общая diagnosability, muteness detection, полная accountability, HotStuff liveness checking и attack-specific detection.
+- **Известный компонент:** частично наблюдаемые traces и partially synchronous BFT.
+- **Изменяемый компонент:** вместо «обнаружить нарушение» — «различить две скрытые причины одного наблюдаемого stall».
+- **Новое различающее следствие:** доказать, что ledger-only traces допускают эквивалентные delay/withholding executions, и установить минимальный authenticated event set, разрушающий эквивалентность после GST.
+- **Научный смысл:** устанавливается граница того, какие root-cause claims вообще оправданы имеющейся телеметрией.
+- **Почему это не новый метод на новом объекте:** центральный результат — theorem/counterexample о relation между synchrony, fault class и observation map; классификатор или инструмент вторичен.
+
+*В обследованной литературе по состоянию на дату поиска не обнаружено работы, которая одновременно содержит указанную проблему, предлагаемый механизм или тезис и соответствующую различающую проверку. Это заключение ограничено использованными базами, языками, терминами и доступностью источников.*
+
+### Первичный тест реализуемости
+
+1. **Бриф:** прямое соответствие networking, consensus, formal representation, diagnostics и negative-result criteria.
+2. **Данные:** traces генерируются самостоятельно; mainnet data не требуются.
+3. **Масштаб:** 4–7 узлов достаточно для минимальных контрпримеров.
+4. **Материалы:** model checker, Python/Rust simulator или локальная HotStuff-like реализация.
+5. **Методология:** timed automata/LTS, observational equivalence, counterexample generation.
+6. **Срок:** базовая версия ограничивается двумя fault classes и одной protocol family.
+7. **Пилот:** четыре узла, один faulty leader, одинаковый finality stall при delay и withholding.
+8. **Критерий остановки:** если минимальная модель не даёт observational equivalence либо требует полного внутреннего состояния, перейти к lower bound или сузить fault pair.
+9. **Фальсификатор:** ledger-only trace всегда различает рассматриваемые причины либо предложенный telemetry set не отделяет их.
+10. **Ложный положительный результат:** classifier может различать причины по разным latency distributions; это исключается сопоставлением marginal delay distributions.
+11. **Простая альтернатива:** observed timeout count, а не причинная структура. Проверяется adversarially matched timeout distribution.
+12. **Отрицательный вклад:** impossibility result или lower bound на необходимое наблюдение.
+13. **Сужение:** только selective proposal/QC withholding против benign delay в трёхфазном HotStuff core.
+
+**Вердикт:** наиболее сильное сочетание механизма, формальности, воспроизводимости и ценности отрицательного результата.
+
+---
+
+## 3.4. Кандидат B — временная композиция optimistic rollup
+
+### Purpose–Mechanism–Prediction–Evaluation
+
+**Purpose.** Проверить скрытое допущение, что liveness forced inclusion, data availability, challenge/proof subsystem и L1 автоматически компонуется в end-to-end liveness.
+
+**Mechanism.** Каждый компонент задаётся timed assume–guarantee contract: предположения о поступлении данных и L1 inclusion, гарантии progress и deadline. Композиция безопасна по liveness только при совместимых временных интервалах.
+
+**Prediction.** Возможны traces, где каждый компонент локально удовлетворяет своей liveness property, но транзакция не достигает необратимого settlement из-за несовместимости deadlines.
+
+**Evaluation.** Timed automata, TLA+/Apalache, UPPAAL или Alloy; bounded counterexample generation.
+
+### Ближайшие работы
+
+1. **Chaliasos, Firsov, Livshits, “Towards a Formal Foundation for Blockchain ZK Rollups”, CCS 2025.** Alloy-модель уже охватывает forced transactions, blacklisting, upgradeability и censorship resistance. Это прямая угроза любой широкой теме о формальной безопасности rollups. Предлагаемая тема отличается узкой алгеброй временной композиции нескольких liveness contracts. DOI 10.1145/3719027.3765115; arXiv:2406.16219. ([arxiv.org](https://arxiv.org/abs/2406.16219))
+
+2. **Avarikioti, Maffei, Wang, “A Security Framework for General Blockchain Layer 2 Protocols”, 2025.** Работа вводит общий iUC-style framework, stateful L2 machines, trace predicates, adversarial scheduling и timing assumptions. Это самый серьёзный риск: framework может уже выразить предлагаемое свойство. Delta сохранится только при наличии отдельного necessary/sufficient deadline compatibility theorem. arXiv:2504.14965. ([arxiv.org](https://arxiv.org/abs/2504.14965))
+
+3. **Li et al., “Finding Finalization Failure Bugs in Polygon zkRollup”, CCS 2024.** fAmulet использует finalization behavior model для guided fuzzing конкретного zkRollup. Предлагаемая тема должна отличаться общим формальным условием, а не новым bug detector. DOI 10.1145/3658644.3690243. ([dl.acm.org](https://dl.acm.org/doi/10.1145/3658644.3690243))
+
+4. **Li et al., “Denial of Sequencing Attacks in Ethereum Layer 2 Rollups”, CCS 2025.** Работа демонстрирует конкретный zero-cost liveness attack на sequencer. Предлагаемая тема рассматривает не этот attack vector, а несовместимость временных гарантий компонентов. DOI 10.1145/3719027.3765100. ([dl.acm.org](https://dl.acm.org/doi/10.1145/3719027.3765100))
+
+### Novelty delta
+
+- **Уже сделано:** формальные rollup models, общий L2 security framework, finalization fuzzing и конкретные liveness attacks.
+- **Предлагаемое изменение:** изолировать temporal compatibility как самостоятельный compositional property.
+- **Различающее следствие:** counterexample с локально live компонентами и глобально non-live системой либо inequality/contract condition, исключающее такой trace.
+- **Научный смысл:** различение local liveness и end-to-end transaction liveness.
+- **Не просто новая платформа:** формальный результат относится к классу L2 architectures.
+
+*В обследованной литературе по состоянию на дату поиска не обнаружено работы, которая одновременно содержит указанную проблему, предлагаемый механизм или тезис и соответствующую различающую проверку. Это заключение ограничено использованными базами, языками, терминами и доступностью источников.*
+
+### Первичный тест реализуемости
+
+1. **Бриф:** соответствует modular architecture, composability и liveness.
+2. **Данные:** спецификации и synthetic traces.
+3. **Масштаб:** конечная модель из 4–5 компонентов.
+4. **Материалы:** открытые L2 specifications и model checker.
+5. **Методология:** timed assume–guarantee reasoning.
+6. **Срок:** реалистично только при абстрагировании криптографии.
+7. **Пилот:** forced-inclusion queue + sequencer + L1 inclusion + challenge window.
+8. **Остановка:** прекратить как самостоятельную тему, если iUC framework уже доказывает эквивалентное condition.
+9. **Фальсификатор:** локальная liveness всегда компонуется при минимальных стандартных предположениях.
+10. **Ложный эффект:** контрпример может возникнуть из нереалистичных deadlines; параметры должны быть symbolic.
+11. **Альтернатива:** проблема вызвана одной defective implementation, а не композицией.
+12. **Отрицательный вклад:** доказательство достаточности существующей композиции в ограниченном классе.
+13. **Сужение:** только optimistic rollup с forced inclusion и challenge period.
+
+**Вердикт:** сильный резерв, но слишком высокий prior-art risk для основной рекомендации.
+
+---
+
+## 3.5. Кандидат C — каузально-инвариантный differential oracle
+
+### Purpose–Mechanism–Prediction–Evaluation
+
+**Purpose.** Отделить genuine semantic client divergence от различий, вызванных допустимым расписанием независимых событий.
+
+**Mechanism.** Trace переводится из total order в labelled partial order; независимые events допускают Mazurkiewicz-style permutations. Два исполнения считаются эквивалентными, если их causal quotient сохраняет выбранные safety/liveness predicates.
+
+**Prediction.** Final-state oracle может пропустить причинно различное поведение, а raw-log oracle — ложно объявить divergence при перестановке независимых сообщений.
+
+**Evaluation.** Reference model, schedule mutations и controlled differential execution двух клиентов.
+
+### Ближайшие работы
+
+1. **Fluffy, OSDI 2021.** Multi-transaction differential fuzzing с несколькими Ethereum clients как cross-referencing oracles. Отличие — не новая генерация транзакций, а формальный criterion допустимой trace divergence. ([usenix.org](https://www.usenix.org/conference/osdi21/presentation/yang))
+
+2. **Tyr, IEEE S&P 2023.** Behaviour-divergent model для consensus failure bugs. Это близкий mechanism-level prior art; требуется доказать, что causal quotient даёт новое различающее свойство, а не другой feedback signal. ([computer.org](https://www.computer.org/csdl/proceedings-article/sp/2023/933600b186/1OXGOZ9SsfK))
+
+3. **LOKI, NDSS 2023.** Dynamic state model, state-aware message generation и bug oracles для consensus implementations. Отличие предлагаемой темы — property-preserving equivalence relation между traces. DOI 10.14722/ndss.2023.24078. ([ndss-symposium.org](https://www.ndss-symposium.org/ndss-paper/loki-state-aware-fuzzing-framework-for-the-implementation-of-blockchain-consensus-protocols/))
+
+4. **FORKY, ICSE 2025.** Fork-state-aware differential testing Bitcoin и Ethereum clients. Это прямая угроза инструментальной части; предлагаемая работа должна показывать ошибки существующего oracle, а не просто улучшать fork coverage. DOI 10.1109/ICSE55347.2025.00085. ([computer.org](https://www.computer.org/csdl/proceedings-article/icse/2025/056900a622/251mG2WNd60))
+
+5. **SpecTrum, ASE 2026.** Официальные страницы подтверждают принятие specification-guided differential fuzzing для Ethereum consensus clients, но достаточного публичного описания механизма на дату поиска не найдено. До получения текста нельзя исключить прямое пересечение. ([conf.researchr.org](https://conf.researchr.org/people-index/ase-2026))
+
+### Novelty delta
+
+Предлагается изменить не generator и не coverage metric, а **семантику oracle**: divergence определяется отсутствием property-preserving causal equivalence. Новое следствие — пара traces с одинаковым итоговым состоянием, но различной causal violation structure, либо разные raw logs, принадлежащие одному допустимому equivalence class.
+
+*В обследованной литературе по состоянию на дату поиска не обнаружено работы, которая одновременно содержит указанную проблему, предлагаемый механизм или тезис и соответствующую различающую проверку. Это заключение ограничено использованными базами, языками, терминами и доступностью источников.*
+
+### Первичный тест реализуемости
+
+1. **Бриф:** соответствует formal/event representation и cross-client validation.
+2. **Данные:** synthetic protocol traces и open clients.
+3. **Масштаб:** пилот возможен на reference model без production clients.
+4. **Материалы:** partial-order reduction libraries и test harness.
+5. **Методология:** happens-before, trace equivalence, mutation testing.
+6. **Срок:** формальная часть реалистична; client integration рискованна.
+7. **Пилот:** две implementations одной маленькой consensus machine.
+8. **Остановка:** если existing oracle literature уже использует эквивалентную causal relation.
+9. **Фальсификатор:** causal quotient не изменяет false-positive/false-negative classes.
+10. **Ложный эффект:** преимущество может быть только state-space reduction.
+11. **Альтернатива:** достаточно canonical event sorting.
+12. **Отрицательный вклад:** доказательство эквивалентности простого и causal oracle для ограниченного protocol class.
+13. **Сужение:** только fork-choice traces либо только finality gadget.
+
+**Вердикт:** концептуально сильный, но литература слишком насыщена; необходим отдельный аудит SpecTrum и всех oracle definitions.
+
+---
+
+## 3.6. Кандидат D — consensus-visible semantics параллельного исполнения
+
+### Purpose–Mechanism–Prediction–Evaluation
+
+**Purpose.** Проверить, достаточно ли существующих conflict specifications и serial-order consistency для сохранения всех эффектов, которые могут влиять на consensus-visible result.
+
+**Mechanism.** Вводится предлагаемое свойство **resource-observable serializability**: параллельное исполнение должно совпадать с предписанным последовательным не только по final state, но по явно выбранному observation tuple  
+\[
+O=(state,\ status,\ return\ data,\ receipts,\ logs,\ resource\ accounting).
+\]
+
+**Prediction.** Существуют transaction pairs, для которых слабая conflict relation сохраняет final state, но не полный \(O\); либо, наоборот, будет доказано, что при определённых предположениях классическая observable equivalence уже достаточна.
+
+**Evaluation.** Formal semantics небольшой VM, counterexample generation, затем тесты на EVM- или Move-compatible execution engines.
+
+### Ближайшие работы
+
+1. **Bartoletti, Galletta, Murgia, “A Theory of Transaction Parallelism in Blockchains”, 2021.** Работа вводит формальную теорию swappability и observable equivalence. Это главный novelty threat: до заявления нового конструкта необходимо проверить, параметризуется ли их observability всеми предлагаемыми effects. DOI 10.46298/lmcs-17(4:10)2021. ([lmcs.episciences.org](https://lmcs.episciences.org/8722))
+
+2. **Gelashvili et al., Block-STM, PPoPP 2023.** Engine обеспечивает deterministic outcome, согласованный с preset transaction order. Предлагаемая тема спрашивает не о скорости, а о формальной достаточности observation/conflict abstraction. DOI 10.1145/3572848.3577524. ([dl.acm.org](https://dl.acm.org/doi/10.1145/3572848.3577524))
+
+3. **Anjana et al., AFT 2025.** Conflict specifications используются для повышения parallel execution efficiency на EVM и MoveVM. Предлагаемое отличие — проверить soundness самой спецификации относительно расширенной наблюдаемой семантики. DOI 10.4230/LIPIcs.AFT.2025.29. ([drops.dagstuhl.de](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.AFT.2025.29))
+
+4. **Vegeta и ParallelEVM, 2025.** Обе системы разрабатывают новые способы конкурентного исполнения и оцениваются прежде всего по speedup/throughput. Тема D не предлагает ещё один scheduler, а ищет counterexample или theorem о correctness boundary. ([usenix.org](https://www.usenix.org/conference/nsdi25/presentation/xu-tianjing))
+
+5. **KEVM, CSF 2018.** Даёт executable formal semantics EVM и подходящую основу для точного определения observation tuple, но не решает вопрос sufficiency conflict specifications. DOI 10.1109/CSF.2018.00022. ([ieeexplore.ieee.org](https://ieeexplore.ieee.org/document/8429306/?utm_source=chatgpt.com))
+
+6. **Forerunner и Remora.** Forerunner ускоряет speculative execution через constraints; Remora 2026 предлагает scale-out deterministic execution. Обе работы усиливают необходимость отличать performance mechanism от формальной observation guarantee. ([dl.acm.org](https://dl.acm.org/doi/10.1145/3477132.3483564?utm_source=chatgpt.com))
+
+### Novelty delta
+
+- **Уже сделано:** swappability theory, deterministic STM, conflict-spec scheduling и executable EVM semantics.
+- **Предлагаемое изменение:** сделать объектом исследования достаточность conflict abstraction для явно полного consensus-visible observation.
+- **Различающее следствие:** минимальный contract pair, где final-state equivalence не гарантирует полного observational equivalence; либо theorem, что при конкретных предположениях дополнительных dependencies не требуется.
+- **Научный смысл:** уточняется, что именно означает «эквивалентное исполнение» для replicated VM.
+- **Не новый scheduler:** система может использовать существующий Block-STM; вклад — property, proof и counterexamples.
+
+*В обследованной литературе по состоянию на дату поиска не обнаружено работы, которая одновременно содержит указанную проблему, предлагаемый механизм или тезис и соответствующую различающую проверку. Это заключение ограничено использованными базами, языками, терминами и доступностью источников.*
+
+### Первичный тест реализуемости
+
+1. **Бриф:** очень высокое соответствие execution, formal semantics и diagnostic scenarios.
+2. **Данные:** synthetic contracts и открытые VM test suites.
+3. **Масштаб:** десятки минимальных contract pairs; статистическая выборка не нужна.
+4. **Материалы:** EVM interpreter, MoveVM либо собственная малая VM.
+5. **Методология:** operational semantics, observational equivalence, property-based testing.
+6. **Срок:** наиболее контролируемая из пяти тем.
+7. **Пилот:** 10–20 programs с reverts, logs, return values и resource-sensitive branches.
+8. **Остановка:** если Bartoletti et al. уже полностью покрывают выбранный tuple и conflict condition.
+9. **Фальсификатор:** не удаётся построить counterexample, а общий sufficiency theorem следует непосредственно из известного результата.
+10. **Ложный эффект:** divergence из-за implementation bug, а не слабой specification; исключается reference interpreter.
+11. **Альтернатива:** classic serializability уже достаточна — это превращается в положительный equivalence result.
+12. **Отрицательный вклад:** theorem о достаточности известной abstraction для конкретного класса VMs.
+13. **Сужение:** только status/log/resource effects в EVM-like deterministic VM.
+
+**Вердикт:** наиболее надёжная и технически управляемая тема.
+
+---
+
+## 3.7. Кандидат E — корреляционно-устойчивая DAS soundness
+
+### Purpose–Mechanism–Prediction–Evaluation
+
+**Purpose.** Проверить скрытое допущение, что \(k\) сетевых sample responses дают гарантию, соответствующую \(k\) независимым cryptographic samples.
+
+**Mechanism.** Наблюдения моделируются совместным распределением, формируемым peer selection, routing, correlated custody и adaptive withholding. Soundness должна зависеть от effective diversity или conditional entropy, а не только от nominal sample count.
+
+**Prediction.** Две системы с одинаковым числом samples и одинаковыми marginal distributions могут иметь разные false-accept probabilities из-за различной joint dependence.
+
+**Evaluation.** Probabilistic bound, adversarial simulation и сравнение independent, peer-coupled и adversarially censored sampling.
+
+### Ближайшие работы
+
+1. **Yu et al., Coded Merkle Tree, FC 2020.** CMT сочетает erasure coding и Merkle commitments и даёт sampling-based защиту от availability attacks. Отличие темы E — не новая coding construction, а влияние зависимости фактически наблюдаемых samples. DOI 10.1007/978-3-030-51280-4_8. ([dl.acm.org](https://dl.acm.org/doi/10.1007/978-3-030-51280-4_8))
+
+2. **Al-Bassam, Sonnino, Buterin, Fraud and Data Availability Proofs.** Работа связывает fraud proofs и probabilistic sampling light clients. Она задаёт базовое предположение о random sampling; тема E проверяет, как сетевой adversary изменяет реализованное распределение наблюдений. DOI 10.1007/978-3-662-64331-0_15. ([arxiv.org](https://arxiv.org/abs/1809.09044))
+
+3. **Hall-Andersen, Simkin, Wagner, “Foundations of Data Availability Sampling”, 2025.** Вводятся формальные cryptographic definitions и proofs для DAS. Это главный theoretical prior art: нужно установить, находится ли network-induced correlation уже внутри их adversarial model. DOI 10.62056/a09qudhdj; ePrint 2023/1079. ([cic.iacr.org](https://cic.iacr.org/p/1/4/34))
+
+4. **FRIDA, CRYPTO 2024.** FRI-based transparent DAS construction; тема E не меняет commitment scheme, а исследует composition с P2P observation process. DOI 10.1007/978-3-031-68391-6_9. ([eprint.iacr.org](https://eprint.iacr.org/2024/248))
+
+5. **PeerDAS, PANDAS и Honeybee.** PeerDAS документирует sampling у peers; PANDAS решает dissemination и sampling в пределах consensus deadline; Honeybee строит Byzantine-tolerant peer sampling. Они делают сетевую часть явной, но заявленные цели сосредоточены на протоколе и качестве sampling, а не на общем composition theorem для soundness. ([eprint.iacr.org](https://eprint.iacr.org/2024/1362))
+
+6. **Minh, Huu, Tran, “Efficient Data Availability Sampling via Coded Distributed Arrays”, ICBC 2026.** Работа прямо соединяет DAS с Byzantine-tolerant discovery/routing и потому существенно повышает prior-art risk. Предлагаемая delta должна оставаться узкой: формальная зависимость false acceptance от correlation, а не новый network design. arXiv:2606.16200. ([arxiv.org](https://arxiv.org/abs/2606.16200))
+
+7. **Madisetti, Tauz, Dolecek, “Data Availability Attacks: Targeted Sampling…”, ITW 2025.** Это наиболее близкая угроза: targeted sampling уже исследует, как стратегический выбор samples ослабляет 2-D Reed–Solomon DAS. До полной проверки текста нельзя заявлять самостоятельную новизну correlation model. DOI 10.1109/ITW62417.2025.11240529. ([doi.org](https://doi.org/10.1109/ITW62417.2025.11240529))
+
+### Novelty delta
+
+- **Уже сделано:** cryptographic DAS definitions, coding constructions, peer sampling protocols, network-aware dissemination и targeted-sampling attack.
+- **Предлагаемое изменение:** единый composition statement, связывающий cryptographic soundness с совместным распределением фактически полученных peer/index observations.
+- **Различающее следствие:** одинаковые marginals и nominal \(k\), но разные soundness вследствие correlation.
+- **Научный смысл:** определяется, когда системная реализация вправе использовать cryptographic sampling bound.
+- **Не новая схема:** существующие CMT/PeerDAS/FRIDA могут выступать экземплярами модели.
+
+*В обследованной литературе по состоянию на дату поиска не обнаружено работы, которая одновременно содержит указанную проблему, предлагаемый механизм или тезис и соответствующую различающую проверку. Это заключение ограничено использованными базами, языками, терминами и доступностью источников.*
+
+### Первичный тест реализуемости
+
+1. **Бриф:** прямое соответствие data availability, cryptography, networking и adversarial simulation.
+2. **Данные:** полностью синтетические; production network не требуется.
+3. **Масштаб:** аналитическая модель плюс Monte Carlo на \(n=256\)–\(1024\).
+4. **Материалы:** Python/Rust simulator и открытые PeerDAS specifications.
+5. **Методология:** probability, dependency models, adversarial optimization.
+6. **Срок:** высокая математическая неопределённость.
+7. **Пилот:** сравнить independent sampling с clustered peer/index observations при одинаковых marginals.
+8. **Остановка:** если Foundations/Targeted Sampling уже содержат тот же joint-correlation theorem.
+9. **Фальсификатор:** standard DAS security definition уже полностью сохраняет bound при рассматриваемой correlation.
+10. **Ложный эффект:** различие может объясняться изменением marginal hit probability; marginals фиксируются.
+11. **Альтернатива:** достаточно учитывать число уникальных indices; сравнивается с entropy/dependency models.
+12. **Отрицательный вклад:** reduction, показывающая достаточность существующей cryptographic notion, либо impossibility без trusted randomness/peer diversity.
+13. **Сужение:** одна 2-D Reed–Solomon sampling scheme и сначала статический, а не адаптивный adversary.
+
+**Вердикт:** наиболее рискованный, но потенциально наиболее фундаментальный кандидат.
+
+---
+
+# РАЗДЕЛ 4. ТРИ ПОЛНЫЕ КАРТОЧКИ
+
+# Карточка 1. Основная тема
+
+## 1. Окончательное название на русском языке
+
+**Идентифицируемость причин остановки финализации в leader-based BFT-блокчейнах: минимальная телеметрия для различения селективного withholding и сетевой задержки**
+
+## 2. Название на английском языке
+
+**Diagnosability of Finality Stalls in Leader-Based BFT Blockchains: Minimal Telemetry for Distinguishing Selective Withholding from Network Delay**
+
+## 3. Формулировка для титульного листа
+
+**Исследование условий идентифицируемости причин остановки финализации в частично синхронных leader-based Byzantine fault-tolerant блокчейн-протоколах**
+
+## 4. Краткое описание понятным языком
+
+Когда блокчейн перестаёт финализировать блоки, внешне одинаковая картина может возникнуть по двум причинам: злонамеренный участник не передаёт необходимые сообщения либо сеть доставляет их слишком поздно. Работа должна установить, можно ли в принципе различить эти причины по доступным журналам событий и какой минимальный набор телеметрии для этого необходим.
+
+## 5. Актуальность
+
+Leader-based BFT protocols связывают liveness с частичной синхронностью, корректным leader и обменом quorum certificates. Существующие liveness checkers обнаруживают problematic executions, accountability systems используют защищённые журналы, а network-measurement systems восстанавливают отдельные свойства P2P overlay. Однако практический root-cause claim требует отдельного доказательства того, что две предполагаемые причины различимы при данном observation model. ([dl.acm.org](https://dl.acm.org/doi/10.1145/3293611.3331591))
+
+## 6. Научная проблема
+
+Отсутствует установленная для выбранного класса BFT-протоколов граница между:
+
+- fault pairs, неразличимыми по ledger-level или node-local traces;
+- fault pairs, которые становятся различимыми после GST;
+- наборами authenticated telemetry, достаточными и минимальными для такого различения.
+
+Проблема не состоит в отсутствии ещё одного detector. Неопределено само научное утверждение: **какие выводы о скрытой причине finality stall логически следуют из наблюдаемого trace**.
+
+## 7. Объект исследования
+
+Leader-based Byzantine fault-tolerant blockchain consensus protocols в модели partial synchrony.
+
+## 8. Предмет исследования
+
+Связь между классом скрытого сетевого или Byzantine fault, наблюдаемой проекцией protocol execution trace и возможностью конечной причинной диагностики.
+
+## 9. Цель
+
+Разработать и проверить формальную модель pairwise diagnosability finality stalls и установить минимальные условия наблюдаемости, при которых selective withholding отличим от admissible network delay.
+
+## 10. Задачи
+
+1. Формализовать выбранный HotStuff-like protocol как timed transition system.
+2. Определить fault classes для selective proposal/vote/QC withholding и benign delay/partition.
+3. Задать семейство observation maps для ledger-only, node-local и authenticated cross-node telemetry.
+4. Доказать невозможность или построить counterexamples для слабых observation models.
+5. Найти достаточные и по возможности минимальные telemetry sets после GST.
+6. Проверить формальные следствия в model checker и локальном simulator/testnet.
+
+## 11. Основной исследовательский вопрос
+
+**При каких предположениях о синхронности и наблюдаемости finality stall, вызванный selective Byzantine withholding, отличим от stall, вызванного допустимой сетевой задержкой, и какой минимальный набор authenticated events обеспечивает такое различение?**
+
+## 12. Дополнительные исследовательские вопросы
+
+- Возможна ли конечная диагностика до GST?
+- Достаточны ли ledger-level events и view changes?
+- Какие send, receive, timeout и QC-construction events являются незаменимыми?
+- Зависит ли минимальный набор от числа phases, quorum size или leader rotation?
+- Можно ли диагностировать конкретный faulty role или только класс причины?
+- Как изменяется bound при неполном доверии к локальным журналам?
+
+## 13. Основная гипотеза
+
+**[Спекулятивная гипотеза]** Ledger-only и unauthenticated local traces не позволяют в общем случае отличить selective withholding от admissible delay. После GST, при известной верхней границе доставки и наличии ограниченного набора authenticated receive/timeout/QC events, отдельные fault pairs становятся \(k\)-diagnosable за конечное число views.
+
+## 14. Предполагаемый механизм
+
+Пусть \(P\) — timed labelled transition system протокола, \(F_W\) и \(F_D\) — семейства executions с withholding и delay, а \(h_S\) — проекция на telemetry set \(S\).
+
+Пара причин является \(k\)-диагностируемой после GST, если не существует  
+\[
+\tau_W\in F_W,\quad \tau_D\in F_D
+\]
+таких, что после достаточно длинного suffix их проекции \(h_S(\tau_W)\) и \(h_S(\tau_D)\) остаются одинаковыми в течение \(k\) последовательных views.
+
+Задача минимальной телеметрии:
+\[
+\min_S c(S)\quad \text{при условии pairwise diagnosability}.
+\]
+
+## 15. Ближайшая альтернативная гипотеза
+
+После задания partial synchrony и authenticated logs обычный timeout-based failure detector либо PeerReview-style accountability уже содержит всю необходимую информацию; отдельный diagnosability formalism не даёт нового результата.
+
+## 16. Различающее предсказание
+
+Предлагаемая модель предсказывает три разных режима:
+
+1. **Невозможность:** до GST или при ledger-only observation существуют одинаково наблюдаемые delay и withholding executions.
+2. **Слабая диагностируемость:** причина различима только при полном cross-node logging.
+3. **Сильная диагностируемость:** существует строгий поднабор authenticated events, достаточный для различения за bounded number of views.
+
+Timeout classifier без causal model не предсказывает эту трёхрежимную границу.
+
+## 17. Ближайшие публикации
+
+- Sampath et al., *Diagnosability of Discrete-Event Systems*, IEEE TAC, 1995. ([ieeexplore.ieee.org](https://ieeexplore.ieee.org/document/412626/))
+- Doudou et al., *Muteness Failure Detectors*, EDCC 1999. ([link.springer.com](https://link.springer.com/chapter/10.1007/3-540-48254-7_7))
+- Haeberlen et al., *PeerReview*, SOSP 2007. ([dl.acm.org](https://dl.acm.org/doi/10.1145/1294261.1294279))
+- Decouchant et al., *Liveness Checking of the HotStuff Protocol Family*, PRDC 2023. ([research.tudelft.nl](https://research.tudelft.nl/en/publications/liveness-checking-of-the-hotstuff-protocol-family/))
+- Delgado-Segura et al., *TxProbe*, 2019. ([arxiv.org](https://arxiv.org/abs/1812.00942))
+- Li et al., *TopoShot*, IMC 2021. ([dl.acm.org](https://dl.acm.org/doi/10.1145/3487552.3487814))
+- Alangot et al., *Decentralized Lightweight Detection of Eclipse Attacks*, 2020. ([arxiv.org](https://arxiv.org/abs/2007.02287))
+
+## 18. Точное отличие от ближайших публикаций
+
+- **От Sampath et al.:** перенос diagnosability недостаточен; предлагается protocol-specific characterization с partial synchrony, Byzantine withholding и минимальной authenticated telemetry.
+- **От Muteness Failure Detectors:** различается malicious withholding и network delay, а не просто обнаруживается отсутствие ожидаемого ответа.
+- **От PeerReview:** минимизируется trusted observation и изучается невозможность при неполных логах; полная accountability не предполагается.
+- **От HotStuff liveness checking:** определяется причина liveness stall, а не только существование non-progress execution.
+- **От TxProbe/TopoShot:** не восстанавливается topology активным probing; формализуется достаточность пассивной protocol telemetry.
+- **От eclipse detectors:** рассматривается общий pairwise fault-isolation question, а не один attack signature.
+
+## 19. Предварительная формулировка научной новизны
+
+**[Предварительная, условная формулировка]** Предлагается формальная модель pairwise diagnosability finality stalls в partially synchronous leader-based BFT protocol, связывающая fault class, observation map и diagnosis delay; предполагается установить невозможность различения при ledger-only observation и достаточные или минимальные authenticated telemetry sets после GST.
+
+Формулировка допустима только после полного аудита diagnosability, failure-detector и accountability literature.
+
+## 20. Методология
+
+- timed labelled transition systems или timed automata;
+- observational equivalence;
+- diagnosability verification;
+- bounded model checking;
+- counterexample generation;
+- discrete-event simulation;
+- controlled fault injection;
+- локальный multi-node testnet;
+- абляция telemetry channels.
+
+## 21. Необходимые данные, выборка и материалы
+
+- формальная HotStuff-like specification;
+- synthetic executions с controlled schedules;
+- 4–7 виртуальных узлов;
+- traces отправки/получения proposal, vote, QC, timeout и view-change events;
+- две fault families;
+- при расширении — открытая HotStuff-like implementation.
+
+Исторический mainnet dataset не требуется, что соответствует ограничениям брифа. fileciteturn0file0
+
+## 22. Основные переменные и формальные объекты
+
+- fault class;
+- GST и post-GST delay bound;
+- leader correctness;
+- message type;
+- withholding policy;
+- observation set \(S\);
+- trusted/untrusted event source;
+- diagnosis delay \(k\);
+- telemetry cost \(c(S)\);
+- false indistinguishability class;
+- protocol phase и quorum structure.
+
+## 23. Предполагаемый способ анализа
+
+1. Генерировать пары executions из разных fault families.
+2. Проверять равенство их observable projections.
+3. Строить twin-plant/product automaton для поиска indistinguishable pairs.
+4. Оптимизировать observation set.
+5. Проверить теоретические результаты на randomized schedules.
+6. Сопоставить формальную модель и instrumented implementation traces.
+
+## 24. Минимальный пилот
+
+Четыре узла, \(f=1\), упрощённый HotStuff core:
+
+- execution 1: faulty leader selectively withholds proposal или QC;
+- execution 2: correct leader, но scheduler задерживает те же сообщения;
+- обе executions дают одинаковый ledger-level stall;
+- затем по одному добавляются receive, timeout, vote и QC events;
+- проверяется, какой минимальный event set разрушает эквивалентность после GST.
+
+## 25. Результат, опровергающий или пересматривающий гипотезу
+
+Гипотеза требует пересмотра, если:
+
+- ledger-only trace уже всегда различает рассматриваемые причины;
+- никакой неполный telemetry set не даёт bounded diagnosis даже после GST;
+- различение возможно только через предположение о доверенном полном журнале;
+- generic diagnosability theorem напрямую даёт весь требуемый результат без blockchain-specific structure.
+
+## 26. Вклад при положительном результате
+
+- новая protocol-level diagnosability property;
+- impossibility boundary для слабых traces;
+- sufficient/minimal telemetry theorem;
+- воспроизводимый model-checking artifact;
+- практическое основание для проектирования consensus observability.
+
+## 27. Вклад при отрицательном результате
+
+- доказательство невозможности надёжного root-cause attribution по стандартным traces;
+- lower bound на trusted telemetry;
+- демонстрация того, что внешне уверенные attack classifications неидентифицируемы;
+- уточнение границ accountability и monitoring architectures.
+
+## 28. Три главных риска
+
+1. Generic diagnosability и failure-detector theory могут уже имплицировать большую часть результата.
+2. Реалистичная Byzantine/adversarial scheduling model может вызвать state explosion.
+3. Minimal telemetry может зависеть от protocol-specific details сильнее, чем предполагается.
+
+## 29. Способ сузить тему
+
+Ограничиться:
+
+- трёхфазным HotStuff core;
+- \(n=4, f=1\);
+- proposal/QC withholding против bounded delay;
+- одним доверенным observer или одним instrumented replica;
+- safety считать уже доказанной и исследовать только diagnosis of liveness stall.
+
+## 30. Реалистичная последовательность выполнения
+
+1. Полный аудит diagnosability, failure detectors и PeerReview.
+2. Выбор двух fault classes.
+3. Формальная спецификация минимального HotStuff core.
+4. Построение ledger-only indistinguishability counterexample.
+5. Определение telemetry lattice.
+6. Проверка достаточности и минимальности.
+7. Реализация simulator/model checker.
+8. Локальная валидация на instrumented implementation.
+9. Анализ sensitivity к synchrony assumptions.
+10. Оформление proof, artifact и limitations.
+
+## 31. Стартовые источники
+
+1. Fischer, Lynch, Paterson. *Impossibility of Distributed Consensus with One Faulty Process*. JACM, 1985. DOI 10.1145/3149.214121. ([dl.acm.org](https://dl.acm.org/doi/10.1145/3149.214121))
+2. Dwork, Lynch, Stockmeyer. *Consensus in the Presence of Partial Synchrony*. JACM, 1988. DOI 10.1145/42282.42283. ([dl.acm.org](https://dl.acm.org/doi/10.1145/42282.42283))
+3. Yin et al. *HotStuff: BFT Consensus with Linearity and Responsiveness*. PODC 2019. DOI 10.1145/3293611.3331591. ([dl.acm.org](https://dl.acm.org/doi/10.1145/3293611.3331591))
+4. Sampath et al. *Diagnosability of Discrete-Event Systems*. IEEE TAC, 1995. DOI 10.1109/9.412626. ([ieeexplore.ieee.org](https://ieeexplore.ieee.org/document/412626/))
+5. Doudou et al. *Muteness Failure Detectors*. EDCC 1999. DOI 10.1007/3-540-48254-7_7. ([link.springer.com](https://link.springer.com/chapter/10.1007/3-540-48254-7_7))
+6. Haeberlen, Kuznetsov, Druschel. *PeerReview*. SOSP 2007. DOI 10.1145/1294261.1294279. ([dl.acm.org](https://dl.acm.org/doi/10.1145/1294261.1294279))
+7. Decouchant et al. *Liveness Checking of the HotStuff Protocol Family*. PRDC 2023. DOI 10.1109/PRDC59308.2023.00029. ([research.tudelft.nl](https://research.tudelft.nl/en/publications/liveness-checking-of-the-hotstuff-protocol-family/))
+8. Delgado-Segura et al. *TxProbe*. arXiv:1812.00942. ([arxiv.org](https://arxiv.org/abs/1812.00942))
+9. Li et al. *TopoShot*. IMC 2021. DOI 10.1145/3487552.3487814. ([dl.acm.org](https://dl.acm.org/doi/10.1145/3487552.3487814))
+10. Aoki et al. *SimBlock*. arXiv:1901.09777. ([arxiv.org](https://arxiv.org/abs/1901.09777))
+
+## 32. Вопросы для научного руководителя
+
+- Достаточно ли сузить protocol family до HotStuff-like BFT?
+- Какие две fault causes считать научно и практически наиболее значимыми?
+- Принимать ли GST и известный post-GST bound как часть основной модели?
+- Какой уровень доверия к node logs реалистичен?
+- Требуется ли доказательство минимальности telemetry либо достаточно impossibility + sufficiency?
+- Какой model checker предпочтителен: TLA+/Apalache, UPPAAL, Ivy, Quint или собственный finite-state checker?
+- На какую аудиторию ориентировать работу: distributed systems, dependable computing или blockchain security?
+
+---
+
+# Карточка 2. Наиболее надёжная тема
+
+## 1. Название на русском языке
+
+**Достаточность конфликтных спецификаций для сохранения консенсус-видимой семантики при параллельном исполнении смарт-контрактов**
+
+## 2. Название на английском языке
+
+**Sufficiency of Conflict Specifications for Preserving Consensus-Visible Semantics in Parallel Smart-Contract Execution**
+
+## 3. Формулировка для титульного листа
+
+**Формальная проверка достаточности зависимостей транзакций для семантически корректного параллельного исполнения смарт-контрактов**
+
+## 4. Краткое описание
+
+Работа проверяет, достаточно ли стандартного учёта read/write conflicts, чтобы параллельное исполнение полностью совпадало с предписанным последовательным не только по итоговому состоянию, но также по статусам транзакций, return values, logs, receipts и resource accounting.
+
+## 5. Актуальность
+
+Block-STM, conflict-specification systems, Vegeta и ParallelEVM развивают детерминированное параллельное исполнение, но публикационная ценность новой работы не может состоять в ещё одном speedup. Научный вопрос возникает вокруг точного определения корректного observable outcome и sufficiency dependency abstraction. Теория Bartoletti et al. уже формализует observability и поэтому задаёт высокую планку novelty. ([lmcs.episciences.org](https://lmcs.episciences.org/8722))
+
+## 6. Научная проблема
+
+Необходимо установить, гарантирует ли conflict relation, используемая для parallel scheduling, equivalence относительно **всех** consensus-visible effects выбранной VM, а не только world-state projection.
+
+## 7. Объект
+
+Детерминированное исполнение упорядоченных блоков транзакций в replicated smart-contract virtual machines.
+
+## 8. Предмет
+
+Условия, при которых conflict specifications и rollback/resource semantics гарантируют observational equivalence параллельного и предписанного последовательного исполнения.
+
+## 9. Цель
+
+Определить consensus-visible observation relation и установить необходимые или достаточные условия soundness conflict specifications для parallel execution.
+
+## 10. Задачи
+
+1. Систематизировать формальные guarantees существующих parallel engines.
+2. Определить observation tuple для consensus-visible semantics.
+3. Формализовать conflict specifications и parallel schedules.
+4. Найти counterexamples к слабым specifications.
+5. Доказать sufficiency для усиленной relation либо ограниченного класса VM.
+6. Реализовать property-based validation на synthetic contracts.
+
+## 11. Основной вопрос
+
+**Какие классы зависимостей между транзакциями должны быть отражены в conflict specification, чтобы любое допустимое параллельное исполнение было эквивалентно предписанному последовательному по полному consensus-visible outcome?**
+
+## 12. Дополнительные вопросы
+
+- Достаточно ли key-level read/write conflicts?
+- Нужно ли моделировать control, exception, event и resource dependencies?
+- Когда final-state equivalence строго слабее receipt/log equivalence?
+- Какие компоненты observation tuple действительно входят в consensus?
+- Сохраняется ли результат между EVM-like и Move-like semantics?
+
+## 13. Гипотеза
+
+**[Спекулятивная гипотеза]** Final-state serializability и обычная key-level conflict relation недостаточны для сохранения полного consensus-visible outcome при наличии исключений, reverts, event emission и protocol-visible resource rules.
+
+## 14. Механизм
+
+Вводится свойство **resource-observable serializability**:
+
+\[
+O(E_{\parallel}(B))=O(E_{\mathrm{seq}}(B,\prec)),
+\]
+
+где \(\prec\) — consensus-prescribed transaction order, а \(O\) включает выбранные consensus-visible компоненты.
+
+Conflict specification \(C\) является sound, если любое execution schedule, разрешённое \(C\), удовлетворяет этому равенству.
+
+## 15. Альтернативная гипотеза
+
+При детерминированной VM и корректном commit/rollback классическая serializability уже имплицирует равенство всех observable effects; отдельная resource-observable relation лишь переименовывает известное свойство.
+
+## 16. Различающее предсказание
+
+Слабая модель предсказывает корректность при одинаковом final state. Предлагаемая модель допускает counterexample, где final state одинаков, но расходятся transaction status, event sequence, return value или protocol-visible resource result.
+
+## 17. Ближайшие публикации
+
+- Bartoletti et al., *A Theory of Transaction Parallelism in Blockchains*. ([lmcs.episciences.org](https://lmcs.episciences.org/8722))
+- Gelashvili et al., *Block-STM*. ([dl.acm.org](https://dl.acm.org/doi/10.1145/3572848.3577524))
+- Anjana et al., *Conflict Specifications*, AFT 2025. ([drops.dagstuhl.de](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.AFT.2025.29))
+- Xu et al., *Vegeta*, NSDI 2025. ([usenix.org](https://www.usenix.org/conference/nsdi25/presentation/xu-tianjing))
+- Lin et al., *ParallelEVM*, EuroSys 2025. ([dl.acm.org](https://dl.acm.org/doi/10.1145/3689031.3696063?utm_source=chatgpt.com))
+- Hildenbrandt et al., *KEVM*, CSF 2018. ([ieeexplore.ieee.org](https://ieeexplore.ieee.org/document/8429306/?utm_source=chatgpt.com))
+- Chen et al., *Forerunner*, SOSP 2021. ([dl.acm.org](https://dl.acm.org/doi/10.1145/3477132.3483564?utm_source=chatgpt.com))
+- Liu et al., *Remora*, 2026. ([zenodo.org](https://zenodo.org/records/20449448?utm_source=chatgpt.com))
+
+## 18. Точное отличие
+
+- **Bartoletti et al.:** тема жизнеспособна только как строгая специализация или расширение их observable equivalence на consensus-visible resource/receipt effects и conflict-spec sufficiency.
+- **Block-STM:** correctness abstraction исследуется независимо от engine performance.
+- **Conflict Specifications:** проверяется soundness declared conflicts, а не их вклад в speedup.
+- **Vegeta/ParallelEVM:** не предлагается новый concurrency-control algorithm.
+- **KEVM:** executable semantics используется как reference, но новый вопрос относится к parallel composition.
+- **Forerunner/Remora:** не разрабатывается speculative или scale-out architecture; проверяется semantics-preservation boundary.
+
+## 19. Предварительная новизна
+
+**[Условная формулировка]** Формализация consensus-visible observation tuple и characterization достаточности conflict specifications для его сохранения при parallel execution, включая minimal counterexamples для слабых dependency models.
+
+## 20. Методология
+
+- small-step operational semantics;
+- observational equivalence;
+- serializability theory;
+- dependency/conflict analysis;
+- theorem proving или mechanized checking;
+- property-based generation;
+- differential execution against reference interpreter;
+- mutation testing conflict specifications.
+
+## 21. Данные и материалы
+
+- собственная малая deterministic VM;
+- synthetic contract/program pairs;
+- official EVM tests;
+- KEVM либо другой reference interpreter;
+- open-source Block-STM/parallel-EVM artifacts при технической доступности;
+- EVM или Move bytecode subsets.
+
+## 22. Переменные и формальные объекты
+
+- transaction order;
+- read/write/control/event/resource dependency;
+- conflict declaration;
+- schedule;
+- rollback policy;
+- status/revert;
+- event log;
+- resource counter;
+- final state;
+- observation tuple;
+- equivalence class.
+
+## 23. Анализ
+
+- symbolic enumeration минимальных transaction pairs;
+- execution under all topological schedules;
+- equivalence checking;
+- delta debugging counterexamples;
+- proof of sufficiency for strengthened conflict relation;
+- ablation отдельных observation components.
+
+## 24. Минимальный пилот
+
+Создать малую VM с key-value state, exceptions, event emission и resource counter. Сгенерировать 10–20 пар транзакций и проверить:
+
+- одинаковый final state;
+- разные intermediate/control paths;
+- возможное различие status/log/resource outcome;
+- способность различных conflict relations предсказать divergence.
+
+## 25. Фальсификатор
+
+- Все рассматриваемые observable effects автоматически являются функцией final state и transaction order.
+- Формальная теория 2021 года уже прямо доказывает идентичный general result.
+- Counterexamples возникают только из incorrect implementation, а не из specification weakness.
+
+## 26. Положительный вклад
+
+- precise correctness criterion;
+- minimal counterexamples;
+- sufficient conflict relation;
+- test oracle для parallel execution engines;
+- переносимый результат для класса deterministic VMs.
+
+## 27. Отрицательный вклад
+
+- equivalence theorem, показывающая достаточность классической observability;
+- доказательство, что дополнительная resource relation не усиливает guarantee при чётко заданных VM assumptions;
+- установление минимальных предположений, при которых упрощённая проверка корректна.
+
+## 28. Три риска
+
+1. Сильное пересечение с Bartoletti et al.
+2. Нечёткая граница consensus-visible и implementation-local resource effects.
+3. Риск получить только набор engineering bugs вместо общего результата.
+
+## 29. Сужение
+
+Одна EVM-like VM, только:
+
+- status/revert;
+- logs;
+- deterministic gas/resource counter;
+- fixed transaction order;
+- без cross-shard или distributed execution.
+
+## 30. Последовательность
+
+1. Полный разбор Bartoletti et al.
+2. Таблица guarantees существующих engines.
+3. Определение observation tuple.
+4. Small semantics.
+5. Exhaustive counterexample search.
+6. Формулировка strengthened conflict relation.
+7. Proof/model checking.
+8. EVM/Move validation.
+9. Artifact и paper.
+
+## 31. Стартовые источники
+
+1. Bartoletti, Galletta, Murgia. *A Theory of Transaction Parallelism in Blockchains*. LMCS 2021. DOI 10.46298/lmcs-17(4:10)2021. ([lmcs.episciences.org](https://lmcs.episciences.org/8722))
+2. Gelashvili et al. *Block-STM*. PPoPP 2023. DOI 10.1145/3572848.3577524. ([dl.acm.org](https://dl.acm.org/doi/10.1145/3572848.3577524))
+3. Anjana et al. *Efficient Parallel Execution… Leveraging Conflict Specifications*. AFT 2025. DOI 10.4230/LIPIcs.AFT.2025.29. ([drops.dagstuhl.de](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.AFT.2025.29))
+4. Xu et al. *Vegeta*. NSDI 2025. ([usenix.org](https://www.usenix.org/conference/nsdi25/presentation/xu-tianjing))
+5. Lin et al. *ParallelEVM*. EuroSys 2025. DOI 10.1145/3689031.3696063. ([dl.acm.org](https://dl.acm.org/doi/10.1145/3689031.3696063?utm_source=chatgpt.com))
+6. Hildenbrandt et al. *KEVM*. CSF 2018. DOI 10.1109/CSF.2018.00022. ([fsl.cs.illinois.edu](https://fsl.cs.illinois.edu/publications/hildenbrandt-saxena-zhu-rodrigues-daian-guth-moore-zhang-park-rosu-2018-csf.pdf?utm_source=chatgpt.com))
+7. Chen et al. *Forerunner*. SOSP 2021. DOI 10.1145/3477132.3483564. ([dl.acm.org](https://dl.acm.org/doi/10.1145/3477132.3483564?utm_source=chatgpt.com))
+8. Qi et al. *Smart Contract Parallel Execution with Fine-Grained State Accesses*, 2023. ([personal.ntu.edu.sg](https://personal.ntu.edu.sg/yi_li/files/Qi2023SCP.pdf?utm_source=chatgpt.com))
+9. Liu et al. *Remora: Scale-out Deterministic Execution for Smart Contracts*. arXiv:2607.02817. ([scirate.com](https://scirate.com/?date=2026-07-11&page=135&range=31&utm_source=chatgpt.com))
+10. Garamvölgyi et al. *Utilizing Parallelism in Smart Contracts on Decentralized Blockchains*, ICSE 2022. ([cs.toronto.edu](https://www.cs.toronto.edu/~fanl/papers/parallel-icse22.pdf?utm_source=chatgpt.com))
+
+## 32. Вопросы руководителю
+
+- Считать ли Bartoletti et al. исходной теорией и строить работу как её строгую специализацию?
+- Какой observation tuple действительно должен быть consensus-visible?
+- Выбирать EVM, Move или собственную минимальную VM?
+- Нужна ли mechanized proof или достаточно exhaustive finite model?
+- Как избежать превращения результата в collection of implementation bugs?
+- Подходит ли формат formal methods + systems validation для предполагаемой площадки?
+
+---
+
+# Карточка 3. High-risk/high-reward тема
+
+## 1. Название на русском языке
+
+**Корреляционно-устойчивая корректность выборочной проверки доступности данных при адаптивном сетевом противнике**
+
+## 2. Название на английском языке
+
+**Correlation-Robust Soundness of Data Availability Sampling under an Adaptive Network Adversary**
+
+## 3. Формулировка для титульного листа
+
+**Формальная модель корректности data availability sampling при коррелированных сетевых наблюдениях и адаптивном withholding**
+
+## 4. Краткое описание
+
+Обычная интуиция DAS предполагает, что несколько случайных samples дают независимые шансы обнаружить скрытые данные. Реальная сеть может направлять запросы к зависимым peers, повторно выдавать связанные fragments или адаптивно отвечать только на безопасные для противника queries. Работа проверяет, как такая зависимость меняет soundness.
+
+## 5. Актуальность
+
+Современная DAS-литература уже включает formal cryptographic foundations, FRI-based schemes, PeerDAS, network-aware protocols, Byzantine peer sampling и targeted attacks. Именно поэтому сильный новый результат должен находиться на границе криптографической модели и сетевого observation process, а не предлагать ещё один erasure code или routing algorithm. ([cic.iacr.org](https://cic.iacr.org/p/1/4/34))
+
+## 6. Научная проблема
+
+Неопределено, при каких условиях реальное совместное распределение полученных samples позволяет применять cryptographic false-accept bound, выведенный для идеализированного verifier sampling process.
+
+## 7. Объект
+
+Data availability sampling protocols для erasure-coded blockchain data.
+
+## 8. Предмет
+
+Влияние корреляции sample indices, peer identities, custody assignments и adaptive responses на вероятность ложного принятия unavailable data.
+
+## 9. Цель
+
+Построить композиционную модель DAS soundness, учитывающую network-induced dependence, и получить bound, impossibility result или sufficient diversity condition.
+
+## 10. Задачи
+
+1. Разобрать formal security games Foundations of DAS и PeerDAS.
+2. Определить ideal independent sampling baseline.
+3. Формализовать correlated/adaptive network observation process.
+4. Вывести bound через effective diversity, dependency или conditional entropy.
+5. Построить adversarial examples с одинаковыми marginals.
+6. Проверить модель на simulation scenarios, приближённых к PeerDAS/PANDAS.
+
+## 11. Основной вопрос
+
+**Какие свойства совместного распределения peer/index observations необходимы и достаточны, чтобы стандартная cryptographic soundness guarantee DAS сохранялась при адаптивном сетевом противнике?**
+
+## 12. Дополнительные вопросы
+
+- Достаточно ли числа уникальных sampled indices?
+- Как peer correlation отличается от index correlation?
+- Может ли adversary адаптивно цензурировать ответы после наблюдения query?
+- Каков минимальный diversity condition?
+- Возможно ли black-box composition theorem?
+- Какие guarantees даёт Byzantine-resistant peer sampling?
+
+## 13. Гипотеза
+
+**[Спекулятивная гипотеза]** Nominal sample count и marginal uniformity недостаточны. Soundness определяется эффективной совместной разнообразностью observations; adversary может сохранить uniform marginals, но существенно увеличить false acceptance за счёт correlation и adaptive response censorship.
+
+## 14. Механизм
+
+Пусть \(X_1,\dots,X_k\) — фактически наблюдаемые sample indices, \(P_1,\dots,P_k\) — peers, а \(R_i\) — события получения ответа. Вместо предположения независимости задаётся joint law
+
+\[
+Q(X_{1:k},P_{1:k},R_{1:k}\mid A),
+\]
+
+где \(A\) — стратегия adversary.
+
+Искомая guarantee выражается как функция:
+
+\[
+\Pr[\text{accept unavailable data}]
+ \leq \varepsilon(n,k,w,\mathcal D_{\mathrm{eff}},A),
+\]
+
+где \(\mathcal D_{\mathrm{eff}}\) — мера эффективной sample diversity. Точная форма функции является результатом, а не предпосылкой.
+
+## 15. Альтернативная гипотеза
+
+Formal DAS security game уже допускает произвольного adaptive adversary, поэтому network-induced correlation полностью поглощается существующим определением; требуется лишь корректная reduction от реализации к security game.
+
+## 16. Различающее предсказание
+
+При одинаковых:
+
+- \(k\);
+- marginal distribution каждого \(X_i\);
+- withheld fraction;
+
+две системы с разной joint dependence будут иметь разные false-accept probabilities. Модель, использующая только \(k\) и withholding fraction, этого не предсказывает.
+
+## 17. Ближайшие публикации
+
+- Yu et al., *Coded Merkle Tree*. ([dl.acm.org](https://dl.acm.org/doi/10.1007/978-3-030-51280-4_8))
+- Al-Bassam et al., *Fraud and Data Availability Proofs*. ([arxiv.org](https://arxiv.org/abs/1809.09044))
+- Hall-Andersen et al., *Foundations of Data Availability Sampling*. ([cic.iacr.org](https://cic.iacr.org/p/1/4/34))
+- Hall-Andersen et al., *FRIDA*. ([eprint.iacr.org](https://eprint.iacr.org/2024/248))
+- Wagner, Zapico, *A Documentation of Ethereum’s PeerDAS*. ([eprint.iacr.org](https://eprint.iacr.org/2024/1362))
+- Pigaglio et al., *PANDAS*. ([arxiv.org](https://arxiv.org/abs/2507.00824))
+- Zhang, Venkatakrishnan, *Honeybee*. ([arxiv.org](https://arxiv.org/abs/2402.16201))
+- Madisetti et al., *Targeted Sampling*. ([doi.org](https://doi.org/10.1109/ITW62417.2025.11240529))
+- Minh et al., *Coded Distributed Arrays*, ICBC 2026. ([arxiv.org](https://arxiv.org/abs/2606.16200))
+
+## 18. Точное отличие
+
+- **От CMT и Fraud/DA proofs:** не меняется code/commitment; исследуется observation dependence.
+- **От Foundations:** либо строится reduction от сетевого процесса к security game, либо показывается отсутствующее assumption.
+- **От FRIDA:** не оптимизируется cryptographic construction.
+- **От PeerDAS:** не документируется конкретный protocol, а формализуется soundness composition.
+- **От PANDAS:** не решается deadline/performance dissemination problem.
+- **От Honeybee:** peer-sampling quality связывается с конечной DAS soundness, а не рассматривается отдельно.
+- **От Targeted Sampling:** модель должна быть шире конкретного targeted pattern и охватывать joint peer/index dependence; это отличие требует наиболее тщательной проверки.
+- **От CDA 2026:** не предлагается coded network architecture; вывод должен быть архитектурно-независимым.
+
+## 19. Предварительная новизна
+
+**[Условная формулировка]** Предлагается composition framework, связывающий cryptographic DAS soundness с joint distribution реально наблюдаемых peer/index samples, и characterization потери гарантии при correlated или adaptively censored observations.
+
+## 20. Методология
+
+- cryptographic game analysis;
+- probabilistic coupling;
+- dependency graphs или conditional entropy;
+- adversarial optimization;
+- symbolic derivation bounds;
+- Monte Carlo validation;
+- sensitivity analysis;
+- simulation of peer sampling and withholding.
+
+## 21. Данные и материалы
+
+- synthetic availability matrices;
+- Reed–Solomon или simplified erasure-code model;
+- PeerDAS specification;
+- PANDAS/Honeybee peer-selection models;
+- open-source simulation code;
+- \(n=256\)–\(1024\) shares;
+- \(k=10\)–\(40\) nominal samples;
+- controlled adversarial peer clusters.
+
+## 22. Основные переменные
+
+- total shares \(n\);
+- reconstruction threshold;
+- withheld set;
+- nominal samples \(k\);
+- unique indices;
+- peer diversity;
+- joint correlation;
+- adversarial knowledge;
+- adaptive response policy;
+- false-accept probability;
+- effective diversity;
+- network deadline.
+
+## 23. Анализ
+
+1. Зафиксировать marginals.
+2. Построить различные joint distributions.
+3. Вычислить или оценить false acceptance.
+4. Найти worst-case coupling.
+5. Проверить sufficient diversity conditions.
+6. Сравнить independent, clustered, Sybil-biased и adaptive-censored settings.
+7. Провести абляции peer и index dependence.
+
+## 24. Минимальный пилот
+
+- 2-D codeword с \(n=256\);
+- один unavailable pattern;
+- \(k=20\);
+- independent sampling;
+- sampling через 4 correlated peer groups;
+- adaptive responder, видящий query;
+- одинаковые marginals;
+- оценка false acceptance по exhaustive enumeration либо Monte Carlo.
+
+## 25. Фальсификатор
+
+- Existing formal DAS definition уже даёт идентичный bound без independence assumptions.
+- При фиксированных marginals correlation не изменяет false acceptance в рассматриваемом security game.
+- Targeted Sampling 2025 содержит ту же general joint-dependence characterization.
+- Network process невозможно связать с криптографической моделью без protocol-specific assumptions.
+
+## 26. Положительный вклад
+
+- cross-layer composition theorem;
+- effective-diversity condition;
+- lower bound или attack construction;
+- критерий, когда nominal \(k\) является некорректным security parameter;
+- principled connection between peer sampling and DAS.
+
+## 27. Отрицательный вклад
+
+- reduction, доказывающая достаточность existing DAS security notion;
+- формальное объяснение, что correlation уже учтена на уровне adversarial game;
+- impossibility of black-box composition без trusted sampling randomness;
+- точная граница, какие сетевые assumptions необходимы.
+
+## 28. Три риска
+
+1. Прямое пересечение с Targeted Sampling и Foundations of DAS.
+2. Высокая сложность криптографической формализации.
+3. Риск построить нереалистичную network-adversary model.
+
+## 29. Сужение
+
+Первая версия:
+
+- одна 2-D Reed–Solomon scheme;
+- статический withheld set;
+- correlation только через peer groups;
+- без adaptive corruption;
+- theorem или counterexample для equal-marginal joint distributions.
+
+Адаптивный adversary становится расширением.
+
+## 30. Последовательность
+
+1. Полный разбор security game Foundations of DAS.
+2. Полный разбор Targeted Sampling.
+3. Формализация independent baseline.
+4. Equal-marginal correlated counterexample.
+5. Выбор effective-diversity measure.
+6. Bound или impossibility theorem.
+7. Simulator.
+8. PeerDAS/PANDAS instantiation.
+9. Проверка model realism с экспертом.
+10. Оформление paper и artifact.
+
+## 31. Стартовые источники
+
+1. Yu et al. *Coded Merkle Tree*. FC 2020. DOI 10.1007/978-3-030-51280-4_8. ([dl.acm.org](https://dl.acm.org/doi/10.1007/978-3-030-51280-4_8))
+2. Al-Bassam, Sonnino, Buterin. *Fraud and Data Availability Proofs*. DOI 10.1007/978-3-662-64331-0_15. ([arxiv.org](https://arxiv.org/abs/1809.09044))
+3. Hall-Andersen, Simkin, Wagner. *Foundations of Data Availability Sampling*. DOI 10.62056/a09qudhdj. ([cic.iacr.org](https://cic.iacr.org/p/1/4/34))
+4. Hall-Andersen, Simkin, Wagner. *FRIDA*. CRYPTO 2024. DOI 10.1007/978-3-031-68391-6_9. ([eprint.iacr.org](https://eprint.iacr.org/2024/248))
+5. Wagner, Zapico. *A Documentation of Ethereum’s PeerDAS*. ePrint 2024/1362. ([eprint.iacr.org](https://eprint.iacr.org/2024/1362))
+6. Pigaglio et al. *PANDAS*. Middleware 2025. DOI 10.1145/3721462.3770769. ([dl.acm.org](https://dl.acm.org/doi/10.1145/3721462.3770769))
+7. Zhang, Venkatakrishnan. *Honeybee*. arXiv:2402.16201; DOI 10.1145/3704413.3764424. ([dl.acm.org](https://dl.acm.org/doi/10.1145/3704413.3764424))
+8. Madisetti, Tauz, Dolecek. *Data Availability Attacks: Targeted Sampling…*. ITW 2025. DOI 10.1109/ITW62417.2025.11240529. ([doi.org](https://doi.org/10.1109/ITW62417.2025.11240529))
+9. Nazirkhanova, Neu, Tse. *Information Dispersal with Provable Retrievability for Rollups*. AFT 2022. DOI 10.1145/3558535.3559778. ([arxiv.org](https://arxiv.org/abs/2111.12323?utm_source=chatgpt.com))
+10. Minh, Huu, Tran. *Efficient Data Availability Sampling via Coded Distributed Arrays*. ICBC 2026, arXiv:2606.16200. ([arxiv.org](https://arxiv.org/abs/2606.16200))
+
+## 32. Вопросы руководителю
+
+- Достаточен ли уровень математической подготовки для cryptographic game analysis?
+- Нужно ли сначала ограничиться статическим adversary?
+- Какую DAS construction выбрать как основной instance?
+- Является ли Targeted Sampling уже слишком близкой работой?
+- Требовать theorem, impossibility result или достаточно formal counterexample family?
+- Кто может проверить корректность выбранной cryptographic terminology?
+- Подходит ли тема для первой самостоятельной blockchain paper или разумнее оставить её вторым проектом?
+
+---
+
+# РАЗДЕЛ 5. РЕКОМЕНДАЦИЯ
+
+## 5.1. Три профиля
+
+### Наиболее надёжная тема
+
+**Достаточность конфликтных спецификаций для сохранения consensus-visible semantics при параллельном исполнении.**
+
+Причины: минимальные модели, синтетические программы, отсутствие зависимости от сети и возможность получить как counterexample, так и equivalence theorem. Главный недостаток — высокая угроза от теории Bartoletti et al.
+
+### Наиболее сильная в научном отношении
+
+**Идентифицируемость причин остановки финализации в leader-based BFT-блокчейнах.**
+
+Она объединяет distributed systems, formal methods и protocol diagnostics и даёт ясную новую единицу анализа: не факт failure, а отношение между причиной, наблюдением и возможностью её установить.
+
+### Наиболее рискованная, но потенциально ценная
+
+**Корреляционно-устойчивая DAS soundness.**
+
+Успешный composition theorem был бы фундаментальным cross-layer результатом. Но область быстро развивается, а Targeted Sampling и network-aware DAS создают высокий риск совпадения.
+
+## 5.2. Сравнение основной тройки
+
+| Критерий | Диагностируемость BFT | Parallel semantics | Correlation-robust DAS |
+|---|---|---|---|
+| Соответствие брифу | Очень высокое | Очень высокое | Очень высокое |
+| Научная содержательность | Очень высокая | Высокая | Потенциально очень высокая |
+| Отличие от ближайшей литературы | Средне-сильное, ясно формулируемое | Условное, зависит от Bartoletti et al. | Потенциально сильное, но неустойчивое |
+| Реализуемость | Высокая после сужения | Наиболее высокая | Средняя–низкая |
+| Доступность данных | Полная, traces генерируются | Полная, программы генерируются | Полная, simulation-based |
+| Вклад отрицательного результата | Impossibility/lower bound | Equivalence/sufficiency theorem | Reduction/impossibility theorem |
+| Главная неопределённость | Prior art по failure diagnosis | Полнота существующей observable equivalence | Сложность криптографии и Targeted Sampling |
+
+## 5.3. Основная рекомендация
+
+### **Выбрать тему A: идентифицируемость причин остановки финализации**
+
+**Соответствие брифу.** Тема находится непосредственно на protocol/system level, использует formal representation, adversarial scheduling, safety/liveness context и controlled experiments. Она не зависит от исторических данных, ML или одной сети.
+
+**Научная содержательность.** Исследуется не производительность detector, а принципиальная идентифицируемость скрытой причины. Это позволяет получить theorem, counterexample, lower bound и minimal observation condition.
+
+**Отличие от литературы.** Generic diagnosability, muteness detectors, PeerReview и HotStuff liveness checking покрывают отдельные компоненты, но предлагаемая novelty delta формулируется как pairwise fault isolation under partial synchrony with minimal authenticated telemetry.
+
+**Реализуемость.** Минимальный результат может быть получен на finite-state HotStuff-like модели из четырёх узлов. Production client integration не является критическим условием.
+
+**Доступность данных.** Все необходимые traces генерируются локально. Никакие archive nodes, mainnet funds или закрытые данные не нужны.
+
+**Информативность отрицательного результата.** Если механизм диагностики не существует, это не «неуспех detector», а научно значимый impossibility result: стандартная телеметрия не позволяет обоснованно отличить атаку от допустимого сетевого поведения.
+
+---
+
+# РАЗДЕЛ 6. ГОТОВЫЙ БЛОК ДЛЯ НАУЧНОГО РУКОВОДИТЕЛЯ
+
+## Тема
+
+**Идентифицируемость причин остановки финализации в leader-based BFT-блокчейнах: минимальная телеметрия для различения селективного withholding и сетевой задержки**
+
+## Актуальность
+
+В leader-based Byzantine fault-tolerant блокчейнах одинаковый наблюдаемый finality stall может быть вызван как злонамеренным удержанием protocol messages, так и допустимой сетевой задержкой. Существующие исследования формализуют liveness, failure detection, accountability и обнаружение отдельных сетевых атак, однако для обоснованной причинной диагностики необходимо отдельно установить, различимы ли предполагаемые причины при данном наборе наблюдаемых событий. ([dl.acm.org](https://dl.acm.org/doi/10.1145/3293611.3331591))
+
+## Научная проблема
+
+Не определены достаточные и минимальные условия наблюдаемости, при которых finality stall, вызванный selective Byzantine withholding, можно отличить от stall, вызванного admissible network delay. Неизвестно также, какие пары причин принципиально неразличимы до GST или по ledger-only traces.
+
+## Объект исследования
+
+Leader-based BFT consensus protocols для блокчейн-систем в модели partial synchrony.
+
+## Предмет исследования
+
+Связь между fault class, synchrony assumptions, observable protocol trace и возможностью конечной диагностики причины отсутствия финализации.
+
+## Цель
+
+Разработать формальную модель pairwise diagnosability finality stalls и установить минимальный набор authenticated telemetry, достаточный для различения selective withholding и network delay.
+
+## Задачи
+
+1. Формализовать минимальный HotStuff-like protocol как timed transition system.
+2. Задать fault families для selective withholding и admissible delay.
+3. Определить ledger-only, node-local и authenticated cross-node observation maps.
+4. Построить counterexamples неразличимости для слабой телеметрии.
+5. Получить достаточные и по возможности минимальные telemetry conditions после GST.
+6. Проверить результаты в model checker и локальном simulator/testnet.
+
+## Основной исследовательский вопрос
+
+При каких предположениях о синхронности и наблюдаемости selective Byzantine withholding отличим от admissible network delay и какой минимальный набор protocol events обеспечивает такое различение?
+
+## Дополнительные исследовательские вопросы
+
+- Возможна ли bounded diagnosis до GST?
+- Достаточны ли view-change и timeout events?
+- Какие send/receive/QC events являются незаменимыми?
+- Как diagnosis delay зависит от protocol phases и leader rotation?
+- Можно ли различить конкретный faulty role или только общий класс причины?
+
+## Гипотеза
+
+Ledger-only traces в общем случае недостаточны: существуют withholding и delay executions с одинаковой наблюдаемой проекцией. После GST и при наличии ограниченного набора authenticated receive, timeout и quorum-certificate events отдельные fault pairs становятся диагностируемыми за конечное число views.
+
+## Предполагаемая научная новизна
+
+Предлагается protocol-specific модель pairwise diagnosability finality stalls, связывающая fault class, observation map и diagnosis delay, а также characterization невозможности при слабом наблюдении и достаточности минимальной authenticated telemetry.
+
+В обследованной литературе не обнаружена работа, одновременно формулирующая этот вопрос, предлагающая указанную модель и проверяющая minimality/indistinguishability на BFT blockchain protocol. Заявление предварительное и требует полного аудита diagnosability, failure-detector и accountability literature.
+
+## Методы
+
+Timed labelled transition systems, observational equivalence, diagnosability analysis, bounded model checking, counterexample generation, discrete-event simulation, controlled fault injection и локальный multi-node testnet.
+
+## Данные или материалы
+
+Формальная HotStuff-like specification, самостоятельно сгенерированные protocol traces, model checker, simulator и при расширении одна открытая implementation. Исторические mainnet данные и платная инфраструктура не требуются.
+
+## Ожидаемый научный вклад
+
+- формальная diagnosability property для finality stalls;
+- impossibility result для ledger-only observation;
+- sufficient или minimal telemetry theorem;
+- воспроизводимый model-checking artifact;
+- рекомендации по проектированию protocol observability.
+
+## Вклад при отрицательном результате
+
+Если различение невозможно, результатом станет lower bound на необходимую trusted telemetry либо доказательство неидентифицируемости причины по стандартным traces. Это ограничит допустимые root-cause claims в системах мониторинга.
+
+## Основные риски
+
+1. Generic diagnosability theory может уже имплицировать часть результата.
+2. Реалистичная модель вызовет state-space explosion.
+3. Минимальный telemetry set окажется protocol-specific.
+
+## Минимальный пилот
+
+Реализовать четырёхузловую HotStuff-like модель с одним faulty leader и построить два ledger-equivalent execution traces: selective withholding и benign delay. Затем последовательно добавлять timeout, receive, vote и QC events и искать минимальный набор, разрушающий observational equivalence.
+
+## Первый практический шаг
+
+Полностью разобрать Sampath et al., Muteness Failure Detectors, PeerReview и HotStuff liveness checking, после чего формально записать две fault families и попытаться автоматически построить ledger-observationally equivalent pair traces.
+
+## Что необходимо согласовать с научным руководителем
+
+- выбранную fault pair;
+- модель partial synchrony, GST и delay bound;
+- уровень доверия к телеметрии;
+- требуемую глубину доказательства минимальности;
+- model-checking framework;
+- необходимость проверки на production client;
+- предполагаемую научную аудиторию и площадку.
+
+---
+
+# РАЗДЕЛ 7. ОГРАНИЧЕНИЯ ПОИСКА
+
+## 7.1. Дата
+
+Поиск завершён **11 августа 2026 года**.
+
+## 7.2. Использованные базы и типы источников
+
+Использовались:
+
+- arXiv;
+- IACR Cryptology ePrint Archive и IACR Communications in Cryptology;
+- ACM Digital Library и авторские копии;
+- IEEE Xplore и открытые manuscripts;
+- USENIX Open Access;
+- SpringerLink;
+- LIPIcs/DROPS;
+- DBLP;
+- официальные страницы NDSS, CCS, ICSE, ASE, NSDI и других конференций;
+- официальные protocol specifications и EIPs;
+- открытые репозитории исследовательских артефактов;
+- metadata Semantic Scholar и институциональных репозиториев для библиографической сверки.
+
+Peer-reviewed publications отделялись от препринтов, specifications и engineering prior art.
+
+## 7.3. Основные поисковые термины и синонимы
+
+### Consensus и диагностика
+
+- BFT, Byzantine state-machine replication;
+- partial synchrony, GST, finality stall;
+- liveness violation, non-progress;
+- selective withholding, omission fault, muteness failure;
+- failure detector, fault isolation;
+- diagnosability, observability;
+- minimal telemetry, sensor selection;
+- accountability, tamper-evident logs;
+- root-cause analysis;
+- trace indistinguishability.
+
+### Rollups
+
+- optimistic rollup, ZK rollup;
+- L2 security framework;
+- forced inclusion, escape hatch;
+- censorship resistance;
+- finalization failure;
+- sequencer liveness;
+- challenge period, proof deadline;
+- timed composition, assume–guarantee.
+
+### Client testing
+
+- differential fuzzing;
+- consensus failure bug;
+- state-aware fuzzing;
+- fork-aware testing;
+- specification-guided fuzzing;
+- conformance oracle;
+- trace equivalence;
+- happens-before, partial-order reduction;
+- causal trace.
+
+### Parallel execution
+
+- transaction parallelism;
+- serializability;
+- deterministic execution;
+- swappability, commutativity;
+- conflict specification;
+- observable equivalence;
+- receipts, logs, revert semantics;
+- resource/gas semantics;
+- speculative execution;
+- parallel EVM.
+
+### Data availability
+
+- data availability sampling;
+- coded Merkle tree;
+- erasure-code commitment;
+- FRI, PeerDAS;
+- peer sampling;
+- correlated sampling;
+- adaptive withholding;
+- targeted sampling;
+- Sybil-resistant sampling;
+- effective sample diversity;
+- network-aware DAS.
+
+## 7.4. Проверенные смежные области
+
+- discrete-event-system diagnosability;
+- failure detectors;
+- distributed accountability;
+- distributed-systems observability;
+- database serializability;
+- software transactional memory;
+- programming-language operational semantics;
+- process trace equivalence;
+- model checking;
+- cryptographic security games;
+- coding theory;
+- Byzantine peer sampling;
+- P2P topology inference.
+
+## 7.5. Литература, которая могла быть пропущена
+
+- платные полнотекстовые версии, не имеющие author copy;
+- новые работы после 11 августа 2026 года;
+- papers, индексированные под иной терминологией;
+- unpublished technical reports;
+- patents;
+- private audit reports;
+- closed engineering incident analyses;
+- issue discussions и internal design documents;
+- публикации не на английском языке;
+- работы, где нужный результат является второстепенной леммой и не отражён в abstract;
+- инженерные идеи, известные blockchain community, но не оформленные академически.
+
+## 7.6. Источники с неполной доступностью
+
+Особенно тщательной полнотекстовой проверки требуют:
+
+- общий L2 framework 2025 года;
+- SpecTrum, принятая в ASE 2026, для которой на дату поиска доступна ограниченная публичная информация;
+- Targeted Sampling 2025;
+- новейшие parallel-execution работы 2026 года;
+- Coded Distributed Arrays 2026.
+
+Эти источники нельзя считать полностью проверенными только по abstract или metadata.
+
+## 7.7. Выводы, полученные из нескольких источников
+
+Следующие положения являются **[выводами анализа]**, а не прямыми цитатами одной статьи:
+
+- liveness checking не эквивалентен идентификации причины stall;
+- broad rollup formalization является слишком насыщенной темой;
+- differential fuzzing требует novelty на уровне oracle, а не generator;
+- conflict specifications следует проверять относительно явно выбранного consensus-visible observation tuple;
+- network sampling и cryptographic DAS нуждаются в композиционном анализе.
+
+## 7.8. Спекулятивные гипотезы
+
+Не установлены литературой и подлежат проверке:
+
+- ledger-only impossibility для выбранной пары delay/withholding;
+- существование строгого минимального telemetry set после GST;
+- недостаточность key-level conflicts для полного consensus-visible outcome;
+- наличие equal-marginal correlated DAS distributions с существенно различной soundness;
+- существование простого universal deadline-compatibility condition для rollups;
+- преимущество causal trace oracle над существующими differential oracles.
+
+## 7.9. Что необходимо проверить до официального заявления о новизне
+
+1. Получить и полностью прочитать все ближайшие работы.
+2. Провести backward и forward citation search.
+3. Проверить related-work sections наиболее новых papers.
+4. Проверить dissertations, technical reports, specifications, EIPs и client issues.
+5. Проверить security audits и incident reports.
+6. Повторить поиск по старой терминологии distributed systems.
+7. Обсудить две центральные темы с профильным экспертом.
+8. Проверить, не известна ли идея в engineering community под другим названием.
+9. Выбрать target venue и адаптировать terminology к её сообществу.
+10. Реализовать минимальный пилот до окончательного утверждения темы.
+
+**Итоговое ограничение новизны:**  
+*В обследованной литературе по состоянию на дату поиска не обнаружено работы, которая одновременно содержит указанную проблему, предлагаемый механизм или тезис и соответствующую различающую проверку. Это заключение ограничено использованными базами, языками, терминами и доступностью источников.*

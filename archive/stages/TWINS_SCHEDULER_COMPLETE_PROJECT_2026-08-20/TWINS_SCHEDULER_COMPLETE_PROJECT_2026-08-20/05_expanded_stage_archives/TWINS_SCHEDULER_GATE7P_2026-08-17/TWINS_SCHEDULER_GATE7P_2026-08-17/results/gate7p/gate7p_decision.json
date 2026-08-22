@@ -1,0 +1,79 @@
+{
+  "artifact_evaluation_ready": true,
+  "checks": {
+    "all_work_packages_nonblocking": true,
+    "core_evidence": true,
+    "gate6_byte_equivalence": true,
+    "negative_controls": true,
+    "paper_assets": true,
+    "positive_obligation_files": true,
+    "positive_unsat_results": true,
+    "smt_migration": true
+  },
+  "clean_copy_record": "REPRODUCTION_VERIFICATION.md",
+  "counts": {
+    "bigint_cases": 1028,
+    "event_loop_cases": 6,
+    "event_order_case_runs": 1548,
+    "gate6_equivalent_files": 15,
+    "negative_controls": 4,
+    "paper_assets": 24,
+    "parameter_cases": 512,
+    "positive_smt_chc_files": 5,
+    "positive_unsat_results": 8,
+    "premise_assignments": 128,
+    "unit_tests": 17
+  },
+  "date": "2026-08-17",
+  "frozen_claim": "For an explicit class of finite certificate-driven locking schemas, erasing phase/type distinctions to one type-uniform directed endpoint graph can remove an agreement-violation witness because closure-added repair evidence disables a unique honest quorum pivot; exact replay is erasable only under stable-key idempotence and state-based safety observations.",
+  "gate": "Gate 7′",
+  "lean_status": "MIGRATION_SCAFFOLD_ONLY_NOT_KERNEL_CHECKED",
+  "next_gate": "Gate 8′ — manuscript construction and submission-readiness review",
+  "prohibited_claims_source": "paper_data/nonclaims.json",
+  "proof_assurance": "Solver-checked SMT/CHC obligations with explicit trusted base; no external human proof review.",
+  "status": "PASS_GO_TO_GATE8_MANUSCRIPT_SUBMISSION_HOLD",
+  "submission_blockers": [
+    "independent human proof review or a successfully built kernel-checked Lean/Coq/Isabelle development",
+    "venue-specific related-work and novelty audit refreshed immediately before submission",
+    "final protocol-to-schema assumption map reviewed for construct validity"
+  ],
+  "submission_ready": false,
+  "topic": "Safety-observation closure boundaries of scheduler grammars for certificate-driven locking BFT protocols",
+  "work_packages": [
+    {
+      "evidence": "15 decisive Gate 6′ files reproduce byte-for-byte; the archive is standalone.",
+      "id": "WP7.1",
+      "name": "Minimal artifact extraction",
+      "residual": "Historical Gate 0′–5′ exploration is excluded from the core evidence path.",
+      "status": "PASS"
+    },
+    {
+      "evidence": "5 positive SMT/CHC files produced 8 UNSAT results; 4 damaged controls produced SAT.",
+      "id": "WP7.2",
+      "name": "Mature-prover migration",
+      "residual": "No external human review and no kernel-checked Lean build; production protocol-to-schema refinement is not mechanized.",
+      "status": "PASS_WITH_EXPLICIT_TCB_AND_SUBMISSION_HOLD"
+    },
+    {
+      "evidence": "24 paper assets are regenerated from versioned JSON/CSV evidence.",
+      "id": "WP7.3",
+      "name": "Automated figures and tables",
+      "residual": "Venue-specific layout and typography remain Gate 8′ work.",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Pinned host instructions, one-command offline runner, manifests, and a clean-copy verification record are included.",
+      "id": "WP7.4",
+      "name": "Offline reproducibility contract",
+      "residual": "The supplied Lean scaffold and a container build are not part of the verified route.",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Abstract, paper skeleton, evidence index, seven tables, and three figures are linked to machine-readable sources.",
+      "id": "WP7.5",
+      "name": "Manuscript-ready evidence skeleton",
+      "residual": "The complete prose manuscript and venue adaptation remain Gate 8′ work.",
+      "status": "PASS"
+    }
+  ]
+}

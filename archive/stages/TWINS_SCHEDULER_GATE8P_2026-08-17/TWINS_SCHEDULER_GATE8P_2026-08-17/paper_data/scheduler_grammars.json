@@ -1,0 +1,62 @@
+{
+  "grammars": [
+    {
+      "controls": "symmetric partition relation",
+      "id": "G_P",
+      "label": "partition per view"
+    },
+    {
+      "controls": "endpoint direction, type-uniform",
+      "id": "G_D",
+      "label": "directed graph per view"
+    },
+    {
+      "controls": "time for terminal evidence",
+      "id": "G_D1",
+      "label": "directed plus one-view terminal delay"
+    },
+    {
+      "controls": "endpoint direction and phase/type",
+      "id": "G_T",
+      "label": "phase/type-specific graph"
+    },
+    {
+      "controls": "individual instance delivery and order",
+      "id": "G_M",
+      "label": "per-message instance"
+    },
+    {
+      "controls": "bounded replay of stable logical messages",
+      "id": "G_R",
+      "label": "per-message plus replay"
+    }
+  ],
+  "note": "G_D1 and G_T are intentionally incomparable dimensions in the studied model.",
+  "relations": [
+    [
+      "G_P",
+      "G_D",
+      "relax partition symmetry"
+    ],
+    [
+      "G_D",
+      "G_T",
+      "retain phase/type labels"
+    ],
+    [
+      "G_T",
+      "G_M",
+      "retain instance identity/order"
+    ],
+    [
+      "G_M",
+      "G_R",
+      "permit replay"
+    ],
+    [
+      "G_D",
+      "G_D1",
+      "add bounded terminal delay"
+    ]
+  ]
+}

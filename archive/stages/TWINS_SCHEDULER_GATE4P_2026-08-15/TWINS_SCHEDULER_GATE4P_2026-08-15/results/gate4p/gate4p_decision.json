@@ -1,0 +1,12 @@
+{
+  "blocking_unknown": "The bounded results are not yet a protocol-class theorem and are not evidence of a vulnerability in HotStuff or relab/hotstuff.",
+  "checks_pass": true,
+  "conformance_pass": true,
+  "date": "2026-08-15",
+  "gate": "Gate 4'",
+  "go_condition": "Proceed only to a formal characterization and second natural protocol instantiation; do not build a general-purpose fuzzer yet.",
+  "no_go_condition": "Stop if the separation cannot be stated independently of these mutants, or if a second protocol instance reduces it to a modeling artifact.",
+  "overall_research_status": "\u0422\u0420\u0415\u0411\u0423\u0415\u0422 \u0421\u0423\u0416\u0415\u041d\u0418\u042f",
+  "primary_result": "Natural locking mutants exhibit safety-relevant scheduler separations: type/phase control exposes three mutants hidden from a type-uniform directed view graph; bounded late commit delivery exposes two of those; bounded replay is necessary for a duplicate-signer-counting mutant.",
+  "status": "PASS / CONDITIONAL GO TO GATE 5'"
+}

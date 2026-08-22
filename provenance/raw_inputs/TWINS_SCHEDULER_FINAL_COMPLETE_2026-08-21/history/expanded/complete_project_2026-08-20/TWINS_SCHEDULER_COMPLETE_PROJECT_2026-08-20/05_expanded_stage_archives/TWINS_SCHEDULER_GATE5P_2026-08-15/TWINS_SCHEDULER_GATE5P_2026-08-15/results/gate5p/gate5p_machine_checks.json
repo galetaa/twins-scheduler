@@ -1,0 +1,14 @@
+{
+  "all_serialized_second_kernel_witnesses_pass_oracle": true,
+  "cross_protocol_transfer_passes": true,
+  "go_vote_fixture_conforms": true,
+  "implementation_correspondence_fixture_passes": true,
+  "local_closure_lifting_checks_pass": true,
+  "non_idempotent_replay_separation_exists": true,
+  "phase_coupled_family_f1_to_f8_passes": true,
+  "phase_coupled_finite_model_passes": true,
+  "pinned_source_mapping_passes": true,
+  "replay_erasure_exhaustive_check_passes": true,
+  "second_kernel_exact_search_passes": true,
+  "status": "PASS"
+}

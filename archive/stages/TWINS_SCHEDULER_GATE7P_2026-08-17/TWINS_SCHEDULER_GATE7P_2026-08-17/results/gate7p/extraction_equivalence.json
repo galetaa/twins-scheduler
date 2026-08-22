@@ -1,0 +1,112 @@
+{
+  "files": [
+    {
+      "actual_gate7_sha256": "ba95152982870b2364dad2df10ecb0e8d28f37405ff9c398fcd413615b6bcbb9",
+      "byte_identical": true,
+      "bytes": 2420,
+      "expected_gate6_sha256": "ba95152982870b2364dad2df10ecb0e8d28f37405ff9c398fcd413615b6bcbb9",
+      "name": "t1_replay_erasure_proof_check.json"
+    },
+    {
+      "actual_gate7_sha256": "02553419a5d06034686d7e98b84302f05dd0f32cddabffd82fc41ef2333c4626",
+      "byte_identical": true,
+      "bytes": 3715,
+      "expected_gate6_sha256": "02553419a5d06034686d7e98b84302f05dd0f32cddabffd82fc41ef2333c4626",
+      "name": "t2_closure_lifting_proof_check.json"
+    },
+    {
+      "actual_gate7_sha256": "2aad2a0b16c51adb6dd41f1f585df12104da5fa5c42f406ba2661512fc46254c",
+      "byte_identical": true,
+      "bytes": 1630,
+      "expected_gate6_sha256": "2aad2a0b16c51adb6dd41f1f585df12104da5fa5c42f406ba2661512fc46254c",
+      "name": "t3_quorum_pivot_proof_check.json"
+    },
+    {
+      "actual_gate7_sha256": "d495638c68b18bcc4c2666c6d3713a875cd3f73a45901a248119ac9ee743686c",
+      "byte_identical": true,
+      "bytes": 3789,
+      "expected_gate6_sha256": "d495638c68b18bcc4c2666c6d3713a875cd3f73a45901a248119ac9ee743686c",
+      "name": "premise_ablation.json"
+    },
+    {
+      "actual_gate7_sha256": "77eb7f38dd84388358d38f4c20ab7bfe5849ab94282b13f9c27fe0dfe33062c0",
+      "byte_identical": true,
+      "bytes": 60750,
+      "expected_gate6_sha256": "77eb7f38dd84388358d38f4c20ab7bfe5849ab94282b13f9c27fe0dfe33062c0",
+      "name": "premise_characterization.json"
+    },
+    {
+      "actual_gate7_sha256": "23b71ef8f87eb59e9fa52dc16c1f58f74927e915f2dc3093f826dba63e2a7809",
+      "byte_identical": true,
+      "bytes": 201,
+      "expected_gate6_sha256": "23b71ef8f87eb59e9fa52dc16c1f58f74927e915f2dc3093f826dba63e2a7809",
+      "name": "parameter_sensitivity.json"
+    },
+    {
+      "actual_gate7_sha256": "36322df088436cde26016a34e892de1780359408a174dc7335f628c897faa5b2",
+      "byte_identical": true,
+      "bytes": 866,
+      "expected_gate6_sha256": "36322df088436cde26016a34e892de1780359408a174dc7335f628c897faa5b2",
+      "name": "premise_ablation.csv"
+    },
+    {
+      "actual_gate7_sha256": "ea15c7e97001a262dd4028feea5ffa17d37b723856709ad3c91cef12d376f50f",
+      "byte_identical": true,
+      "bytes": 7775,
+      "expected_gate6_sha256": "ea15c7e97001a262dd4028feea5ffa17d37b723856709ad3c91cef12d376f50f",
+      "name": "premise_truth_table.csv"
+    },
+    {
+      "actual_gate7_sha256": "b4f2ff4ba72a886de415386213195ea711cd5b9b205621bf190bac72f7371b24",
+      "byte_identical": true,
+      "bytes": 60642,
+      "expected_gate6_sha256": "b4f2ff4ba72a886de415386213195ea711cd5b9b205621bf190bac72f7371b24",
+      "name": "full_event_loop_python.json"
+    },
+    {
+      "actual_gate7_sha256": "d37e4dc28a4aea17f04ed2a7cb8c9ffffaf7437e2b8602f13b5c2515e306b683",
+      "byte_identical": true,
+      "bytes": 671,
+      "expected_gate6_sha256": "d37e4dc28a4aea17f04ed2a7cb8c9ffffaf7437e2b8602f13b5c2515e306b683",
+      "name": "event_order_sensitivity.json"
+    },
+    {
+      "actual_gate7_sha256": "cf96b6476092e9f95d95c8ad9ed7373cae6cf290d0632a0f6728b54d07a64c7f",
+      "byte_identical": true,
+      "bytes": 62166,
+      "expected_gate6_sha256": "cf96b6476092e9f95d95c8ad9ed7373cae6cf290d0632a0f6728b54d07a64c7f",
+      "name": "full_event_loop_go.json"
+    },
+    {
+      "actual_gate7_sha256": "ad07dd289dafe5413131df05b14a9cff8d1a2bd18983f560dec933bb10722c98",
+      "byte_identical": true,
+      "bytes": 87,
+      "expected_gate6_sha256": "ad07dd289dafe5413131df05b14a9cff8d1a2bd18983f560dec933bb10722c98",
+      "name": "full_event_loop_conformance.json"
+    },
+    {
+      "actual_gate7_sha256": "64e074a701db90965ffc53a7d86400300af1feecd593c12b4139419b354b849e",
+      "byte_identical": true,
+      "bytes": 1148,
+      "expected_gate6_sha256": "64e074a701db90965ffc53a7d86400300af1feecd593c12b4139419b354b849e",
+      "name": "full_event_loop_matrix.csv"
+    },
+    {
+      "actual_gate7_sha256": "e3bdd16d63cf49547cf02c46edc88eba04424dc17ca92127f98e4ba1efe13304",
+      "byte_identical": true,
+      "bytes": 7435,
+      "expected_gate6_sha256": "e3bdd16d63cf49547cf02c46edc88eba04424dc17ca92127f98e4ba1efe13304",
+      "name": "t3_bigint_crosscheck.json"
+    },
+    {
+      "actual_gate7_sha256": "1bb972ba9e90727dd5f435f51b7893507526ad11054063998057bfc033294fd0",
+      "byte_identical": true,
+      "bytes": 3115,
+      "expected_gate6_sha256": "1bb972ba9e90727dd5f435f51b7893507526ad11054063998057bfc033294fd0",
+      "name": "pinned_source_recheck.json"
+    }
+  ],
+  "files_checked": 15,
+  "source_gate": "Gate 6 prime",
+  "status": "PASS"
+}

@@ -1,0 +1,12 @@
+{
+  "cases_checked": 512,
+  "deterministic_range": [
+    1,
+    256
+  ],
+  "failures": [],
+  "largest_random_f": 998801230184997083,
+  "random_cases": 256,
+  "random_seed": 60617,
+  "status": "PASS"
+}

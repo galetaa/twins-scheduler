@@ -1,0 +1,10 @@
+[project]
+name = "twins-scheduler-gate7p"
+version = "0.1.0"
+description = "Minimal reproducible artifact for scheduler-grammar safety-observation closure boundaries"
+requires-python = ">=3.13"
+dependencies = []
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

@@ -1,0 +1,13 @@
+{
+  "all_counterfactual_closures_destroy_selected_witness": true,
+  "all_serialized_witnesses_pass_independent_oracle": true,
+  "baseline_safe_in_all_bounded_models": true,
+  "bounded_commit_delay_exposes_lock_and_qc_mutants": true,
+  "directed_embeds_in_directed_delay1": true,
+  "lock_omission_requires_more_than_directed": true,
+  "partition_positive_control": true,
+  "qc_guard_requires_more_than_directed": true,
+  "replay_required_for_duplicate_counting": true,
+  "standard_lattice_inclusions_hold": true,
+  "timeout_requires_phase_specific_not_commit_delay_only": true
+}

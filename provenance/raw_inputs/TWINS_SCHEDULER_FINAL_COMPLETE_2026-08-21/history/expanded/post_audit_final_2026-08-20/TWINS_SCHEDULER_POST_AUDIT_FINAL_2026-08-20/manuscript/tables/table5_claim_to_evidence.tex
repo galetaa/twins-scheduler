@@ -1,0 +1,16 @@
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{p{0.188\linewidth}p{0.188\linewidth}p{0.188\linewidth}p{0.188\linewidth}p{0.188\linewidth}}
+\toprule
+Claim & Scope & Formal evidence & Executable evidence & Status \\
+\midrule
+T1 replay erasure under stable-key idempotence & finite traces; protocol-relevant state includes any pending protocol output; state-based safety observation & proofs\_smt/T1\_REPLAY\_ERASURE.horn.smt2 & proof\_outputs/smt\_proof\_report.json; proofs\_checked/t1\_replay\_erasure\_certificate.json & Z3 CHC UNSAT plus small-kernel certificate; implementation assumptions remain per-instance obligations \\
+T2 relational closure lifting & conditional theorem under preorder, increasing insertions, forward simulation, and upward-closed Unsafe & proofs\_smt/T2\_LOCAL\_VCS.smt2; proofs\_smt/T2\_PREFIX\_RELATION.horn.smt2 & proof\_outputs/smt\_proof\_report.json; proofs\_checked/t2\_closure\_lifting\_certificate.json & Z3 discharges local VCs and induction skeleton; full generic induction also checked by the independent small certificate kernel \\
+T3 parametric quorum-pivot separation & explicit two-branch certificate-driven schema for every integer f>=1 & proofs\_smt/T3\_QUORUM\_PIVOT.smt2 & results/gate7p/t3\_bigint\_crosscheck.json; results/gate7p/full\_event\_loop\_conformance.json & Z3 QF\_LIA UNSAT plus independent Go big-integer and Go/Python event-loop checks \\
+T6 exact seven-flag characterization & the supplied Boolean operational construction only & proofs\_smt/T6\_PREMISE\_CHARACTERIZATION.smt2 & results/gate7p/premise\_truth\_table.csv & Z3 symbolic equivalence UNSAT and all 128 assignments reproduced \\
+\bottomrule
+\end{tabular}
+\caption{Frozen claim-to-evidence ledger.}
+\label{tab:table5_claim_to_evidence}
+\end{table*}
