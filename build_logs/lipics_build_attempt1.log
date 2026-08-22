@@ -1,0 +1,82 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./main.tex
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+(../../vendor/lipics/lipics-v2021.cls
+Document Class: lipics-v2021 2023/05/12 v3.1.3 LIPIcs articles
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/fleqn.clo)
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+
+! LaTeX Error: File `microtype.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+../../vendor/lipics/lipics-v2021.cls:513: Emergency stop.
+<read *> 
+         
+l.513 \usepackage
+                 [utf8]{inputenc}^^M
+../../vendor/lipics/lipics-v2021.cls:513:  ==> Fatal error occurred, no output 
+PDF file produced!
+Transcript written on ../../.cache/lipics-attempt-1/main.log.
+I couldn't open file name `../../.cache/lipics-attempt-1/main.aux'
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./main.tex
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+(../../vendor/lipics/lipics-v2021.cls
+Document Class: lipics-v2021 2023/05/12 v3.1.3 LIPIcs articles
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/fleqn.clo)
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+
+! LaTeX Error: File `microtype.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+../../vendor/lipics/lipics-v2021.cls:513: Emergency stop.
+<read *> 
+         
+l.513 \usepackage
+                 [utf8]{inputenc}^^M
+../../vendor/lipics/lipics-v2021.cls:513:  ==> Fatal error occurred, no output 
+PDF file produced!
+Transcript written on ../../.cache/lipics-attempt-1/main.log.
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./main.tex
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+(../../vendor/lipics/lipics-v2021.cls
+Document Class: lipics-v2021 2023/05/12 v3.1.3 LIPIcs articles
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/fleqn.clo)
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+
+! LaTeX Error: File `microtype.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+../../vendor/lipics/lipics-v2021.cls:513: Emergency stop.
+<read *> 
+         
+l.513 \usepackage
+                 [utf8]{inputenc}^^M
+../../vendor/lipics/lipics-v2021.cls:513:  ==> Fatal error occurred, no output 
+PDF file produced!
+Transcript written on ../../.cache/lipics-attempt-1/main.log.

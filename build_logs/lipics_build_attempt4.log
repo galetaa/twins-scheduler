@@ -1,0 +1,312 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./main.tex
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+(../../vendor/lipics/lipics-v2021.cls
+Document Class: lipics-v2021 2023/05/12 v3.1.3 LIPIcs articles
+
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/base/a
+rticle.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/base/f
+leqn.clo)
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/base/s
+ize10.clo))
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/microtype/
+microtype.sty
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/graphi
+cs/keyval.sty) (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/microtype/
+microtype-pdftex.def)
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/microtype/
+microtype.cfg))
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/base/i
+nputenc.sty) (/usr/share/texmf/tex/latex/lm/lmodern.sty)
+
+Class Package fontawesome5 not installed Warning: Please install package fontaw
+esome5 on input line 535.
+
+
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/base/f
+ontenc.sty (/usr/share/texmf/tex/latex/lm/t1lmr.fd))
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/base/t
+extcomp.sty) (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/eucal.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/generic/soul/sou
+l.sty
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/generic/soul/sou
+l-ori.sty) (/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/graphi
+cs/color.sty (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/graphi
+cs/mathcolor.ltx)) (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+(/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
+(/usr/share/texlive/texmf-dist/tex/generic/babel-english/USenglish.ldf
+(/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf)))
+(/usr/share/texlive/texmf-dist/tex/generic/babel/locale/en/babel-usenglish.tex)
+
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/amsmat
+h/amsmath.sty
+For additional information on amsmath, use the `?' option.
+
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/amsmat
+h/amstext.sty
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/amsmat
+h/amsgen.sty))
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/amsmat
+h/amsbsy.sty)
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/amsmat
+h/amsopn.sty))
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/tools/
+enumerate.sty)
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/graphi
+cs/graphicx.sty
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/graphi
+cs/graphics.sty
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/graphi
+cs/trig.sty) (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+)))
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/tools/
+array.sty)
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/multirow/m
+ultirow.sty)
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/tools/
+tabularx.sty)
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/threepartt
+able/threeparttable.sty)
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/listings/l
+istings.sty
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/listings/l
+stpatch.sty)
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/listings/l
+stmisc.sty)
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/listings/l
+istings.cfg))
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/lineno/lin
+eno.sty (/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
+(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/base/a
+tbegshi-ltx.sty)) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/base/a
+tveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/totpages/t
+otpages.sty
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/everyshi/e
+veryshi.sty))
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/caption/ca
+ption.sty
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/caption/ca
+ption3.sty))
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/graphi
+cs/rotating.sty
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/base/i
+fthen.sty))
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/caption/su
+bcaption.sty)
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/generic/xstring/
+xstring.sty
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/generic/xstring/
+xstring.tex))
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/comment/co
+mment.sty Excluding comment 'comment') Excluding comment 'CCSXML'
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty)
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/cleveref/c
+leveref.sty) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/aliascnt.sty))
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/booktabs/b
+ooktabs.sty)
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/l3back
+end/l3backend-pdftex.def)
+No file main.aux.
+
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/microtype/
+mt-cmr.cfg)
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/xcolor/xco
+lor.sty (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex-dev/graphi
+cs/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(/usr/share/texmf/tex/latex/lm/t1lmss.fd)
+(/usr/share/texmf/tex/latex/lm/ot1lmr.fd)
+(/usr/share/texmf/tex/latex/lm/omllmm.fd)
+(/usr/share/texmf/tex/latex/lm/omslmsy.fd)
+(/usr/share/texmf/tex/latex/lm/omxlmex.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/microtype/
+mt-msa.cfg) (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(../../.cache/texlive-overlay/usr/share/texlive/texmf-dist/tex/latex/microtype/
+mt-msb.cfg)
+[1.1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/
+enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/sha
+re/texmf/fonts/enc/dvips/lm/lm-mathit.enc}] (./body.tex
+
+LaTeX Warning: Citation `bano2021twins' on page 2 undefined on input line 9.
+
+
+LaTeX Warning: Citation `winter2023randomized' on page 2 undefined on input lin
+e 11.
+
+
+LaTeX Warning: Citation `dragoi2024netrix' on page 2 undefined on input line 12
+.
+
+
+LaTeX Warning: Citation `louroneto2025byzzbench' on page 2 undefined on input l
+ine 14.
+
+(/usr/share/texmf/tex/latex/lm/t1lmtt.fd)
+(/usr/share/texmf/tex/latex/lm/ts1lmr.fd) [2.2{/usr/share/texmf/fonts/enc/dvips
+/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc} <../../vendo
+r/lipics/lipics-logo-bw.pdf> <../../vendor/lipics/cc-by.pdf>]
+
+LaTeX Warning: Citation `dragoi2020communication' on page 3 undefined on input 
+line 51.
+
+
+LaTeX Warning: Citation `charronbost2009heardof' on page 3 undefined on input l
+ine 53.
+
+
+LaTeX Warning: Citation `winkler2020closed' on page 3 undefined on input line 5
+3.
+
+
+LaTeX Warning: Citation `cometbft0393' on page 3 undefined on input line 81.
+
+
+Underfull \vbox (badness 1221) has occurred while \output is active
+[3.3] (/usr/share/texmf/tex/latex/lm/ot1lmss.fd)
+[4.4]
+[5.5{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}]
+[6.6 <../figures/figure1_scheduler_grammar.pdf>]
+[7.7]
+[8.8]
+[9.9 <../figures/figure2_quorum_pivot.pdf>]
+
+LaTeX Warning: Citation `cometbft0393' on page 10 undefined on input line 598.
+
+
+[10.10 <../figures/figure3_premise_boundary.pdf>]
+[11.11]
+
+LaTeX Warning: Citation `moura2008z3' on page 12 undefined on input line 780.
+
+
+[12.12]
+
+LaTeX Warning: Citation `bano2021twins' on page 13 undefined on input line 821.
+
+
+
+LaTeX Warning: Citation `winter2023randomized' on page 13 undefined on input li
+ne 822.
+
+
+LaTeX Warning: Citation `dragoi2024netrix' on page 13 undefined on input line 8
+24.
+
+
+LaTeX Warning: Citation `louroneto2025byzzbench' on page 13 undefined on input 
+line 824.
+
+
+LaTeX Warning: Citation `meng2023mallory' on page 13 undefined on input line 82
+6.
+
+
+LaTeX Warning: Citation `freitas2026byztwin' on page 13 undefined on input line
+ 828.
+
+
+LaTeX Warning: Citation `dragoi2020communication' on page 13 undefined on input
+ line 833.
+
+
+LaTeX Warning: Citation `charronbost2009heardof' on page 13 undefined on input 
+line 838.
+
+
+LaTeX Warning: Citation `winkler2020closed' on page 13 undefined on input line 
+838.
+
+
+LaTeX Warning: Citation `barreto2022vlsm' on page 13 undefined on input line 84
+2.
+
+
+LaTeX Warning: Citation `ni2025functional' on page 13 undefined on input line 8
+45.
+
+
+LaTeX Warning: Citation `zhou2026perf' on page 13 undefined on input line 847.
+
+
+[13.13]
+[14.14])
+No file main.bbl.
+
+[15.15] (../../.cache/lipics-attempt-4/main.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information)</usr/share/texmf/fonts/typ
+e1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></us
+r/share/texmf/fonts/type1/public/lm/lmbx9.pfb></usr/share/texmf/fonts/type1/pub
+lic/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/shar
+e/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/l
+m/lmmi5.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi7.pfb></usr/share/texmf
+/fonts/type1/public/lm/lmmi9.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.
+pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/t
+ype1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/
+share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public
+/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss10.pfb></usr/share/t
+exmf/fonts/type1/public/lm/lmss8.pfb></usr/share/texmf/fonts/type1/public/lm/lm
+ssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf
+/fonts/type1/public/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy9.
+pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/
+type1/public/lm/lmtt9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/symbols/msbm10.pfb>
+Output written on ../../.cache/lipics-attempt-4/main.pdf (15 pages, 627682 byte
+s).
+Transcript written on ../../.cache/lipics-attempt-4/main.log.
+
+bibtex: Not writing to ../../.cache/lipics-attempt-4/main.blg (openout_any = p; no  extended check).
+I couldn't open file name `../../.cache/lipics-attempt-4/main.blg'

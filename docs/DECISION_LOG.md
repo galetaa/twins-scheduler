@@ -101,3 +101,47 @@
   the final passing log.
 - Rejected: downgrade Lean; introduce `sorry`; delete failing modules; or replace
   the mature proof with the project-local kernel.
+
+## D-011 — Paper numbering and related-work comparison
+
+- Decision: retain only Theorems 1--3 in the paper, with one numbered lemma,
+  corollary and two propositions; keep historical IDs T1/T2/T3/T6 only in the
+  claim and artifact ledgers.
+- Decision: expand the structural criterion into ten explicit premises.  The
+  first nine separately state the requested opportunity, pivot, support,
+  evidence, shared-edge, phase-label and grammar-coupling conditions; the tenth
+  connects certificates to irreversible correct decisions.
+- Decision: add Mallory and expose protocol-conformance and mechanization
+  columns in the related-work matrix.  Unknown capabilities are recorded as
+  `not reported`, not inferred to be absent.
+- Rejected: present a richer scheduler API as novelty, or report bounded
+  Tendermint-style refinement as production-client conformance.
+
+## D-012 — Official LIPIcs source and generated body
+
+- Decision: vendor the complete, unmodified official Dagstuhl author package
+  `lipics-v2021` v2021.1.3 and build `main.tex` with its class checksum pinned.
+- Decision: keep Markdown and the active LaTeX `body.tex` as the two manuscript
+  sources and enforce their scientific statements with a consistency checker.
+- Rejected: retain the stale intermediate `body_source.md`, which duplicated an
+  older manuscript and still claimed that Lean was unbuilt; or relabel the A4
+  review PDF as an official LIPIcs build.
+
+## D-013 — Deterministic paper evidence
+
+- Observation: two otherwise identical pdfTeX runs initially differed in the
+  generated trailer identifier and source-path metadata.
+- Decision: fix the trailer ID, omit volatile dates and suppress PTEX source
+  metadata in `main.tex`; require byte identity between isolated and committed
+  PDFs. The scientific content and anonymous document metadata are unchanged.
+- Rejected: compare only extracted text or accept a changing PDF checksum.
+
+## D-014 — Release self-reference boundary
+
+- Decision: build both archives from the annotated tag in an external temporary
+  staging directory. The Git ZIP contains a clean clone including `.git`; the
+  source tar is `git archive` output. Archive SHA files and integrity logs are
+  sidecars and therefore do not recursively appear inside the archives they
+  describe.
+- Rejected: create an archive inside the tree being recursively archived,
+  which is nondeterministic and self-referential.

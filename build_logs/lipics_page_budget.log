@@ -1,0 +1,7 @@
+status=PASS
+physical_pages=16
+cover_pages=1
+main_text_pages=14
+bibliography_starts_on_physical_page=15
+opodis_2026_main_text_limit=15
+class=lipics-v2021 v3.1.3

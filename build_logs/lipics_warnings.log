@@ -1,0 +1,7 @@
+status=PASS
+overfull_boxes=0
+undefined_references=0
+undefined_citations=0
+bibtex_warnings=0
+class_fallback_warnings=1
+class_fallback_detail=fontawesome5 absent; official class uses documented text-symbol fallback

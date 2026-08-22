@@ -1,0 +1,5 @@
+resource,source,release_or_commit,license,local_path,sha256,purpose
+LIPIcs author package,https://submission.dagstuhl.de/styles/download-tag/lipics/v2021.1.3/authors/zip,v2021.1.3,LPPL-1.3c,vendor/lipics/lipics-v2021.cls,ecae53dfd29c7b22d02a9065327c104760fb726a028b146d556732021a5977f0,official manuscript class
+LIPIcs source archive,https://submission.dagstuhl.de/styles/download-tag/lipics/v2021.1.3/authors/zip,v2021.1.3,LPPL-1.3c,provenance/source_archives/lipics-v2021.1.3-authors.zip,b9a4a6d6b44444cc4b9463c8d402e8f41b87e411a344b4af2508cd5bed6c19ef,immutable official distribution
+CometBFT fragments,https://github.com/cometbft/cometbft,v0.40.0 / 0880b4d378f347ab16e54ec677ff50d803f37d62,Apache-2.0,models/tendermint_style/upstream_fragments,see local MANIFEST.sha256,source correspondence only
+relab HotStuff snapshot,https://github.com/relab/hotstuff,3179c6e62929294961acbfd9bf8445769716a121,MIT,archive/stages and provenance/raw_inputs,see raw-input manifest,historical source correspondence
