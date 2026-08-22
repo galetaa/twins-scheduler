@@ -177,3 +177,9 @@
   write full entry lists before searching them, and move outputs atomically
   only after integrity checks pass. The initial outputs are superseded.
 - Rejected: ignore exit 141 or declare integrity from archive existence.
+
+## D-018 — Portable release sidecars
+
+- Decision: execute final checksum and integrity reporting from `release/` so
+  sidecars contain basenames and archive-relative entries only.
+- Rejected: retain absolute host or temporary staging paths in release metadata.

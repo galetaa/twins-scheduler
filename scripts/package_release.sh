@@ -23,15 +23,20 @@ git -C "$STAGE/twins-scheduler-closure" fsck --full
 git -C "$ROOT" archive --format=tar.gz --prefix=twins-scheduler-closure/ \
   -o "$STAGED_TAR" "$TAG"
 
-unzip -t "$STAGED_ZIP" >"$RELEASE_DIR/zip_integrity.log"
+unzip -t "$STAGED_ZIP" >/dev/null
 unzip -Z1 "$STAGED_ZIP" >"$STAGE/zip_entries.txt"
 grep -Fxq 'twins-scheduler-closure/.git/HEAD' "$STAGE/zip_entries.txt"
-tar -tzf "$STAGED_TAR" >"$RELEASE_DIR/source_integrity.log"
-if grep -q '/\.git/' "$RELEASE_DIR/source_integrity.log"; then
+tar -tzf "$STAGED_TAR" >"$STAGE/source_entries.txt"
+if grep -q '/\.git/' "$STAGE/source_entries.txt"; then
   echo "SOURCE RELEASE FAIL contains .git" >&2
   exit 1
 fi
 mv -f "$STAGED_ZIP" "$GIT_ZIP"
 mv -f "$STAGED_TAR" "$SOURCE_TAR"
-sha256sum "$GIT_ZIP" "$SOURCE_TAR" >"$RELEASE_DIR/SHA256SUMS"
+(
+  cd "$RELEASE_DIR"
+  unzip -t "$(basename "$GIT_ZIP")" >zip_integrity.log
+  tar -tzf "$(basename "$SOURCE_TAR")" >source_integrity.log
+  sha256sum "$(basename "$GIT_ZIP")" "$(basename "$SOURCE_TAR")" >SHA256SUMS
+)
 echo "RELEASE PASS tag=$TAG date=$RELEASE_DATE"
