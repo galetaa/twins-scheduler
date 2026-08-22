@@ -167,3 +167,13 @@
   unchanged.
 - Rejected: mark active generated CSV as binary or depend on a maintainer's
   `core.autocrlf` setting.
+
+## D-017 — Release integrity pipeline
+
+- Observation: the first post-tag packaging attempt returned 141 because
+  `grep -q` intentionally closed an `unzip` listing pipeline early while
+  `pipefail` treated the producer's SIGPIPE as failure.
+- Decision: generate archives in the validated temporary staging directory,
+  write full entry lists before searching them, and move outputs atomically
+  only after integrity checks pass. The initial outputs are superseded.
+- Rejected: ignore exit 141 or declare integrity from archive existence.

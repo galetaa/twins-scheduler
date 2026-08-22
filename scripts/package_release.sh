@@ -8,6 +8,8 @@ TAG=${SOURCE_RELEASE_TAG:-v1.0.0-reproducible}
 GIT_ZIP="$RELEASE_DIR/TWINS_SCHEDULER_GIT_PROJECT_${RELEASE_DATE}.zip"
 SOURCE_TAR="$RELEASE_DIR/TWINS_SCHEDULER_SOURCE_RELEASE_${RELEASE_DATE}.tar.gz"
 STAGE=$(mktemp -d)
+STAGED_ZIP="$STAGE/git-project.zip"
+STAGED_TAR="$STAGE/source-release.tar.gz"
 trap 'rm -rf "$STAGE"' EXIT
 
 git -C "$ROOT" diff --quiet
@@ -17,16 +19,19 @@ mkdir -p "$RELEASE_DIR"
 
 git clone --quiet --no-hardlinks --branch "$TAG" "$ROOT" "$STAGE/twins-scheduler-closure"
 git -C "$STAGE/twins-scheduler-closure" fsck --full
-(cd "$STAGE" && zip -qr "$GIT_ZIP" twins-scheduler-closure)
+(cd "$STAGE" && zip -qr "$STAGED_ZIP" twins-scheduler-closure)
 git -C "$ROOT" archive --format=tar.gz --prefix=twins-scheduler-closure/ \
-  -o "$SOURCE_TAR" "$TAG"
+  -o "$STAGED_TAR" "$TAG"
 
-unzip -t "$GIT_ZIP" >"$RELEASE_DIR/zip_integrity.log"
-unzip -l "$GIT_ZIP" | grep -q 'twins-scheduler-closure/.git/HEAD'
-tar -tzf "$SOURCE_TAR" >"$RELEASE_DIR/source_integrity.log"
-if tar -tzf "$SOURCE_TAR" | grep -q '/\.git/'; then
+unzip -t "$STAGED_ZIP" >"$RELEASE_DIR/zip_integrity.log"
+unzip -Z1 "$STAGED_ZIP" >"$STAGE/zip_entries.txt"
+grep -Fxq 'twins-scheduler-closure/.git/HEAD' "$STAGE/zip_entries.txt"
+tar -tzf "$STAGED_TAR" >"$RELEASE_DIR/source_integrity.log"
+if grep -q '/\.git/' "$RELEASE_DIR/source_integrity.log"; then
   echo "SOURCE RELEASE FAIL contains .git" >&2
   exit 1
 fi
+mv -f "$STAGED_ZIP" "$GIT_ZIP"
+mv -f "$STAGED_TAR" "$SOURCE_TAR"
 sha256sum "$GIT_ZIP" "$SOURCE_TAR" >"$RELEASE_DIR/SHA256SUMS"
 echo "RELEASE PASS tag=$TAG date=$RELEASE_DATE"
