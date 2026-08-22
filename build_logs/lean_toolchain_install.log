@@ -1,0 +1,14 @@
+elan_source_commit=464c9d28395000a2a0128e07081e4956d50eced2
+elan_installer_url=https://raw.githubusercontent.com/leanprover/elan/464c9d28395000a2a0128e07081e4956d50eced2/elan-init.sh
+elan_installer_sha256=a620ff1641616222c8d37c54845492004bb84d6877cdbc944dd65c1aa685bf53
+lean_toolchain=leanprover/lean4:v4.33.0
+install command: ELAN_HOME=<repo>/.cache/elan sh elan-init.sh -y --no-modify-path --default-toolchain none
+info: downloading installer
+elan 4.2.3 (b6cec7e10 2026-06-08)
+info: downloading https://releases.lean-lang.org/lean4/v4.33.0/lean-4.33.0-linux.tar.zst
+info: installing /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.cache/elan/toolchains/leanprover--lean4---v4.33.0
+
+leanprover/lean4:v4.33.0 installed - Lean (version 4.33.0, x86_64-unknown-linux-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)
+
+Lean (version 4.33.0, x86_64-unknown-linux-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)
+Lake version 5.0.0-src+d8b1897 (Lean version 4.33.0)

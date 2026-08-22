@@ -1,0 +1,118 @@
+command=lake build
+started=2026-08-22T16:33:30+03:00
+Lean (version 4.33.0, x86_64-unknown-linux-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)
+Lake version 5.0.0-src+d8b1897 (Lean version 4.33.0)
+info: schedulerClosure: no previous manifest, creating one from scratch
+info: toolchain not updated; already up-to-date
+✖ [2/11] Building SchedulerClosure.QuorumPivotCriterion (97ms)
+trace: .> LEAN_PATH=/home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/lib/lean /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.cache/elan/toolchains/leanprover--lean4---v4.33.0/bin/lean /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/formal/lean/SchedulerClosure/QuorumPivotCriterion.lean -o /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/lib/lean/SchedulerClosure/QuorumPivotCriterion.olean -i /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/lib/lean/SchedulerClosure/QuorumPivotCriterion.ilean -c /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/ir/SchedulerClosure/QuorumPivotCriterion.c --setup /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/ir/SchedulerClosure/QuorumPivotCriterion.setup.json --json
+error: formal/lean/SchedulerClosure/QuorumPivotCriterion.lean:1:0: object file '/home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.cache/elan/toolchains/leanprover--lean4---v4.33.0/lib/lean/Std/Tactic/Omega.olean' of module Std.Tactic.Omega does not exist
+error: Lean exited with code 1
+✖ [5/11] Building SchedulerClosure.UnsafeObservations (375ms)
+trace: .> LEAN_PATH=/home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/lib/lean /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.cache/elan/toolchains/leanprover--lean4---v4.33.0/bin/lean /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/formal/lean/SchedulerClosure/UnsafeObservations.lean -o /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/lib/lean/SchedulerClosure/UnsafeObservations.olean -i /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/lib/lean/SchedulerClosure/UnsafeObservations.ilean -c /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/ir/SchedulerClosure/UnsafeObservations.c --setup /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/ir/SchedulerClosure/UnsafeObservations.setup.json --json
+error: formal/lean/SchedulerClosure/UnsafeObservations.lean:23:47: unexpected token '}'; expected '=>'
+error: formal/lean/SchedulerClosure/UnsafeObservations.lean:19:38: Function expected at
+  Set
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  Observation
+
+Hint: The identifier `Set` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+warning: formal/lean/SchedulerClosure/UnsafeObservations.lean:25:8: declaration uses `sorry`
+warning: formal/lean/SchedulerClosure/UnsafeObservations.lean:32:5: Variable name `h` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _h
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+error: Lean exited with code 1
+✖ [6/11] Building SchedulerClosure.SchedulerSemantics (444ms)
+trace: .> LEAN_PATH=/home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/lib/lean /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.cache/elan/toolchains/leanprover--lean4---v4.33.0/bin/lean /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/formal/lean/SchedulerClosure/SchedulerSemantics.lean -o /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/lib/lean/SchedulerClosure/SchedulerSemantics.olean -i /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/lib/lean/SchedulerClosure/SchedulerSemantics.ilean -c /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/ir/SchedulerClosure/SchedulerSemantics.c --setup /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/ir/SchedulerClosure/SchedulerSemantics.setup.json --json
+error: formal/lean/SchedulerClosure/SchedulerSemantics.lean:63:70: Application type mismatch: The argument
+  htail
+has type
+  e ∈ tail ∧ admitted e
+but is expected to have type
+  e ∈ deliver admitted tail
+in the application
+  ih htail
+error: formal/lean/SchedulerClosure/SchedulerSemantics.lean:65:25: Application type mismatch: The argument
+  h
+has type
+  e ∈ tail ∧ admitted e
+but is expected to have type
+  e ∈ deliver admitted tail
+in the application
+  ih h
+error: formal/lean/SchedulerClosure/SchedulerSemantics.lean:72:30: unexpected token '+'; expected term
+error: Lean exited with code 1
+✖ [7/11] Building SchedulerClosure.ReplayErasure (550ms)
+trace: .> LEAN_PATH=/home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/lib/lean /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.cache/elan/toolchains/leanprover--lean4---v4.33.0/bin/lean /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/formal/lean/SchedulerClosure/ReplayErasure.lean -o /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/lib/lean/SchedulerClosure/ReplayErasure.olean -i /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/lib/lean/SchedulerClosure/ReplayErasure.ilean -c /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/ir/SchedulerClosure/ReplayErasure.c --setup /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/ir/SchedulerClosure/ReplayErasure.setup.json --json
+error: formal/lean/SchedulerClosure/ReplayErasure.lean:64:47: don't know how to synthesize implicit argument `b`
+  @And.intro (π left = π right) (?m.59 = ?m.59) hrel rfl
+context:
+State Event Rel Output : Type
+π : State → Rel
+step : State → Event → State
+emit : State → Event → List Output
+duplicate : Event → Bool
+hStep : ProjectionCongruent π step
+hOutput : OutputCongruent π emit
+hStutter : MarkedDuplicateStutters π step duplicate
+hSilent : MarkedDuplicateSilent emit duplicate
+left right : State
+hrel : π left = π right
+⊢ Prop
+error: formal/lean/SchedulerClosure/ReplayErasure.lean:64:62: don't know how to synthesize implicit argument `a`
+  @rfl ?m.58 ?m.59
+context:
+State Event Rel Output : Type
+π : State → Rel
+step : State → Event → State
+emit : State → Event → List Output
+duplicate : Event → Bool
+hStep : ProjectionCongruent π step
+hOutput : OutputCongruent π emit
+hStutter : MarkedDuplicateStutters π step duplicate
+hSilent : MarkedDuplicateSilent emit duplicate
+left right : State
+hrel : π left = π right
+⊢ ?m.58
+error: formal/lean/SchedulerClosure/ReplayErasure.lean:64:62: don't know how to synthesize implicit argument `α`
+  @rfl ?m.58 ?m.59
+context:
+State Event Rel Output : Type
+π : State → Rel
+step : State → Event → State
+emit : State → Event → List Output
+duplicate : Event → Bool
+hStep : ProjectionCongruent π step
+hOutput : OutputCongruent π emit
+hStutter : MarkedDuplicateStutters π step duplicate
+hSilent : MarkedDuplicateSilent emit duplicate
+left right : State
+hrel : π left = π right
+⊢ Sort ?u.40
+warning: formal/lean/SchedulerClosure/ReplayErasure.lean:134:4: Variable name `state` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _state
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+error: formal/lean/SchedulerClosure/ReplayErasure.lean:158:2: Tactic `decide` proved that the proposition
+  False
+is false
+error: formal/lean/SchedulerClosure/ReplayErasure.lean:158:9: unexpected token 'at'; expected command
+error: Lean exited with code 1
+✔ [8/11] Built SchedulerClosure.ClosureLifting (535ms)
+✔ [9/11] Built SchedulerClosure.PremiseBoundary (739ms)
+Some required targets logged failures:
+- SchedulerClosure.QuorumPivotCriterion
+- SchedulerClosure.UnsafeObservations
+- SchedulerClosure.SchedulerSemantics
+- SchedulerClosure.ReplayErasure
+error: build failed
+exit_code=1
+finished=2026-08-22T16:33:31+03:00

@@ -83,3 +83,21 @@
   dependencies; `go mod tidy` intentionally produces no sum file.
 - Rejected: create a synthetic or invalid checksum entry only to satisfy a
   cosmetic tree template.
+
+## D-010 — Repairing the supplied Lean sources
+
+- Observation: the first genuine `lake build` failed on an obsolete
+  `Std.Tactic.Omega` import, an unavailable `Set` alias, invalid filter/sublist
+  proofs, an ambiguous conjunction proof term, a non-reducing derived `BEq`
+  branch, and an invalid negative-control tactic.
+- Decision: use the v4.33 `Std.Tactic` export; encode an observation set as its
+  extensionally equivalent predicate `Observation → Prop`; use library
+  `List.mem_filter`/`List.filter_sublist`; supply explicit conjunction terms;
+  pattern-match the lock variant; and discharge the finite hidden-state facts
+  by computation/simplification.
+- Scientific effect: theorem signatures and paper-level premises were not
+  weakened.  The original files remain in raw provenance and the canonical map
+  records old and new hashes.  Three failed build attempts are retained beside
+  the final passing log.
+- Rejected: downgrade Lean; introduce `sorry`; delete failing modules; or replace
+  the mature proof with the project-local kernel.

@@ -1,4 +1,4 @@
-import Std.Tactic.Omega
+import Std.Tactic
 
 namespace SchedulerClosure
 

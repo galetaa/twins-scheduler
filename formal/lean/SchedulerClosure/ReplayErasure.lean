@@ -61,7 +61,7 @@ theorem eraseMarked_preserves_projection_and_output_aux
   induction trace with
   | nil =>
       intro left right hrel
-      simpa [eraseMarked, runWithOutput] using And.intro hrel rfl
+      exact ⟨hrel, rfl⟩
   | cons event rest ih =>
       intro left right hrel
       by_cases hdup : duplicate event = true
@@ -131,7 +131,7 @@ def hiddenCounterStep : HiddenCounterState → HiddenCounterEvent → HiddenCoun
   | state, .Y => { state with relevant := state.hidden }
 
 def hiddenCounterEmit : HiddenCounterState → HiddenCounterEvent → List Bool
-  | state, .X => []
+  | _state, .X => []
   | state, .Y => [state.hidden]
 
 def hiddenProjection (state : HiddenCounterState) : Bool := state.relevant
@@ -155,6 +155,6 @@ theorem hidden_state_breaks_output_congruence :
   let t : HiddenCounterState := { relevant := false, hidden := true }
   have hrel : hiddenProjection s = hiddenProjection t := rfl
   have hbad := h s t .Y hrel
-  decide at hbad
+  simp [hiddenCounterEmit, s, t] at hbad
 
 end SchedulerClosure

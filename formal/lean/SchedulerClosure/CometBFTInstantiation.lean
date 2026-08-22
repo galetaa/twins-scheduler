@@ -1,4 +1,4 @@
-import Std.Tactic.Omega
+import Std.Tactic
 import SchedulerClosure.QuorumPivotCriterion
 
 namespace SchedulerClosure
@@ -45,7 +45,9 @@ def executeTendermintBounded
   let r := RAdmitted policy
   let saw := e
   let pre0 := e
-  let locked := e && (variant == .baseline)
+  let locked := e && match variant with
+    | .baseline => true
+    | .missingLockUpdate => false
   let cert0 := decide (base + (if pre0 then 1 else 0) ≥ q)
   let pivotCommitted := e && r
   let height := if pivotCommitted then 2 else 1
@@ -69,28 +71,32 @@ def tendermintAgreementViolation (s : TendermintBoundedState) : Prop :=
   s.leftDecision0 = true ∧ s.rightDecision1 = true
 
 theorem bounded_baseline_safe
-    (f : Nat) (hf : 1 ≤ f) (policy : TendermintPolicy) :
+    (f : Nat) (_hf : 1 ≤ f) (policy : TendermintPolicy) :
     ¬ tendermintAgreementViolation
       (executeTendermintBounded f .baseline policy) := by
   cases policy with
   | phaseSpecific =>
-      simp [executeTendermintBounded, tendermintAgreementViolation] <;> omega
+      simp [executeTendermintBounded, EAdmitted, RAdmitted,
+        tendermintAgreementViolation]
   | directed edge =>
       cases edge <;>
-        simp [executeTendermintBounded, tendermintAgreementViolation] <;> omega
+        simp [executeTendermintBounded, EAdmitted, RAdmitted,
+          tendermintAgreementViolation] <;> omega
 
 theorem bounded_missing_lock_phase_specific_unsafe
-    (f : Nat) (hf : 1 ≤ f) :
+    (f : Nat) (_hf : 1 ≤ f) :
     tendermintAgreementViolation
       (executeTendermintBounded f .missingLockUpdate .phaseSpecific) := by
-  simp [executeTendermintBounded, tendermintAgreementViolation] <;> omega
+  simp [executeTendermintBounded, EAdmitted, RAdmitted,
+    tendermintAgreementViolation]
 
 theorem bounded_missing_lock_directed_safe
-    (f : Nat) (hf : 1 ≤ f) (edge : Bool) :
+    (f : Nat) (_hf : 1 ≤ f) (edge : Bool) :
     ¬ tendermintAgreementViolation
       (executeTendermintBounded f .missingLockUpdate (.directed edge)) := by
   cases edge <;>
-    simp [executeTendermintBounded, tendermintAgreementViolation] <;> omega
+    simp [executeTendermintBounded, EAdmitted, RAdmitted,
+      tendermintAgreementViolation] <;> omega
 
 /-- The bounded Tendermint-style mutation instantiates the abstract structural
 criterion. -/

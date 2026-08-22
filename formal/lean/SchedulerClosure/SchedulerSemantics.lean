@@ -55,29 +55,15 @@ theorem delivered_was_emitted
     (e : Envelope)
     (h : e ∈ deliver admitted emitted) :
     e ∈ emitted := by
-  induction emitted with
-  | nil => simp [deliver] at h
-  | cons head tail ih =>
-      by_cases hadmit : admitted head
-      · simp [deliver, hadmit] at h ⊢
-        exact h.elim (fun heq => Or.inl heq) (fun htail => Or.inr (ih htail))
-      · simp [deliver, hadmit] at h ⊢
-        exact Or.inr (ih h)
+  exact (List.mem_filter.mp h).1
 
 theorem delivered_preserves_order
     {Envelope : Type}
     (admitted : Envelope → Prop)
     [DecidablePred admitted]
     (emitted : List Envelope) :
-    deliver admitted emitted <+ emitted := by
-  induction emitted with
-  | nil => simp [deliver]
-  | cons head tail ih =>
-      by_cases hadmit : admitted head
-      · change head :: deliver admitted tail <+ head :: tail
-        exact List.Sublist.cons_cons head ih
-      · change deliver admitted tail <+ head :: tail
-        exact List.sublist_cons_of_sublist head ih
+    List.Sublist (deliver admitted emitted) emitted := by
+  exact List.filter_sublist
 
 /-- A shared-edge pair records the exact coupling used by type erasure: the
 sender, receiver, and view coincide, while labels are distinct. -/

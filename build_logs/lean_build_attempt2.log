@@ -1,0 +1,125 @@
+command=lake build
+started=2026-08-22T16:34:27+03:00
+Lean (version 4.33.0, x86_64-unknown-linux-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)
+Lake version 5.0.0-src+d8b1897 (Lean version 4.33.0)
+✖ [4/11] Building SchedulerClosure.SchedulerSemantics (340ms)
+trace: .> LEAN_PATH=/home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/lib/lean /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.cache/elan/toolchains/leanprover--lean4---v4.33.0/bin/lean /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/formal/lean/SchedulerClosure/SchedulerSemantics.lean -o /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/lib/lean/SchedulerClosure/SchedulerSemantics.olean -i /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/lib/lean/SchedulerClosure/SchedulerSemantics.ilean -c /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/ir/SchedulerClosure/SchedulerSemantics.c --setup /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/ir/SchedulerClosure/SchedulerSemantics.setup.json --json
+error: formal/lean/SchedulerClosure/SchedulerSemantics.lean:63:70: Application type mismatch: The argument
+  htail.left
+has type
+  e ∈ tail
+but is expected to have type
+  e ∈ deliver admitted tail
+in the application
+  ih htail.left
+error: formal/lean/SchedulerClosure/SchedulerSemantics.lean:65:25: Application type mismatch: The argument
+  h.left
+has type
+  e ∈ tail
+but is expected to have type
+  e ∈ deliver admitted tail
+in the application
+  ih h.left
+error: formal/lean/SchedulerClosure/SchedulerSemantics.lean:77:46: unexpected token '+'; expected term
+error: formal/lean/SchedulerClosure/SchedulerSemantics.lean:77:15: failed to synthesize instance of type class
+  LT (List Envelope)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: formal/lean/SchedulerClosure/SchedulerSemantics.lean:75:22: unsolved goals
+case neg
+Envelope : Type
+admitted : Envelope → Prop
+inst✝ : DecidablePred admitted
+head : Envelope
+tail : List Envelope
+ih : (deliver admitted tail).Sublist tail
+hadmit : ¬admitted head
+⊢ (deliver admitted (head :: tail)).Sublist (head :: tail)
+error: Lean exited with code 1
+✔ [5/11] Built SchedulerClosure.UnsafeObservations (312ms)
+✔ [6/11] Built SchedulerClosure.QuorumPivotCriterion (327ms)
+✖ [7/11] Building SchedulerClosure.ReplayErasure (451ms)
+trace: .> LEAN_PATH=/home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/lib/lean /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.cache/elan/toolchains/leanprover--lean4---v4.33.0/bin/lean /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/formal/lean/SchedulerClosure/ReplayErasure.lean -o /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/lib/lean/SchedulerClosure/ReplayErasure.olean -i /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/lib/lean/SchedulerClosure/ReplayErasure.ilean -c /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/ir/SchedulerClosure/ReplayErasure.c --setup /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/ir/SchedulerClosure/ReplayErasure.setup.json --json
+warning: formal/lean/SchedulerClosure/ReplayErasure.lean:134:4: Variable name `state` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _state
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+error: formal/lean/SchedulerClosure/ReplayErasure.lean:149:2: Tactic `rfl` failed: The left-hand side
+  hiddenProjection
+      (runWithOutput hiddenCounterStep hiddenCounterEmit hiddenInitial
+          [HiddenCounterEvent.X, HiddenCounterEvent.X, HiddenCounterEvent.Y]).state =
+    true
+is not definitionally equal to the right-hand side
+  hiddenProjection
+      (runWithOutput hiddenCounterStep hiddenCounterEmit hiddenInitial
+          [HiddenCounterEvent.X, HiddenCounterEvent.Y]).state =
+    false
+
+⊢ hiddenProjection
+        (runWithOutput hiddenCounterStep hiddenCounterEmit hiddenInitial
+            [HiddenCounterEvent.X, HiddenCounterEvent.X, HiddenCounterEvent.Y]).state =
+      true ∧
+    hiddenProjection
+        (runWithOutput hiddenCounterStep hiddenCounterEmit hiddenInitial
+            [HiddenCounterEvent.X, HiddenCounterEvent.Y]).state =
+      false
+error: Lean exited with code 1
+⚠ [8/11] Built SchedulerClosure.ParametricFamily (255ms)
+warning: formal/lean/SchedulerClosure/ParametricFamily.lean:11:48: Variable name `hf` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hf
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✖ [9/11] Building SchedulerClosure.CometBFTInstantiation (432ms)
+trace: .> LEAN_PATH=/home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/lib/lean /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.cache/elan/toolchains/leanprover--lean4---v4.33.0/bin/lean /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/formal/lean/SchedulerClosure/CometBFTInstantiation.lean -o /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/lib/lean/SchedulerClosure/CometBFTInstantiation.olean -i /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/lib/lean/SchedulerClosure/CometBFTInstantiation.ilean -c /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/ir/SchedulerClosure/CometBFTInstantiation.c --setup /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/ir/SchedulerClosure/CometBFTInstantiation.setup.json --json
+error: formal/lean/SchedulerClosure/CometBFTInstantiation.lean:77:72: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  b ≥ 1
+  a ≥ 1
+where
+ a := ↑f
+ b := ↑(if EAdmitted TendermintPolicy.phaseSpecific = true then 1 else 0)
+error: formal/lean/SchedulerClosure/CometBFTInstantiation.lean:80:74: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  b ≥ 1
+  a ≥ 1
+where
+ a := ↑f
+ b := ↑(if EAdmitted (TendermintPolicy.directed false) = true then 1 else 0)
+error: formal/lean/SchedulerClosure/CometBFTInstantiation.lean:80:74: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  b ≥ 1
+  a ≥ 1
+where
+ a := ↑f
+ b := ↑(if EAdmitted (TendermintPolicy.directed true) = true then 1 else 0)
+error: formal/lean/SchedulerClosure/CometBFTInstantiation.lean:86:68: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  a ≥ 1
+where
+ a := ↑f
+error: formal/lean/SchedulerClosure/CometBFTInstantiation.lean:93:70: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  b ≥ 1
+  a ≥ 1
+where
+ a := ↑f
+ b := ↑(if EAdmitted (TendermintPolicy.directed false) = true then 1 else 0)
+error: formal/lean/SchedulerClosure/CometBFTInstantiation.lean:93:70: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  b ≥ 1
+  a ≥ 1
+where
+ a := ↑f
+ b := ↑(if EAdmitted (TendermintPolicy.directed true) = true then 1 else 0)
+error: Lean exited with code 1
+Some required targets logged failures:
+- SchedulerClosure.SchedulerSemantics
+- SchedulerClosure.ReplayErasure
+- SchedulerClosure.CometBFTInstantiation
+error: build failed
+exit_code=1
+finished=2026-08-22T16:34:28+03:00

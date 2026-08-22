@@ -1,0 +1,43 @@
+command=lake build
+started=2026-08-22T16:35:17+03:00
+Lean (version 4.33.0, x86_64-unknown-linux-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)
+Lake version 5.0.0-src+d8b1897 (Lean version 4.33.0)
+⚠ [5/11] Replayed SchedulerClosure.ParametricFamily
+warning: formal/lean/SchedulerClosure/ParametricFamily.lean:11:48: Variable name `hf` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hf
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [7/11] Built SchedulerClosure.SchedulerSemantics (326ms)
+⚠ [8/11] Built SchedulerClosure.ReplayErasure (460ms)
+warning: formal/lean/SchedulerClosure/ReplayErasure.lean:134:4: Variable name `state` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _state
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✖ [9/11] Building SchedulerClosure.CometBFTInstantiation (419ms)
+trace: .> LEAN_PATH=/home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/lib/lean /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.cache/elan/toolchains/leanprover--lean4---v4.33.0/bin/lean /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/formal/lean/SchedulerClosure/CometBFTInstantiation.lean -o /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/lib/lean/SchedulerClosure/CometBFTInstantiation.olean -i /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/lib/lean/SchedulerClosure/CometBFTInstantiation.ilean -c /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/ir/SchedulerClosure/CometBFTInstantiation.c --setup /home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.lake/build/ir/SchedulerClosure/CometBFTInstantiation.setup.json --json
+error: formal/lean/SchedulerClosure/CometBFTInstantiation.lean:78:42: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  a ≥ 1
+where
+ a := ↑f
+error: formal/lean/SchedulerClosure/CometBFTInstantiation.lean:89:38: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  a ≥ 1
+where
+ a := ↑f
+warning: formal/lean/SchedulerClosure/CometBFTInstantiation.lean:92:15: Variable name `hf` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hf
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+error: Lean exited with code 1
+Some required targets logged failures:
+- SchedulerClosure.CometBFTInstantiation
+error: build failed
+exit_code=1
+finished=2026-08-22T16:35:17+03:00

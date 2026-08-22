@@ -1,0 +1,14 @@
+command=lake env lean formal/lean/AxiomAudit.lean
+started=2026-08-22T16:37:19+03:00
+'SchedulerClosure.replay_erasure_with_outputs' depends on axioms: [propext]
+'SchedulerClosure.replay_erasure_state_observation' depends on axioms: [propext]
+'SchedulerClosure.hidden_state_counterexample' does not depend on any axioms
+'SchedulerClosure.legal_scheduler_closure_preserves_unsafe' does not depend on any axioms
+'SchedulerClosure.quorum_pivot_separation_criterion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SchedulerClosure.criterion_policy_separation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SchedulerClosure.parametric_family_separation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SchedulerClosure.bounded_tendermint_refines_quorum_pivot' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SchedulerClosure.strictSeparation_eq_characterization' does not depend on any axioms
+'SchedulerClosure.strictSeparation_iff_three' does not depend on any axioms
+exit_code=0
+finished=2026-08-22T16:37:19+03:00

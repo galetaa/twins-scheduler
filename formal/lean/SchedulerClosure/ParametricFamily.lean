@@ -1,4 +1,4 @@
-import Std.Tactic.Omega
+import Std.Tactic
 import SchedulerClosure.QuorumPivotCriterion
 
 namespace SchedulerClosure
@@ -8,7 +8,7 @@ def quorum (f : Nat) : Nat := 2 * f + 1
 def branchBase (f : Nat) : Nat := 2 * f
 
 /-- Concrete `3f+1` family as a corollary of the structural criterion. -/
-theorem parametric_family_separation (f : Nat) (hf : 1 ≤ f) :
+theorem parametric_family_separation (f : Nat) (_hf : 1 ≤ f) :
     nValidators f = 3 * f + 1 ∧
     criterionUnsafe (branchBase f) (branchBase f) (quorum f) .phaseSpecific ∧
     (∀ edge : Bool,

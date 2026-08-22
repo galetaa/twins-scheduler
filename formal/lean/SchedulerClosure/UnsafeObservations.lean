@@ -16,11 +16,11 @@ def UnsafeObservationSet
     (step : State → Action → State)
     (initial : State)
     (Unsafe : State → Prop)
-    (observe : State → Observation) : Set Observation :=
-  {ω | ∃ trace,
+    (observe : State → Observation) : Observation → Prop :=
+  fun ω => ∃ trace,
       legal trace ∧
       Unsafe (terminal step initial trace) ∧
-      observe (terminal step initial trace) = ω}
+      observe (terminal step initial trace) = ω
 
 theorem unsafe_observation_has_unsafe_terminal
     (legal : List Action → Prop)
@@ -29,7 +29,7 @@ theorem unsafe_observation_has_unsafe_terminal
     (Unsafe : State → Prop)
     (observe : State → Observation)
     (ω : Observation)
-    (h : ω ∈ UnsafeObservationSet legal step initial Unsafe observe) :
+    (h : UnsafeObservationSet legal step initial Unsafe observe ω) :
     ∃ trace, legal trace ∧ Unsafe (terminal step initial trace) := by
   rcases h with ⟨trace, hlegal, hunsafe, _⟩
   exact ⟨trace, hlegal, hunsafe⟩
