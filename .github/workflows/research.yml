@@ -23,11 +23,12 @@ jobs:
   synthesis-and-native:
     runs-on: ubuntu-24.04
     timeout-minutes: 25
-    env:
-      TWINS_OUTPUT_ROOT: ${{ runner.temp }}/research-output
-      TWINS_LOG_DIR: ${{ runner.temp }}/research-output/build_logs
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Set isolated output paths on the runner
+        run: |
+          echo "TWINS_OUTPUT_ROOT=$RUNNER_TEMP/research-output" >> "$GITHUB_ENV"
+          echo "TWINS_LOG_DIR=$RUNNER_TEMP/research-output/build_logs" >> "$GITHUB_ENV"
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version-file: .python-version
