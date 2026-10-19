@@ -1,0 +1,149 @@
+{
+  "config": {
+    "arbitrary_posets": {
+      "allowed_split": [
+        0,
+        1
+      ],
+      "costs": [
+        5,
+        2
+      ],
+      "enumeration": "all topological orders and subsets of their six forward pairs; unique transitive closures reduced to covers",
+      "events": [
+        [
+          "R",
+          0
+        ],
+        [
+          "R",
+          1
+        ],
+        [
+          "V",
+          0
+        ],
+        [
+          "V",
+          1
+        ]
+      ],
+      "poset_count": 219,
+      "quotas": [
+        [
+          3,
+          3
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          3,
+          1
+        ]
+      ],
+      "required_split": [],
+      "weights": [
+        1,
+        2
+      ]
+    },
+    "directed_graphs": {
+      "all_directed_graphs_including_self_loops": true,
+      "allowed_split": "all",
+      "one_pivot_profiles": [
+        {
+          "costs": [
+            2
+          ],
+          "weights": [
+            1
+          ]
+        },
+        {
+          "costs": [
+            0
+          ],
+          "weights": [
+            2
+          ]
+        }
+      ],
+      "pivot_counts": [
+        1,
+        2
+      ],
+      "quota_range": "every pair in 0..sum(weights)+1 inclusive",
+      "required_split": [],
+      "two_pivot_profiles": [
+        {
+          "costs": [
+            3,
+            1
+          ],
+          "weights": [
+            1,
+            1
+          ]
+        },
+        {
+          "costs": [
+            5,
+            0
+          ],
+          "weights": [
+            1,
+            2
+          ]
+        }
+      ]
+    },
+    "permission_controls": {
+      "costs": "(4,) for k=1, (5,2) for k=2",
+      "profiles": [
+        "allow none; require none",
+        "allow only 0; require none",
+        "allow all; require last",
+        "allow all; require all"
+      ],
+      "quotas": "(W,W) and (W-1,W)",
+      "weights": "(1,..,k)"
+    },
+    "raw_oracle": "every legal event permutation; every total E/R Boolean policy (all four per-pivot patterns); every allowed/required split subset"
+  },
+  "counts": {
+    "arbitrary_four_event_posets": 219,
+    "cases": 1507,
+    "certificate_failures": 0,
+    "directed_graphs_including_loops": 18,
+    "general_certificates_checked": 1507,
+    "general_optimum_comparisons": 1507,
+    "infeasible_cases": 318,
+    "maximum_exported_states": 199,
+    "maximum_exported_transitions": 398,
+    "minimum_cost_mismatches": 0,
+    "normalization_failures": 0,
+    "normalized_general_witnesses_checked": 1189,
+    "optimal_cases": 1189,
+    "raw_legal_orders": 963,
+    "raw_order_domains": 221,
+    "raw_policy_order_executions": 15372,
+    "structured_certificates_checked": 1507,
+    "structured_optimum_comparisons": 1507
+  },
+  "families": {
+    "all_graph_quotas": 706,
+    "arbitrary_posets": 657,
+    "permission_controls": 144
+  },
+  "independence": "exporter uses raw predecessor masks and explicit immutable signature/repair state; raw oracle enumerates policies and event permutations; neither calls repair graph extraction, capacity formulas or the structured optimizer",
+  "input_sha256": "e1259f32b744b26235eab2f79c7e6a2b1a0d6e849687c6b055020228db33bde2",
+  "mismatch_examples": [],
+  "mismatches": 0,
+  "outcome_sha256": "8fea7d4b822fc9fa1e732dcd8fcd6db9a422dbe606abfc76c9cb230a5cd968f8",
+  "runtime": "excluded from deterministic output",
+  "schema": "pivot-transition-specialization-oracle/v1",
+  "scope": "exact equality on declared initially-ready independent-pivot inputs; general LTS additionally permits reversed mixed E/R patterns, normalized without higher cost",
+  "status": "PASS"
+}

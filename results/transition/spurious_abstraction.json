@@ -1,0 +1,275 @@
+{
+  "abstract": {
+    "allowed_split": [
+      0
+    ],
+    "costs": [
+      3
+    ],
+    "initial": 0,
+    "key_fibres": [
+      0,
+      0
+    ],
+    "required_split": [],
+    "states": [
+      "start_or_prepared",
+      "unsafe"
+    ],
+    "transitions": [
+      {
+        "key": 0,
+        "label": "prepare",
+        "source": 0,
+        "target": 0,
+        "value": true
+      },
+      {
+        "key": 1,
+        "label": "suppress repair",
+        "source": 0,
+        "target": 1,
+        "value": false
+      }
+    ],
+    "unsafe": [
+      1
+    ]
+  },
+  "abstract_certificate": {
+    "minimum_cost": 0,
+    "problem": {
+      "allowed_split": [
+        0
+      ],
+      "costs": [
+        3
+      ],
+      "initial": 0,
+      "key_fibres": [
+        0,
+        0
+      ],
+      "required_split": [],
+      "states": [
+        "start_or_prepared",
+        "unsafe"
+      ],
+      "transitions": [
+        {
+          "key": 0,
+          "label": "prepare",
+          "source": 0,
+          "target": 0,
+          "value": true
+        },
+        {
+          "key": 1,
+          "label": "suppress repair",
+          "source": 0,
+          "target": 1,
+          "value": false
+        }
+      ],
+      "unsafe": [
+        1
+      ]
+    },
+    "problem_sha256": "4c8e2f2d2c263f8707bc39432a2fc98f95584603103fca2d201427e5765bf857",
+    "proof": {
+      "bound": 0,
+      "kind": "closed-strict-sublevel",
+      "states": []
+    },
+    "schema": "transition-refinement-certificate/v1",
+    "statistics": {
+      "certificate_states": 0,
+      "discovered_product_states": 4,
+      "examined_input_transitions": 4,
+      "product_state_upper_bound": 18,
+      "settled_nonunsafe_states": 2
+    },
+    "status": "optimal",
+    "witness": {
+      "cost": 0,
+      "policy": [
+        false,
+        false
+      ],
+      "product_states": [
+        {
+          "assignment": [
+            -1,
+            -1
+          ],
+          "state": 0
+        },
+        {
+          "assignment": [
+            -1,
+            0
+          ],
+          "state": 1
+        }
+      ],
+      "split": [],
+      "terminal": 1,
+      "transitions": [
+        1
+      ]
+    }
+  },
+  "concrete": {
+    "allowed_split": [
+      0
+    ],
+    "costs": [
+      3
+    ],
+    "initial": 0,
+    "key_fibres": [
+      0,
+      0
+    ],
+    "required_split": [],
+    "states": [
+      "start",
+      "prepared",
+      "unsafe"
+    ],
+    "transitions": [
+      {
+        "key": 0,
+        "label": "prepare",
+        "source": 0,
+        "target": 1,
+        "value": true
+      },
+      {
+        "key": 1,
+        "label": "suppress repair",
+        "source": 1,
+        "target": 2,
+        "value": false
+      }
+    ],
+    "unsafe": [
+      2
+    ]
+  },
+  "concrete_certificate": {
+    "minimum_cost": 3,
+    "problem": {
+      "allowed_split": [
+        0
+      ],
+      "costs": [
+        3
+      ],
+      "initial": 0,
+      "key_fibres": [
+        0,
+        0
+      ],
+      "required_split": [],
+      "states": [
+        "start",
+        "prepared",
+        "unsafe"
+      ],
+      "transitions": [
+        {
+          "key": 0,
+          "label": "prepare",
+          "source": 0,
+          "target": 1,
+          "value": true
+        },
+        {
+          "key": 1,
+          "label": "suppress repair",
+          "source": 1,
+          "target": 2,
+          "value": false
+        }
+      ],
+      "unsafe": [
+        2
+      ]
+    },
+    "problem_sha256": "ee4cf541f78b261e3602fa1bf9f43ca6a7e9e40f275b4d03495ce2272928aa70",
+    "proof": {
+      "bound": 3,
+      "kind": "closed-strict-sublevel",
+      "states": [
+        {
+          "assignment": [
+            -1,
+            -1
+          ],
+          "state": 0
+        },
+        {
+          "assignment": [
+            1,
+            -1
+          ],
+          "state": 1
+        }
+      ]
+    },
+    "schema": "transition-refinement-certificate/v1",
+    "statistics": {
+      "certificate_states": 2,
+      "discovered_product_states": 3,
+      "examined_input_transitions": 2,
+      "product_state_upper_bound": 27,
+      "settled_nonunsafe_states": 2
+    },
+    "status": "optimal",
+    "witness": {
+      "cost": 3,
+      "policy": [
+        true,
+        false
+      ],
+      "product_states": [
+        {
+          "assignment": [
+            -1,
+            -1
+          ],
+          "state": 0
+        },
+        {
+          "assignment": [
+            1,
+            -1
+          ],
+          "state": 1
+        },
+        {
+          "assignment": [
+            1,
+            0
+          ],
+          "state": 2
+        }
+      ],
+      "split": [
+        0
+      ],
+      "terminal": 2,
+      "transitions": [
+        0,
+        1
+      ]
+    }
+  },
+  "meaning": "Every concrete edge maps to an abstract edge, but the abstract cost-0 path has no concrete lift.",
+  "state_map": [
+    0,
+    0,
+    1
+  ]
+}

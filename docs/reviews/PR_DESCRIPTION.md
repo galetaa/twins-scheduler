@@ -1,54 +1,60 @@
-# Certifying minimum-cost phase refinement
+# Extend certified scheduler refinement to stateful protocol semantics
 
-## Why this revision is needed
+## Why this change is needed
 
-A reachability counterexample and a unit-weight phase budget do not tell an
-adapter designer which feasible keys to expose at minimum cost. The first
-revision also left its central graph/order argument outside the mechanized
-proof and supported protocol assumptions with a guarded local model.
+The previous exact minimum depended on an independent-pivot behavioral contract.
+Shared quorum state, message availability and timer guards can invalidate that
+decomposition. The manuscript needs a general semantics and a checked connection
+between an abstract optimum and a more detailed protocol model.
 
-## Resulting behavior
+## Changes and resulting behavior
 
-The revision adds weighted cost synthesis with allowed/required keys, a complete
-legal model witness, and independently checked optimality or infeasibility
-certificates. The exact four-role theorem connects admission choices to weighted
-quorum support. A small counterexample proves non-submodularity and an unbounded
-ratio for one precisely specified immediate-benefit heuristic.
+The main theorem now accepts arbitrary labelled transition systems with a
+control-complete static Boolean admission interface. Exact product exploration
+remembers repeated fine-key answers and minimizes once-paid coarse-fibre costs.
+Separate checkers validate unsafe witnesses and closed-sublevel lower bounds,
+including infeasibility, allowed/required splits and exact input identity.
 
-Graph reversal, finite event-order realization and the Bellman certificate
-principle now have Lean proofs. Separate native conformance executes unchanged
-CometBFT v0.39.3 under four ordinary-operation scenarios with actual Ed25519
-votes, native timeout requests, normal commits and source-integrity checks.
+An all-edge simulation checker transfers abstract lower bounds to a detailed
+model. A matching guarded witness proves its optimum. Invariant-guided CEGAR
+eliminates entire false policies, with checked quotient/refinement histories and
+finite strict-partition progress. Resource cutoffs remain unknown.
 
-The article is reorganized around this constructive result. Existing timing,
-frontier, concrete-model and replay material remains with its exact scope;
-the detailed trace and the unit-budget illustration are in appendices.
+A coupled four-validator model covers 12 stages and 32 opportunity slots,
+including unordered repair/timeouts and guarded missing-block catchup. Its
+2,516-state, 5,856-transition mutant graph refines from one abstract state to
+26 after eliminating 11 policies; the proved minimum is 2. The witness replays
+through protocol rules and ends in conflicting decisions by unmutated A and C.
 
-## Evidence
+New Lean proofs cover general policy completion, trace refinement, persistent
+memory, closed-cost certificates, simulation transfer and invariant elimination.
+The previous weighted/SCC result is retained as a specialization with an explicit
+state exporter, equal-optimum normalization proof and independent comparison.
 
-- 47 Python tests and retained Go/384-row cross-language checks pass.
-- Two raw-event oracle suites give 35,223 and 3,253 weighted optimum/certificate
-  comparisons, with zero mismatches; 103,460 prescribed-split boundaries pass.
-- A 15-case structural study produces 13 saved, independently checked optima,
-  up to 48 pivots. Two configured SCC cutoffs return unknown.
-- Lean 4.33.0 completes 14 jobs, audits 27 declarations, and passes independent
-  kernel rechecking; source hygiene covers 22 Lean files. SMT controls give
-  eight expected UNSAT and four expected SAT results.
-- Native conformance passes 14 checks on 32 signed votes and 132 events.
-  Independent signature/metadata audit, three repetitions and a race-detector
-  execution pass.
-- The official LIPIcs build has 15 main-text and 20 physical pages, with no
-  overfull boxes or unresolved references/citations and embedded fonts.
+## Validation
 
-`./reproduce_revision.sh` integrates all research stages, including signature
-and repeatability checks, and fails on a mandatory error. Synthesis outputs and
-the native semantic summary are deterministic references; raw native signatures
-and receipts retain their actual timestamps and are revalidated per run.
+- 119 Python tests pass, with retained Go and 384-row cross-language checks.
+- 7,904 general graph/cost/permission oracle cases have zero mismatches.
+- A separate 2,960-case suite gives 5,920 optimum comparisons and 6,857 checked
+  refinement iterations, with no mismatch or invalid certificate.
+- 1,507 specialization cases give 3,014 raw-oracle optimum comparisons and
+  1,189 equal-cost witness normalizations, all passing.
+- 128 total-policy protocol checks cover 17,690 states and 42,750 transitions
+  in a separate exploration loop sharing the model guards, compared with the
+  export's quotient that omits the same first-arrival diagnostic field.
+- Lean passes 15 build jobs, the 46-declaration axiom audit, independent kernel
+  rechecking and 23-source-file hygiene checks.
+- The official LIPIcs PDF has 12 main-text and 24 physical pages and passes its
+  reference, citation, overfull-box, page-budget and font gates.
+- `make transition` and `./reproduce_revision.sh` regenerate the new results;
+  research CI compares all deterministic transition, bridge and synthesis files.
 
-## Scope for review
+## Scope
 
-The weighted four-role correspondence, Python checker implementation and full
-client refinement are not mechanized. The solver is exponential in the largest
-remaining SCC and pseudo-polynomial in quotas. Costs are synthetic inputs.
-Native conformance does not execute the model's mutation or demonstrate native
-disagreement. The claims concern the declared finite behavioral/order contract.
+The main semantics no longer assumes independent pivots. It still requires a
+declared static control interface and an unsafe predicate. Finite exhaustive
+export precedes the current abstraction loop. Model control costs are inputs.
+The protocol exporter and Python checkers are not mechanized; the protocol
+cross-check shares guards, and no full Go-client refinement is asserted.
+Retained native evidence exercises unchanged CometBFT ordinary operation with
+real Ed25519 signatures. The local model uses HMAC test authentication.

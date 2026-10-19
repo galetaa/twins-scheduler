@@ -1,0 +1,5 @@
+general LTS oracle: 7904 cases, zero mismatches
+coupled quorum: 2516 states, 5856 transitions; minimum2; baseline infeasible
+direct guarded protocol comparison: MISSING_LOCK_UPDATE,64 total policies, zero mismatches
+direct guarded protocol comparison: BASELINE,64 total policies, zero mismatches
+{"direct_protocol_policy_checks": 128, "oracle_cases": 7904, "protocol_minimum_cost": 2, "status": "PASS"}

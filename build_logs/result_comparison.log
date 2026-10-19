@@ -52,16 +52,51 @@ results/synthesis/synthesis_benchmarks.csv: OK
 results/synthesis/synthesis_oracle_cases.csv: OK
 results/synthesis/synthesis_raw_observations.json.gz: OK
 results/synthesis/synthesis_summary.json: OK
+results/transition/certificates/baseline_free.json.gz: OK
+results/transition/certificates/mutant_forbid_all.json.gz: OK
+results/transition/certificates/mutant_free.json.gz: OK
+results/transition/certificates/mutant_only_A_to_P.json.gz: OK
+results/transition/certificates/mutant_only_B_to_P.json.gz: OK
+results/transition/certificates/mutant_require_B_to_P.json.gz: OK
+results/transition/certificates/mutant_require_both.json.gz: OK
+results/transition/coupled_audit_quotient.json.gz: OK
+results/transition/coupled_audit_quotient_map.json: OK
+results/transition/coupled_baseline.json.gz: OK
+results/transition/coupled_mutant.json.gz: OK
+results/transition/coupled_order_controls.json.gz: OK
+results/transition/coupled_protocol_states.json.gz: OK
+results/transition/coupled_protocol_witness.json.gz: OK
+results/transition/direct_policy_checks.csv: OK
+results/transition/model_cases.csv: OK
+results/transition/oracle_cases.csv: OK
+results/transition/semantic_examples.json: OK
+results/transition/spurious_abstraction.json: OK
+results/transition/summary.json: OK
+results/transition_bridge/bridge_summary.json: OK
+results/transition_bridge/certificates/coupled_quorum_audit_quotient.json.gz: OK
+results/transition_bridge/certificates/coupled_quorum_baseline.json.gz: OK
+results/transition_bridge/certificates/coupled_quorum_from_coarsest.json.gz: OK
+results/transition_bridge/certificates/dependent_cost_choice.json.gz: OK
+results/transition_bridge/certificates/required_unused_fibre.json.gz: OK
+results/transition_bridge/certificates/spurious_state_merge.json.gz: OK
+results/transition_bridge/certificates/static_key_cycle.json.gz: OK
+results/transition_bridge/certificates/three_phase_paid_once.json.gz: OK
+results/transition_bridge/certificates/zero_cost_split.json.gz: OK
+results/transition_bridge/random_oracle.json: OK
+results/transition_bridge/replays/coupled_quorum_audit_quotient.json.gz: OK
+results/transition_bridge/replays/coupled_quorum_from_coarsest.json.gz: OK
+results/transition_bridge/specialization_oracle.json: OK
 {
   "main_theorems": [
     "1",
     "2",
     "3",
     "4",
-    "5"
+    "5",
+    "6"
   ],
   "problems": [],
   "status": "PASS",
   "synchronized_pairs": 2
 }
-RESULTS MATCH reference_count=47
+RESULTS MATCH reference_count=81

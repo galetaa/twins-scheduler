@@ -21,6 +21,6 @@
   "cryptography_version": "50.0.2",
   "openssl_version": "OpenSSL 4.0.3 29 Sep 2026",
   "auditor_sha256": "7819216faf241b7393b48e3dd43673e9c5be30231f6859677ab52631cc64fa8a",
-  "input_evidence_sha256": "bd9196d3e657a20ec31c0a3c113dc06fb425281b19b33ac87a18e0ba5bef311f",
+  "input_evidence_sha256": "99c24444f6817f5fd79b9b0fad653f65d18947a24753d346f90c962a6f080fe5",
   "scope": "independent Ed25519 and canonical vote metadata audit of recorded positive native evidence; not an independent consensus implementation"
 }

@@ -1,0 +1,38 @@
+[
+  {
+    "case": "static_key_cycle",
+    "seconds": 0.001429
+  },
+  {
+    "case": "three_phase_paid_once",
+    "seconds": 0.00178
+  },
+  {
+    "case": "dependent_cost_choice",
+    "seconds": 0.00246
+  },
+  {
+    "case": "required_unused_fibre",
+    "seconds": 0.000425
+  },
+  {
+    "case": "zero_cost_split",
+    "seconds": 0.001095
+  },
+  {
+    "case": "spurious_state_merge",
+    "seconds": 0.001143
+  },
+  {
+    "case": "coupled_quorum_from_coarsest",
+    "seconds": 0.459839
+  },
+  {
+    "case": "coupled_quorum_audit_quotient",
+    "seconds": 0.325687
+  },
+  {
+    "case": "coupled_quorum_baseline",
+    "seconds": 0.206872
+  }
+]

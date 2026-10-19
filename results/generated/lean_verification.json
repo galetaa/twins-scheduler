@@ -2,10 +2,10 @@
   "axiom_audit_exit": 0,
   "lake_build_exit": 0,
   "leanchecker_exit": 0,
-  "scope": "Imported Lean declarations include graph/event-order realization and Bellman certificate soundness. Python checker implementation and production-client refinement are not mechanized.",
+  "scope": "Imported Lean declarations include static-policy completion and least trace refinement, persistent-memory query guards, closed-sublevel certificates, labelled local simulation and cost-bound transfer, invariant-guided quotient refinement, graph/event-order realization, and Bellman certificate soundness. Python implementations, the protocol exporter, and production-client correspondence are not mechanized.",
   "source_sha256": {
-    "formal/lean/AxiomAudit.lean": "ac76c24bdc2a5ebf59a576074d487c7b52b65b5c88e00039fb2e65dd6fb42611",
-    "formal/lean/SchedulerClosure.lean": "e34da21d51546ac533e42271afe320cc023c9cf939a4fa1b70927b64f788d53d",
+    "formal/lean/AxiomAudit.lean": "191c162c13d9accd0a5c1d6e7423c65735db164a5d081bb10d65ddafe12bf81e",
+    "formal/lean/SchedulerClosure.lean": "d98e06a5452e5b0097fd12e0602aea56b46395e7e55381cab7588a6ae45ab5ff",
     "formal/lean/SchedulerClosure/CertificateOptimality.lean": "7b2d2caacbbe99a4f073cb8af52d29dc7fc5b25ad95c4c7be41f3c602a572d1e",
     "formal/lean/SchedulerClosure/ClosureLifting.lean": "7a4c15ab19254d28401493370afb60b30df88b5f0b4687caa7a62af07ac1dcc2",
     "formal/lean/SchedulerClosure/CometBFTInstantiation.lean": "9b0a45bc55eb4a34cf486e964cc8aad827c476ba912acf96b7c2a9c316ba0640",
@@ -20,6 +20,7 @@
     "formal/lean/SchedulerClosure/T2ClosureLifting.lean": "2bb726065a47fa3746c5c8a4c9650e59e47f7537e6ad1c7a74d7449d80fc6ebd",
     "formal/lean/SchedulerClosure/T3QuorumPivot.lean": "99bc1dc8a536f49d321ebdcffb674f1f6fa3d6fb1e1b861fbb4ebcf85125cfa0",
     "formal/lean/SchedulerClosure/T6PremiseBoundary.lean": "4df1615bf2e072cff53bacfb2a7f04feed5dbe7e32c033b1160a9f7fb92519dd",
+    "formal/lean/SchedulerClosure/TransitionRefinement.lean": "8511412ee9aa435f28c0194f3f6705ff6ee7b2626b25f31801a607dcfe510620",
     "formal/lean/SchedulerClosure/UnsafeObservations.lean": "bd6fa840f6357b597c15dbbf9170d6ea0e3a30b442777fd1fc7daab327c4ba10"
   },
   "status": "PASS",

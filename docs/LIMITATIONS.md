@@ -1,14 +1,74 @@
 # Limitations
 
-## What the mathematical result covers
+## General transition-system optimality
+
+The new primary result covers arbitrary transition systems under a specified
+static Boolean admission interface. Protocol states and transitions may contain
+interdependent locks, joint quorum assembly, changing message availability,
+repeated messages, branching and cycles. The least trace-refinement theorem,
+closed-set lower-bound principle and local simulation transfer do not require
+independent pivots or finite protocol state.
+
+The executable solvers and checkers accept complete finite graphs and finite
+fine/coarse key sets. Every policy-dependent action must be represented by its
+actual key/answer label; unlabelled reads of the policy invalidate the interface
+contract. Each fine key is persistent for the entire execution. Adaptive-per-visit
+choices are a different scheduler language. Costs are declared nonnegative
+integers paid once per selected coarse fibre, including required unused fibres.
+The objective is existential finite unsafety, not universal controller synthesis
+or a fairness/liveness guarantee.
+
+The product has at most |states| times 3 to the number of fine keys states.
+NP-completeness already holds for acyclic graphs with two phases per fibre.
+Certificates may be exponentially large, and checker resource limits also mean
+unknown. An incomplete search frontier never certifies infeasibility. For
+unrestricted programs even zero-cost reachability can encode halting; the tool
+does not claim a terminating complete solver for all such programs.
+
+## Model-to-model bridge and abstraction refinement
+
+The all-edge simulation checker preserves the complete fine-key/fibre/cost and
+allowed/required interface, initial states and unsafe-state inclusion. It checks
+every concrete edge. Controlled labels must match; only internal edges may
+stutter. Thus an abstract lower bound covers every concrete execution in the
+supplied graph. A concrete witness matching that lower bound proves its optimum.
+A single matched trace cannot establish the lower-bound coverage obligation,
+and a forward abstraction alone cannot establish a concrete unsafe witness.
+
+The iterative state abstraction begins from a complete explicit concrete graph.
+For a false static policy it computes a safe reachable-state invariant and splits
+quotient groups by invariant membership, eliminating the whole policy. The
+prototype does not avoid initial graph construction or automatically discover
+a source-code abstraction. Its selected example reduces the search quotient
+from 2,516 concrete states to 26, but no speedup over industrial model checkers or
+runtime scaling law is claimed. The audit-only quotient removes an extra
+first-arrival diagnostic field and is a projection test.
+
+The coupled protocol case is an exhaustively enumerated bounded rule model:
+one height, two rounds, 12 opportunity groups and 32 once-only slots, including
+repair/timeout permutations and actual missing-block delivery. Both controlled
+fibres act on the same quorum. All within-group permutations are included, but
+not all delivery orders, future rounds, block gossip or client executions.
+Unsafety requires the unmutated observers A,C to disagree. Deterministic HMAC
+is test authentication; it does not execute production Ed25519 in this model.
+128 separately generated total-policy explorations challenge the exporter,
+while guard replay checks every selected witness transition. These executable
+checks are not a machine proof of exporter completeness for arbitrary client code.
+
+The Lean simulation theorem can cover an infinite implementation if its local
+transition/control/observation relation is proved. The current executable
+bridge is finite model-to-model. Ordinary unchanged-client conformance tests
+remain separate and do not establish universal CometBFT correspondence.
+
+## Independent-pivot structural specialization
 
 The repair-frontier theorem and weighted refinement characterization quantify
 over arbitrary finite instances of the declared independent-pivot certificate
 schema. Their proofs are not restricted to the small instances enumerated by
 the artifact. Applying them to a protocol requires discharging the schema's
-behavioral and scheduling assumptions. The certifying synthesis procedure takes
-this schema as input; it does not extract a faithful abstraction from arbitrary
-client code.
+behavioral and scheduling assumptions. The structural certifying synthesis procedure takes
+this schema as input. The general transition-system procedure described above
+does not require these independent-pivot assumptions.
 
 In particular, enabling admission must characterize first-family participation;
 pivots must be initially ready for their second signatures; and, whenever the
@@ -48,8 +108,8 @@ $$
 t_* = \max(0,d_0+d_1-k-\alpha(H))
 $$
 
-requires **unit weights**, fine feasibility, and optimal choice of independent
-split keys. It does not say that every set of $t_*$ arbitrary message exceptions
+requires **unit weights and costs**, fine feasibility, all keys allowed, none
+required, and optimal choice of independent split keys. It does not say that every set of $t_*$ arbitrary message exceptions
 works. A prescribed set has capacity $|S|+\alpha(H[I\setminus S])$; its size
 alone does not determine its effectiveness. Weighted pivots require the exact
 four-role support condition, or the attainable-subset criterion in the common
@@ -59,7 +119,7 @@ generalized by substituting total weight for $k$. Membership and weights are
 fixed; dynamic validators, staking behavior, and changing quorum systems are
 outside this model.
 
-## Synthesis, certificates, and resource bounds
+## Structured synthesis, certificates, and resource bounds
 
 The optimizer supports positive integer vote weights, nonnegative integer
 split costs, and declared allowed/required keys. These are inputs to a finite
@@ -170,10 +230,17 @@ the exercised implementation obligations, not all schedules or a full refinement
 Lean 4.33.0 checks the corrected one-pivot theorem over an arbitrary behavioral
 contract, the capacity and split-budget arithmetic under their hypotheses, the
 weighted interval, and a small persistent-output machine. The expanded integrated
-build has 14 jobs, its axiom audit covers 27 named declarations, the hygiene
-check covers 22 source files, and `leanchecker` rechecking passes. Verification
+build has 15 jobs, its axiom audit covers 46 named declarations, the hygiene
+check covers 23 source files, and `leanchecker` rechecking passes. Verification
 receipts are bound to the current Lean source hashes. These successes do not
 discharge the assumptions for an arbitrary protocol instance.
+
+`TransitionRefinement.lean` additionally proves total static-policy completion,
+least trace cost, consistent memory updates, sublevel certificates, local labelled
+simulation, concrete optimality transfer and invariant-guided policy elimination.
+The finite refinement-count bound remains paper-level cardinality reasoning.
+Python parsing, complete successor construction and client correspondence are
+not mechanized. See [the detailed scope](research/TRANSITION_MECHANIZATION.md).
 
 `GraphRealization.lean` fully proves the graph-reversal equivalence, finite
 acyclicity versus existence of an injective event schedule, and the graph-to-order

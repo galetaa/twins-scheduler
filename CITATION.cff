@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this artifact, please cite the accompanying anonymous manuscript."
-title: "Twins Scheduler: Certifying Minimum-Cost Phase Refinements"
+title: "Twins Scheduler: Certified Minimum-Cost Scheduler Refinement for Stateful BFT Testing"
 type: software
 version: 1.0.0
 date-released: 2026-08-22
@@ -8,6 +8,7 @@ authors:
   - name: "Anonymous artifact authors"
 license: MIT
 abstract: >-
-  Certifying minimum-cost phase refinement for explicit BFT-testing contracts,
-  with weighted synthesis, graph/event-order and certificate-principle proofs,
-  independent executable checks, and unchanged-client conformance evidence.
+  Certified minimum-cost scheduler refinement for arbitrary control-labelled
+  transition systems, with persistent policies, closed-set certificates,
+  checked abstraction transfer, invariant-guided refinement, coupled BFT-rule
+  models, structural quorum specializations, and unchanged-client conformance.

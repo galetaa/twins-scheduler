@@ -14,49 +14,49 @@
       "race_detector": false,
       "command_exit_code": 0,
       "semantic_summary_identical": true,
-      "raw_evidence_sha256": "785390260a43be52d81f041cce4fdf092093063dbcf682f60cd7e292a5f9117a",
-      "go_test_receipt_sha256": "f48047e95abadda979817353550c4611050da0c992a937e412bff71448b98865",
+      "raw_evidence_sha256": "b91c7cba6b55408cdba4ad277d6eecc7e87f8fdf13ca8af0759e93b1f454bf43",
+      "go_test_receipt_sha256": "d83f43833e64ddc8aad2ea1504bffd7c2220532641b3862083d285a28c543537",
       "go_test_pass_events": [
         {
-          "Time": "2026-10-19T11:07:40.617743566-07:00",
+          "Time": "2026-10-19T12:20:25.178202643-07:00",
           "Action": "pass",
           "Package": "github.com/cometbft/cometbft/consensus",
           "Test": "TestNativeConformance/CommitCatchupAndImmutability",
           "Elapsed": 0.01
         },
         {
-          "Time": "2026-10-19T11:07:40.620448117-07:00",
+          "Time": "2026-10-19T12:20:25.181579158-07:00",
           "Action": "pass",
           "Package": "github.com/cometbft/cometbft/consensus",
           "Test": "TestNativeConformance/MixedQuorumTimeoutGuards",
           "Elapsed": 0
         },
         {
-          "Time": "2026-10-19T11:07:40.624806797-07:00",
+          "Time": "2026-10-19T12:20:25.186677306-07:00",
           "Action": "pass",
           "Package": "github.com/cometbft/cometbft/consensus",
           "Test": "TestNativeConformance/LockPersistence",
-          "Elapsed": 0
+          "Elapsed": 0.01
         },
         {
-          "Time": "2026-10-19T11:07:40.627908289-07:00",
+          "Time": "2026-10-19T12:20:25.191726871-07:00",
           "Action": "pass",
           "Package": "github.com/cometbft/cometbft/consensus",
           "Test": "TestNativeConformance/ValidBlockReuse",
           "Elapsed": 0
         },
         {
-          "Time": "2026-10-19T11:07:40.630308393-07:00",
+          "Time": "2026-10-19T12:20:25.192895584-07:00",
           "Action": "pass",
           "Package": "github.com/cometbft/cometbft/consensus",
           "Test": "TestNativeConformance",
           "Elapsed": 0.02
         },
         {
-          "Time": "2026-10-19T11:07:40.631156204-07:00",
+          "Time": "2026-10-19T12:20:25.193735003-07:00",
           "Action": "pass",
           "Package": "github.com/cometbft/cometbft/consensus",
-          "Elapsed": 0.035
+          "Elapsed": 0.038
         }
       ],
       "upstream_source_unchanged": true,
@@ -69,49 +69,49 @@
       "race_detector": false,
       "command_exit_code": 0,
       "semantic_summary_identical": true,
-      "raw_evidence_sha256": "10b79394c6bc284c570c8fd9f81ce9673701eecd9d73e25c5de726ba5837bea7",
-      "go_test_receipt_sha256": "afafa3944d50ac715e490dff9cbf39c798d0ba96844543b486957175e0889ec4",
+      "raw_evidence_sha256": "5a7a5d8dc2f9ec0699e2a79c17ffd7e444ad335c84dc784ec0cb123200be861c",
+      "go_test_receipt_sha256": "ce1d7fd865acc5adcfa5252c7c267166ec81da2bf9cd6b0303dd7e6d536525f3",
       "go_test_pass_events": [
         {
-          "Time": "2026-10-19T11:07:41.43158965-07:00",
+          "Time": "2026-10-19T12:20:25.983753063-07:00",
           "Action": "pass",
           "Package": "github.com/cometbft/cometbft/consensus",
           "Test": "TestNativeConformance/CommitCatchupAndImmutability",
-          "Elapsed": 0.01
+          "Elapsed": 0
         },
         {
-          "Time": "2026-10-19T11:07:41.433933759-07:00",
+          "Time": "2026-10-19T12:20:25.986146107-07:00",
           "Action": "pass",
           "Package": "github.com/cometbft/cometbft/consensus",
           "Test": "TestNativeConformance/MixedQuorumTimeoutGuards",
           "Elapsed": 0
         },
         {
-          "Time": "2026-10-19T11:07:41.440350743-07:00",
+          "Time": "2026-10-19T12:20:25.990832252-07:00",
           "Action": "pass",
           "Package": "github.com/cometbft/cometbft/consensus",
           "Test": "TestNativeConformance/LockPersistence",
           "Elapsed": 0
         },
         {
-          "Time": "2026-10-19T11:07:41.440479132-07:00",
+          "Time": "2026-10-19T12:20:25.994087013-07:00",
           "Action": "pass",
           "Package": "github.com/cometbft/cometbft/consensus",
           "Test": "TestNativeConformance/ValidBlockReuse",
           "Elapsed": 0
         },
         {
-          "Time": "2026-10-19T11:07:41.441404097-07:00",
+          "Time": "2026-10-19T12:20:25.995225851-07:00",
           "Action": "pass",
           "Package": "github.com/cometbft/cometbft/consensus",
           "Test": "TestNativeConformance",
-          "Elapsed": 0.01
+          "Elapsed": 0.02
         },
         {
-          "Time": "2026-10-19T11:07:41.441930862-07:00",
+          "Time": "2026-10-19T12:20:25.996031524-07:00",
           "Action": "pass",
           "Package": "github.com/cometbft/cometbft/consensus",
-          "Elapsed": 0.032
+          "Elapsed": 0.035
         }
       ],
       "upstream_source_unchanged": true,
@@ -124,49 +124,49 @@
       "race_detector": false,
       "command_exit_code": 0,
       "semantic_summary_identical": true,
-      "raw_evidence_sha256": "086d66061467ebe587eadadb0031a49e7840814f54e1a566abfb096be116f41d",
-      "go_test_receipt_sha256": "14f3def464da208c443ffe2009c1431227d32af431fd994621e0ce848db8e1a8",
+      "raw_evidence_sha256": "49d4e5864156b912f27cfb85c7e0c15e8f530861848928ad7b5d8270a951f23d",
+      "go_test_receipt_sha256": "1321294ada80e607b528abba8a67d2f88c01b45899c0f53141bee5b90014afd8",
       "go_test_pass_events": [
         {
-          "Time": "2026-10-19T11:07:42.276692356-07:00",
+          "Time": "2026-10-19T12:20:26.808451211-07:00",
           "Action": "pass",
           "Package": "github.com/cometbft/cometbft/consensus",
           "Test": "TestNativeConformance/CommitCatchupAndImmutability",
-          "Elapsed": 0
+          "Elapsed": 0.01
         },
         {
-          "Time": "2026-10-19T11:07:42.280297843-07:00",
+          "Time": "2026-10-19T12:20:26.811305045-07:00",
           "Action": "pass",
           "Package": "github.com/cometbft/cometbft/consensus",
           "Test": "TestNativeConformance/MixedQuorumTimeoutGuards",
           "Elapsed": 0
         },
         {
-          "Time": "2026-10-19T11:07:42.283775048-07:00",
+          "Time": "2026-10-19T12:20:26.816148239-07:00",
           "Action": "pass",
           "Package": "github.com/cometbft/cometbft/consensus",
           "Test": "TestNativeConformance/LockPersistence",
           "Elapsed": 0
         },
         {
-          "Time": "2026-10-19T11:07:42.289013737-07:00",
+          "Time": "2026-10-19T12:20:26.820004082-07:00",
           "Action": "pass",
           "Package": "github.com/cometbft/cometbft/consensus",
           "Test": "TestNativeConformance/ValidBlockReuse",
-          "Elapsed": 0.01
+          "Elapsed": 0
         },
         {
-          "Time": "2026-10-19T11:07:42.290763475-07:00",
+          "Time": "2026-10-19T12:20:26.821216399-07:00",
           "Action": "pass",
           "Package": "github.com/cometbft/cometbft/consensus",
           "Test": "TestNativeConformance",
           "Elapsed": 0.02
         },
         {
-          "Time": "2026-10-19T11:07:42.291399388-07:00",
+          "Time": "2026-10-19T12:20:26.822201502-07:00",
           "Action": "pass",
           "Package": "github.com/cometbft/cometbft/consensus",
-          "Elapsed": 0.037
+          "Elapsed": 0.036
         }
       ],
       "upstream_source_unchanged": true,
@@ -179,46 +179,46 @@
       "race_detector": true,
       "command_exit_code": 0,
       "semantic_summary_identical": true,
-      "raw_evidence_sha256": "5efce7f7fec7189c18546677aaef7483b17f51328a7986358d7255794a10a9d7",
-      "go_test_receipt_sha256": "174978676823b1852a9cf4542ed7e89663273a6c1b32002c71089ce4e6984690",
+      "raw_evidence_sha256": "a6926ee8e7e3d8fab5621332b77861e7afe67082a0dfb4484f37e1cecf8f4216",
+      "go_test_receipt_sha256": "ab65fd0e0a1bd4f20955146103a19803c18671a36d62dda9215d8a834ef9fbc2",
       "go_test_pass_events": [
         {
-          "Time": "2026-10-19T11:07:43.841318466-07:00",
+          "Time": "2026-10-19T12:20:28.080570219-07:00",
           "Action": "pass",
           "Package": "github.com/cometbft/cometbft/consensus",
           "Test": "TestNativeConformance/CommitCatchupAndImmutability",
-          "Elapsed": 0.01
+          "Elapsed": 0.02
         },
         {
-          "Time": "2026-10-19T11:07:43.852611366-07:00",
+          "Time": "2026-10-19T12:20:28.090618117-07:00",
           "Action": "pass",
           "Package": "github.com/cometbft/cometbft/consensus",
           "Test": "TestNativeConformance/MixedQuorumTimeoutGuards",
           "Elapsed": 0.01
         },
         {
-          "Time": "2026-10-19T11:07:43.867154223-07:00",
+          "Time": "2026-10-19T12:20:28.107718917-07:00",
           "Action": "pass",
           "Package": "github.com/cometbft/cometbft/consensus",
           "Test": "TestNativeConformance/LockPersistence",
-          "Elapsed": 0.01
+          "Elapsed": 0.02
         },
         {
-          "Time": "2026-10-19T11:07:43.879353185-07:00",
+          "Time": "2026-10-19T12:20:28.12130705-07:00",
           "Action": "pass",
           "Package": "github.com/cometbft/cometbft/consensus",
           "Test": "TestNativeConformance/ValidBlockReuse",
           "Elapsed": 0.01
         },
         {
-          "Time": "2026-10-19T11:07:43.887354283-07:00",
+          "Time": "2026-10-19T12:20:28.129832611-07:00",
           "Action": "pass",
           "Package": "github.com/cometbft/cometbft/consensus",
           "Test": "TestNativeConformance",
           "Elapsed": 0.06
         },
         {
-          "Time": "2026-10-19T11:07:44.892654608-07:00",
+          "Time": "2026-10-19T12:20:29.133895032-07:00",
           "Action": "pass",
           "Package": "github.com/cometbft/cometbft/consensus",
           "Elapsed": 1.1320000000000001

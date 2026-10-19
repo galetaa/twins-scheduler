@@ -1,12 +1,26 @@
-# Complexity of coarse witness reachability
+# Complexity and proof boundaries
+
+\label{app:complexity}
+
+## General finite transition systems
+
+For the explicit finite LTS decision problem with binary-encoded budget $C$, guess a total fine policy and an allowed split set containing the required set. Check uniformity outside that set and $c(T)\le C$, then perform ordinary reachability using only compatible edges. Summing binary-encoded nonnegative costs and these checks takes polynomial time.
+
+For NP-hardness, reduce weighted Set Cover. Let $D_1,\ldots,D_m\subseteq U$ be a Set Cover instance with costs $c_j$, and allow every fibre to split with none required. Create two fine keys $a_j,b_j$ in coarse fibre $j$. A forced initial chain records $(a_j,0)$ for every set. Then place one layer per element $u\in U$; for every $j$ with $u\in D_j$, add a parallel edge $(b_j,1)$ to the next layer. The final layer is unsafe. Every path chooses covering sets and mixes exactly the chosen fibres, paying each selected set once. Conversely any cover supplies such a path of no greater cost. The graph is acyclic and uses exactly two fine keys per fibre. Thus the decision problem is NP-complete already under these restrictions, by the classical Set Cover hardness \cite{karp1972reducibility}. The artifact exhaustively checks the reduction on all 512 ordered three-set families on a three-element universe, independently enumerating covers.
+
+The finite graph restriction is substantive. With no controlled keys, an unrestricted program can simulate a machine and reach an unsafe state exactly if it halts. A total solver deciding both reachability and infeasibility for all such programs would decide halting. The semantic simulation and lower-bound theorems themselves require no finite-state assumption; a supplied inductive invariant can cover an infinite concrete system.
+
+## Independent-pivot specialization
 
 In the unweighted independent-pivot schema, the decision problem of whether a coarse unsafe execution exists is NP-complete when the number of pivots is unbounded and the finite opportunity order is represented explicitly by its events and precedence or cover edges. A certificate consists of an open set, a reusable set and a topological event order; checking admission, ordering and quorum support takes polynomial time.
 
 For hardness, take an undirected graph on $k$ vertices and an independent-set target $t$. Introduce repairs $R_i$ and second-vote opportunities $V_i$. For every undirected edge $\{i,j\}$ impose $R_i\prec V_j$ and $R_j\prec V_i$. These constraints are acyclic: they point from the repair layer to the vote layer. The fixed prefix and certificate collectors can be added before and after those layers. The resulting repair graph is the symmetric orientation of the original graph. Its induced set is acyclic exactly when it is independent, since each undirected edge creates a directed two-cycle.
 
-Set $d_0=k,d_1=t$. Theorem 3 gives coarse unsafe reachability exactly when $\alpha(H)\ge t$, which is the independent-set question. This uses the classical relation between node cover, feedback node sets, and symmetrized graphs \cite{karp1972reducibility}. It is a complexity statement about the declared opportunity schema. It neither establishes a complexity bound for the fixed four-validator trace nor claims that every constructed order is realizable by a production consensus implementation.
+Set $d_0=k,d_1=t$. Proposition E3 gives coarse unsafe reachability exactly when $\alpha(H)\ge t$, which is the independent-set question. This uses the classical relation between node cover, feedback node sets, and symmetrized graphs \cite{karp1972reducibility}. It is a complexity statement about the declared opportunity schema. It neither establishes a complexity bound for the fixed four-validator trace nor claims that every constructed order is realizable by a production consensus implementation.
 
 # Supporting replay and diagnostic results
+
+\label{app:replay}
 
 ## Replay erasure with outputs
 
@@ -48,6 +62,10 @@ Exactly three of the 128 assignments satisfy this expression. This is a diagnost
 
 # Detailed guarded four-validator model trace
 
+\label{app:trace}
+
+This is the retained single-controlled-fibre witness. Here $E$ is $B$'s round-0 prevote delivered to $P$, and $R$ is its round-0 precommit to $P$. The fine policy admits $E$ and withholds $R$. The new coupled model additionally controls $A\to P$; its optimized execution is recorded separately in the artifact.
+
 1. $A$ receives $B$'s block-0 proposal and signs $\operatorname{PV}(0,0)$. $A$ relays the proposal to $P$, which signs the same prevote. $C$ receives no proposal; its proposal timeout produces $\operatorname{PV}(0,\bot)$.
 2. $B$ emits its round-0 prevote and precommit. Deliver $P$'s and $B$'s prevotes to $A$. The set $\{A,P,B\}:0$ makes $A$ persist valid/locked block $0@0$ and sign $\operatorname{PC}(0,0)$.
 3. Deliver $A$'s prevote and $E$ to $P$. Its same three-signer PoLC sets valid block $0@0$. The mutation omits only its lock assignment, and $P$ signs $\operatorname{PC}(0,0)$ while remaining unlocked.
@@ -61,20 +79,243 @@ Exactly three of the 128 assignments satisfy this expression. This is a diagnost
 
 # Parametric certificate families
 
+\label{app:families}
+
 For every $f\ge1$, take $n=3f+1$, $q=2f+1$, Byzantine set $B$ of size $f$, correct exclusive sets $A,C$ of size $f$, and pivot $p$. Then
 
 $$
 Q_0=B\cup A\cup\{p\},\qquad Q_1=B\cup C\cup\{p\}
 $$
 
-have size $q$ and each nonpivot base has size $q-1$. Under the behavioral contract, Theorem 2 applies. This arithmetic does not assert that every locking protocol realizes the contract.
+have size $q$ and each nonpivot base has size $q-1$. Under the behavioral contract, Proposition E2 applies. This arithmetic does not assert that every locking protocol realizes the contract.
 
-More generally, for $1\le k\le f$, use $k$ pivots, exclusive sets $A,C$ of size $f+1-k$, Byzantine set $B$ of size $f$, and $k-1$ unused correct identities. The total is still $3f+1$. Both quorums contain $B$, their exclusive set, and all $k$ pivots; each base has size $q-k$. Distinct correct observers exist in nonempty $A,C$. Theorem 3 characterizes precisely which opportunity orders can preserve these $k$ required double contributions. The extension is a certificate schema; the concrete protocol trace in Section 7 establishes the single-pivot model case.
+More generally, for $1\le k\le f$, use $k$ pivots, exclusive sets $A,C$ of size $f+1-k$, Byzantine set $B$ of size $f$, and $k-1$ unused correct identities. The total is still $3f+1$. Both quorums contain $B$, their exclusive set, and all $k$ pivots; each base has size $q-k$. Distinct correct observers exist in nonempty $A,C$. Proposition E3 characterizes precisely which opportunity orders can preserve these $k$ required double contributions. The extension is a certificate schema; the guarded trace in Appendix~\ref{app:trace} establishes the single-pivot model case.
+
+
+
+# Structural special-case proofs
+
+\label{app:frontier}
+
+These results explain the independent-pivot specialization. The general transition-system optimizer does not assume their behavioral contracts. Here $G_T$ denotes phase-specific admission and $G_D$ coarse admission. Write $L_G(P,\mathcal B)$ for legal executions under scheduler $G$ and declared opportunity bound $\mathcal B$, and $\mathsf{UnsafeObs}_G(P,\mathcal B)$ for observations of those executions whose terminal state satisfies the designated unsafe predicate.
+
+## A standard sufficient preservation condition
+
+The useful positive baseline is a specialized simulation argument \cite{lynch1995simulations}. Let a candidate coarse trace retain the actions of a fine trace in order and insert closure-required deliveries. Suppose a preorder $\mathcal R$ relates the initial states, each insertion increases the target state in $\mathcal R$, retained actions preserve $\mathcal R$, and unsafety is upward closed in $\mathcal R$.
+
+**Proposition E1 (legal relational preservation).** If the candidate trace $C(\tau)$ is legal in the coarse language,
+$C(\tau)\in L_{G_D}(P,\mathcal B)$, these conditions imply
+$\mathsf{Unsafe}(\operatorname{last}(\tau))\Rightarrow
+\mathsf{Unsafe}(\operatorname{last}(C(\tau)))$.
+
+**Proof.** Induct over the merged action sequence. At an insertion, the target's increasing step composes with the current relation by transitivity. At a retained action, forward simulation advances both states. The terminal relation and upward closure transfer unsafety. Target legality supplies membership in the coarse execution language. $\square$
+
+Legality is an independent obligation. Processing repair may disable an action or prevent a message from being emitted, so simply retaining all fine votes after inserting repair can produce an illegal sequence. Our negative results instead rerun guarded opportunities; a disabled opportunity emits no vote. Proposition E1 is supporting machinery, not a new general simulation principle.
+
+## A corrected one-pivot separation criterion
+
+Let $q\ge1$ be a certificate threshold. Two conflicting certificate families have fixed nonpivot support $q-1$ each. The same pivot $p$ is the only possible additional signer. The first and second votes are issued at opportunities $V_0,V_1$; $C_0,C_1$ collect their certificates. Decisions, signed votes, and the availability of emitted votes at the specified collectors are irreversible within the bound.
+
+The following are **behavioral obligations**:
+
+1. **Enabling necessity.** The first pivotal vote is emitted exactly when the enabling envelope $E$ is admitted. No substitute supplies that missing contribution.
+2. **Explicit persistence.** When $E$ is admitted and repair $R$ is withheld, $p$ emits the second pivotal vote at $V_1$. Other fixed events do not independently disable it.
+3. **Timely repair.** When $E,R$ are admitted and $R$ is processed before $V_1$, $p$ does not emit the second pivotal vote. No previously emitted second-family signature can substitute for it.
+4. **Certificate and observation coverage.** The two designated correct observers decide their respective values exactly when the corresponding quorum is available; the bounded agreement observation is unsafe exactly when both families decide. No unrelated decision opportunity creates an additional disagreement.
+
+The **scheduler obligations** are separate: $E,R$ are emitted, share one endpoint/view key, and have distinct phase labels. Fine admission can realize $(e,r)=(1,0)$; coarse admission realizes only $(0,0)$ and $(1,1)$. The relevant order is
+
+$$
+E<V_0<C_0<R<V_1<C_1.
+$$
+
+All other delivery choices and opportunities are fixed, and each rerun obeys the behavioral guards. These assumptions deliberately describe a sufficient schema; quorum arithmetic alone cannot establish a protocol refinement.
+
+**Proposition E2 (behavioral quorum-pivot separation).** Under these behavioral and scheduler obligations,
+
+$$
+\mathsf{UnsafeObs}_{G_T}(P,\mathcal B)\ne\varnothing,
+\qquad
+\mathsf{UnsafeObs}_{G_D}(P,\mathcal B)=\varnothing.
+$$
+
+**Proof.** Fine admission supplies the first vote by enabling necessity and the second by explicit persistence. Each augments a base of $q-1$, producing two conflicting correct decisions. With the coarse edge off, the first vote is absent and its certificate is short, regardless of whether $p$ can still vote second. With the edge on, the first certificate forms but timely repair prevents the second pivotal signature. Observation coverage makes these two coarse cases exhaustive for agreement. $\square$
+
+The persistence obligation cannot be inferred from the absence of $R$. For example, a fixed local transition after $C_0$ could disable $p$ even when $R$ is suppressed. The endpoint and quorum conditions would still hold, but the fine witness would disappear. Likewise, the order $R<C_1$ is insufficient if $V_1<R<C_1$: repair cannot retract the already signed vote. Both errors disappear when behavior and signature timing are stated explicitly.
+
+The familiar $n=3f+1$, $q=2f+1$ family instantiates the two bases with $q-1$ fixed signatures. Appendix~\ref{app:families} gives its arithmetic and a $k$-pivot extension; realizability of their behavior remains a separate obligation.
+
+## Repair frontiers for several independent channels
+
+Let $I=\{1,\ldots,k\}$ be pivotal identities, each with positive integer weight $w_i$. Write $w(X)=\sum_{i\in X}w_i$ and $W=w(I)$. The two certificate families have fixed base weights $b_a$, thresholds $q_a$, and deficits $d_a=\max(0,q_a-b_a)$, for $a\in\{0,1\}$. Unit weights give $W=k$.
+
+### Behavioral and order contracts
+
+Pivot $i$ emits exactly one first-family signature if and only if $E_i$ is admitted. No substitute first-family contribution is available when it is closed. Once the first family is feasible, pivot $i$ emits its second-family signature at opportunity $V_i$ **if and only if** $R_i$ has not been processed before $V_i$. In particular, closing its edge need not prevent its second vote: it was initially ready. No other state transition changes this test. On each first-certificate-feasible execution, an admitted repair is already available and is processed at its designated $R_i$ slot; admission is not an unproduced-envelope stutter. An admitted $E_i$ likewise realizes its enabling action. These availability and slot-coverage conditions are part of this specialization. Admitted repair disables prospective issuance; it cannot withdraw signed output. Both collectors and the observation satisfy the coverage obligation of the behavioral separation subsection.
+
+It suffices to impose this second-vote law on policies capable of forming the first certificate. A policy that misses that certificate cannot be unsafe in this two-family observation domain. This qualification accommodates repairs whose commit evidence depends on available first votes.
+
+A finite strict partial order $\prec$ describes opportunities. Repair and vote slots are distinct event kinds: $R_i\ne V_j$ for all $i,j$. The fixed anchors include
+
+$$
+E_i\prec V_0\prec C_0\prec V_i\prec C_1,
+\qquad V_0\prec R_i.
+$$
+
+Additional relations specify the allowed delivery restrictions. Each policy admits **all** linear extensions of this order, interpreted through the guarded machine. Withheld deliveries and disabled voting opportunities stutter. Their slots retain the stated precedence constraints; suppression does not erase a transitive constraint between other events. Every processed envelope must already be emitted and available.
+
+The $k$ endpoint/view keys are independent. A coarse policy opens a subset $A\subseteq I$ and admits $E_i,R_i$ together exactly for $i\in A$. Fine admission can admit all $E_i$ and suppress all $R_i$. These are explicit independence and order-coverage assumptions. If a real harness admits fewer orders, the model gives a sound coarse-safety overapproximation, but an existential witness needs a realizable order in that harness.
+
+### A graph of simultaneous repair obstructions
+
+Define a directed graph $H$, including possible self-loops, by
+
+$$
+i\longrightarrow j \quad\Longleftrightarrow\quad R_i\prec V_j,
+\qquad
+\alpha(H)=\max\{|J|:J\subseteq I,\ H[J]\text{ is acyclic}\}.
+$$
+
+Use transitive precedence, not just a drawing's cover edges. A self-loop means that a pivot's own repair is forced early.
+
+**Lemma E1 (compatible late repairs).** For $J\subseteq I$, a linear extension can place $V_i<R_i$ for every $i\in J$ exactly when $H[J]$ is acyclic.
+
+This is the standard reversible-pair/alternating-cycle argument from partial-order theory, expressed in repair notation \cite{streib2014dimension}. We include the proof because the mapping to scheduling opportunities is central.
+
+**Proof.** Add the required edges $V_i\to R_i$ to the opportunity order. Such an order exists exactly when the augmented relation is acyclic: a finite acyclic relation has a topological ordering. A cycle $i_1\to\cdots\to i_t\to i_1$ in $H[J]$ yields an augmented closed walk
+
+$$
+V_{i_1}\to R_{i_1}\prec V_{i_2}\to R_{i_2}\prec\cdots\prec V_{i_1}.
+$$
+
+Conversely, any augmented cycle must use an added edge, since the original order is acyclic. Between consecutive added edges $V_i\to R_i$ and $V_j\to R_j$, the original-order segment gives $R_i\prec V_j$, hence $i\to j$. Compress these segments to obtain a nonempty closed walk in $H[J]$, which contains a cycle. This includes self-loops. $\square$
+
+The graph can have cycles even though the opportunity order does not. Its cycles describe incompatible *requests to delay repair*, not a causal cycle in an actual execution.
+
+The full lemma is machine-checked, including existence of the finite topological order. The Lean construction assigns an injective time using the number of strict predecessors and an enumeration index. A separate theorem accepts cover edges and derives the graph from their transitive closure. Thus neither realizability nor the treatment of suppressed slots is an assumed capacity premise.
+
+### Exact capacity and separation
+
+**Proposition E3 (repair-frontier characterization).** Under the contracts above, fine unsafety is feasible exactly when $d_0,d_1\le W$. Coarse unsafety is feasible exactly when there exist $J\subseteq A\subseteq I$ satisfying
+
+$$
+H[J]\text{ acyclic},\qquad w(A)\ge d_0,
+\qquad w(I\setminus A)+w(J)\ge d_1. \tag{E1}\label{eq:frontier-weighted}
+$$
+
+For unit weights this is equivalent to
+
+$$
+\mathsf{UnsafeObs}_{G_D}\ne\varnothing
+\quad\Longleftrightarrow\quad
+\max(d_0,d_1)\le k\ \land\ d_0+d_1\le k+\alpha(H). \tag{E2}\label{eq:frontier-unit}
+$$
+
+Consequently strict phase/coarse separation holds exactly when
+
+$$
+\boxed{\max(d_0,d_1)\le k\quad\land\quad
+ d_0+d_1>k+\alpha(H).} \tag{E3}\label{eq:frontier-separation}
+$$
+
+**Proof.** Fine admission can supply all first and second signatures by admitting every enabling envelope and suppressing every repair. No branch can receive more than weight $W$, proving its characterization.
+
+For a coarse unsafe execution, let $A$ be its open keys and let $J$ be those open pivots whose second votes precede their repairs. The first support is exactly $w(A)$. Because the first certificate is feasible, the second-vote contract applies: closed pivots remain ready and open pivots contribute second exactly when in $J$. Thus the second support is $w(I\setminus A)+w(J)$. The execution realizes their joint lateness, so Lemma E1 gives acyclicity and establishes necessity of \eqref{eq:frontier-weighted}.
+
+Conversely, choose $A,J$ satisfying \eqref{eq:frontier-weighted}. Lemma E1 gives an order in which every member of $J$ signs before repair. Open precisely $A$. The first threshold is met, so the behavioral contract ensures second signatures from every closed pivot and every member of $J$. Further signatures only increase support. Durable outputs reach both collectors; observation coverage gives an unsafe execution.
+
+For unit weights, adding $d_0\le|A|$ and $d_1\le k-|A|+|J|$ proves the combined inequality in \eqref{eq:frontier-unit}; each demand is at most $k$. For the converse put $h=\max(0,d_0+d_1-k)$. Equation \eqref{eq:frontier-unit} implies $h\le\alpha(H)$ and $h\le d_0\le k$. Choose an acyclic set of size $h$, possible by taking a subset of a maximum acyclic set, and extend it to an open set $A$ of size $d_0$. Then $k-|A|+h\ge d_1$, so \eqref{eq:frontier-weighted} applies. Combining fine feasibility with the negation of \eqref{eq:frontier-unit} gives \eqref{eq:frontier-separation}. $\square$
+
+Here $h$ is the number of pivots that must contribute to **both** branches. Coarse reachability is decided by whether the scheduler can keep that many jointly reusable contributors, not by the number of admission bits alone.
+
+## Robustness and the amount of phase control required
+
+### Common deadlines and crossed deadlines
+
+If all second signatures share one opportunity $V$, let $F=\{i:R_i\prec V\}$ and $\ell=k-|F|$. Members of $F$ have self-loops; all other pivots can jointly place repair after $V$. Hence $\alpha(H)=\ell$ and \eqref{eq:frontier-unit} becomes $d_0+d_1\le k+\ell$, subject to individual feasibility. For the $k$-required family, $d_0=d_1=k$: separation survives whenever $\ell<k$. Thus allowing some late repairs need not eliminate separation once more than one double contribution is indispensable.
+
+Individual deadlines behave differently. With two pivots and only the critical constraints
+
+$$
+R_1\prec V_2,\qquad R_2\prec V_1,
+$$
+
+each repair can individually follow its own vote. They cannot both do so: that would require $V_1<R_1<V_2<R_2<V_1$. The repair graph is a directed two-cycle and $\alpha(H)=1$, despite having no self-loop. With $d_0=d_1=2$, coarse admission remains safe and phase-sensitive admission is unsafe. This is a separation over several event orders and two independently controlled channels, rather than two executions of one fixed edge.
+
+
+
+### Optimal phase-splitting budget
+
+A split key admits its enabling phase while suppressing repair. Splitting leaves the opportunity partial order intact. With a chosen split set $T$, the maximum number of double contributors is
+
+$$
+|T|+\alpha(H[I\setminus T]).
+$$
+
+Among unsplit keys, Lemma E1 still applies. A split pivot contributes twice without requiring its repair to be late. Choosing at most $t$ split keys gives the exact best capacity $\min(k,\alpha(H)+t)$: this is an upper bound because any unsplit acyclic set has size at most $\alpha(H)$; it is attained by keeping a maximum acyclic set and splitting vertices outside it.
+
+**Corollary E1 (minimum phase budget).** For unit weights with no required splits and every key available at unit cost, if fine admission is feasible, the exact minimum number of independently split keys needed for an unsafe witness is
+
+$$
+\boxed{t_* = \max(0,d_0+d_1-k-\alpha(H)).} \tag{E4}\label{eq:frontier-budget}
+$$
+
+**Proof.** Substitute the best capacity $\min(k,\alpha(H)+t)$ into \eqref{eq:frontier-unit}. Since $d_0,d_1\le k$, the resulting inequality holds exactly when $t$ covers the deficit in \eqref{eq:frontier-budget}. $\square$
+
+Figure \ref{fig:frontier} in Appendix~\ref{app:heatmap} illustrates the unit-weight boundary. The statement is existential over the choice of split keys. It does not claim that every set of $t_*$ arbitrary message exceptions suffices. A witness can be constructed by choosing an acyclic reusable set, selecting the necessary split keys and open keys, adding its lateness constraints, and topologically sorting the opportunity graph.
+
+### Order relaxation, extra edges, and weights
+
+Removing precedence constraints cannot add an edge to $H$, so it cannot decrease $\alpha(H)$. Thus order relaxation weakens separation monotonically under the same behavioral contract and deficits. Conversely, additional causal paths may increase the needed phase budget. Independent auxiliary events and extra edges are harmless only if they preserve both relevant state/output behavior and the stated order language. An extra substitute vote changes a deficit and must be included in the calculation.
+
+Initially ready and enabling-dependent pivots are different models. With two forced-early pivots and deficits $1,1$, coarse admission can open one key for the first vote and close the other for the second. Requiring both pivots to see enabling evidence before their second votes would incorrectly remove that coarse witness. Proposition E3 uses the initially ready behavior present in the four-validator edge-off case.
+
+For a common deadline with integer weights, define $L=I\setminus F$ and $W_L=w(L)$. The exact condition is existence of $K\subseteq F$ such that
+
+$$
+\max(0,d_0-W_L)\le w(K),\qquad w(K)+d_1\le W. \tag{E5}\label{eq:frontier-interval}
+$$
+
+Open every key in $L$ and delay those repairs; choose $K$ among the forced-early keys. The two supports become $W_L+w(K)$ and $W-w(K)$. Opening all $L$ cannot hurt either branch, which proves necessity as well as sufficiency. Indivisible weights matter: weights $2,2$, no late repair, and deficits $1,3$ require an unattainable subset weight $1$. A total-weight relaxation would give the wrong answer. This is an abstract weighted certificate result, not a weighted CometBFT refinement.
+
+For arbitrary individual deadlines, deciding whether a coarse unsafe execution exists is NP-complete for explicitly represented finite opportunity orders with unbounded $k$. Appendix~\ref{app:complexity} gives the short reduction using a classical graph construction \cite{karp1972reducibility}; the contribution is the scheduler correspondence, not a new graph-hardness result.
+
+
+## Construction and independent certificates
+
+Compute $H$ using reachability in the full opportunity graph. Vertices with self-loops cannot belong to $J$; treat them as individual blocks, then partition the remaining graph into strongly connected components. Every directed cycle of a candidate $H[J]$ lies within one remaining component. Enumerate local assignments to the four roles in the weighted four-role characterization, respecting allowed and required keys, and reject cyclic reusable sets. Record each assignment's guaranteed supports $(u,v)$ and cost $c$; supports may be capped at the respective deficits.
+
+Let blocks be $C_0,\ldots,C_{m-1}$ and their local alternatives be $\mathcal A_j$. Dynamic programming over residual deficits gives
+
+$$
+L_j(a,b)=\min_{(u,v,c)\in\mathcal A_j}
+\left[c+L_{j+1}\bigl((a-u)^+,(b-v)^+\bigr)\right], \tag{E6}\label{eq:frontier-dp}
+$$
+
+with $L_m(0,0)=0$ and $L_m(a,b)=\infty$ otherwise. Backtracking selects roles, admissions and the requested reversals; topological sorting produces a complete event order. A separate event interpreter checks the actual immutable-output execution and its quorum support.
+
+The portable certificate contains the input, chosen execution and potential table. Its checker independently reconstructs transitive reachability, components and **all** legal local assignments. It checks the lower-bound inequalities
+
+$$
+L_j(a,b)\le c+L_{j+1}\bigl((a-u)^+,(b-v)^+\bigr) \tag{E7}\label{eq:frontier-bellman}
+$$
+
+for every local transition, together with the terminal conditions. Checking only the optimizer's chosen assignments would not certify minimality. Feasibility is checked by replay; the measured witness cost must equal the certified root bound. An external expected input can be supplied so that a valid certificate for another problem is rejected.
+
+**Proposition E4 (certificate soundness).** If all conditions in \eqref{eq:frontier-bellman} and the terminal conditions hold, every feasible refinement represented by Theorem 6 costs at least $L_0(d_0,d_1)$. A replayed witness attaining a finite root bound is minimum-cost. An infinite root bound certifies infeasibility.
+
+**Proof.** Follow the local assignments of any feasible refinement through the residual-deficit states. Repeatedly applying \eqref{eq:frontier-bellman} bounds the initial potential by the accumulated cost plus the terminal potential, which is zero. An infinite potential cannot reach a finite terminal along a finite-cost path. Matching the lower bound with a feasible witness proves optimality. The completeness of the four-role representation, established in Theorem 6, connects this path argument to the scheduling problem. $\square$
+
+Lean checks this Bellman principle for arbitrary nonnegative-cost transition systems, using extended natural bounds. It does not assume that the potentials were computed optimally. The Python parser, graph extraction and exhaustive local enumeration remain executable proof obligations. This follows the established certifying-algorithm approach \cite{mcconnell2011certifying}.
+
+Enumeration is exponential in the largest remaining component, and the potential grid has $(m+1)(d_0+1)(d_1+1)$ cells. The dependence on integer quota values is pseudo-polynomial; verification still enumerates local configurations. Neither compact polynomial certificates for all instances nor a polynomial-time optimizer are claimed. Explicit component, table and time limits return a resource-limit result, never a false infeasibility claim.
 
 
 # Unit-weight budget illustration
 
-The heat maps instantiate Corollary 1 at three reusable capacities. They illustrate the cardinality special case; unequal control costs require the optimization in Theorem 4.
+\label{app:heatmap}
+
+The heat maps instantiate Corollary E1 at three reusable capacities. They illustrate the cardinality special case; unequal control costs require the optimization in Theorem 6.
 
 \begin{figure}[ht]
 \centering

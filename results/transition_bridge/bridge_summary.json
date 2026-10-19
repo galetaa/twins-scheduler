@@ -1,0 +1,259 @@
+{
+  "all_edge_simulations_checked": 9,
+  "all_iterations_independently_checked": 32,
+  "cases": [
+    {
+      "case": "static_key_cycle",
+      "certificate": "certificates/static_key_cycle.json.gz",
+      "concrete_states": 3,
+      "concrete_transitions": 3,
+      "eliminated_policies": 2,
+      "final_abstract_states": 3,
+      "final_abstract_transitions": 3,
+      "iterations": 3,
+      "lower_bounds": [
+        0,
+        0,
+        null
+      ],
+      "minimum_cost": null,
+      "problem_sha256": "5dff0b171598908654a322dfa9184913e8a320a0e5bf68f6b20396e6ad6d7b4c",
+      "state_counts": [
+        1,
+        2,
+        3
+      ],
+      "status": "concrete-infeasible",
+      "total_policies_checked_by_oracle": 2
+    },
+    {
+      "case": "three_phase_paid_once",
+      "certificate": "certificates/three_phase_paid_once.json.gz",
+      "concrete_states": 5,
+      "concrete_transitions": 4,
+      "eliminated_policies": 3,
+      "final_abstract_states": 4,
+      "final_abstract_transitions": 4,
+      "iterations": 4,
+      "lower_bounds": [
+        0,
+        0,
+        7,
+        7
+      ],
+      "minimum_cost": 7,
+      "problem_sha256": "0c4d3342068f0cb601bc9faf6fa3f67561e8ae8ed33508881380ff4716ee7739",
+      "state_counts": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "status": "concrete-optimal",
+      "total_policies_checked_by_oracle": 8
+    },
+    {
+      "case": "dependent_cost_choice",
+      "certificate": "certificates/dependent_cost_choice.json.gz",
+      "concrete_states": 6,
+      "concrete_transitions": 6,
+      "eliminated_policies": 3,
+      "final_abstract_states": 4,
+      "final_abstract_transitions": 6,
+      "iterations": 4,
+      "lower_bounds": [
+        0,
+        0,
+        0,
+        2
+      ],
+      "minimum_cost": 2,
+      "problem_sha256": "5b8ae69c7df5072929e46601ac978237dbd003943a4dcbc639bdbcaddd4a9649",
+      "state_counts": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "status": "concrete-optimal",
+      "total_policies_checked_by_oracle": 16
+    },
+    {
+      "case": "required_unused_fibre",
+      "certificate": "certificates/required_unused_fibre.json.gz",
+      "concrete_states": 2,
+      "concrete_transitions": 1,
+      "eliminated_policies": 0,
+      "final_abstract_states": 1,
+      "final_abstract_transitions": 0,
+      "iterations": 1,
+      "lower_bounds": [
+        8
+      ],
+      "minimum_cost": 8,
+      "problem_sha256": "c884f9354a1e7f75fdc15d00dcb5e96ca7acbaac2aa7a15ac7f061e5179f9b86",
+      "state_counts": [
+        1
+      ],
+      "status": "concrete-optimal",
+      "total_policies_checked_by_oracle": 8
+    },
+    {
+      "case": "zero_cost_split",
+      "certificate": "certificates/zero_cost_split.json.gz",
+      "concrete_states": 3,
+      "concrete_transitions": 2,
+      "eliminated_policies": 2,
+      "final_abstract_states": 3,
+      "final_abstract_transitions": 2,
+      "iterations": 3,
+      "lower_bounds": [
+        0,
+        0,
+        0
+      ],
+      "minimum_cost": 0,
+      "problem_sha256": "67d1c81228e1814318e23ade7af497a065a87d947e70bd97a7b2531a71672db0",
+      "state_counts": [
+        1,
+        2,
+        3
+      ],
+      "status": "concrete-optimal",
+      "total_policies_checked_by_oracle": 4
+    },
+    {
+      "case": "spurious_state_merge",
+      "certificate": "certificates/spurious_state_merge.json.gz",
+      "concrete_states": 3,
+      "concrete_transitions": 2,
+      "eliminated_policies": 2,
+      "final_abstract_states": 3,
+      "final_abstract_transitions": 2,
+      "iterations": 3,
+      "lower_bounds": [
+        0,
+        0,
+        3
+      ],
+      "minimum_cost": 3,
+      "problem_sha256": "ee4cf541f78b261e3602fa1bf9f43ca6a7e9e40f275b4d03495ce2272928aa70",
+      "state_counts": [
+        1,
+        2,
+        3
+      ],
+      "status": "concrete-optimal",
+      "total_policies_checked_by_oracle": 4
+    },
+    {
+      "case": "coupled_quorum_from_coarsest",
+      "certificate": "certificates/coupled_quorum_from_coarsest.json.gz",
+      "concrete_states": 2516,
+      "concrete_transitions": 5856,
+      "eliminated_policies": 11,
+      "final_abstract_states": 26,
+      "final_abstract_transitions": 60,
+      "guarded_replay": {
+        "audit_checks": 12,
+        "decisions": {
+          "A": 0,
+          "C": 1
+        },
+        "transition_count": 30,
+        "unsafe": true
+      },
+      "iterations": 12,
+      "lower_bounds": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "minimum_cost": 2,
+      "problem_sha256": "2ddfa0a8e5e414dec3204dbccf190b62810cee956e54021093aac8c32e62aa1a",
+      "state_counts": [
+        1,
+        2,
+        4,
+        6,
+        8,
+        11,
+        14,
+        16,
+        19,
+        21,
+        24,
+        26
+      ],
+      "status": "concrete-optimal",
+      "total_policies_checked_by_oracle": 64
+    },
+    {
+      "case": "coupled_quorum_audit_quotient",
+      "certificate": "certificates/coupled_quorum_audit_quotient.json.gz",
+      "concrete_states": 2516,
+      "concrete_transitions": 5856,
+      "eliminated_policies": 0,
+      "final_abstract_states": 1978,
+      "final_abstract_transitions": 4628,
+      "guarded_replay": {
+        "audit_checks": 12,
+        "decisions": {
+          "A": 0,
+          "C": 1
+        },
+        "transition_count": 30,
+        "unsafe": true
+      },
+      "iterations": 1,
+      "lower_bounds": [
+        2
+      ],
+      "minimum_cost": 2,
+      "problem_sha256": "2ddfa0a8e5e414dec3204dbccf190b62810cee956e54021093aac8c32e62aa1a",
+      "state_counts": [
+        1978
+      ],
+      "status": "concrete-optimal",
+      "total_policies_checked_by_oracle": 64
+    },
+    {
+      "case": "coupled_quorum_baseline",
+      "certificate": "certificates/coupled_quorum_baseline.json.gz",
+      "concrete_states": 2372,
+      "concrete_transitions": 5574,
+      "eliminated_policies": 0,
+      "final_abstract_states": 1,
+      "final_abstract_transitions": 10,
+      "iterations": 1,
+      "lower_bounds": [
+        null
+      ],
+      "minimum_cost": null,
+      "problem_sha256": "6e5a1b4a2ed31925e3241b08fcbdbe5c31351efa84472215b29b2ead169f843a",
+      "state_counts": [
+        1
+      ],
+      "status": "concrete-infeasible",
+      "total_policies_checked_by_oracle": 64
+    }
+  ],
+  "model_scope": "complete supplied finite transition systems; static Boolean admission",
+  "native_client_refinement": false,
+  "optimum_mismatches": 0,
+  "resource_limit_control": {
+    "reason": "abstraction-refinement limit exhausted; result remains unknown",
+    "status": "unknown"
+  },
+  "status": "PASS",
+  "total_eliminated_policies": 23
+}

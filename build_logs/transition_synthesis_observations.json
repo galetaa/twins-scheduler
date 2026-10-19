@@ -1,0 +1,18 @@
+[
+  {
+    "phase": "small_graph_oracle",
+    "wall_seconds": 1.7326145810002345
+  },
+  {
+    "phase": "two_complete_protocol_graphs",
+    "wall_seconds": 9.985660338999878
+  },
+  {
+    "phase": "direct_protocol_all_policies",
+    "wall_seconds": 30.801856022997526
+  },
+  {
+    "phase": "whole_study",
+    "wall_seconds": 44.461099153999385
+  }
+]

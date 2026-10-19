@@ -196,3 +196,78 @@ specified positive immediate-gain-per-cost rule. It is not a survey-based
 impossibility statement about all greedy or approximation algorithms.
 The reviewed sources support this bounded positioning; they do not establish
 absence of equivalent prior results across the full literature.
+
+## Third revision: general semantics, abstraction and paid labels (19 October 2026)
+
+The previous independent-pivot characterization is now a structural special
+case. The main paper uses arbitrary protocol transition state with an explicit
+static admission interface, exact once-paid fibre costs, separately checked
+closed-cost certificates, and a checked transfer from abstract lower bounds to
+concrete witnesses. The primary sources below were consulted for the broader
+positioning. They do not establish that this combination has no equivalent
+elsewhere; the manuscript makes no unrestricted priority claim.
+
+### Counterexample-guided abstraction refinement
+
+Clarke, Grumberg, Jha, Lu and Veith, *Counterexample-Guided Abstraction Refinement
+for Symbolic Model Checking*, Journal of the ACM 50(5), 752–794 (2003),
+[DOI](https://doi.org/10.1145/876638.876643),
+[primary author PDF](https://www.cs.cmu.edu/~emc/papers/Papers%20In%20Refereed%20Journals/Counterexample-guided%20abstraction%20refinement.pdf).
+The paper develops iterative existential abstraction, analysis of spurious
+counterexamples and refinement. Those general ideas predate this work.
+
+The present implementation specializes them to a complete finite input graph,
+persistent Boolean admission decisions and one-time split costs. A false total
+policy yields a safe reachability invariant; splitting blocks by that invariant
+eliminates all unsafe abstract paths under the policy. Saved histories additionally
+check each exact quotient, invariant, cost certificate and strict partition
+refinement. The prototype constructs the detailed graph first. The 2,516-to-26
+state example therefore demonstrates a smaller certified abstraction, not a
+measured reduction in total model-generation memory or a symbolic scalability
+claim. The accompanying local-simulation theorem states the wider semantic
+obligation, including the correct lower-bound direction.
+
+### Minimal revision of a specification
+
+Kim, Fainekos and Sankaranarayanan, *On the Minimal Revision Problem of
+Specification Automata*, The International Journal of Robotics Research 34(12),
+1515–1535 (2015), [DOI](https://doi.org/10.1177/0278364915587034),
+[primary manuscript](https://arxiv.org/abs/1404.2289).
+This work studies minimal changes to an automaton specification to restore
+realizability on a system and establishes relevant computational hardness.
+
+The distinction here is the object being changed. The target unsafe predicate
+and protocol transitions remain fixed; refinement exposes independent admission
+decisions inside selected coarse scheduler fibres. The same fine decision must
+repeat consistently across visits. The paper must not present minimum repair
+of a formal specification or its general complexity as an invention of this
+artifact.
+
+### Paths with once-paid labels
+
+Kumar, Lokshtanov, Saurabh and Suri, *A Constant Factor Approximation for Navigating
+Through Connected Obstacles in the Plane*, SODA 2021, 822–839,
+[DOI](https://doi.org/10.1137/1.9781611976465.52),
+[primary manuscript](https://arxiv.org/abs/2011.14463).
+The minimum-color-path framework charges the set of labels used along a path,
+rather than repeatedly charging each traversal. It is relevant precedent for
+one-time label costs. Its geometric approximation conditions do not supply an
+approximation theorem for arbitrary scheduler transition graphs.
+
+The scheduler product additionally remembers consistent fine-key answers and
+activates a paid coarse fibre only when its observations mix, or when the fibre
+is required. Its Set Cover reduction is an explicit application of classical
+hardness, not a claim that paid-label path hardness is new. The supplied reduction
+family is checked against independent covering-subset enumeration.
+
+### Resulting defensible claim
+
+The new contribution is the stated semantic connection among coarse-to-fine
+static admission, stateful unsafe reachability, checkable lower bounds and
+concrete optimality, together with a dependent-quorum instantiation and a formal
+connection back to the old structured case. The new model genuinely violates
+the old readiness decomposition: suppressing incoming precommits can remove
+round-change enabledness even when first-vote enabling prevotes arrive. It remains
+a bounded local HMAC-authenticated model. The retained unchanged native Ed25519
+tests support selected protocol guards and do not establish full Go-client
+coverage or native reproduction of the mutant disagreement.

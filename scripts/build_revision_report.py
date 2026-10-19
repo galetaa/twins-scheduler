@@ -38,7 +38,8 @@ def main() -> None:
     report = report.replace("**Дата:** 19 октября 2026 года.\n\n", "", 1)
     reply = linked_source(ROOT / "docs/reviews/RESPONSE_TO_REVIEWER.md", args.branch_url)
     source = build / "report.md"
-    source.write_text(report + "\n\n\\newpage\n\n\\begingroup\n\\small\n\n" + reply
+    source.write_text(report + "\n\n\\newpage\n\n\\begingroup\n\\small\n"
+                      + "\\setlength{\\parskip}{4pt}\n\n" + reply
                       + "\n\n\\endgroup\n", encoding="utf-8")
     header = build / "header.tex"
     header.write_text(r"""\usepackage{xurl}
@@ -62,7 +63,12 @@ def main() -> None:
 """, encoding="utf-8")
     table_filter = build / "tables.lua"
     table_filter.write_text('''local count = 0
-local heights = {240, 140, 230, 270}
+local heights = {200, 260}
+function Header(header)
+  if pandoc.utils.stringify(header.content):match('^8%. ') then
+    return {pandoc.RawBlock('latex', '\\\\Needspace{320pt}'), header}
+  end
+end
 function Table(table)
   count = count + 1
   return {pandoc.RawBlock('latex', '\\\\Needspace{' .. (heights[count] or 220) .. 'pt}\\\\begingroup\\\\small'),
@@ -78,7 +84,7 @@ end
         "-M", "date=19 октября 2026 года", "-V", "mainfont=DejaVu Serif",
         "-V", "sansfont=DejaVu Sans", "-V", "monofont=DejaVu Sans Mono",
         "-V", "fontsize=11pt", "-V", "geometry=a4paper,margin=22mm",
-        "-V", "linestretch=1.07", "-V", "colorlinks=true", "-V", "urlcolor=teal",
+        "-V", "linestretch=1.03", "-V", "colorlinks=true", "-V", "urlcolor=teal",
     ], check=True)
 
 

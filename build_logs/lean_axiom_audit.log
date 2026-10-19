@@ -33,3 +33,36 @@
 'SchedulerClosure.CertificateOptimality.bellman_path_lower_bound' depends on axioms: [propext, Quot.sound]
 'SchedulerClosure.CertificateOptimality.certified_witness_is_minimum' depends on axioms: [propext, Quot.sound]
 'SchedulerClosure.CertificateOptimality.certified_infeasibility' depends on axioms: [propext, Quot.sound]
+'SchedulerClosure.TransitionRefinement.policy_realizable_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SchedulerClosure.TransitionRefinement.least_split_set' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SchedulerClosure.TransitionRefinement.admissible_refinement_exists_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'SchedulerClosure.TransitionRefinement.minimum_trace_refinement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'SchedulerClosure.TransitionRefinement.trace_cost_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SchedulerClosure.TransitionRefinement.query_guard_iff_consistent_extension' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'SchedulerClosure.TransitionRefinement.memory_update_cost_mono' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'SchedulerClosure.TransitionRefinement.labelled_execution_simulates' does not depend on any axioms
+'SchedulerClosure.TransitionRefinement.bad_trace_coverage' does not depend on any axioms
+'SchedulerClosure.TransitionRefinement.sublevel_certificate_lower_bound' depends on axioms: [propext, Quot.sound]
+'SchedulerClosure.TransitionRefinement.closed_certificate_infeasible' does not depend on any axioms
+'SchedulerClosure.TransitionRefinement.sublevel_certified_minimum' depends on axioms: [propext, Quot.sound]
+'SchedulerClosure.TransitionRefinement.abstract_lower_bound_transfers' depends on axioms: [propext, Quot.sound]
+'SchedulerClosure.TransitionRefinement.matching_concrete_witness_is_minimum' depends on axioms: [propext, Quot.sound]
+'SchedulerClosure.TransitionRefinement.abstract_infeasibility_transfers' does not depend on any axioms
+'SchedulerClosure.TransitionRefinement.invariant_quotient_excludes_goal' does not depend on any axioms
+'SchedulerClosure.TransitionRefinement.invariant_split_saturated' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'SchedulerClosure.TransitionRefinement.invariant_split_eliminates_policy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'SchedulerClosure.TransitionRefinement.spurious_policy_forces_strict_split' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

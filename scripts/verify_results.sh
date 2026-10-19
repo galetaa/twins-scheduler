@@ -25,7 +25,7 @@ files=(
   results/revision/frontier_weighted_cases.csv
   results/native/native_summary.json
 )
-# All synthesis outputs are deterministic, including gzip headers. Native raw
+# All synthesis/transition outputs are deterministic, including gzip headers. Native raw
 # signatures and receipts retain wall-clock timestamps; compare their semantic
 # summary and validate their current signatures/provenance in reproduce.sh.
 for relative in "${files[@]}"; do
@@ -36,7 +36,8 @@ from pathlib import Path
 import sys
 
 root, output = map(Path, sys.argv[1:])
-files = sorted(path for path in (root / "results/synthesis").rglob("*") if path.is_file())
+files = sorted(path for directory in ("results/synthesis", "results/transition", "results/transition_bridge")
+               for path in (root / directory).rglob("*") if path.is_file())
 for reference in files:
     relative = reference.relative_to(root)
     if reference.read_bytes() != (output / relative).read_bytes():

@@ -6,12 +6,21 @@ on:
     paths:
       - "src/python/twins_scheduler/refinement_synthesis.py"
       - "src/python/twins_scheduler/repair_frontier.py"
+      - "src/python/twins_scheduler/transition*.py"
+      - "src/python/twins_scheduler/coupled_protocol.py"
+      - "src/python/twins_scheduler/concrete_trace.py"
       - "scripts/run_refinement_synthesis.py"
       - "scripts/check_synthesis_order_oracle.py"
+      - "scripts/run_transition*.py"
+      - "scripts/check_transition*.py"
       - "scripts/run_native_conformance.sh"
       - "experiments/native_cometbft/**"
       - "results/synthesis/**"
       - "results/native/**"
+      - "results/transition/**"
+      - "results/transition_bridge/**"
+      - "Makefile"
+      - ".python-version"
       - "pyproject.toml"
       - "uv.lock"
       - ".github/workflows/research.yml"
@@ -42,6 +51,8 @@ jobs:
           uv sync --frozen --extra native-audit
       - name: Recompute synthesis oracles and certificates
         run: make synthesis
+      - name: Recompute general transition synthesis and certified abstraction
+        run: make transition
       - name: Execute unchanged native code, audit signatures, repeat with race detector
         run: make native
       - name: Compare deterministic evidence
@@ -51,11 +62,13 @@ jobs:
           from pathlib import Path
           output = Path(os.environ["TWINS_OUTPUT_ROOT"])
           files = sorted(Path("results/synthesis").rglob("*"))
+          files.extend(sorted(Path("results/transition").rglob("*")))
+          files.extend(sorted(Path("results/transition_bridge").rglob("*")))
           files.append(Path("results/native/native_summary.json"))
           for reference in files:
               if reference.is_file():
                   assert reference.read_bytes() == (output / reference).read_bytes(), reference
-          print("SYNTHESIS AND NATIVE SEMANTIC REFERENCES: PASS")
+          print("STRUCTURAL, TRANSITION, ABSTRACTION AND NATIVE SEMANTIC REFERENCES: PASS")
           PY
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()

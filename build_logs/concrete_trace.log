@@ -13,6 +13,6 @@
     "fifo_relay_late_mutant_still_has_conflicting_unmutated_observers": true
   },
   "cases": 12,
-  "json": "/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.cache/reproduction-v2-20261019/results/new/concrete_trace.json",
-  "csv": "/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.cache/reproduction-v2-20261019/results/new/concrete_trace.csv"
+  "json": "/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.cache/reproduction-v3-20261019/results/new/concrete_trace.json",
+  "csv": "/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.cache/reproduction-v3-20261019/results/new/concrete_trace.csv"
 }

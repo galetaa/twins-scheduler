@@ -1,0 +1,120 @@
+{
+  "direct_protocol_generated_states": 17690,
+  "direct_protocol_generated_transitions": 42750,
+  "direct_protocol_mismatches": 0,
+  "direct_protocol_policy_checks": 128,
+  "exhaustive_cost_permission_configurations": 6,
+  "exhaustive_graphs": 1296,
+  "exhaustive_oracle_cases": 7776,
+  "oracle_cases": 7904,
+  "oracle_certificate_checked_product_states": 11754,
+  "oracle_compatible_policy_split_pairs": 40008,
+  "oracle_input_manifest_sha256": "41a9746eb321cb33d63c3d1a3c880e3bb3bd087e3bb63ddae0697ffb00a5fc87",
+  "oracle_mismatches": 0,
+  "oracle_total_policies": 35368,
+  "protocol": {
+    "all_witness_guard_audits_pass": true,
+    "audit_quotient_states": 1978,
+    "audit_quotient_transitions": 4628,
+    "baseline": {
+      "coarse_fibres": [
+        "B->P:H1:R0",
+        "A->P:H1:R0"
+      ],
+      "complete": true,
+      "fine_keys": [
+        "B->P:H1:R0:PREVOTE",
+        "B->P:H1:R0:PRECOMMIT",
+        "A->P:H1:R0:PROPOSAL",
+        "A->P:H1:R0:PREVOTE",
+        "A->P:H1:R0:PRECOMMIT",
+        "A->P:H1:R0:BLOCK"
+      ],
+      "input_sha256": "6e5a1b4a2ed31925e3241b08fcbdbe5c31351efa84472215b29b2ead169f843a",
+      "opportunity_bound": 32,
+      "stages": 12,
+      "states": 2372,
+      "states_by_stage": [
+        1,
+        1,
+        70,
+        70,
+        30,
+        785,
+        155,
+        35,
+        35,
+        525,
+        105,
+        525,
+        35
+      ],
+      "transitions": 5574,
+      "unsafe_states": 0,
+      "variant": "BASELINE"
+    },
+    "block_phase_labelled_edges": 4,
+    "costs": [
+      5,
+      2
+    ],
+    "late_repair_commit_waits_for_received_block": true,
+    "minimum_cost": 2,
+    "mutant": {
+      "coarse_fibres": [
+        "B->P:H1:R0",
+        "A->P:H1:R0"
+      ],
+      "complete": true,
+      "fine_keys": [
+        "B->P:H1:R0:PREVOTE",
+        "B->P:H1:R0:PRECOMMIT",
+        "A->P:H1:R0:PROPOSAL",
+        "A->P:H1:R0:PREVOTE",
+        "A->P:H1:R0:PRECOMMIT",
+        "A->P:H1:R0:BLOCK"
+      ],
+      "input_sha256": "2ddfa0a8e5e414dec3204dbccf190b62810cee956e54021093aac8c32e62aa1a",
+      "opportunity_bound": 32,
+      "stages": 12,
+      "states": 2516,
+      "states_by_stage": [
+        1,
+        1,
+        70,
+        70,
+        30,
+        785,
+        157,
+        37,
+        39,
+        585,
+        117,
+        585,
+        39
+      ],
+      "transitions": 5856,
+      "unsafe_states": 16,
+      "variant": "MISSING_LOCK_UPDATE"
+    },
+    "order_and_block_controls": 5,
+    "same_fixed_policy_has_safe_and_unsafe_orders": true,
+    "selected_fibre": "A->P:H1:R0",
+    "suppressing_both_precommits_can_remove_round_advance": true,
+    "witness_certificates": 6,
+    "witness_decisions": {
+      "A": 0,
+      "C": 1
+    },
+    "witness_log_events": 172,
+    "witness_messages": 16
+  },
+  "protocol_model_cases": 7,
+  "random_oracle_cases": 128,
+  "random_seed": 20261019,
+  "resource_limit_is_unknown": true,
+  "schema_version": 1,
+  "scope": "Complete finite opportunity-domain model: n=4, one Byzantine B, two rounds, twelve stages and 32 once-only opportunity slots; all permutations within each stage, including repair versus precommit timeouts. Guarded missing-block catchup is included. Unsafe means the unmutated observers A and C decide different blocks. Test-only HMAC. Not all CometBFT executions.",
+  "semantic_examples": 6,
+  "status": "PASS"
+}

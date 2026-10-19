@@ -1,0 +1,8 @@
+case,status,minimum_cost,states,transitions,unsafe_states,checked_product_states,total_policies,compatible_policy_split_pairs,input_sha256,witness_guard_audit
+mutant_free,optimal,2,2516,5856,16,703,64,108,2ddfa0a8e5e414dec3204dbccf190b62810cee956e54021093aac8c32e62aa1a,True
+baseline_free,infeasible,infeasible,2372,5574,0,2372,64,108,6e5a1b4a2ed31925e3241b08fcbdbe5c31351efa84472215b29b2ead169f843a,True
+mutant_forbid_all,infeasible,infeasible,2516,5856,16,703,64,4,6c90caafda426da31d70bc29204cc996e11b80e27bcd731f56c3cf9307769b36,True
+mutant_only_B_to_P,optimal,5,2516,5856,16,703,64,12,9fb2a5cc2e2d9ee92f0cccf8c0c80090b16871f284e4129475309ad04e128f98,True
+mutant_only_A_to_P,optimal,2,2516,5856,16,703,64,36,5f2bf035c4f114944d453e855184daf338e43e0f9077323a3f0df056eb362c8f,True
+mutant_require_B_to_P,optimal,5,2516,5856,16,0,64,72,e7d3d54a575e41c6befd1dde66671dc966b93bcfb8e62c370eee73eefc362e36,True
+mutant_require_both,optimal,7,2516,5856,16,0,64,64,13d73ba1cb9c59b0909120ff9e613c804dc13491ba7eb62235155530d9362f76,True

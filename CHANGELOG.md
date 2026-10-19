@@ -1,6 +1,40 @@
 # Changelog
 
-## Unreleased — certifying synthesis revision, 2026-10-19
+## Unreleased — general transition and checked-abstraction revision, 2026-10-19
+
+- Removed independent-pivot assumptions from the main optimality formulation.
+  Arbitrary protocol state and cyclic transitions are represented by a labelled
+  transition system with persistent static admission decisions. The exact trace
+  refinement is the union of required and mixed coarse fibres.
+- Added exact product-state synthesis and independent closed-sublevel certificate
+  checking, including infeasibility, repeated fine keys, zero prices, and
+  allowed/required splits. Resource limits return unknown. Proved NP-completeness
+  for the explicit finite budget problem, already on acyclic input graphs.
+- Added all-edge covering simulation, transfer of abstract lower bounds and
+  matching concrete witnesses, and invariant-guided refinement that eliminates
+  a whole false policy. Every quotient, invariant, certificate and strict
+  partition refinement can be independently checked.
+- Added the coupled guarded model with 12 stages and 32 opportunity slots.
+  Repair, block arrival and quorum-enabled timeouts share actual protocol state.
+  The complete mutant has 2,516 states and 5,856 transitions. Refinement eliminates
+  11 policies and proves optimum 2 on 26 abstract states; the witness passes all
+  12 guarded replay audits and gives conflicting unmutated observer decisions.
+- Added separate 7,904-case and 2,960-case oracle studies, with zero mismatches.
+  The latter checks both optimizers and all 6,857 abstraction iterations. The
+  128-policy protocol audit compares guarded exploration with the corresponding
+  exported diagnostic-field quotient, using shared protocol rules.
+- Connected the old structural solver to the general semantics by an explicit
+  event-state adapter, equal-optimum proof and 1,507-case raw-oracle study.
+  All 3,014 optimum comparisons and 1,189 witness normalizations pass.
+- Added general Lean policy, memory, certificate, simulation and invariant
+  proofs. The integrated gate now has 15 build jobs, 46 audited declarations
+  and 23 hygiene-checked source files, with independent kernel rechecking.
+- Expanded the active Python suite to 119 passing tests and integrated the
+  transition studies into reproduction and CI. Reorganized the article around
+  six main theorems; the PDF has 12 main-text and 24 physical pages. Updated
+  literature positioning, claim/evidence links and both reviewer reports.
+
+## Second revision — certifying synthesis, 2026-10-19 (d502ce0)
 
 - Reframed the manuscript around minimum-cost phase refinement, with an exact
   weighted four-role characterization, unequal nonnegative costs, and

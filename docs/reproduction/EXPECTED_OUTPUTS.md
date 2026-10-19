@@ -13,21 +13,26 @@ are relative to that output root unless identified as repository documentation.
 
 | Check | Required result | Canonical evidence |
 | --- | --- | --- |
-| Python | 47 tests pass: 13 retained, 8 frontier, 14 concrete, 12 synthesis | `build_logs/python_tests.log` |
+| Python | all active tests pass; exact count in the test log | `build_logs/python_tests.log` |
 | Go | all active packages pass | `build_logs/go_tests.log` |
 | Python/Go classifier | identical 384-row observations from the retained model | `results/generated/cometbft_cross_language_check.txt` |
 | Independent checks | PASS | `results/generated/independent_proof_checks.json` |
 | Certificate kernels | originals accepted; tampered controls rejected | `results/generated/certificate_verification.json` |
 | SMT | 8 expected UNSAT; 4 expected SAT; Z3 wheel pinned to 4.13.3.0 | `results/generated/smt_summary.json` |
-| Lean build | 14 jobs; exit 0 | `build_logs/lean_build.log` |
-| Axiom audit | 27 declarations; only documented standard axioms; exit 0 | `build_logs/lean_axiom_audit.log` |
+| Lean build | 15 jobs; exit 0 | `build_logs/lean_build.log` |
+| Axiom audit | 46 declarations; only documented standard axioms; exit 0 | `build_logs/lean_axiom_audit.log` |
 | Kernel-object rechecking | `leanchecker SchedulerClosure` exits 0 | `build_logs/leanchecker.log` |
-| Source hygiene | 22 source files; PASS | `results/generated/formal_source_hygiene.json` |
+| Source hygiene | 23 source files; PASS | `results/generated/formal_source_hygiene.json` |
 | Frontier enumeration | PASS; zero mismatches | `results/revision/frontier_summary.json` |
 | Concrete trace | 12 cases; all legality audits pass | `results/new/concrete_trace.json` and `.csv` |
 | Synthesis study | 35,223 minimum-cost/infeasibility comparisons and certificate checks; no mismatches | `results/synthesis/synthesis_summary.json` |
 | Independent event-order oracle | 3,253 further comparisons and certificate checks; no mismatches | `results/synthesis/order_oracle.json` |
 | Synthetic scale corpus | 15 cases: 13 certified optima, 2 expected resource-limited unknowns; largest solved $k=48$ | `results/synthesis/synthesis_benchmarks.csv` |
+| General transition oracle | 7,904 graph/cost/permission cases, zero mismatches | `results/transition/summary.json` |
+| Coupled exporter | 128 direct total-policy runs; all counts match the corresponding audit-field quotient | `results/transition/direct_policy_checks.csv` |
+| Transition abstraction | 9 cases, 32 verified iterations; model-to-model optimality/infeasibility checks | `results/transition_bridge/bridge_summary.json` |
+| Independent direct/CEGAR oracle | 2,960 instances, 5,920 optimum comparisons, zero mismatches | `results/transition_bridge/random_oracle.json` |
+| Structural specialization | general LTS adapter and old weighted solver agree | `results/transition_bridge/specialization_oracle.json` |
 | Unchanged native consensus | 4 passing scenarios, 14 checks, 32 signed votes, 132 events; Go 1.25.0 | `results/native/native_summary.json` and `native_provenance.json` |
 | Independent native signature audit | all 32 Ed25519 signatures and canonical vote metadata verified; PASS | `results/native/native_signature_audit.json` |
 | Native repeatability | 3 additional normal runs and 1 race-detector run pass; semantic summaries agree | `results/native/native_repeatability.json` |
@@ -47,6 +52,56 @@ fallback is not an unresolved citation, layout overflow, or build failure.
 The Z3 runtime comes from the uv-locked `z3-solver==4.13.3.0` wheel. The
 SAT cases are intentionally damaged obligations or negative controls; their
 expected SAT results are successful checks, not proof failures.
+
+
+## General transition and abstraction results
+
+`make transition` runs the complete general-LTS study, coupled guarded protocol,
+iterative abstraction, independent total-policy/subset oracle, and explicit
+pivot-to-LTS specialization cross-check. All outputs in `results/transition/`
+and `results/transition_bridge/`, including compressed full certificates, are
+deterministic. Timings are written only to `TWINS_LOG_DIR`.
+
+The coupled mutant has **2,516 states, 5,856 transitions, 16 unsafe states**;
+the baseline has **2,372 states, 5,574 transitions, no unsafe states**. Unsafety
+requires A,C disagreement. The language has one height, two rounds, 12 stages
+and 32 opportunity slots, every within-stage order, and actual block catchup.
+Costs 5 and 2 give optimum 2 when both fibres are allowed, 5 with only B allowed,
+2 with only A allowed, 5 with B required, and 7 when both are required. Forbidding
+all splits and the baseline model are infeasible in this exact environment.
+The optimal guarded execution has 172 log events, 16 signed model messages,
+six local certificates and 12 passing audits. Its A,C decisions are 0 and 1.
+
+The 128 direct policy runs regenerate **17,690 reachable states and 42,750
+transitions** in total from protocol guards. Those totals count repeated
+per-policy explorations, not distinct global states. Every count and unsafe
+classification matches the exported quotient after forgetting the same
+first-arrival diagnostic field, independently of the optimizer. The direct
+exploration loop shares the protocol guards and canonicalization.
+
+The coarsest-start abstraction run has **12 iterations**, eliminates **11**
+false policies, and finishes with **26 states and 60 edges**. The abstract bound
+is 0 in iterations 1–4 and 2 thereafter; only the final iteration obtains a
+concrete witness. Every one of the 5,856 concrete edges is checked for transition
+coverage. A diagnostic-field projection gives 1,978 states / 4,628 edges and
+optimum 2 immediately. Baseline infeasibility transfers from its one-group
+quotient because the complete baseline graph has no unsafe state.
+
+The independent 2,960-instance oracle includes 400 seeded LTSs, the 2,048-case
+edge/cost/constraint family, and 512 Set Cover reductions. It checks direct and
+abstraction-based optima separately (5,920 comparisons), every direct certificate,
+and 6,857 certificates across all abstraction iterations. There are zero mismatches.
+The same 2,048 and 512 families in unit tests are not additional independent
+samples. The other general-LTS study has 7,904 graph/cost/permission cases and
+six explicit semantic boundaries. Generator bounds, seeds and input hashes are
+saved with each report.
+
+Lean's new `TransitionRefinement.lean` proves policy completion, least trace
+refinement, persistent-memory guards, strict-sublevel certificates, local
+labelled simulation, bound transfer and invariant-guided quotient refinement.
+Finite explicit enumeration and Python/exporter implementations remain separate
+executable obligations. The whole project has 46 selected audited declarations;
+source-bound command receipts are regenerated by the formal gate.
 
 ## Exact frontier counts
 
@@ -205,14 +260,15 @@ optimality and infinite-potential infeasibility principles.
 The weighted four-role correspondence, maximum-acyclic-set optimization and
 optimal graph-capacity attainment, Python parser/checker and SCC enumeration,
 and production-client refinement remain separate paper proofs or executable
-obligations. The 27-declaration axiom audit does not convert those obligations
+obligations. The 46-declaration axiom audit does not convert those obligations
 into mechanized refinements. The repository's
 [axiom report](../../formal/lean/AXIOM_REPORT.md) and
 [claim ledger](../CLAIM_EVIDENCE_LEDGER.md) give the mapping; successful Lean
 receipts are bound to the checked source hashes.
 
 `scripts/verify_results.sh` compares all listed deterministic results and **every
-file under `results/synthesis/`** byte-for-byte with committed references. Synthesis
+file under `results/synthesis/`, `results/transition/` and
+`results/transition_bridge/`** byte-for-byte with committed references. Synthesis
 gzip headers are deterministic. Among native files, only
 **`results/native/native_summary.json`** is byte-compared. Native raw timestamps,
 votes, signatures, provenance, signature-audit output, repeatability receipts
@@ -227,6 +283,6 @@ durations, cache details and tool-version information, so their entire bytes are
 not scientific result references. A run is complete only after every mandatory
 stage succeeds and `build_logs/reproduction_summary.log` records PASS.
 
-The completed second-revision build records **20 physical pages**: one cover,
-**15 main-text pages**, one reference page and three appendix pages. All twenty
-pages were rendered for visual inspection. The final layout and data checks pass.
+Actual physical/main/appendix page counts are recorded for the current build.
+The earlier second revision had 20 physical pages; that historical count is not
+a required outcome for the expanded transition-system manuscript.

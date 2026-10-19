@@ -23,7 +23,7 @@ for stem, target in (("manuscript", "body"), ("appendices", "appendices")):
 
 main = documents["manuscript"]
 theorems = re.findall(r"\*\*Theorem ([0-9]+)", main)
-if theorems != ["1", "2", "3", "4", "5"]:
+if theorems != ["1", "2", "3", "4", "5", "6"]:
     problems.append(f"main theorem sequence={theorems}")
 required = {
     "behavioral contract": "Explicit persistence",
@@ -37,13 +37,22 @@ required = {
     "distinct event kinds": r"R_i\ne V_j",
     "cost synthesis": "weighted refinement characterization",
     "independent optimality": "certificate soundness",
-    "resource scope": "resource-limit result",
+    "resource scope": "returns unknown",
     "native scope": "not a native reproduction of the mutant disagreement",
     "transport scope": "FIFO-compatible admitted vote-envelope order",
+    "static policy completion": "exact trace refinement",
+    "general transition optimum": "general minimum-cost synthesis",
+    "model coverage": "control-completeness",
+    "abstraction transfer": "implementation-model optimality transfer",
+    "whole-policy refinement": "policy elimination and finite progress",
+    "observer integrity": "two unmutated observers",
 }
+full_text = main + "\n" + documents["appendices"]
 for name, phrase in required.items():
-    if phrase not in main:
+    if phrase not in full_text:
         problems.append(f"missing revision obligation: {name}")
+if "% STATEFUL_TABLE" in main:
+    problems.append("stateful results table has not been populated")
 if "Supporting proposition (replay erasure)" not in documents["appendices"]:
     problems.append("supporting replay result absent from appendix")
 

@@ -1,0 +1,1110 @@
+[
+  {
+    "certificate": {
+      "minimum_cost": null,
+      "problem": {
+        "allowed_split": [
+          0
+        ],
+        "costs": [
+          4
+        ],
+        "initial": 0,
+        "key_fibres": [
+          0
+        ],
+        "required_split": [],
+        "states": [
+          "start",
+          "after_admit",
+          "unsafe"
+        ],
+        "transitions": [
+          {
+            "key": 0,
+            "label": "first use admits",
+            "source": 0,
+            "target": 1,
+            "value": true
+          },
+          {
+            "key": 0,
+            "label": "same fine key would need to suppress",
+            "source": 1,
+            "target": 2,
+            "value": false
+          },
+          {
+            "key": null,
+            "label": "retry cycle",
+            "source": 1,
+            "target": 0,
+            "value": null
+          }
+        ],
+        "unsafe": [
+          2
+        ]
+      },
+      "problem_sha256": "5dff0b171598908654a322dfa9184913e8a320a0e5bf68f6b20396e6ad6d7b4c",
+      "proof": {
+        "kind": "closed-reachable-set",
+        "states": [
+          {
+            "assignment": [
+              -1
+            ],
+            "state": 0
+          },
+          {
+            "assignment": [
+              1
+            ],
+            "state": 0
+          },
+          {
+            "assignment": [
+              1
+            ],
+            "state": 1
+          }
+        ]
+      },
+      "schema": "transition-refinement-certificate/v1",
+      "statistics": {
+        "certificate_states": 3,
+        "discovered_product_states": 3,
+        "examined_input_transitions": 4,
+        "product_state_upper_bound": 9,
+        "settled_nonunsafe_states": 3
+      },
+      "status": "infeasible",
+      "witness": null
+    },
+    "name": "static_key_cycle",
+    "oracle": {
+      "compatible_policy_split_pairs": 4,
+      "maximum_reachable_states": 2,
+      "minimum_cost": null,
+      "minimum_reachable_states": 1,
+      "total_policies": 2,
+      "unsafe_policy_split_pairs": 0
+    },
+    "problem": {
+      "allowed_split": [
+        0
+      ],
+      "costs": [
+        4
+      ],
+      "initial": 0,
+      "key_fibres": [
+        0
+      ],
+      "required_split": [],
+      "states": [
+        "start",
+        "after_admit",
+        "unsafe"
+      ],
+      "transitions": [
+        {
+          "key": 0,
+          "label": "first use admits",
+          "source": 0,
+          "target": 1,
+          "value": true
+        },
+        {
+          "key": 0,
+          "label": "same fine key would need to suppress",
+          "source": 1,
+          "target": 2,
+          "value": false
+        },
+        {
+          "key": null,
+          "label": "retry cycle",
+          "source": 1,
+          "target": 0,
+          "value": null
+        }
+      ],
+      "unsafe": [
+        2
+      ]
+    },
+    "verification": {
+      "checked_input_transitions": 4,
+      "checked_product_states": 3,
+      "claim": "infeasible",
+      "minimum_cost": null,
+      "problem_sha256": "5dff0b171598908654a322dfa9184913e8a320a0e5bf68f6b20396e6ad6d7b4c",
+      "replayed_transitions": 0,
+      "status": "PASS"
+    }
+  },
+  {
+    "certificate": {
+      "minimum_cost": 7,
+      "problem": {
+        "allowed_split": [
+          0
+        ],
+        "costs": [
+          7
+        ],
+        "initial": 0,
+        "key_fibres": [
+          0,
+          0,
+          0
+        ],
+        "required_split": [],
+        "states": [
+          "start",
+          "prepared",
+          "repair_suppressed",
+          "repeated",
+          "unsafe"
+        ],
+        "transitions": [
+          {
+            "key": 0,
+            "label": "",
+            "source": 0,
+            "target": 1,
+            "value": true
+          },
+          {
+            "key": 1,
+            "label": "",
+            "source": 1,
+            "target": 2,
+            "value": false
+          },
+          {
+            "key": 2,
+            "label": "",
+            "source": 2,
+            "target": 3,
+            "value": true
+          },
+          {
+            "key": 0,
+            "label": "",
+            "source": 3,
+            "target": 4,
+            "value": true
+          }
+        ],
+        "unsafe": [
+          4
+        ]
+      },
+      "problem_sha256": "0c4d3342068f0cb601bc9faf6fa3f67561e8ae8ed33508881380ff4716ee7739",
+      "proof": {
+        "bound": 7,
+        "kind": "closed-strict-sublevel",
+        "states": [
+          {
+            "assignment": [
+              -1,
+              -1,
+              -1
+            ],
+            "state": 0
+          },
+          {
+            "assignment": [
+              1,
+              -1,
+              -1
+            ],
+            "state": 1
+          }
+        ]
+      },
+      "schema": "transition-refinement-certificate/v1",
+      "statistics": {
+        "certificate_states": 2,
+        "discovered_product_states": 5,
+        "examined_input_transitions": 4,
+        "product_state_upper_bound": 135,
+        "settled_nonunsafe_states": 4
+      },
+      "status": "optimal",
+      "witness": {
+        "cost": 7,
+        "policy": [
+          true,
+          false,
+          true
+        ],
+        "product_states": [
+          {
+            "assignment": [
+              -1,
+              -1,
+              -1
+            ],
+            "state": 0
+          },
+          {
+            "assignment": [
+              1,
+              -1,
+              -1
+            ],
+            "state": 1
+          },
+          {
+            "assignment": [
+              1,
+              0,
+              -1
+            ],
+            "state": 2
+          },
+          {
+            "assignment": [
+              1,
+              0,
+              1
+            ],
+            "state": 3
+          },
+          {
+            "assignment": [
+              1,
+              0,
+              1
+            ],
+            "state": 4
+          }
+        ],
+        "split": [
+          0
+        ],
+        "terminal": 4,
+        "transitions": [
+          0,
+          1,
+          2,
+          3
+        ]
+      }
+    },
+    "name": "three_phase_paid_once",
+    "oracle": {
+      "compatible_policy_split_pairs": 10,
+      "maximum_reachable_states": 5,
+      "minimum_cost": 7,
+      "minimum_reachable_states": 1,
+      "total_policies": 8,
+      "unsafe_policy_split_pairs": 1
+    },
+    "problem": {
+      "allowed_split": [
+        0
+      ],
+      "costs": [
+        7
+      ],
+      "initial": 0,
+      "key_fibres": [
+        0,
+        0,
+        0
+      ],
+      "required_split": [],
+      "states": [
+        "start",
+        "prepared",
+        "repair_suppressed",
+        "repeated",
+        "unsafe"
+      ],
+      "transitions": [
+        {
+          "key": 0,
+          "label": "",
+          "source": 0,
+          "target": 1,
+          "value": true
+        },
+        {
+          "key": 1,
+          "label": "",
+          "source": 1,
+          "target": 2,
+          "value": false
+        },
+        {
+          "key": 2,
+          "label": "",
+          "source": 2,
+          "target": 3,
+          "value": true
+        },
+        {
+          "key": 0,
+          "label": "",
+          "source": 3,
+          "target": 4,
+          "value": true
+        }
+      ],
+      "unsafe": [
+        4
+      ]
+    },
+    "verification": {
+      "checked_input_transitions": 2,
+      "checked_product_states": 2,
+      "claim": "optimal",
+      "minimum_cost": 7,
+      "problem_sha256": "0c4d3342068f0cb601bc9faf6fa3f67561e8ae8ed33508881380ff4716ee7739",
+      "replayed_transitions": 4,
+      "status": "PASS"
+    }
+  },
+  {
+    "certificate": {
+      "minimum_cost": 2,
+      "problem": {
+        "allowed_split": [
+          0,
+          1
+        ],
+        "costs": [
+          5,
+          2
+        ],
+        "initial": 0,
+        "key_fibres": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "required_split": [],
+        "states": [
+          "start",
+          "a_ready",
+          "both_ready",
+          "left_suppressed",
+          "right_suppressed",
+          "unsafe"
+        ],
+        "transitions": [
+          {
+            "key": 0,
+            "label": "first contribution",
+            "source": 0,
+            "target": 1,
+            "value": true
+          },
+          {
+            "key": 2,
+            "label": "second contribution enables shared certificate",
+            "source": 1,
+            "target": 2,
+            "value": true
+          },
+          {
+            "key": 1,
+            "label": "suppress left repair",
+            "source": 2,
+            "target": 3,
+            "value": false
+          },
+          {
+            "key": 3,
+            "label": "suppress right repair",
+            "source": 2,
+            "target": 4,
+            "value": false
+          },
+          {
+            "key": 3,
+            "label": "right contribution enables timeout",
+            "source": 3,
+            "target": 5,
+            "value": true
+          },
+          {
+            "key": 1,
+            "label": "left contribution enables timeout",
+            "source": 4,
+            "target": 5,
+            "value": true
+          }
+        ],
+        "unsafe": [
+          5
+        ]
+      },
+      "problem_sha256": "5b8ae69c7df5072929e46601ac978237dbd003943a4dcbc639bdbcaddd4a9649",
+      "proof": {
+        "bound": 2,
+        "kind": "closed-strict-sublevel",
+        "states": [
+          {
+            "assignment": [
+              -1,
+              -1,
+              -1,
+              -1
+            ],
+            "state": 0
+          },
+          {
+            "assignment": [
+              1,
+              -1,
+              -1,
+              -1
+            ],
+            "state": 1
+          },
+          {
+            "assignment": [
+              1,
+              -1,
+              1,
+              -1
+            ],
+            "state": 2
+          }
+        ]
+      },
+      "schema": "transition-refinement-certificate/v1",
+      "statistics": {
+        "certificate_states": 3,
+        "discovered_product_states": 6,
+        "examined_input_transitions": 5,
+        "product_state_upper_bound": 486,
+        "settled_nonunsafe_states": 4
+      },
+      "status": "optimal",
+      "witness": {
+        "cost": 2,
+        "policy": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "product_states": [
+          {
+            "assignment": [
+              -1,
+              -1,
+              -1,
+              -1
+            ],
+            "state": 0
+          },
+          {
+            "assignment": [
+              1,
+              -1,
+              -1,
+              -1
+            ],
+            "state": 1
+          },
+          {
+            "assignment": [
+              1,
+              -1,
+              1,
+              -1
+            ],
+            "state": 2
+          },
+          {
+            "assignment": [
+              1,
+              -1,
+              1,
+              0
+            ],
+            "state": 4
+          },
+          {
+            "assignment": [
+              1,
+              1,
+              1,
+              0
+            ],
+            "state": 5
+          }
+        ],
+        "split": [
+          1
+        ],
+        "terminal": 5,
+        "transitions": [
+          0,
+          1,
+          3,
+          5
+        ]
+      }
+    },
+    "name": "dependent_cost_choice",
+    "oracle": {
+      "compatible_policy_split_pairs": 36,
+      "maximum_reachable_states": 5,
+      "minimum_cost": 2,
+      "minimum_reachable_states": 1,
+      "total_policies": 16,
+      "unsafe_policy_split_pairs": 4
+    },
+    "problem": {
+      "allowed_split": [
+        0,
+        1
+      ],
+      "costs": [
+        5,
+        2
+      ],
+      "initial": 0,
+      "key_fibres": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "required_split": [],
+      "states": [
+        "start",
+        "a_ready",
+        "both_ready",
+        "left_suppressed",
+        "right_suppressed",
+        "unsafe"
+      ],
+      "transitions": [
+        {
+          "key": 0,
+          "label": "first contribution",
+          "source": 0,
+          "target": 1,
+          "value": true
+        },
+        {
+          "key": 2,
+          "label": "second contribution enables shared certificate",
+          "source": 1,
+          "target": 2,
+          "value": true
+        },
+        {
+          "key": 1,
+          "label": "suppress left repair",
+          "source": 2,
+          "target": 3,
+          "value": false
+        },
+        {
+          "key": 3,
+          "label": "suppress right repair",
+          "source": 2,
+          "target": 4,
+          "value": false
+        },
+        {
+          "key": 3,
+          "label": "right contribution enables timeout",
+          "source": 3,
+          "target": 5,
+          "value": true
+        },
+        {
+          "key": 1,
+          "label": "left contribution enables timeout",
+          "source": 4,
+          "target": 5,
+          "value": true
+        }
+      ],
+      "unsafe": [
+        5
+      ]
+    },
+    "verification": {
+      "checked_input_transitions": 4,
+      "checked_product_states": 3,
+      "claim": "optimal",
+      "minimum_cost": 2,
+      "problem_sha256": "5b8ae69c7df5072929e46601ac978237dbd003943a4dcbc639bdbcaddd4a9649",
+      "replayed_transitions": 4,
+      "status": "PASS"
+    }
+  },
+  {
+    "certificate": {
+      "minimum_cost": 8,
+      "problem": {
+        "allowed_split": [
+          0,
+          1
+        ],
+        "costs": [
+          3,
+          8
+        ],
+        "initial": 0,
+        "key_fibres": [
+          0,
+          0,
+          1
+        ],
+        "required_split": [
+          1
+        ],
+        "states": [
+          "start",
+          "unsafe"
+        ],
+        "transitions": [
+          {
+            "key": null,
+            "label": "",
+            "source": 0,
+            "target": 1,
+            "value": null
+          }
+        ],
+        "unsafe": [
+          1
+        ]
+      },
+      "problem_sha256": "c884f9354a1e7f75fdc15d00dcb5e96ca7acbaac2aa7a15ac7f061e5179f9b86",
+      "proof": {
+        "bound": 8,
+        "kind": "closed-strict-sublevel",
+        "states": []
+      },
+      "schema": "transition-refinement-certificate/v1",
+      "statistics": {
+        "certificate_states": 0,
+        "discovered_product_states": 2,
+        "examined_input_transitions": 1,
+        "product_state_upper_bound": 54,
+        "settled_nonunsafe_states": 1
+      },
+      "status": "optimal",
+      "witness": {
+        "cost": 8,
+        "policy": [
+          false,
+          false,
+          false
+        ],
+        "product_states": [
+          {
+            "assignment": [
+              -1,
+              -1,
+              -1
+            ],
+            "state": 0
+          },
+          {
+            "assignment": [
+              -1,
+              -1,
+              -1
+            ],
+            "state": 1
+          }
+        ],
+        "split": [
+          1
+        ],
+        "terminal": 1,
+        "transitions": [
+          0
+        ]
+      }
+    },
+    "name": "required_unused_fibre",
+    "oracle": {
+      "compatible_policy_split_pairs": 12,
+      "maximum_reachable_states": 2,
+      "minimum_cost": 8,
+      "minimum_reachable_states": 2,
+      "total_policies": 8,
+      "unsafe_policy_split_pairs": 12
+    },
+    "problem": {
+      "allowed_split": [
+        0,
+        1
+      ],
+      "costs": [
+        3,
+        8
+      ],
+      "initial": 0,
+      "key_fibres": [
+        0,
+        0,
+        1
+      ],
+      "required_split": [
+        1
+      ],
+      "states": [
+        "start",
+        "unsafe"
+      ],
+      "transitions": [
+        {
+          "key": null,
+          "label": "",
+          "source": 0,
+          "target": 1,
+          "value": null
+        }
+      ],
+      "unsafe": [
+        1
+      ]
+    },
+    "verification": {
+      "checked_input_transitions": 0,
+      "checked_product_states": 0,
+      "claim": "optimal",
+      "minimum_cost": 8,
+      "problem_sha256": "c884f9354a1e7f75fdc15d00dcb5e96ca7acbaac2aa7a15ac7f061e5179f9b86",
+      "replayed_transitions": 1,
+      "status": "PASS"
+    }
+  },
+  {
+    "certificate": {
+      "minimum_cost": 0,
+      "problem": {
+        "allowed_split": [
+          0
+        ],
+        "costs": [
+          0
+        ],
+        "initial": 0,
+        "key_fibres": [
+          0,
+          0
+        ],
+        "required_split": [],
+        "states": [
+          "start",
+          "enabled",
+          "unsafe"
+        ],
+        "transitions": [
+          {
+            "key": 0,
+            "label": "",
+            "source": 0,
+            "target": 1,
+            "value": true
+          },
+          {
+            "key": 1,
+            "label": "",
+            "source": 1,
+            "target": 2,
+            "value": false
+          }
+        ],
+        "unsafe": [
+          2
+        ]
+      },
+      "problem_sha256": "67d1c81228e1814318e23ade7af497a065a87d947e70bd97a7b2531a71672db0",
+      "proof": {
+        "bound": 0,
+        "kind": "closed-strict-sublevel",
+        "states": []
+      },
+      "schema": "transition-refinement-certificate/v1",
+      "statistics": {
+        "certificate_states": 0,
+        "discovered_product_states": 3,
+        "examined_input_transitions": 2,
+        "product_state_upper_bound": 27,
+        "settled_nonunsafe_states": 2
+      },
+      "status": "optimal",
+      "witness": {
+        "cost": 0,
+        "policy": [
+          true,
+          false
+        ],
+        "product_states": [
+          {
+            "assignment": [
+              -1,
+              -1
+            ],
+            "state": 0
+          },
+          {
+            "assignment": [
+              1,
+              -1
+            ],
+            "state": 1
+          },
+          {
+            "assignment": [
+              1,
+              0
+            ],
+            "state": 2
+          }
+        ],
+        "split": [
+          0
+        ],
+        "terminal": 2,
+        "transitions": [
+          0,
+          1
+        ]
+      }
+    },
+    "name": "zero_cost_split",
+    "oracle": {
+      "compatible_policy_split_pairs": 6,
+      "maximum_reachable_states": 3,
+      "minimum_cost": 0,
+      "minimum_reachable_states": 1,
+      "total_policies": 4,
+      "unsafe_policy_split_pairs": 1
+    },
+    "problem": {
+      "allowed_split": [
+        0
+      ],
+      "costs": [
+        0
+      ],
+      "initial": 0,
+      "key_fibres": [
+        0,
+        0
+      ],
+      "required_split": [],
+      "states": [
+        "start",
+        "enabled",
+        "unsafe"
+      ],
+      "transitions": [
+        {
+          "key": 0,
+          "label": "",
+          "source": 0,
+          "target": 1,
+          "value": true
+        },
+        {
+          "key": 1,
+          "label": "",
+          "source": 1,
+          "target": 2,
+          "value": false
+        }
+      ],
+      "unsafe": [
+        2
+      ]
+    },
+    "verification": {
+      "checked_input_transitions": 0,
+      "checked_product_states": 0,
+      "claim": "optimal",
+      "minimum_cost": 0,
+      "problem_sha256": "67d1c81228e1814318e23ade7af497a065a87d947e70bd97a7b2531a71672db0",
+      "replayed_transitions": 2,
+      "status": "PASS"
+    }
+  },
+  {
+    "certificate": {
+      "minimum_cost": 3,
+      "problem": {
+        "allowed_split": [
+          0
+        ],
+        "costs": [
+          3
+        ],
+        "initial": 0,
+        "key_fibres": [
+          0,
+          0
+        ],
+        "required_split": [],
+        "states": [
+          "start",
+          "prepared",
+          "unsafe"
+        ],
+        "transitions": [
+          {
+            "key": 0,
+            "label": "prepare",
+            "source": 0,
+            "target": 1,
+            "value": true
+          },
+          {
+            "key": 1,
+            "label": "suppress repair",
+            "source": 1,
+            "target": 2,
+            "value": false
+          }
+        ],
+        "unsafe": [
+          2
+        ]
+      },
+      "problem_sha256": "ee4cf541f78b261e3602fa1bf9f43ca6a7e9e40f275b4d03495ce2272928aa70",
+      "proof": {
+        "bound": 3,
+        "kind": "closed-strict-sublevel",
+        "states": [
+          {
+            "assignment": [
+              -1,
+              -1
+            ],
+            "state": 0
+          },
+          {
+            "assignment": [
+              1,
+              -1
+            ],
+            "state": 1
+          }
+        ]
+      },
+      "schema": "transition-refinement-certificate/v1",
+      "statistics": {
+        "certificate_states": 2,
+        "discovered_product_states": 3,
+        "examined_input_transitions": 2,
+        "product_state_upper_bound": 27,
+        "settled_nonunsafe_states": 2
+      },
+      "status": "optimal",
+      "witness": {
+        "cost": 3,
+        "policy": [
+          true,
+          false
+        ],
+        "product_states": [
+          {
+            "assignment": [
+              -1,
+              -1
+            ],
+            "state": 0
+          },
+          {
+            "assignment": [
+              1,
+              -1
+            ],
+            "state": 1
+          },
+          {
+            "assignment": [
+              1,
+              0
+            ],
+            "state": 2
+          }
+        ],
+        "split": [
+          0
+        ],
+        "terminal": 2,
+        "transitions": [
+          0,
+          1
+        ]
+      }
+    },
+    "name": "spurious_state_merge",
+    "oracle": {
+      "compatible_policy_split_pairs": 6,
+      "maximum_reachable_states": 3,
+      "minimum_cost": 3,
+      "minimum_reachable_states": 1,
+      "total_policies": 4,
+      "unsafe_policy_split_pairs": 1
+    },
+    "problem": {
+      "allowed_split": [
+        0
+      ],
+      "costs": [
+        3
+      ],
+      "initial": 0,
+      "key_fibres": [
+        0,
+        0
+      ],
+      "required_split": [],
+      "states": [
+        "start",
+        "prepared",
+        "unsafe"
+      ],
+      "transitions": [
+        {
+          "key": 0,
+          "label": "prepare",
+          "source": 0,
+          "target": 1,
+          "value": true
+        },
+        {
+          "key": 1,
+          "label": "suppress repair",
+          "source": 1,
+          "target": 2,
+          "value": false
+        }
+      ],
+      "unsafe": [
+        2
+      ]
+    },
+    "verification": {
+      "checked_input_transitions": 2,
+      "checked_product_states": 2,
+      "claim": "optimal",
+      "minimum_cost": 3,
+      "problem_sha256": "ee4cf541f78b261e3602fa1bf9f43ca6a7e9e40f275b4d03495ce2272928aa70",
+      "replayed_transitions": 2,
+      "status": "PASS"
+    }
+  }
+]

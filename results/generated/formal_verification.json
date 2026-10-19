@@ -6,7 +6,7 @@
     "prover": "Lean",
     "receipt": "results/generated/lean_verification.json",
     "report": "formal/lean/AXIOM_REPORT.md",
-    "scope": "Imported Lean declarations include graph/event-order realization and Bellman certificate soundness. Python checker implementation and production-client refinement are not mechanized.",
+    "scope": "Imported Lean declarations include static-policy completion and least trace refinement, persistent-memory query guards, closed-sublevel certificates, labelled local simulation and cost-bound transfer, invariant-guided quotient refinement, graph/event-order realization, and Bellman certificate soundness. Python implementations, the protocol exporter, and production-client correspondence are not mechanized.",
     "toolchain": "leanprover/lean4:v4.33.0"
   },
   "schema_version": 2,
@@ -357,7 +357,7 @@
       "z3_version": "4.13.3.0"
     },
     "source_hygiene": {
-      "files_checked": 22,
+      "files_checked": 23,
       "hits": [],
       "status": "PASS"
     }
