@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import csv, hashlib, json, os, shutil, subprocess, sys
+import csv, hashlib, importlib.util, json, os, shutil, subprocess, sys
 from pathlib import Path
 
 project = Path(__file__).resolve().parents[1]
@@ -12,10 +12,11 @@ results_dir.mkdir(parents=True, exist_ok=True)
 formal_results.mkdir(parents=True, exist_ok=True)
 
 def find_or_build_z3() -> str:
-    found = shutil.which("z3")
-    if found:
-        return found
+    # Prefer the uv-locked wheel so the solver version is independent of the host.
+    module = importlib.util.find_spec("z3")
+    pinned_lib = Path(module.origin).parent / "lib" / "libz3.so" if module else None
     lib_candidates = [
+        *([pinned_lib] if pinned_lib else []),
         Path("/usr/lib/x86_64-linux-gnu/libz3.so.4"),
         Path("/usr/lib/libz3.so.4"),
         Path("/usr/local/lib/libz3.so"),
@@ -26,10 +27,14 @@ def find_or_build_z3() -> str:
     out = project / ".cache" / "z3cli"
     out.parent.mkdir(parents=True, exist_ok=True)
     if lib and cc and src.exists():
-        cp = subprocess.run([cc, "-O2", str(src), str(lib), "-o", str(out)], text=True, capture_output=True)
+        cp = subprocess.run([cc, "-O2", str(src), str(lib),
+                             f"-Wl,-rpath,{lib.parent}", "-o", str(out)], text=True, capture_output=True)
         if cp.returncode != 0:
             raise SystemExit(f"could not compile z3cli:\n{cp.stdout}{cp.stderr}")
         return str(out)
+    found = shutil.which("z3")
+    if found:
+        return found
     raise SystemExit("z3 executable unavailable and local libz3 wrapper cannot be built")
 
 z3 = find_or_build_z3()

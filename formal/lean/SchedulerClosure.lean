@@ -6,3 +6,4 @@ import SchedulerClosure.QuorumPivotCriterion
 import SchedulerClosure.ParametricFamily
 import SchedulerClosure.CometBFTInstantiation
 import SchedulerClosure.PremiseBoundary
+import SchedulerClosure.RepairFrontier

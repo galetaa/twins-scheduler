@@ -5,6 +5,7 @@ ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 cd "$ROOT/provenance"
 sha256sum -c RAW_INPUTS_SHA256SUMS
 cd "$ROOT"
+(cd models/tendermint_style/upstream_v0393 && sha256sum -c MANIFEST.sha256)
 while IFS= read -r archive_path; do
   unzip -t "$archive_path" >/dev/null
 done < <(find provenance/source_archives -maxdepth 1 -type f -name '*.zip' | sort)

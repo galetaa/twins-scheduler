@@ -21,6 +21,5 @@ PYTHONHASHSEED=0 uv run python scripts/run_certificate_checks.py 2>&1 \
 uv run python scripts/run_smt_checks.py 2>&1 | tee "$LOG_DIR/smt_checks.log"
 uv run python scripts/check_formal_source_hygiene.py 2>&1 \
   | tee "$LOG_DIR/formal_source_hygiene_command.log"
-uv run python scripts/assemble_formal_report.py 2>&1 | tee "$LOG_DIR/formal_verification.log"
 
 echo "TEST_ALL PASS"

@@ -1,0 +1,25 @@
+{
+  "axiom_audit_exit": 0,
+  "lake_build_exit": 0,
+  "leanchecker_exit": 0,
+  "scope": "Imported Lean declarations; graph-to-execution and concrete client refinement are not mechanized.",
+  "source_sha256": {
+    "formal/lean/AxiomAudit.lean": "94f86144a7835a0d93d4a8441579620e9ea0808b489b05a3a24c57d774ba4e1c",
+    "formal/lean/SchedulerClosure.lean": "9833732b8a428bd7fe225211ebb1f6e5f83a78f841ace6bfacf495a76ae7c346",
+    "formal/lean/SchedulerClosure/ClosureLifting.lean": "7a4c15ab19254d28401493370afb60b30df88b5f0b4687caa7a62af07ac1dcc2",
+    "formal/lean/SchedulerClosure/CometBFTInstantiation.lean": "9b0a45bc55eb4a34cf486e964cc8aad827c476ba912acf96b7c2a9c316ba0640",
+    "formal/lean/SchedulerClosure/ParametricFamily.lean": "55d77d00fd1b2c0c2439fe8b504e23e47fce7a2de841a073ea5a9346fb8cb9e1",
+    "formal/lean/SchedulerClosure/PremiseBoundary.lean": "d955a82c79fdefbd16b4a369a57b1f73cc26368771b079a27ebb568be7ac60e3",
+    "formal/lean/SchedulerClosure/QuorumPivotCriterion.lean": "960c1396c662f48f2815b8a2c873a16955a925451606b1b5fb6235d4d0fbfc36",
+    "formal/lean/SchedulerClosure/RepairFrontier.lean": "331603123b262cb967e2ca08d65b06da2110330a6b59ca6ce04f428bd433c8c6",
+    "formal/lean/SchedulerClosure/ReplayErasure.lean": "7480515763205a99c30435e9bd85d575507503eef368da0bea126e999806d43f",
+    "formal/lean/SchedulerClosure/SchedulerSemantics.lean": "4c91b99a11cb90e69a104b280f7ccf00b18243f3e4788cbe61197919de869ed4",
+    "formal/lean/SchedulerClosure/T1ReplayErasure.lean": "796526017f434f3297532dc2f0046799dbd35e7749fc98a50b6f90e7f86f9afc",
+    "formal/lean/SchedulerClosure/T2ClosureLifting.lean": "2bb726065a47fa3746c5c8a4c9650e59e47f7537e6ad1c7a74d7449d80fc6ebd",
+    "formal/lean/SchedulerClosure/T3QuorumPivot.lean": "99bc1dc8a536f49d321ebdcffb674f1f6fa3d6fb1e1b861fbb4ebcf85125cfa0",
+    "formal/lean/SchedulerClosure/T6PremiseBoundary.lean": "4df1615bf2e072cff53bacfb2a7f04feed5dbe7e32c033b1160a9f7fb92519dd",
+    "formal/lean/SchedulerClosure/UnsafeObservations.lean": "bd6fa840f6357b597c15dbbf9170d6ea0e3a30b442777fd1fc7daab327c4ba10"
+  },
+  "status": "PASS",
+  "toolchain": "leanprover/lean4:v4.33.0"
+}

@@ -4,10 +4,12 @@
     "lake_build": "PASS",
     "leanchecker": "PASS",
     "prover": "Lean",
+    "receipt": "results/generated/lean_verification.json",
     "report": "formal/lean/AXIOM_REPORT.md",
+    "scope": "Imported Lean declarations; graph-to-execution and concrete client refinement are not mechanized.",
     "toolchain": "leanprover/lean4:v4.33.0"
   },
-  "schema_version": 1,
+  "schema_version": 2,
   "status": "PASS",
   "supporting_checks": {
     "certificates": {
@@ -355,7 +357,7 @@
       "z3_version": "4.13.3.0"
     },
     "source_hygiene": {
-      "files_checked": 19,
+      "files_checked": 20,
       "hits": [],
       "status": "PASS"
     }

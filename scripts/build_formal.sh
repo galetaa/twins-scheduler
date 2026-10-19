@@ -16,4 +16,8 @@ lake env lean formal/lean/AxiomAudit.lean 2>&1 | tee "$LOG_DIR/lean_axiom_audit.
 lake env leanchecker SchedulerClosure 2>&1 | tee "$LOG_DIR/leanchecker.log"
 uv run python scripts/check_formal_source_hygiene.py 2>&1 | tee "$LOG_DIR/formal_source_hygiene_command.log"
 
+# Record successful command evidence only after the checked processes exit zero.
+uv run python scripts/record_lean_verification.py
+uv run python scripts/assemble_formal_report.py 2>&1 | tee "$LOG_DIR/formal_verification.log"
+
 echo "BUILD_FORMAL PASS"

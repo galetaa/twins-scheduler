@@ -1,0 +1,45 @@
+{
+  "project": "CometBFT",
+  "repository": "cometbft/cometbft",
+  "tag": "v0.39.3",
+  "commit": "49b82838fcca442b2445f76605c101609ed04130",
+  "tree": "ae9420e96f0fb41ee26588b4d16ca36a30fd1b27",
+  "retrieved_utc": "2026-10-19 15:09:38 UTC",
+  "retrieval": "GitHub plugin: git/ref/tags/v0.39.3, git/commits/<sha>, fetch_file at exact immutable commit",
+  "license": "Apache-2.0",
+  "files": {
+    "state.go": {
+      "upstream_path": "consensus/state.go",
+      "git_blob_sha1": "c16c3570ba71da8391a84268139546ea201f4b47",
+      "url": "https://github.com/cometbft/cometbft/blob/49b82838fcca442b2445f76605c101609ed04130/consensus/state.go",
+      "sha256": "f3e271613b995463dbca96cee5c1f3c6fdc85efda3edc1aeb7d358b64602af31",
+      "size_bytes": 88265,
+      "local_filename": "state.go.txt"
+    },
+    "vote_set.go": {
+      "upstream_path": "types/vote_set.go",
+      "git_blob_sha1": "ac70c128a1bc2f1d2a37b311112f3f6f78ce644d",
+      "url": "https://github.com/cometbft/cometbft/blob/49b82838fcca442b2445f76605c101609ed04130/types/vote_set.go",
+      "sha256": "cf9897a2739df2d7cc56929d878eca22525ec203a3b85d17831f12ff3acb1c08",
+      "size_bytes": 21758,
+      "local_filename": "vote_set.go.txt"
+    },
+    "consensus.md": {
+      "upstream_path": "spec/consensus/consensus.md",
+      "git_blob_sha1": "baa711f329ad725eddb5838cf889c3ff9c451017",
+      "url": "https://github.com/cometbft/cometbft/blob/49b82838fcca442b2445f76605c101609ed04130/spec/consensus/consensus.md",
+      "sha256": "d7d10aa9943f9f5bbb8eda007e85c0426891bd484056be262491bf3cfe71ad51",
+      "size_bytes": 16173,
+      "local_filename": "consensus.md"
+    },
+    "LICENSE": {
+      "upstream_path": "LICENSE",
+      "git_blob_sha1": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "url": "https://github.com/cometbft/cometbft/blob/49b82838fcca442b2445f76605c101609ed04130/LICENSE",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "size_bytes": 11358,
+      "local_filename": "LICENSE"
+    }
+  },
+  "scope": "Primary source snapshot only; no claim of production execution or conformance."
+}

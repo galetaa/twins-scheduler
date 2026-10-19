@@ -1,539 +1,376 @@
----
-title: "Phase Erasure Can Hide Agreement-Violation Witnesses in Certificate-Driven Locking BFT Protocols"
-author: "Anonymous submission draft"
-date: "Evidence cut-off: 21 August 2026"
-abstract: |
-  Fault-injection frameworks for Byzantine fault-tolerant protocols expose different amounts of control over message delivery. Some choose one partition or directed endpoint graph for an entire view, whereas others distinguish message phases, individual instances, or replay. A richer scheduler trivially generates more executions; the scientific question is whether that authority changes the set of safety observations.
+# Introduction
 
-  We study closure from phase-specific admission to one type-uniform directed endpoint graph for finite certificate-driven locking systems. We first give a legal-target relational theorem: closure-added deliveries preserve an unsafe terminal state when they are monotone under a simulation preorder and the closed trace is a legal execution of the coarse grammar. We then identify a structural boundary. If two conflicting certificate opportunities require one correct quorum pivot, an enabling message makes the pivot available, and a later repair message on the same endpoint and view disables it before the second opportunity, phase erasure can delete the violation witness. For every $f\geq1$, with $n=3f+1$ and quorum $q=2f+1$, we instantiate this criterion in an explicit bounded family. We also give a bounded rule-level refinement to Tendermint-style Propose/Prevote/Precommit/Commit rules: under a controlled `MISSING_LOCK_UPDATE` mutation, phase-specific admission exposes the conflict while both values of the type-uniform edge bit remain safe.
+Fault-injection schedulers determine which behaviors a test can observe. A scheduler may choose one communication partition for a protocol view, one directed admission bit per peer pair, or distinct decisions for different voting phases. Twins, randomized Byzantine testing, Netrix, and ByzzBench demonstrate the practical value of controlled execution \cite{bano2021twins,winter2023randomized,dragoi2024netrix,louroneto2025byzzbench}. Their capabilities also make a semantic question unavoidable: when does aggregating admission decisions preserve a safety counterexample?
 
-  A secondary result characterizes exact replay erasure. Removing a marked duplicate preserves the final protocol-relevant projection and the complete protocol-relevant output trace only when the transition and output functions are congruent under that projection, processed stable keys are included in it, and the duplicate is a projected stutter with empty relevant output. The artifact independently checks the proofs' finite obligations, implements the Tendermint-style bridge in Python and Go, and supplies Lean and Coq developments. No production-client vulnerability, universal scheduler hierarchy, or liveness result is claimed.
-keywords:
-  - Byzantine fault tolerance
-  - consensus testing
-  - scheduler semantics
-  - communication closure
-  - safety
-  - formal methods
----
+Consider an enabling prevote and a later precommit carrying repair evidence. They share a directed peer connection and a protocol round. A phase-sensitive policy can admit the former and suppress the latter. An admission bit fixed across both phases admits both or neither. Admitting more evidence may change a validator's state before it issues a vote needed by a conflicting quorum. Thus counting possible schedules does not establish preservation of the observations that matter to a safety test.
 
-# 1. Introduction
+The critical boundary is **vote issuance**. If a repair message arrives after an indispensable conflicting precommit has been signed, it cannot remove that precommit from another validator's future certificate. Repair before the second *decision* can therefore be too late. We call the collection of second-vote opportunities a **repair frontier** and study which pivotal contributions can jointly survive across it.
 
-Byzantine fault-tolerant (BFT) protocols are routinely evaluated under adversarial message schedules. The testing harness decides which messages are delivered, withheld, delayed, reordered, or replayed, and therefore determines which parts of the adversarial execution language are explored. Twins realizes several Byzantine behaviors with replicas that share one identity and receive different communication views [@bano2021twins]. Randomized BFT testing extends the fault language with message mutation and richer delivery choices [@winter2023randomized]. Netrix exposes programmable predicates and actions over messages and executions [@dragoi2024netrix], while ByzzBench supplies controlled benchmark infrastructure for comparing testing algorithms [@louroneto2025byzzbench].
+The one-pivot example is useful but does not characterize broader scheduler domains. With several initially ready pivots, a coarse policy can assign different validators to the two branches. With individual vote deadlines, a repair may be movable on its own but incompatible with delaying another repair. We connect these two effects. A graph derived from a finite opportunity partial order describes the compatible sets of unrepaired contributors; quorum deficits determine how large such a set must be.
 
-These systems establish that richer controls are useful. They do not by themselves answer a property-preservation question. Suppose a phase-specific policy can deliver a `PREVOTE` on an edge while withholding a later `PRECOMMIT` on that same edge, whereas a coarser policy assigns one Boolean admission decision to the endpoint pair for the whole view. The coarse policy necessarily admits both phases or neither. Does this loss of control merely collapse redundant traces, or can it remove an agreement-violation observation?
+## Contributions and scope
 
-Raw trace inclusion is insufficient. A per-instance scheduler produces more schedules than a per-view graph almost by definition. The meaningful object is the image of those executions under a safety observation. Two grammars can differ on internal traces yet expose exactly the same conflicting decisions. Conversely, adding messages during closure can change protocol state and repair an execution that was unsafe before closure. This paper isolates the mechanism responsible for the latter case.
+The main contribution is an exact scheduler characterization for an explicit independent-pivot certificate schema. If there are $k$ unit-weight pivots, the two quorums need $d_0,d_1$ pivotal contributions, and $\alpha(H)$ is the largest jointly reusable pivot set in the derived repair graph, a coarse unsafe execution exists exactly when
 
-The central mechanism is a **unique correct quorum pivot**. Two conflicting certificate opportunities each have $q-1$ base contributions and need the same correct validator $p$. An enabling envelope $E$ makes $p$ available to the first branch. A later repair envelope $R$, sent on the same endpoint in the same view but with a different phase label, disables $p$ before the second branch. A phase-specific policy admits $E$ and withholds $R$, so both certificates form. A type-uniform directed policy has only two choices: with the edge off, the first certificate remains short; with the edge on, repair arrives before the second opportunity and the second certificate remains short.
+$$
+\max(d_0,d_1)\le k,
+\qquad d_0+d_1\le k+\alpha(H).
+$$
 
-The result is not a claim that graph-based schedules are universally incomplete. It is an existence and characterization result for an explicit finite class. Communication-closure work already proves that certain asynchronous consensus executions can be normalized to lossy synchronous executions under stated implementation conditions [@dragoi2020communication]. Heard-Of and message-adversary theories already treat round communication graphs as first-class semantic objects [@charronbost2009heardof; @winkler2020closed]. Our question is narrower: when closure from phase-labelled admission to one endpoint bit preserves finite agreement violations, and when closure-added repair evidence destroys the witness.
+This yields the exact minimum number of independently phase-split channels required to recover a witness, a weighted extension, and a precise account of how relaxing delivery order changes the result. The graph reversal argument and its underlying optimization are classical; the contribution is their connection to admission coupling, persistent signed outputs, and quorum requirements.
 
-## 1.1 Contributions
+We also repair the one-pivot criterion by stating persistence, enabling necessity, observation coverage, and the correct repair deadline explicitly. A complete four-validator execution realizes the mechanism using guarded Tendermint-style transitions under one omitted round-0 lock update. It includes actual signed vote sets, nil votes, legal timeout transitions, and a late-repair control whose two conflicting decisions occur at unmutated validators. Exhaustive finite checks and a scoped Lean development accompany these results.
 
-The paper makes four ordered contributions.
+The claims concern finite agreement observations and declared scheduling domains. The four-validator model is derived from pinned CometBFT rules; it does not execute the production client. The multi-pivot graph theorem assumes independent behavioral contracts and complete coverage of the stated opportunity orders. No universal ordering of test frameworks, unbounded completeness, liveness result, or deployed-client vulnerability follows.
 
-1. **Phase-erasure boundary.** We identify the repair/pivot mechanism by which closure from phase-specific admission to a type-uniform directed endpoint graph deletes an agreement-violation witness.
-2. **Legal relational preservation theorem.** We give sufficient conditions under which closure-added deliveries preserve an unsafe terminal state, explicitly requiring that the transformed trace is legal in the target scheduler language.
-3. **Structural criterion, parametric family, and natural protocol bridge.** We state a protocol-independent quorum-pivot separation criterion, derive an explicit $n=3f+1$ family, characterize its seven Boolean premises, and instantiate the mechanism in bounded Tendermint-style locking rules pinned to the CometBFT v0.39.3 specification [@cometbft0393].
-4. **Replay-erasure boundary.** As a secondary closure dimension, we prove that exact duplicate erasure preserves both relevant state and relevant output traces only under state and output congruence, projected duplicate stutter, and silent duplicate handling.
+# Executions, observations, and scheduling domains
 
-The SMT queries, finite checkers, Go/Python models, and prover sources are evidence for these contributions rather than separate intellectual contributions.
+A protocol is a labelled transition system $P=(S,s_0,M,A,\delta,\mathsf{emit})$. A delivery consumes an existing emitted envelope
 
-## 1.2 Scope
+$$
+m=(\mathit{id},v,\lambda,s,r,\mathit{payload}).
+$$
 
-The scope is finite agreement safety in authenticated, certificate-driven locking schemas. We do not claim a vulnerability in CometBFT, HotStuff, Tendermint, or another deployed implementation; universal incompleteness of partition or directed grammars; universal minimality of phase-specific scheduling; a liveness theorem; or completeness under unbounded partial synchrony. The CometBFT connection is a bounded refinement to published transition rules under one explicit mutation, not a source-to-source proof for the production Go client.
+Here $v$ is the policy's view key, $\lambda$ its phase label, and $s,r$ the **transport endpoints**. A signed message's author need not be its current transport sender: gossip may relay an unchanged authenticated vote. The bounded model distinguishes these fields and counts certificate support by signer identity.
 
-# 2. Model and exact scheduler semantics
+For a legal finite execution $\tau$, let $O(\operatorname{last}(\tau))$ record decisions at the designated correct observers. The state predicate $\mathsf{Unsafe}$ means that these observers have decided conflicting values. Define
 
-## 2.1 Protocol executions
+$$
+\mathsf{UnsafeObs}_G(P,\mathcal B)=
+\{O(\operatorname{last}(\tau)):\tau\in L_G(P,\mathcal B),\
+\mathsf{Unsafe}(\operatorname{last}(\tau))\}.
+$$
 
-A protocol is a labelled transition system
+Our separation claims compare emptiness of these sets. They do not assert equality of every unsafe observation or preservation of a particular fine trace.
 
-\[
-P=(S,s_0,M,A,\delta,\mathsf{emit}),
-\]
+A phase-sensitive policy has bits $A_T(v,\lambda,s,r)$. A coarse policy has bits $A_D(v,s,r)$. Phase erasure opens an edge if any phase was admitted:
 
-where $S$ is the global protocol state, $s_0$ the initial state, $M$ the set of message envelopes, $A$ the set of local and delivery actions, $\delta:S\times A\to S$ the deterministic transition function inside the bounded model, and $\mathsf{emit}$ the finite sequence of envelopes produced by a transition. An envelope is
+$$
+C_{\mathrm{type}}(A_T)(v,s,r)=\bigvee_\lambda A_T(v,\lambda,s,r).
+$$
 
-\[
-m=(\mathit{id},v,\lambda,s,r,\mathit{payload}),
-\]
+Admission is only one part of a scheduler. The domain $\mathcal B$ also specifies message generation, event opportunities, ordering, pending messages, and termination. The original fixed-order domain uses a stable admission filter and predetermined delivery points. Later sections admit all linear extensions of an explicitly stated partial order. A directed graph by itself implies neither FIFO delivery nor an obligation to process repair before a given vote.
 
-with stable instance identifier $\mathit{id}$, view $v$, phase/type label $\lambda\in\Lambda$, sender $s$, and receiver $r$. Cryptographic validity and protocol-side acceptance are part of $P$; the scheduler cannot synthesize a message that $P$ did not emit.
+## A standard sufficient preservation condition
 
-A finite execution is
+The useful positive baseline is a specialized simulation argument \cite{lynch1995simulations}. Let a candidate coarse trace retain the actions of a fine trace in order and insert closure-required deliveries. Suppose a preorder $\mathcal R$ relates the initial states, each insertion increases the target state in $\mathcal R$, retained actions preserve $\mathcal R$, and unsafety is upward closed in $\mathcal R$.
 
-\[
-\tau=s_0\,a_1\,s_1\cdots a_k\,s_k,
-\quad s_i=\delta(s_{i-1},a_i).
-\]
+**Theorem 1 (legal relational preservation).** If the candidate trace $C(\tau)$ is legal in the coarse language,
+$C(\tau)\in L_{G_D}(P,\mathcal B)$, these conditions imply
+$\mathsf{Unsafe}(\operatorname{last}(\tau))\Rightarrow
+\mathsf{Unsafe}(\operatorname{last}(C(\tau)))$.
 
-We write $\operatorname{last}(\tau)=s_k$. A bound descriptor $B$ fixes the participants, values, views, phase order, message-production opportunities, scheduler-controlled edges, and any permitted replay. The legal language of protocol $P$ under grammar $G$ and bound $B$ is $L_G(P,B)$.
+**Proof.** Induct over the merged action sequence. At an insertion, the target's increasing step composes with the current relation by transitivity. At a retained action, forward simulation advances both states. The terminal relation and upward closure transfer unsafety. Target legality supplies membership in the coarse execution language. $\square$
 
-## 2.2 Safety observations and typing
+Legality is an independent obligation. Processing repair may disable an action or prevent a message from being emitted, so simply retaining all fine votes after inserting repair can produce an illegal sequence. Our negative results instead rerun guarded opportunities; a disabled opportunity emits no vote. Theorem 1 is supporting machinery, not a new general simulation principle.
 
-Let
+# A corrected one-pivot separation criterion
 
-\[
-O:S\to\Omega
-\]
+Let $q\ge1$ be a certificate threshold. Two conflicting certificate families have fixed nonpivot support $q-1$ each. The same pivot $p$ is the only possible additional signer. The first and second votes are issued at opportunities $V_0,V_1$; $C_0,C_1$ collect their certificates. Decisions, signed votes, and the availability of emitted votes at the specified collectors are irreversible within the bound.
 
-be the observation function. For agreement, $O(s)$ records the decisions of correct identities in state $s$. Let
+The following are **behavioral obligations**:
 
-\[
-\mathsf{Unsafe}:S\to\{\mathsf{true},\mathsf{false}\}
-\]
+1. **Enabling necessity.** The first pivotal vote is emitted exactly when the enabling envelope $E$ is admitted. No substitute supplies that missing contribution.
+2. **Explicit persistence.** When $E$ is admitted and repair $R$ is withheld, $p$ emits the second pivotal vote at $V_1$. Other fixed events do not independently disable it.
+3. **Timely repair.** When $E,R$ are admitted and $R$ is processed before $V_1$, $p$ does not emit the second pivotal vote. No previously emitted second-family signature can substitute for it.
+4. **Certificate and observation coverage.** The two designated correct observers decide their respective values exactly when the corresponding quorum is available; the bounded agreement observation is unsafe exactly when both families decide. No unrelated decision opportunity creates an additional disagreement.
 
-be a predicate on protocol states, not on observations. An execution observation is
+The **scheduler obligations** are separate: $E,R$ are emitted, share one endpoint/view key, and have distinct phase labels. Fine admission can realize $(e,r)=(1,0)$; coarse admission realizes only $(0,0)$ and $(1,1)$. The relevant order is
 
-\[
-\operatorname{Obs}(\tau)=O(\operatorname{last}(\tau)).
-\]
+$$
+E<V_0<C_0<R<V_1<C_1.
+$$
 
-The unsafe observation language is therefore
+All other delivery choices and opportunities are fixed, and each rerun obeys the behavioral guards. These assumptions deliberately describe a sufficient schema; quorum arithmetic alone cannot establish a protocol refinement.
 
-\[
-\mathsf{UnsafeObs}_G(P,B)=
-\left\{
-O(\operatorname{last}(\tau))
-\mid
-\tau\in L_G(P,B)\land
-\mathsf{Unsafe}(\operatorname{last}(\tau))
-\right\}.
-\]
+**Theorem 2 (behavioral quorum-pivot separation).** Under these behavioral and scheduler obligations,
 
-This separation permits different unsafe states to map to the same observation without applying a state predicate to an element of $\Omega$.
-
-## 2.3 Admission grammars
-
-Let $V$ be the bounded set of views and $N$ the identities. A type-uniform directed grammar is an admission function
-
-\[
-A_D:V\times N\times N\to\{0,1\}.
-\]
-
-All controlled phases on edge $(v,s,r)$ share one bit. A phase-specific grammar is
-
-\[
-A_T:V\times\Lambda\times N\times N\to\{0,1\}.
-\]
-
-The type-erasure closure is
-
-\[
-C_{\mathrm{type}}(A_T)(v,s,r)
-=
-\bigvee_{\lambda\in\Lambda}A_T(v,\lambda,s,r).
-\]
-
-Thus an endpoint edge is opened whenever the fine policy admits at least one controlled phase on it.
-
-For an emitted envelope sequence $E=[m_1,\ldots,m_j]$, delivery under policy $A$ is a **stable filter**:
-
-\[
-\operatorname{deliver}_A(E)
-=
-[m_i\mid A(m_i)=1],
-\]
-
-in the order in which the protocol emitted the envelopes. This definition has four consequences used by the theorems:
-
-1. **no synthesis:** every delivered envelope occurs in $E$;
-2. **at most once:** an instance identifier occurs no more often than in $E$ unless replay is explicitly enabled by another grammar;
-3. **order preservation:** if two admitted instances occur in that order in $E$, delivery preserves it;
-4. **fixed delivery point in the bounded domain:** newly admitted envelopes are processed at their predetermined phase opportunity. The domain used for the separation contains no late delivery of repair after the second certificate opportunity.
-
-Only edges declared controlled by $B$ are filtered. All other emissions and deliveries are fixed. A per-instance grammar $G_M$ and a replay grammar $G_R$ are used only in the secondary replay result; the central separation compares $G_T$ and $G_D$.
-
-## 2.4 Closure as a legal trace transformation
-
-For a fine policy $A_T$, closure constructs a candidate target trace $C(\tau)$ by retaining the original protocol actions and inserting deliveries admitted by $C_{\mathrm{type}}(A_T)$ that were withheld by $A_T$. Closure never invents an envelope or changes the relative order of original actions. This sequence is a semantic target only if
-
-\[
-C(\tau)\in L_{G_D}(P,B).
-\]
-
-The legality obligation is independent of the relational preservation proof. A target grammar may forbid an insertion, a receiver may reject it, or its processing may invalidate the remaining action sequence. The next section therefore separates merged-trace reasoning from target-language legality.
-
-![Scheduler grammars and the type-erasure map. The central comparison is between phase-specific admission and one type-uniform directed edge bit.](figures/figure1_scheduler_grammar.svg){width=92%}
-
-# 3. When closure preserves unsafety
-
-## 3.1 Merged-trace lifting lemma
-
-Let $R\subseteq S\times S$ be a preorder. Consider an original trace and a merged trace that retains every original action in order and inserts closure-required delivery actions. Suppose:
-
-- **initial relation:** $R(s_0,s_0)$;
-- **increasing insertion:** for every inserted action $b$, $R(s,\delta(s,b))$;
-- **forward simulation:** for every retained action $a$, $R(s,t)$ implies $R(\delta(s,a),\delta(t,a))$;
-- **transitivity:** $R$ is transitive.
-
-**Lemma 1 (merged-trace lifting).** If the original and merged traces begin in related states, then their terminal states are related.
-
-**Proof.** Induct over the merged trace while counting how many original actions have been consumed. At an inserted action, increasing insertion extends the relation and transitivity composes it with the current invariant. At a retained action, forward simulation advances both sides. At the end, all original actions have been consumed, giving the terminal relation. $\square$
-
-## 3.2 Legal scheduler-closure theorem
-
-Assume additionally that unsafety is upward closed:
-
-\[
-R(s,t)\land\mathsf{Unsafe}(s)\Rightarrow\mathsf{Unsafe}(t).
-\]
-
-**Theorem 1 (legal relational closure preservation).** Let $\tau\in L_{G_T}(P,B)$ be unsafe. If the type-erasure transform $C(\tau)$ is a legal target execution in $L_{G_D}(P,B)$ and the four relational premises above hold for the inserted and retained actions of $C(\tau)$, then
-
-\[
-\mathsf{Unsafe}(\operatorname{last}(C(\tau))).
-\]
-
-Consequently,
-
-\[
-O(\operatorname{last}(C(\tau)))
-\in \mathsf{UnsafeObs}_{G_D}(P,B).
-\]
-
-**Proof.** Target legality supplies a valid coarse execution. Lemma 1 gives
-$R(\operatorname{last}(\tau),\operatorname{last}(C(\tau)))$. Upward closure transfers unsafety to the target terminal state. Applying $O$ yields a member of the target unsafe-observation language. $\square$
-
-The theorem is sufficient, not necessary. It makes clear why “more delivered messages” is not automatically monotone: an inserted message may remove future behavior relevant to the safety witness, so no suitable preorder with upward-closed unsafety exists.
-
-# 4. Quorum-pivot separation
-
-## 4.1 Structural criterion
-
-Let $P$ be a bounded certificate-driven locking system with threshold $q$. Consider two conflicting decision opportunities $C_0<C_1$ for values $0$ and $1$. The following premises define the structural mechanism.
-
-1. There are two conflicting certificate opportunities $C_0<C_1$.
-2. A correct identity $p$ is the unique contribution capable of completing both branches inside the bound.
-3. Without $p$, each branch has fixed base support of exactly $q-1$ contributions.
-4. An already-emitted enabling envelope $E$ is processed before $C_0$ and makes $p$ available to the first branch.
-5. An already-emitted repair envelope $R$ is processed after $C_0$ but before $C_1$ and makes $p$ unavailable to the second branch.
-6. $E$ and $R$ have the same view, sender, and receiver.
-7. $E$ and $R$ have distinct phase labels.
-8. A phase-specific policy admits $E$ and withholds $R$.
-9. The type-uniform directed grammar has one Boolean bit for that shared edge and therefore admits or rejects $E$ and $R$ together; all other productions, edges, deliveries, and phase order are fixed. Edge off withholds both envelopes, and edge on processes both in the order $E<C_0<R<C_1$.
-10. A correct decision for value $i$ is emitted when the corresponding certificate reaches $q$, and decisions are irreversible inside the bound.
-
-**Theorem 2 (quorum-pivot separation criterion).** Every bounded system satisfying Premises 1--10 has an agreement-violating execution under $G_T$, while no execution in the stated $G_D$ domain violates agreement:
-
-\[
-\mathsf{UnsafeObs}_{G_T}(P,B)\neq\varnothing,
+$$
+\mathsf{UnsafeObs}_{G_T}(P,\mathcal B)\ne\varnothing,
 \qquad
-\mathsf{UnsafeObs}_{G_D}(P,B)=\varnothing.
-\]
+\mathsf{UnsafeObs}_{G_D}(P,\mathcal B)=\varnothing.
+$$
 
-**Proof.** Under $G_T$, $E$ is delivered and $R$ is not. The first base of $q-1$ plus $p$ forms the value-0 certificate and decision at $C_0$. Since repair is absent, $p$ remains available; the second base plus $p$ forms the conflicting value-1 certificate and decision at $C_1$.
+**Proof.** Fine admission supplies the first vote by enabling necessity and the second by explicit persistence. Each augments a base of $q-1$, producing two conflicting correct decisions. With the coarse edge off, the first vote is absent and its certificate is short, regardless of whether $p$ can still vote second. With the edge on, the first certificate forms but timely repair prevents the second pivotal signature. Observation coverage makes these two coarse cases exhaustive for agreement. $\square$
 
-For $G_D$, the Boolean domain is exhaustive. If the edge is off, neither $E$ nor $R$ is delivered, so the first branch remains at $q-1$. If the edge is on, $E$ enables the first certificate, but $R$ is processed before $C_1$ and disables $p$; the second branch remains at $q-1$. Hence neither directed execution contains two conflicting correct decisions. $\square$
+The persistence obligation cannot be inferred from the absence of $R$. For example, a fixed local transition after $C_0$ could disable $p$ even when $R$ is suppressed. The endpoint and quorum conditions would still hold, but the fine witness would disappear. Likewise, the order $R<C_1$ is insufficient if $V_1<R<C_1$: repair cannot retract the already signed vote. Both errors disappear when behavior and signature timing are stated explicitly.
 
-This theorem is the intermediate structural result: it identifies a checkable mechanism without tying the statement to one hand-written quorum arithmetic instance.
+## The original quorum family and its extension
 
-## 4.2 Parametric $3f+1$ family
+For every $f\ge1$, take $n=3f+1$, $q=2f+1$, Byzantine set $B$ of size $f$, correct exclusive sets $A,C$ of size $f$, and pivot $p$. Then
 
-For every $f\geq1$, let
+$$
+Q_0=B\cup A\cup\{p\},\qquad Q_1=B\cup C\cup\{p\}
+$$
 
-\[
-n=3f+1,\qquad q=2f+1.
-\]
+have size $q$ and each nonpivot base has size $q-1$. Under the behavioral contract, Theorem 2 applies. This arithmetic does not assert that every locking protocol realizes the contract.
 
-Partition identities into $B,A,C,$ and $\{p\}$, with
+More generally, for $1\le k\le f$, use $k$ pivots, exclusive sets $A,C$ of size $f+1-k$, Byzantine set $B$ of size $f$, and $k-1$ unused correct identities. The total is still $3f+1$. Both quorums contain $B$, their exclusive set, and all $k$ pivots; each base has size $q-k$. Distinct correct observers exist in nonempty $A,C$. The next theorem characterizes precisely which opportunity orders can preserve these $k$ required double contributions. The extension is a certificate schema; the concrete protocol trace below establishes the single-pivot case.
 
-\[
-|B|=|A|=|C|=f,
-\]
+# Repair frontiers for several independent channels
 
-where $B$ is Byzantine, $A$ supports only value $0$, $C$ supports only value $1$, and $p$ is correct. Define
+Let $I=\{1,\ldots,k\}$ be pivotal identities, each with positive integer weight $w_i$. Write $w(X)=\sum_{i\in X}w_i$ and $W=w(I)$. The two certificate families have fixed base weights $b_a$, thresholds $q_a$, and deficits $d_a=\max(0,q_a-b_a)$, for $a\in\{0,1\}$. Unit weights give $W=k$.
 
-\[
-Q_0=B\cup A\cup\{p\},
+## Behavioral and order contracts
+
+An admitted $E_i$ enables exactly one first-family signature from pivot $i$. Once the first family is feasible, pivot $i$ emits its second-family signature at opportunity $V_i$ **if and only if** $R_i$ has not been processed before $V_i$. In particular, closing its edge need not prevent its second vote: it was initially ready. No other state transition changes this test. Admitted repair disables prospective issuance; it cannot withdraw signed output. Both collectors and the observation satisfy the coverage obligation of Section 3.
+
+It suffices to impose this second-vote law on policies capable of forming the first certificate. A policy that misses that certificate cannot be unsafe in this two-family observation domain. This qualification accommodates repairs whose commit evidence depends on available first votes.
+
+A finite strict partial order $\prec$ describes opportunities, including the fixed anchors
+
+$$
+E_i\prec V_0\prec C_0\prec V_i\prec C_1,
+\qquad V_0\prec R_i.
+$$
+
+Additional relations specify the allowed delivery restrictions. Each policy admits **all** linear extensions of this order, interpreted through the guarded machine. Withheld deliveries and disabled voting opportunities stutter. Their slots retain the stated precedence constraints; suppression does not erase a transitive constraint between other events. Every processed envelope must already be emitted and available.
+
+The $k$ endpoint/view keys are independent. A coarse policy opens a subset $A\subseteq I$ and admits $E_i,R_i$ together exactly for $i\in A$. Fine admission can admit all $E_i$ and suppress all $R_i$. These are explicit independence and order-coverage assumptions. If a real harness admits fewer orders, the model gives a sound coarse-safety overapproximation, but an existential witness needs a realizable order in that harness.
+
+## A graph of simultaneous repair obstructions
+
+Define a directed graph $H$, including possible self-loops, by
+
+$$
+i\longrightarrow j \quad\Longleftrightarrow\quad R_i\prec V_j,
 \qquad
-Q_1=B\cup C\cup\{p\}.
-\]
+\alpha(H)=\max\{|J|:J\subseteq I,\ H[J]\text{ is acyclic}\}.
+$$
 
-Then $|Q_0|=|Q_1|=2f+1=q$, while each branch without $p$ has $2f=q-1$ contributions. The correct intersection of the two quorums is exactly $\{p\}$.
+Use transitive precedence, not just a drawing's cover edges. A self-loop means that a pivot's own repair is forced early.
 
-The bounded domain $B_f$ fixes one pair of conflicting values, one shared controlled edge, the order $E<C_0<R<C_1$, all other messages and edges, once-only delivery, and the absence of late repair after $C_1$. The only $G_D$ degree of freedom is the Boolean edge bit. Let $P_f$ be the protocol schema with the decisions specified in Premise 10.
+**Lemma 1 (compatible late repairs).** For $J\subseteq I$, a linear extension can place $V_i<R_i$ for every $i\in J$ exactly when $H[J]$ is acyclic.
 
-**Corollary 1 (parametric family).** For every $f\geq1$,
+This is the standard reversible-pair/alternating-cycle argument from partial-order theory, expressed in repair notation \cite{streib2014dimension}. We include the proof because the mapping to scheduling opportunities is central.
 
-\[
-\mathsf{UnsafeObs}_{G_D}(P_f,B_f)=\varnothing,
-\qquad
-\mathsf{UnsafeObs}_{G_T}(P_f,B_f)\neq\varnothing.
-\]
+**Proof.** Add the required edges $V_i\to R_i$ to the opportunity order. Such an order exists exactly when the augmented relation is acyclic: a finite acyclic relation has a topological ordering. A cycle $i_1\to\cdots\to i_t\to i_1$ in $H[J]$ yields an augmented closed walk
 
-The arithmetic is immediate from $2f+1=q$ and $2f=q-1$; the behavioral result follows from Theorem 2.
+$$
+V_{i_1}\to R_{i_1}\prec V_{i_2}\to R_{i_2}\prec\cdots\prec V_{i_1}.
+$$
 
-![Quorum-pivot mechanism. The fine policy admits enabling evidence but withholds repair; the closed policy either loses the first quorum or repairs the pivot before the second.](figures/figure2_quorum_pivot.svg){width=94%}
+Conversely, any augmented cycle must use an added edge, since the original order is acyclic. Between consecutive added edges $V_i\to R_i$ and $V_j\to R_j$, the original-order segment gives $R_i\prec V_j$, hence $i\to j$. Compress these segments to obtain a nonempty closed walk in $H[J]$, which contains a cycle. This includes self-loops. $\square$
 
-# 5. Diagnostic seven-premise boundary
+The graph can have cycles even though the opportunity order does not. Its cycles describe incompatible *requests to delay repair*, not a causal cycle in an actual execution.
 
-The structural theorem uses semantic premises. For bounded diagnosis and ablation, we encode seven Boolean flags:
+## Exact capacity and separation
 
-- $S_1$: the first base is one short of quorum;
-- $S_2$: the second base is one short of quorum;
-- $R_q$: the pivot's second-branch participation requires enabling evidence;
-- $D$: repair disables the pivot;
-- $T$: repair is processed before the second opportunity;
-- $E_d$: enabling and repair share the endpoint/view erased by closure;
-- $X$: the fine grammar can distinguish their phase labels.
+**Theorem 3 (repair-frontier characterization).** Under the contracts above, fine unsafety is feasible exactly when $d_0,d_1\le W$. Coarse unsafety is feasible exactly when there exist $J\subseteq A\subseteq I$ satisfying
 
-For delivery bits $e$ and $r$, the operational unsafe outcome is
+$$
+H[J]\text{ acyclic},\qquad w(A)\ge d_0,
+\qquad w(I\setminus A)+w(J)\ge d_1. \tag{1}
+$$
 
-\[
-U(e,r)=
-(\neg S_1\lor e)
-\land
-\left[
-\neg S_2
-\lor
-\left((\neg R_q\lor e)\land
-\neg(r\land D\land T)
-\right)
-\right].
-\]
+For unit weights this is equivalent to
 
-Strict separation is
+$$
+\mathsf{UnsafeObs}_{G_D}\ne\varnothing
+\quad\Longleftrightarrow\quad
+\max(d_0,d_1)\le k\ \land\ d_0+d_1\le k+\alpha(H). \tag{2}
+$$
 
-\[
-\mathsf{Strict}
-=
-X\land E_d\land
-U(1,0)\land
-\neg U(0,0)\land
-\neg U(1,1).
-\]
+Consequently strict phase/coarse separation holds exactly when
 
-**Proposition 1 (exact boundary of the diagnostic abstraction).** Over all $2^7$ assignments,
+$$
+\boxed{\max(d_0,d_1)\le k\quad\land\quad
+ d_0+d_1>k+\alpha(H).} \tag{3}
+$$
 
-\[
-\mathsf{Strict}
-\iff
-S_2\land D\land T\land E_d\land X\land(S_1\lor R_q).
-\]
+**Proof.** Fine admission can supply all first and second signatures by admitting every enabling envelope and suppressing every repair. No branch can receive more than weight $W$, proving its characterization.
 
-**Derivation.** Direct substitution gives
+For a coarse unsafe execution, let $A$ be its open keys and let $J$ be those open pivots whose second votes precede their repairs. The first support is exactly $w(A)$. Because the first certificate is feasible, the second-vote contract applies: closed pivots remain ready and open pivots contribute second exactly when in $J$. Thus the second support is $w(I\setminus A)+w(J)$. The execution realizes their joint lateness, so Lemma 1 gives acyclicity and establishes necessity of (1).
 
-\[
-U(1,0)=\mathsf{true},
-\]
+Conversely, choose $A,J$ satisfying (1). Lemma 1 gives an order in which every member of $J$ signs before repair. Open precisely $A$. The first threshold is met, so the behavioral contract ensures second signatures from every closed pivot and every member of $J$. Further signatures only increase support. Durable outputs reach both collectors; observation coverage gives an unsafe execution.
 
-\[
-U(0,0)=\neg S_1\land(\neg S_2\lor\neg R_q),
-\]
+For unit weights, adding $d_0\le|A|$ and $d_1\le k-|A|+|J|$ proves the combined inequality in (2); each demand is at most $k$. For the converse put $h=\max(0,d_0+d_1-k)$. Equation (2) implies $h\le\alpha(H)$ and $h\le d_0\le k$. Choose an acyclic set of size $h$, possible by taking a subset of a maximum acyclic set, and extend it to an open set $A$ of size $d_0$. Then $k-|A|+h\ge d_1$, so (1) applies. Combining fine feasibility with the negation of (2) gives (3). $\square$
 
-and
+Here $h$ is the number of pivots that must contribute to **both** branches. Coarse reachability is decided by whether the scheduler can keep that many jointly reusable contributors, not by the number of admission bits alone.
 
-\[
-U(1,1)=\neg S_2\lor\neg D\lor\neg T.
-\]
+# Robustness and the amount of phase control required
 
-Therefore
+## Common deadlines and crossed deadlines
 
-\[
-\neg U(0,0)=S_1\lor(S_2\land R_q),
-\]
+If all second signatures share one opportunity $V$, let $F=\{i:R_i\prec V\}$ and $\ell=k-|F|$. Members of $F$ have self-loops; all other pivots can jointly place repair after $V$. Hence $\alpha(H)=\ell$ and (2) becomes $d_0+d_1\le k+\ell$, subject to individual feasibility. For the $k$-required family, $d_0=d_1=k$: separation survives whenever $\ell<k$. Thus allowing some late repairs need not eliminate separation once more than one double contribution is indispensable.
 
-\[
-\neg U(1,1)=S_2\land D\land T.
-\]
+Individual deadlines behave differently. With two pivots and only the critical constraints
 
-Conjoining with $X\land E_d$ and simplifying under $S_2$ yields
+$$
+R_1\prec V_2,\qquad R_2\prec V_1,
+$$
 
-\[
-X\land E_d\land S_2\land D\land T\land(S_1\lor R_q).
-\]
+each repair can individually follow its own vote. They cannot both do so: that would require $V_1<R_1<V_2<R_2<V_1$. The repair graph is a directed two-cycle and $\alpha(H)=1$, despite having no self-loop. With $d_0=d_1=2$, coarse admission remains safe and phase-sensitive admission is unsafe. This is a separation over several event orders and two independently controlled channels, rather than two executions of one fixed edge.
 
-In the flag order $(S_1,S_2,R_q,D,T,E_d,X)$, the satisfying assignments are exactly
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.96\textwidth]{../figures/repair_frontier_boundary.pdf}
+\caption{Exact phase-control budget in the independent-pivot schema. Each cell is the minimum number of phase-split keys required to expose an unsafe witness. Blank cells exceed the available pivot count. Panels differ only in the capacity of jointly late repair, not in quorum size.}
+\label{fig:frontier}
+\end{figure}
 
-```text
-0111111
-1101111
-1111111
-```
+## Optimal phase-splitting budget
 
-The exhaustive truth table is a cross-check of this algebra, not the proof's conceptual core. Proposition 1 characterizes only this seven-flag operational abstraction; it is not a necessary-and-sufficient theorem for all locking protocols.
+A split key admits its enabling phase while suppressing repair. Splitting leaves the opportunity partial order intact. With a chosen split set $T$, the maximum number of double contributors is
 
-![The diagnostic premise boundary. Five premises are always necessary; at least one of first-branch shortage or enabling-dependent reuse must hold.](figures/figure3_premise_boundary.svg){width=90%}
+$$
+|T|+\alpha(H[I\setminus T]).
+$$
 
-# 6. Bounded instantiation to Tendermint-style locking
+Among unsplit keys, Lemma 1 still applies. A split pivot contributes twice without requiring its repair to be late. Choosing at most $t$ split keys gives the exact best capacity $\min(k,\alpha(H)+t)$: this is an upper bound because any unsplit acyclic set has size at most $\alpha(H)$; it is attained by keeping a maximum acyclic set and splitting vertices outside it.
 
-## 6.1 Published rule vocabulary
+**Corollary 1 (minimum phase budget).** For unit weights, if fine admission is feasible, the exact minimum number of independently split keys needed for an unsafe witness is
 
-The CometBFT consensus specification organizes each round as `Propose`, `Prevote`, and `Precommit`, followed by `Commit` once a block receives more than two-thirds precommits. A more-than-two-thirds prevote set for a block is a proof-of-lock-change/PoLC; in the normal rule, a validator seeing such evidence locks or relocks the block and precommits it [@cometbft0393]. We use these published rules as a natural transition vocabulary, not as evidence of an implementation bug.
+$$
+\boxed{t_* = \max(0,d_0+d_1-k-\alpha(H)).} \tag{4}
+$$
 
-The bounded instance fixes one height $H$, rounds $r_0=0$ and $r_1=1$, values $0$ and $1$, and the same $3f+1$ validator partition as Section 4. The controlled mutation is `MISSING_LOCK_UPDATE`: after observing a round-0 PoLC for value $0$, the pivot emits `PRECOMMIT(0,H,r_0)` but fails to persist `lockedValue=0` and `lockedRound=r_0`.
+**Proof.** Substitute the best capacity $\min(k,\alpha(H)+t)$ into (2). Since $d_0,d_1\le k$, the resulting inequality holds exactly when $t$ covers the deficit in (4). $\square$
 
-## 6.2 Refinement map
+The statement is existential over the choice of split keys. It does not claim that every set of $t_*$ arbitrary message exceptions suffices. A witness can be constructed by choosing an acyclic reusable set, selecting the necessary split keys and open keys, adding its lateness constraints, and topologically sorting the opportunity graph.
 
-| Abstract object | Bounded Tendermint-style rule |
-|---|---|
-| pivot $p$ | correct validator required by both conflicting $2f+1$ precommit sets |
-| enabling $E$ | last `PREVOTE(0,H,r0)` from fixed Byzantine sender $b_0$ to $p$, completing $p$'s local PoLC |
-| first opportunity $C_0$ | a correct observer receives $B\cup A\cup\{p\}$ precommits and decides value $0$ |
-| repair $R$ | last `PRECOMMIT(0,H,r0)` from the same $b_0$ to $p$, completing $p$'s local commit set |
-| disabled pivot | baseline lock prevents conflicting precommit, or receipt of $R$ makes $p$ commit/advance before $C_1$ |
-| second opportunity $C_1$ | later round-1 value-1 precommit set $B\cup C\cup\{p\}$ |
-| shared edge | same $H,r_0,b_0,p$; labels differ only as `PREVOTE` versus `PRECOMMIT` |
+## Order relaxation, extra edges, and weights
 
-The bound fixes every other message, edge, and delivery. It processes the events in the order
+Removing precedence constraints cannot add an edge to $H$, so it cannot decrease $\alpha(H)$. Thus order relaxation weakens separation monotonically under the same behavioral contract and deficits. Conversely, additional causal paths may increase the needed phase budget. Independent auxiliary events and extra edges are harmless only if they preserve both relevant state/output behavior and the stated order language. An extra substitute vote changes a deficit and must be included in the calculation.
 
-\[
-E < C_0 < R < C_1.
-\]
+Initially ready and enabling-dependent pivots are different models. With two forced-early pivots and deficits $1,1$, coarse admission can open one key for the first vote and close the other for the second. Requiring both pivots to see enabling evidence before their second votes would incorrectly remove that coarse witness. Theorem 3 uses the initially ready behavior present in the four-validator edge-off case.
 
-There is no late delivery of $R$ after $C_1$. Thus the type-uniform directed domain has exactly two policies: edge off and edge on. The phase-specific witness admits $E$ and rejects $R$.
+For a common deadline with integer weights, define $L=I\setminus F$ and $W_L=w(L)$. The exact condition is existence of $K\subseteq F$ such that
 
-## 6.3 Result
+$$
+\max(0,d_0-W_L)\le w(K),\qquad w(K)+d_1\le W. \tag{5}
+$$
 
-**Proposition 2 (bounded Tendermint-style instantiation).** For every $f\geq1$ in the supplied rule-level model:
+Open every key in $L$ and delay those repairs; choose $K$ among the forced-early keys. The two supports become $W_L+w(K)$ and $W-w(K)$. Opening all $L$ cannot hurt either branch, which proves necessity as well as sufficiency. Indivisible weights matter: weights $2,2$, no late repair, and deficits $1,3$ require an unattainable subset weight $1$. A total-weight relaxation would give the wrong answer. This is an abstract weighted certificate result, not a weighted CometBFT refinement.
 
-- the unmutated locking rule is safe under the phase-specific witness and both directed policies;
-- under `MISSING_LOCK_UPDATE`, the phase-specific policy yields conflicting correct decisions;
-- under the same mutation, both directed policies remain safe.
+For arbitrary individual deadlines, deciding whether a coarse unsafe execution exists is NP-complete for explicitly represented finite opportunity orders with unbounded $k$. Appendix A gives the short reduction using a classical graph construction \cite{karp1972reducibility}; the contribution is the scheduler correspondence, not a new graph-hardness result.
 
-The proof is a direct refinement to Theorem 2. With edge off, $p$ never sees the PoLC-completing prevote, so the value-0 certificate is short. With edge on, $p$ sees both the enabling prevote and the commit-completing precommit; the latter is processed before the value-1 opportunity and removes $p$ from the second branch. Under phase-specific admission, the mutation leaves $p$ unlocked and uncommitted after the first branch, permitting the conflicting contribution.
+# A complete four-validator Tendermint-style execution
 
-Two independent implementations enumerate the bounded rule system. Python and Go produce identical terminal rows for six combinations of baseline/mutant and scheduler policy for each $f=1,\ldots,64$, for 384 cases per implementation. An additional independent checker evaluates the same semantic conditions through $f=128$. These executions validate the stated refinement; they do not establish conformance of the entire production event loop or the existence of the mutation in CometBFT.
+## Source, mutation, and transport
 
-# 7. Replay erasure as a secondary closure dimension
+The new model uses CometBFT v0.39.3 at commit
+\nolinkurl{49b82838fcca442b2445f76605c101609ed04130} \cite{cometbft0393,cometbft0393code}.
+It follows the exercised proposal, prevote, precommit, valid-block, timeout, and commit guards. A PoLC is a locally received set of three matching prevotes; a commit certificate is three matching precommits from distinct signers. The model has local vote sets and explicit emitted envelopes, with no synthetic network \texttt{POLKA} or \texttt{COMMIT} messages.
 
-Phase erasure is the main result. Replay illustrates a different boundary: a repeated byte string may be immediately silent yet alter hidden state that affects future processing.
+Take one height, equal weights, $n=4,q=3$, Byzantine identity $B$, and protocol-following identities $A,P,C$. Only $P$'s round-0 assignment of its persistent locked value and locked round is omitted in the mutant; its valid-block update and its round-1 lock update execute normally. The baseline omits nothing. The two reported conflicting observers, $A$ and $C$, are unmutated. Calling $P$ protocol-following is relative to the explicitly mutated program, not a claim that it follows the original locking specification.
 
-Let $\pi:S\to S_{\mathrm{rel}}$ project protocol-relevant state, including the set of processed stable message keys. Let $\delta:S\times M\to S$ be the transition function and
+Fix proposers $B$ in round 0 and $C$ in round 1. Initially every correct replica is unlocked, with no valid block or decision. $B$ signs a block-0 proposal and sends it to $A$, which relays the same signed proposal and block to $P$. Thus changing the controlled $B\to P$ edge does not secretly change proposal delivery. That edge's round-0 envelopes are exactly
 
-\[
-\mathsf{out}:S\times M\to O^*
-\]
+$$
+E=B\!:\!\operatorname{PREVOTE}(0,0),\qquad
+R=B\!:\!\operatorname{PRECOMMIT}(0,0),
+$$
 
-the protocol-relevant output produced while processing one message.
+where arguments are $(\text{round},\text{block})$. Both are emitted before $E$ is attempted; $B$ may sign adversarially. All other peer/round admission outcomes are fixed and type-uniform. The complete trace audits this property, distinguishes transport sender from signer, and records suppressed or unavailable delivery opportunities.
 
-We require two congruence conditions for every message $m$:
+## The phase-sensitive mutant trace
 
-\[
-\pi(s)=\pi(t)
-\Rightarrow
-\pi(\delta(s,m))=\pi(\delta(t,m)),
-\tag{state congruence}
-\]
+Write $\operatorname{PV}(r,x)$ and $\operatorname{PC}(r,x)$ for height-1 prevotes and precommits; $\bot$ denotes nil. Self-votes below are actual emitted self-envelopes. Each local quorum is formed from messages already received.
 
-and
+1. $A$ receives $B$'s block-0 proposal and signs $\operatorname{PV}(0,0)$. $A$ relays the proposal to $P$, which signs the same prevote. $C$ receives no proposal; its proposal timeout produces $\operatorname{PV}(0,\bot)$.
+2. $B$ emits its round-0 prevote and precommit. Deliver $P$'s and $B$'s prevotes to $A$. The set $\{A,P,B\}:0$ makes $A$ persist valid/locked block $0@0$ and sign $\operatorname{PC}(0,0)$.
+3. Deliver $A$'s prevote and $E$ to $P$. Its same three-signer PoLC sets valid block $0@0$. The mutation omits only its lock assignment, and $P$ signs $\operatorname{PC}(0,0)$ while remaining unlocked.
+4. Deliver $C$'s nil prevote to $P$, and the $A,P$ block-0 prevotes to $C$. At $C$, the mixed set $\{A:0,P:0,C:\bot\}$ enables its prevote timeout without creating a block-0 PoLC. On expiry, $C$ signs $\operatorname{PC}(0,\bot)$.
+5. Deliver $A$'s precommit to $P,C$, and $P$'s precommit to $A,C$. Deliver $B$'s precommit to $A$. Its local set $\{A,P,B\}:0$ reaches three and $A$ decides 0.
+6. Deliver $C$'s nil precommit to $P$. Both $P$ and $C$ now have the mixed set $\{A:0,P:0,C:\bot\}$. It enables a precommit timeout but does not commit block 0. The fine policy suppresses $R$. Expiry advances $P,C$ lawfully to round 1.
+7. $P$ retains valid block $0@0$ but no lock; $C$ has neither. Consequently the unchanged proposer $C$ can propose new block 1 with valid round $-1$. $C$ and the unlocked $P$ each sign $\operatorname{PV}(1,1)$. Making $P$ the proposer instead would require accounting for its cached valid block 0.
+8. $B$ emits round-1 prevote and precommit for 1. Deliver the $C,B$ prevotes to $P$, producing PoLC $\{P,C,B\}:1$. $P$ normally updates valid/locked block to $1@1$ and signs $\operatorname{PC}(1,1)$. Deliver the $P,B$ prevotes to $C$; it obtains the same PoLC and precommits 1.
+9. Deliver the $P,B$ precommits to $C$. Together with $C$'s self-precommit, they produce decision 1. Delivering the $C,B$ precommits to $P$ also lets it decide 1. The unmutated observers have $A=0,C=1$.
 
-\[
-\pi(s)=\pi(t)
-\Rightarrow
-\mathsf{out}(s,m)=\mathsf{out}(t,m).
-\tag{output congruence}
-\]
-
-For a marked duplicate whose stable key is already represented in $\pi(s)$, require
-
-\[
-\pi(\delta(s,m))=\pi(s)
-\quad\text{and}\quad
-\mathsf{out}(s,m)=\epsilon.
-\]
-
-**Theorem 3 (replay erasure with outputs).** Under state congruence, output congruence, projected duplicate stutter, and duplicate output silence, erasing all marked duplicates from a finite trace preserves both the final relevant projection and the entire protocol-relevant output trace. Any state-based observation that factors through $\pi$ is therefore preserved.
-
-**Proof.** Induct over the original trace and its erased trace while maintaining equality of current projections and accumulated relevant outputs. A marked duplicate leaves the full execution's projection unchanged and appends no output, so the erased side may stutter. For a retained message, state congruence preserves equality of the next projections and output congruence appends equal output fragments. The terminal invariant gives both conclusions. $\square$
-
-The output premise is necessary for the output-trace claim. Equal projections alone permit hidden states to emit different future outputs. State congruence is also necessary: in the counterexample trace `X,X,Y`, the second `X` changes only a hidden bit and produces no output, while `Y` copies that bit into relevant state. The full and deduplicated traces then have different observations. The artifact includes this counterexample and a separate output-congruence negative control.
-
-# 8. Evidence and formal assurance
-
-## 8.1 Independent finite checks
-
-The final artifact includes a checker that imports neither the project models nor the proof-certificate kernel. It verifies:
-
-- exact scheduler filtering, no synthesis, once-only delivery, and stable order;
-- legal-target relational lifting over all valid two-state finite instances in its scope;
-- the structural criterion for quorum thresholds $1$ through $64$;
-- the hidden-state replay counterexample and positive state/output congruence cases;
-- the bounded Tendermint-style bridge for $f=1$ through $128$;
-- the corrected typing of `UnsafeObs`.
-
-The post-audit SMT package contains positive obligations and damaged controls. In artifact reproduction, Z3 [@moura2008z3] returns `UNSAT` for all eight preservation obligations and `SAT` for all four controls that drop a necessary condition. Go arbitrary-precision arithmetic independently checks the parametric quorum equations.
-
-## 8.2 Prover developments
-
-The archive contains Lean and Coq sources for scheduler semantics, typed unsafe observations, legal closure lifting, the structural criterion, the parametric family, the Tendermint-style instantiation, replay erasure with outputs, and the diagnostic boundary. Internal proof-obligation identifiers appear only in the artifact map; the paper uses normal theorem numbering.
-
-The primary mature-prover project is pinned to Lean 4.33.0. `lake build`, the per-theorem `#print axioms` audit, source-hygiene checks, and `leanchecker SchedulerClosure` all complete successfully. The Coq development is retained as a secondary archival formalization and is not used to support a stronger assurance claim. The purpose-built certificate checker and SMT obligations provide independent supporting routes, not substitutes for the Lean kernel build.
-
-## 8.3 Executable validation
-
-Earlier gates supply two finite locking kernels and a fuller two-round event loop with `PROPOSAL`, `PREVOTE`, `POLKA`, `PRECOMMIT`, and `COMMIT`. The baseline is safe across the tested grammars. Controlled obligation violations distinguish phase control, terminal delay, and replay. A Go implementation and an independently written Python mirror agree on canonical terminal cases, while FIFO, LIFO, and seeded event orders preserve the safety classifications. These results test the mechanism and implementation correspondence inside the declared bounds; they are not a statistical estimate of production bug prevalence.
-
-# 9. Related work and novelty boundary
-
-Twins uses same-identity replicas and round-indexed communication patterns to exercise equivocation, double voting, and state loss [@bano2021twins]. Randomized BFT testing provides message mutation and richer fault exploration [@winter2023randomized]. Netrix and ByzzBench provide controlled scheduling and evaluation infrastructure [@dragoi2024netrix; @louroneto2025byzzbench]. Mallory uses Lamport-timeline and happens-before feedback to guide distributed-system fault sequences [@meng2023mallory]. ByzTwin-Range broadens practical Byzantine experimentation through a digital-twin cyber-range [@freitas2026byztwin]. None of these scheduler, fuzzing, or implementation capabilities is claimed as new here.
-
-Communication closure is the closest conceptual result. It establishes a property-preserving testing reduction for a class of consensus implementations [@dragoi2020communication]. Our closure operator and boundary differ: phase labels on already-emitted messages are erased to one endpoint bit, and closure-added repair can remove the only correct contribution shared by two conflicting quorum opportunities. Heard-Of and closed message-adversary work already provide directed per-round communication semantics [@charronbost2009heardof; @winkler2020closed], so the graph model itself is not a contribution.
-
-VLSM develops formal validator-system traces and Byzantine/equivocation relationships under validity assumptions [@barreto2022vlsm]. Functional reasoning for distributed systems connects restricted synchronous reasoning to asynchronous operational semantics in Rocq [@ni2025functional]. These works motivate explicit legal-language and refinement obligations. PERF formalizes fault injectors and composition for performance prediction [@zhou2026perf], which further rules out a novelty claim based on injector taxonomies.
+No unconditional jump between rounds is used. The mixed nil/block precommit set is necessary to justify timeout-driven advancement without giving $P$ the block-0 commit. Nor is valid-block state silently erased by the mutation. The artifact expands these nine groups into every signature, envelope emission, reception, state change, and local certificate.
 
 \begin{table}[t]
-\centering
-\scriptsize
-\setlength{\tabcolsep}{1.7pt}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{lcccccccc}
+\centering\small
+\begin{tabular}{llcccc}
 \toprule
-Work & Part. & Dir. & Phase & Replay & Closure & Sep. & Conf. & Mech.\\
+Program & Round-0 admission & $A$ & $P$ & $C$ & Unsafe \\
 \midrule
-Twins & Y & part. & -- & state & -- & -- & impl. & --\\
-Comm. closure & -- & lossy & -- & -- & Y & -- & impl. cond. & --\\
-HO/msg. adv. & -- & Y & -- & -- & sem. & -- & -- & --\\
-ByzzFuzz & -- & Y & Y & Y & -- & -- & impl. & --\\
-Netrix & -- & Y & Y & Y & -- & -- & impl. & --\\
-ByzzBench & cfg. & Y & cfg. & cfg. & -- & -- & impl. & --\\
-Mallory & Y & faults & -- & -- & -- & -- & deployed & --\\
-PERF & -- & model & faults & model & perf. & -- & model/sys. & Maude\\
-\textbf{This work} & case & Y & Y & Y & \textbf{Y} & \textbf{Y} & bounded rules & Lean\\
+Baseline & $E$ only & 0 & -- & -- & no \\
+Baseline & edge off & -- & 1 & 1 & no \\
+Baseline & edge on & 0 & 0 & -- & no \\
+Missing lock & $E$ only & 0 & 1 & 1 & yes \\
+Missing lock & edge off & -- & 1 & 1 & no \\
+Missing lock & edge on & 0 & 0 & -- & no \\
 \bottomrule
-\end{tabular}}
-\caption{Capability map for closest work. `Closure' is an explicit property-preservation result; `Sep.' is a safety-observation separation witness; `Conf.' distinguishes implementation execution from bounded rule-level refinement; `Mech.' records a mechanized formal model or proof.}
+\end{tabular}
+\caption{Actual terminal decisions in the six canonical guarded executions. A dash means no decision in this finite prefix, not a liveness failure.}
+\label{tab:canonical}
 \end{table}
 
-The table is a capability map, not a quality ranking. The novelty claim is search-bounded: in sources reviewed through 21 August 2026, we found no result combining the same phase-erasure closure, legal-target condition, finite agreement projection, repair/unique-pivot criterion, bounded Tendermint-style refinement, exact diagnostic boundary, and replay theorem with both state and output congruence. Absolute novelty is not asserted.
+With the fine baseline, $P$ retains its lock and prevotes 0 in round 1; the second value-1 quorum is absent. With the coarse edge off, $P$ lacks the PoLC-completing $E$, receives a mixed prevote quorum, and precommits nil. $A$ therefore misses its first certificate; $P,C$ may still decide 1. With the edge on in the fixed order, $R$ completes $P$'s actual round-0 precommit quorum. It commits/advances before issuing the required round-1 vote. These are different generated executions, not a table filled with assumed pivot contributions.
 
-# 10. Validity and limitations
+## Repair before the decision can still fail
 
-**Internal validity.** A shared specification error could affect the formal and executable routes. Mitigations include independent Python and Go models, an independent checker, SMT encodings with damaged controls, exact arithmetic, source-level prover developments, and a safe unmutated baseline. The natural protocol bridge is deliberately small enough to inspect line by line.
+Keep the coarse edge on and move $R$. If it arrives after $P$'s round-1 prevote but before its precommit opportunity, the mutant remains safe: that prevote alone cannot supply the third value-1 precommit. If it arrives after $P$ has issued $\operatorname{PC}(1,1)$ but before $C$ decides, the observed decisions are
 
-**Construct validity.** Scheduler expressiveness is measured by the set of unsafe terminal observations, not schedule count, code coverage, or bug yield. A different property can induce a different grammar ordering. Type closure is precisely the stable-filter operator of Section 2; systems that permit delay inside a view, phase-specific exceptions, or delivery outside partitions need a separate conformance map.
+$$
+A=0,\qquad P=0,\qquad C=1.
+$$
 
-**External validity.** The family uses unweighted $3f+1$ quorums and finite views. The Tendermint-style bridge is rule-level and bounded. Weighted stake, validator-set changes, multi-height state transfer, disk recovery, liveness, and pacemaker behavior are outside the theorem. The bridge does not show that CometBFT contains `MISSING_LOCK_UPDATE`.
+The repair commits $P$ to 0 and stops further signing at the height. Its already emitted round-1 votes still reach $C$. When $P$ lacks the block matching its old-round certificate, it explicitly obtains block 0 from $A$ before finalizing; the model does not treat a vote as block data.
 
-**Proof assurance.** Lean 4.33.0 kernel-checks the primary formalization, and the axiom report lists every dependency reported by `#print axioms`. The independent finite checker, project-local certificate kernel, and SMT controls reduce shared-encoding risk but do not make the bounded claims unbounded. The Coq mirror remains secondary and unbuilt.
+The direct version permits a round-1 $B\to P$ prevote to overtake the buffered round-0 repair on that connection. We report this non-FIFO assumption. A separate gossip control obtains the same conflict with FIFO-compatible admitted vote-envelope order: $B$ sends its round-1 prevote to $C$, which relays that unchanged signed vote to $P$; the direct $B\to P$ copy follows $R$. This changes the fixed gossip skeleton and is reported separately. It demonstrates a stronger timing counterexample without silently attributing arbitrary packet reordering to a FIFO transport. Neither control is an execution of the production P2P reactor.
 
-**Responsible use.** All adversarial schedules and mutations run locally. No public network, assets, private keys, denial-of-service traffic, or unauthorized access are involved. A future implementation-level finding should be privately minimized and disclosed before publication of sensitive details.
+# Validation and assurance
 
-# 11. Reproducibility
+The new experiments vary admission, event order, compatible late-repair sets, phase exceptions, and weights. Their role is to falsify incorrect encodings of the stated contracts. They do not estimate bug prevalence across protocols.
 
-The artifact exposes one entry point:
+\begin{table}[t]
+\centering\small
+\begin{tabular}{p{0.30\textwidth}p{0.34\textwidth}p{0.25\textwidth}}
+\toprule
+Check & Exhaustive or declared scope & Outcome \\
+\midrule
+Repair graphs & All 530 directed graphs, including loops, for $k=1,2,3$; 50,363 legal orders & 1,357,209 policy/split executions \\
+Reachability and budget & All deficit pairs $0\ldots k+1$ for each graph & 13,074 checks each; no mismatch \\
+Joint lateness & All requested reusable subsets in those graphs & 4,164 checks; no mismatch \\
+General event precedence & All 219 labelled partial orders on two repairs and two vote opportunities, supplied as cover edges & Order-to-graph checks pass \\
+Common frontier & $k=1\ldots8$, all forced-repair counts; barrier timing representatives & 174,250 executions; 2,636 boundary checks \\
+Weighted common frontier & 258 domains with up to three pivots, weights in $\{1,2,3\}$; extremal late order and all admissions & 15,700 boundary checks \\
+Concrete protocol trace & Six canonical and six timing/route controls & 12 legality audits pass \\
+\bottomrule
+\end{tabular}
+\caption{Validation of the revised models. Graph realizations exhaust their legal orders. The common and weighted sweeps use the stated support-equivalent or extremal orders; they are not advertised as all event permutations.}
+\label{tab:validation}
+\end{table}
 
-```text
-./reproduce.sh
-```
+The graph oracle executes guarded events and preserves emitted signatures; it does not derive its outcomes from the theorem's capacity formula. Only afterward does the checker compare all observed support pairs and minimum split costs with the predictions. The general-order suite independently constructs transitive closure, supplies cover edges to the implementation, and checks paths passing through suppressed opportunity slots. The weighted sweep deliberately retains the indivisible-weight counterexample.
 
-It creates an isolated Python environment, runs the independent proof checks, Python and Go models, cross-language comparison, certificate kernels, SMT obligations and negative controls, installs or activates the pinned Lean toolchain, runs `lake build` and the axiom audit, builds the official LIPIcs source, verifies the page budget and manifests, and fails nonzero if any mandatory stage fails.
+The concrete trace has independent post-execution audits for prior emission, once-only envelope delivery, authentication, distinct actual signers, local certificate timing, signing guards, and quorum-enabled timeouts. Negative controls reject fabricated envelopes, altered authenticators, duplicate votes or deliveries, insufficient PoLC evidence, and unjustified timeout transitions. The canonical mutant and the late-repair mutant expose disagreement at $A,C$, which contain no injected lock defect.
 
-The package preserves raw and processed outputs, fixed random seeds, protocol parameters, source registers, tool versions, and SHA-256 manifests. Historical research gates are isolated under `archive/stages/`; active reproduction does not read them.
+## What Lean checks
 
-# 12. Conclusion
+The primary project is pinned to Lean 4.33.0. The revision adds a theorem over an **arbitrary behavioral contract** for Theorem 2, explicitly assuming positive persistence and the observation contract rather than defining the desired safety classification. It also checks the arithmetic capacity equivalence, its strict-separation form, the minimum split budget under its capacity contract, the weighted admission interval, and a small output machine in which later repair preserves an earlier signature. The build includes an axiom audit and independent rechecking of the resulting kernel objects.
 
-Phase erasure can change more than the number of schedules. When enabling and repair evidence share one endpoint and view, but differ by phase, closing their admission to a single directed edge bit can insert repair before a later certificate opportunity. If repair disables the unique correct quorum pivot, the coarse grammar deletes an agreement-violation witness.
+The graph reversal lemma, the graph-to-execution correspondence, and the derivation of optimal graph capacity are proved in the paper and tested by finite enumeration. They are **not** claimed to be fully mechanized by the arithmetic Lean module. The concrete message trace is executable validation, not a Lean proof of the CometBFT client.
 
-A legal relational theorem identifies when closure is safe; a structural criterion identifies when the locking mechanism defeats that monotonicity; the $3f+1$ family and bounded Tendermint-style instantiation make the boundary concrete. The diagnostic seven-premise model states the exact local conditions, while the replay theorem shows why future state and output congruence are required for duplicate erasure.
+Earlier Lean, SMT, certificate-kernel, Python, and Go checks remain available. In particular, agreement of 384 Python/Go rows for $f=1,\ldots,64$ checks the previous Boolean model's encoding. The old theorem named \texttt{bounded\_tendermint\_refines\_quorum\_pivot} establishes matching terminal classifications, not a transition refinement. Increasing $f$ in that family is not independent validation of many protocols. The revised claim ledger records this distinction.
 
-The practical implication is methodological. Testing frameworks should not equate a richer API with a scientific result, nor interpret a smaller scheduler language as property preserving without a closure proof. For a concrete protocol, one must either discharge the legal and relational obligations or exhibit a minimal separation witness and name the missing premise.
+# Related work and the novelty boundary
 
-# Acknowledgment and AI-use disclosure draft
+**Communication closure.** Drăgoi et al. compare asynchronous executions with lossy synchronous executions under implementation conditions and develop testing based on communication closure \cite{dragoi2020communication}. Their communication rounds distinguish send/receive/update steps, including different protocol phases. Our operator additionally couples admission across such steps within one view key. The counterexample therefore does not refute their normalization theorem or the effectiveness of their tester; it identifies an obligation for a further aggregation.
 
-The anonymous draft was prepared with substantial assistance from an OpenAI language model for research organization, source discovery, prose drafting, code and artifact generation, and consistency checking. Human authors must independently verify every proof, citation, experiment, and source and remain fully accountable for the manuscript. The model is not an author. This statement must be adapted to the final venue policy.
+**Byzantine testing.** Twins already describes certificate arrivals advancing a stale twin in its preferred-round mutation experiment; its underlying network playground can also filter message types \cite{bano2021twins}. Consequently neither certificate evidence destroying an intended attack state nor phase-selective APIs are claimed as new. Distinguish the published partition-scenario generator from the full executor's capabilities. ByzzFuzz, Netrix, and ByzzBench supply mutation, programmable testing, and controlled benchmark infrastructures \cite{winter2023randomized,dragoi2024netrix,louroneto2025byzzbench}. Our contribution concerns the safety-observation language of a declared admission/order contract, not a capability ranking of those systems.
 
-# References
+**Preservation and partial orders.** Simulation with internal actions is established machinery \cite{lynch1995simulations}. The inconsistent-labelling literature shows why action-oriented reduction conditions must be connected carefully to state observations \cite{neele2021labelling}; its operator differs from phase admission closure. Reversibility of incomparable pairs is characterized by absence of alternating cycles in classical partial-order theory \cite{streib2014dimension}. Lemma 1 uses that argument, and the induced-acyclic optimization and symmetric-graph hardness construction are classical \cite{karp1972reducibility}. The result developed here combines this order characterization with initial readiness, irreversible vote issuance, and certificate deficits, yielding the exact scheduler phase budget and a guarded BFT-rule witness.
+
+The literature audit supports this specific positioning, not an assertion that no equivalent result exists in all prior literature. Replay congruence and the earlier seven-flag diagnostic are retained as supplementary results in Appendix B; they do not carry the main novelty claim.
+
+# Limitations and reproducibility
+
+The strongest mathematical statements are conditional on the independent-pivot and complete opportunity-order contracts. New edges that supply substitute support, policies that change message generation beyond these contracts, changing validator sets, recovery, and interdependent locking behavior require a new conformance argument. The weighted result concerns indivisible certificate weights with fixed membership. It is not a staking or dynamic-quorum theorem.
+
+The concrete source pin is reproducible: the artifact contains exact v0.39.3 files, verified Git blob identifiers and SHA-256 hashes. The older source snapshot is correctly retained as v0.40.0. Authentication in the local model uses deterministic test-only tags to enforce signer and envelope integrity; production serialization, cryptographic implementation, proposer-priority updates, block-part gossip, and the full event loop are not modeled end to end. The supplied proposer prefix and aggregate complete-block deliveries are explicit environmental choices.
+
+The public working artifact is available at
+\url{https://github.com/galetaa/twins-scheduler}.
+The revision provides a single command, \texttt{./reproduce\_revision.sh}, that runs the existing checks, new guarded traces and frontier enumeration, the integrated Lean build and axiom audit, and the revised LIPIcs build. Raw JSON/CSV outcomes, source pins, proof-to-claim mappings, and manuscript sources are included. The command fails on a mandatory check failure. Reproduction dependencies are pinned by the existing project; build logs record the actual tool versions used.
+
+# Conclusion
+
+The effect of phase erasure depends on both admission coupling and the latest opportunity at which repair can still prevent an indispensable signature. A complete four-validator trace makes the distinction between state repair and durable signed output concrete. For an explicit multi-pivot schema, the derived repair graph and quorum deficits give an exact characterization of coarse unsafe reachability and the minimum phase-control budget. This turns a single fixed-order counterexample into a quantitative account of when order relaxation and additional independently controlled channels preserve or destroy separation.
+
+## Acknowledgments and AI-use disclosure
+
+An OpenAI language model assisted with research organization, literature discovery, proof exploration, manuscript drafting, code generation, and consistency checking. The authors retain responsibility for the correctness, originality, citations, and experimental claims. The model is not an author.

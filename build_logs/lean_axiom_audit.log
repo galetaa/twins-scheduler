@@ -8,3 +8,15 @@
 'SchedulerClosure.bounded_tendermint_refines_quorum_pivot' depends on axioms: [propext, Classical.choice, Quot.sound]
 'SchedulerClosure.strictSeparation_eq_characterization' does not depend on any axioms
 'SchedulerClosure.strictSeparation_iff_three' does not depend on any axioms
+'SchedulerClosure.RepairFrontier.behavioral_quorum_pivot_separation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'SchedulerClosure.RepairFrontier.directed_unsafe_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SchedulerClosure.RepairFrontier.strict_separation_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SchedulerClosure.RepairFrontier.minimum_phase_splits' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SchedulerClosure.RepairFrontier.weighted_admission_interval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SchedulerClosure.RepairFrontier.weighted_granularity_counterexample' depends on axioms: [propext, Quot.sound]
+'SchedulerClosure.RepairFrontier.repair_preserves_signed_output' does not depend on any axioms
+'SchedulerClosure.RepairFrontier.late_repair_before_certificate_is_unsafe' does not depend on any axioms
+'SchedulerClosure.RepairFrontier.repair_before_second_vote_is_safe' does not depend on any axioms
+'SchedulerClosure.RepairFrontier.closed_edge_still_permits_second_vote' does not depend on any axioms

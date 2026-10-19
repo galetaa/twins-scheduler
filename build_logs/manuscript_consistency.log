@@ -1,14 +1,10 @@
 {
-  "latex_theorems": [
+  "main_theorems": [
     "1",
     "2",
     "3"
   ],
-  "markdown_theorems": [
-    "1",
-    "2",
-    "3"
-  ],
-  "missing_or_inconsistent": [],
-  "status": "PASS"
+  "problems": [],
+  "status": "PASS",
+  "synchronized_pairs": 2
 }

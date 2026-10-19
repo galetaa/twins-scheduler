@@ -1,0 +1,16 @@
+TWINS SCHEDULER REPRODUCTION: PASS
+runtime_seconds=40
+output_root=/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.cache/final-reproduction
+python_tests=PASS
+go_tests=PASS
+cross_language=PASS
+independent_proof_checks=PASS
+project_local_kernel=PASS
+negative_controls=PASS
+smt_positive_negative=PASS
+lean_build_axioms_leanchecker=PASS
+repair_frontier_exhaustive_checks=PASS
+concrete_trace_legality_timing_fifo=PASS
+official_lipics_build=PASS
+page_budget=PASS
+provenance_and_reference_manifests=PASS

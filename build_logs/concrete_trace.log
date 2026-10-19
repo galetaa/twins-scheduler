@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "checks": {
+    "all_trace_legality_audits_pass": true,
+    "all_baselines_safe": true,
+    "fine_mutant_has_two_unmutated_conflicting_observers": true,
+    "both_fixed_order_coarse_mutants_safe": true,
+    "repair_after_pivot_prevote_still_prevents_second_commit": true,
+    "repair_after_pivot_precommit_fails_even_before_second_commit": true,
+    "canonical_six_traces_respect_admitted_vote_channel_fifo": true,
+    "direct_late_control_identifies_its_non_fifo_assumption": true,
+    "both_relay_controls_respect_admitted_vote_channel_fifo": true,
+    "fifo_relay_late_mutant_still_has_conflicting_unmutated_observers": true
+  },
+  "cases": 12,
+  "json": "/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.cache/final-reproduction/results/new/concrete_trace.json",
+  "csv": "/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.cache/final-reproduction/results/new/concrete_trace.csv"
+}

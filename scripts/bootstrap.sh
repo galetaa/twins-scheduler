@@ -7,7 +7,7 @@ ELAN_HOME=${ELAN_HOME:-"$CACHE_ROOT/elan"}
 export ELAN_HOME
 export PATH="$ELAN_HOME/bin:$PATH"
 
-required=(python uv go git curl cc pdflatex bibtex pdfinfo pdffonts pdftotext dpkg-deb)
+required=(python uv go git curl cc pdflatex bibtex pdfinfo pdffonts pdftotext dpkg-deb pandoc)
 for command_name in "${required[@]}"; do
   command -v "$command_name" >/dev/null || {
     echo "BOOTSTRAP FAIL missing command: $command_name" >&2

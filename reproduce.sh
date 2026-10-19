@@ -19,6 +19,8 @@ cd "$ROOT"
 ./scripts/bootstrap.sh 2>&1 | tee "$TWINS_LOG_DIR/bootstrap.log"
 ./scripts/test_all.sh
 ./scripts/build_formal.sh
+uv run python scripts/run_repair_frontier.py | tee "$TWINS_LOG_DIR/repair_frontier.log"
+uv run python scripts/run_concrete_trace.py | tee "$TWINS_LOG_DIR/concrete_trace.log"
 ./scripts/build_paper.sh 2>&1 | tee "$TWINS_LOG_DIR/paper_command.log"
 ./scripts/verify_provenance.sh >"$TWINS_LOG_DIR/provenance.log" 2>&1
 ./scripts/verify_results.sh >"$TWINS_LOG_DIR/result_comparison.log" 2>&1
@@ -36,6 +38,8 @@ ELAPSED_SECONDS=$((SECONDS - START_SECONDS))
   echo "negative_controls=PASS"
   echo "smt_positive_negative=PASS"
   echo "lean_build_axioms_leanchecker=PASS"
+  echo "repair_frontier_exhaustive_checks=PASS"
+  echo "concrete_trace_legality_timing_fifo=PASS"
   echo "official_lipics_build=PASS"
   echo "page_budget=PASS"
   echo "provenance_and_reference_manifests=PASS"

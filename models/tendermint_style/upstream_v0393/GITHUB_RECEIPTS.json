@@ -1,0 +1,47 @@
+{
+  "tag_ref": {
+    "ref": "refs/tags/v0.39.3",
+    "node_id": "REF_kwDOIqYpZrFyZWZzL3RhZ3MvdjAuMzkuMw",
+    "url": "https://api.github.com/repos/cometbft/cometbft/git/refs/tags/v0.39.3",
+    "object": {
+      "sha": "49b82838fcca442b2445f76605c101609ed04130",
+      "type": "commit",
+      "url": "https://api.github.com/repos/cometbft/cometbft/git/commits/49b82838fcca442b2445f76605c101609ed04130"
+    }
+  },
+  "commit_response": {
+    "sha": "49b82838fcca442b2445f76605c101609ed04130",
+    "node_id": "C_kwDOIqYpZtoAKDQ5YjgyODM4ZmNjYTQ0MmIyNDQ1Zjc2NjA1YzEwMTYwOWVkMDQxMzA",
+    "url": "https://api.github.com/repos/cometbft/cometbft/git/commits/49b82838fcca442b2445f76605c101609ed04130",
+    "html_url": "https://github.com/cometbft/cometbft/commit/49b82838fcca442b2445f76605c101609ed04130",
+    "author": {
+      "name": "mattac21",
+      "email": "matt@cosmoslabs.io",
+      "date": "2026-05-05T16:16:57Z"
+    },
+    "committer": {
+      "name": "GitHub",
+      "email": "noreply@github.com",
+      "date": "2026-05-05T16:16:57Z"
+    },
+    "tree": {
+      "sha": "ae9420e96f0fb41ee26588b4d16ca36a30fd1b27",
+      "url": "https://api.github.com/repos/cometbft/cometbft/git/trees/ae9420e96f0fb41ee26588b4d16ca36a30fd1b27"
+    },
+    "message": "chore: changelog updates for release (#5836)\n\n---\n\n#### PR checklist\n\n- [ ] Tests written/updated\n- [ ] Changelog entry added in `CHANGELOG.md`\n- [ ] Updated relevant documentation (`docs/` or `spec/`) and code\ncomments",
+    "parents": [
+      {
+        "sha": "b7eeb034f5ba5be9b72a49f42d51b2a9c85f1fef",
+        "url": "https://api.github.com/repos/cometbft/cometbft/git/commits/b7eeb034f5ba5be9b72a49f42d51b2a9c85f1fef",
+        "html_url": "https://github.com/cometbft/cometbft/commit/b7eeb034f5ba5be9b72a49f42d51b2a9c85f1fef"
+      }
+    ],
+    "verification": {
+      "verified": true,
+      "reason": "valid",
+      "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJp+hgJCRC1aQ7uu5UhlAAAA0AQAAWmdlBML0C/e/WdOShjBboJ\nHVkG3K/QcVlaM17yDuPocNCJt9kzfEKYmNemGm0XBpGDHMhd8OoaXrGoSjnbbOt2\n+qyDY9IYtaTFvn3vRTgxqXzNQTshaML20f66JEPYDaytrTxjcNwg1c7RptAYo3T8\nP2kxGN/cLtdlbG7wJ7TPZRxZ2ThQ40JI8UfSjSg/FHhr/L1Bt2w9CRVFefuVl1yJ\nfLdgfY3TtvH1Cicjs4nuzdrjhgZV6CnqCfDbR50LdeCFjOQ7eYKCM1fZ4Ly9fXEI\neCpxGBLh94boIBgQs8JDq0+X861rSRXpquQiStq17cO1H+hmyCGcZvp1cwvyPF8F\n9WOUsWNne6k83QDnxhwYlBNWuri++h5IWQo1/vhzqquN7+OVjch6+ht4vm5AdIWJ\nX54lHyp0pBKg1FTdcHAeIapdv+UjGy4qqIcYyKu/PyYW7yuLjb8cg55ebLuVLU/M\nOo3Xy3GXQzCKGkIufuYZ69sBpM6Oijhs5s8b1O/1guUgB5vSgdfQkR0XRN9pDth5\nzqXj+ILDONnm+Nomb8ThpMmptkPZDbHjoc6sC5q0yzHI8+l9wa4kvpLdfvz5hmXW\n2Tj5qbYaeysY8FThiVFWeV8Zcp78inLv0ZADE6ESYCUrNoJH3K9hybAqkPvZq5Bj\nRv2h7pGvbW72fkRGqEL9\n=4fYg\n-----END PGP SIGNATURE-----\n",
+      "payload": "tree ae9420e96f0fb41ee26588b4d16ca36a30fd1b27\nparent b7eeb034f5ba5be9b72a49f42d51b2a9c85f1fef\nauthor mattac21 <matt@cosmoslabs.io> 1777997817 -0400\ncommitter GitHub <noreply@github.com> 1777997817 +0000\n\nchore: changelog updates for release (#5836)\n\n---\n\n#### PR checklist\n\n- [ ] Tests written/updated\n- [ ] Changelog entry added in `CHANGELOG.md`\n- [ ] Updated relevant documentation (`docs/` or `spec/`) and code\ncomments",
+      "verified_at": "2026-05-05T16:17:13Z"
+    }
+  }
+}

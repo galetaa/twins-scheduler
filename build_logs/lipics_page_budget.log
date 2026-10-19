@@ -1,7 +1,11 @@
 status=PASS
-physical_pages=16
+physical_pages=17
 cover_pages=1
-main_text_pages=14
-bibliography_starts_on_physical_page=15
+main_text_pages=13
+main_starts_on_numbered_page=2
+main_ends_before_numbered_page=15
+bibliography_starts_on_numbered_page=15
 opodis_2026_main_text_limit=15
 class=lipics-v2021 v3.1.3
+pdfTeX 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian)
+pandoc 3.1.3

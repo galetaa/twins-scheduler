@@ -1,0 +1,13 @@
+grammar,variant,repair_timing,round1_b_prevote_route,unsafe,unmutated_observers_disagree,A_decision,P_decision,C_decision,signed_votes,trace_events,legality_audit,admitted_vote_envelopes_fifo
+G_T_PHASE_SPECIFIC,BASELINE,before_round_1,direct,False,False,0,none,none,14,172,PASS,True
+G_D_EDGE_OFF,BASELINE,before_round_1,direct,False,False,none,1,1,14,174,PASS,True
+G_D_EDGE_ON,BASELINE,before_round_1,direct,False,False,0,0,none,11,145,PASS,True
+G_T_PHASE_SPECIFIC,MISSING_LOCK_UPDATE,before_round_1,direct,True,True,0,1,1,14,178,PASS,True
+G_D_EDGE_OFF,MISSING_LOCK_UPDATE,before_round_1,direct,False,False,none,1,1,14,174,PASS,True
+G_D_EDGE_ON,MISSING_LOCK_UPDATE,before_round_1,direct,False,False,0,0,none,11,145,PASS,True
+G_D_EDGE_ON,BASELINE,after_pivot_prevote,direct,False,False,0,0,none,13,165,PASS,True
+G_D_EDGE_ON,MISSING_LOCK_UPDATE,after_pivot_prevote,direct,False,False,0,0,none,13,171,PASS,True
+G_D_EDGE_ON,BASELINE,after_pivot_precommit,direct,False,False,0,0,none,13,166,PASS,False
+G_D_EDGE_ON,MISSING_LOCK_UPDATE,after_pivot_precommit,direct,True,True,0,0,1,14,185,PASS,False
+G_D_EDGE_ON,BASELINE,after_pivot_precommit,via_C,False,False,0,0,none,13,169,PASS,True
+G_D_EDGE_ON,MISSING_LOCK_UPDATE,after_pivot_precommit,via_C,True,True,0,0,1,14,188,PASS,True

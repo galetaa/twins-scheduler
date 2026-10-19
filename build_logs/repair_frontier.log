@@ -1,0 +1,80 @@
+{
+  "arbitrary_four_event_orders": {
+    "boundary_checks": 3504,
+    "executed_policies": 3840,
+    "joint_delay_checks": 876,
+    "linear_extensions": 960,
+    "partial_orders": 219
+  },
+  "common_deadline_sweep": {
+    "boundary_checks": 2636,
+    "domains": 44,
+    "executed_policies": 174250
+  },
+  "controls": {
+    "crossed_deadlines": {
+      "alpha": 1,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "individually_late_possible": [
+        true,
+        true
+      ],
+      "jointly_late_possible": false,
+      "k": 2,
+      "linear_extensions": 6,
+      "minimum_splits_for_two_full_quorums": 1
+    },
+    "repair_before_decision_after_signature": {
+      "first_signers": [
+        0
+      ],
+      "repaired_at_end": [
+        0
+      ],
+      "second_signers": [
+        0
+      ],
+      "unsafe": true
+    },
+    "weighted_granularity": {
+      "coarse_unsafe": false,
+      "deficit0": 1,
+      "deficit1": 3,
+      "forced": [
+        0,
+        1
+      ],
+      "incorrect_total_capacity_test": true,
+      "weights": [
+        2,
+        2
+      ]
+    }
+  },
+  "general_directed_graphs": {
+    "boundary_checks": 13074,
+    "executed_policies": 1357209,
+    "graphs": 530,
+    "joint_delay_checks": 4164,
+    "linear_extensions": 50363,
+    "phase_budget_checks": 13074
+  },
+  "mismatch_count": 0,
+  "scope": "Finite certificate schema. New event-level n=4 protocol trace is checked separately.",
+  "semantics": "initial-ready pivots; immutable signed outputs; fixed opportunity partial order",
+  "status": "PASS",
+  "weighted_common_deadline": {
+    "boundary_checks": 15700,
+    "domains": 258,
+    "executed_policies": 1884
+  }
+}

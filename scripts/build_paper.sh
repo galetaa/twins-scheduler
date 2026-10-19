@@ -30,7 +30,9 @@ export FORCE_SOURCE_DATE=1
 (
   set -e
   cd "$ROOT/manuscript/lipics"
-  export TEXINPUTS=.:"$ROOT/vendor/lipics"//:"$TEXMF_DIST"//:
+  # Keep packages shipped with the host format before the supplementary overlay:
+  # a 2024 array.sty cannot be loaded into a 2023 LaTeX format.
+  export TEXINPUTS=.:"$ROOT/vendor/lipics"//::"$TEXMF_DIST"//
   pdflatex -interaction=nonstopmode -halt-on-error -file-line-error \
     -output-directory="$BUILD_DIR" main.tex
   cd "$BUILD_DIR"
@@ -57,7 +59,11 @@ fi
 PHYSICAL_PAGES=$(pdfinfo "$BUILD_DIR/main.pdf" | awk '/^Pages:/ {print $2}')
 BIBLIOGRAPHY_START=$(sed -n 's/.*@pageNumberStartBibliography{\([0-9][0-9]*\)}.*/\1/p' "$BUILD_DIR/main.aux")
 [[ -n "$BIBLIOGRAPHY_START" ]]
-MAIN_TEXT_PAGES=$((BIBLIOGRAPHY_START - 1))
+MAIN_FIRST=$(sed -n 's/^TWINS-MAIN-FIRST:\([0-9][0-9]*\)$/\1/p' "$BUILD_DIR/main.log")
+MAIN_END=$(sed -n 's/^TWINS-MAIN-END-EXCLUSIVE:\([0-9][0-9]*\)$/\1/p' "$BUILD_DIR/main.log")
+[[ -n "$MAIN_FIRST" && -n "$MAIN_END" ]]
+MAIN_TEXT_PAGES=$((MAIN_END - MAIN_FIRST))
+[[ "$MAIN_TEXT_PAGES" -gt 0 ]]
 [[ "$MAIN_TEXT_PAGES" -le 15 ]]
 pdfinfo "$BUILD_DIR/main.pdf" | grep -Eq '^Author:[[:space:]]+Anonymous author\(s\)'
 pdffonts "$BUILD_DIR/main.pdf" | awk 'NR > 2 && $6 != "yes" {bad=1} END {exit bad}'
@@ -74,9 +80,13 @@ cp "$RAW_LOG" "$LOG_DIR/lipics_build.log"
   echo "physical_pages=$PHYSICAL_PAGES"
   echo "cover_pages=1"
   echo "main_text_pages=$MAIN_TEXT_PAGES"
-  echo "bibliography_starts_on_physical_page=$BIBLIOGRAPHY_START"
+  echo "main_starts_on_numbered_page=$MAIN_FIRST"
+  echo "main_ends_before_numbered_page=$MAIN_END"
+  echo "bibliography_starts_on_numbered_page=$BIBLIOGRAPHY_START"
   echo "opodis_2026_main_text_limit=15"
   echo "class=lipics-v2021 v3.1.3"
+  pdflatex --version | head -1
+  pandoc --version | head -1
 } >"$LOG_DIR/lipics_page_budget.log"
 {
   echo "status=PASS"

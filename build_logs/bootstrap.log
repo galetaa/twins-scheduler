@@ -1,15 +1,9 @@
-Audited 5 packages in 0.05ms
-/home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.cache/tex-debs/texlive-fonts-recommended_2024.20250309-1_all.deb: OK
-/home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.cache/tex-debs/texlive-latex-recommended_2024.20250309-1_all.deb: OK
-/home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.cache/tex-debs/texlive-pictures_2024.20250309-1_all.deb: OK
-/home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.cache/tex-debs/texlive-latex-extra_2024.20250309-2_all.deb: OK
-/home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.cache/tex-debs/texlive-plain-generic_2024.20250309-2_all.deb: OK
-/home/galetka/Documents/Programming/twins-scheduler/twins-scheduler-closure/.cache/tex-debs/texlive-bibtex-extra_2024.20250309-2_all.deb: OK
+Checked 6 packages in 0.18ms
 BOOTSTRAP PASS
-Python 3.11.12
-uv 0.6.14
+Python 3.12.14
+uv 0.12.23 (x86_64-unknown-linux-gnu)
 go version go1.24.1 linux/amd64
-elan 4.2.3 (b6cec7e10 2026-06-08)
+elan 4.2.4 (227caca13 2026-08-25)
 Lake version 5.0.0-src+d8b1897 (Lean version 4.33.0)
-pdfTeX 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian)
-BibTeX 0.99d (TeX Live 2025/dev/Debian)
+pdfTeX 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian)
+BibTeX 0.99d (TeX Live 2023/Debian)

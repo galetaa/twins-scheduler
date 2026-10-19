@@ -1,0 +1,30 @@
+results/generated/cometbft_refinement_results.json: OK
+results/generated/cometbft_refinement_results_go.json: OK
+results/generated/cometbft_refinement_summary.json: OK
+results/generated/cometbft_cross_language_check.txt: OK
+results/generated/independent_proof_checks.json: OK
+results/generated/certificate_verification.json: OK
+results/generated/smt_summary.json: OK
+results/generated/formal_source_hygiene.json: OK
+results/generated/formal_verification.json: OK
+results/generated/lean_verification.json: OK
+formal/smt/results.csv: OK
+formal/smt/summary.json: OK
+results/new/concrete_trace.json: OK
+results/new/concrete_trace.csv: OK
+results/revision/frontier_summary.json: OK
+results/revision/frontier_graph_cases.csv: OK
+results/revision/frontier_common_cases.csv: OK
+results/revision/frontier_weighted_cases.csv: OK
+manuscript/pdf/final_lipics_manuscript.pdf: OK
+{
+  "main_theorems": [
+    "1",
+    "2",
+    "3"
+  ],
+  "problems": [],
+  "status": "PASS",
+  "synchronized_pairs": 2
+}
+RESULTS MATCH reference_count=18
