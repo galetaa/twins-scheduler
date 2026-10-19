@@ -1,0 +1,64 @@
+{
+  "schema": "native-cometbft-conformance-summary-v1",
+  "upstream_commit": "49b82838fcca442b2445f76605c101609ed04130",
+  "pinned_go_toolchain": "go1.25.0",
+  "production_source_modified": false,
+  "go_tests_passed_including_parent": 5,
+  "scenarios_passed": 4,
+  "checks_passed": 14,
+  "native_signed_votes": 32,
+  "scheduled_events": 132,
+  "all_recorded_signatures_verified": true,
+  "race_detector": false,
+  "scenarios": [
+    {
+      "name": "native_commit_missing_block_and_vote_immutability",
+      "checks": [
+        "retransmitting an authentic vote leaves two distinct prevotes and no lock",
+        "three actual prevotes update both native lock and valid-block fields before a non-nil precommit",
+        "the native executor validates, persists, and applies a normal three-signature commit",
+        "the same emitted precommit bytes and Ed25519 verification survive local height advancement",
+        "three real precommits enter Commit but do not invent missing block data",
+        "delivery of the corresponding Merkle-checked block parts completes the same normal commit at a catching-up node"
+      ],
+      "native_signed_votes": 7,
+      "scheduled_events": 30
+    },
+    {
+      "name": "native_mixed_quorum_timeout_guards",
+      "checks": [
+        "a scheduled proposal timeout without block data emits a native nil prevote",
+        "two distinct prevotes do not schedule prevote-wait; a mixed three-vote quorum does, and its timeout signs nil",
+        "two distinct precommits do not schedule round advancement; three nil precommits schedule a timeout whose firing advances exactly one round"
+      ],
+      "native_signed_votes": 7,
+      "scheduled_events": 29
+    },
+    {
+      "name": "native_lock_persistence_and_locked_prevote",
+      "checks": [
+        "legal mixed-precommit timeout advances the round while preserving native lock and valid-block state",
+        "the unchanged native prevote rule votes for its old lock after receiving a different valid proposal from the actual next proposer",
+        "this conformance scenario produces no commit and no agreement violation"
+      ],
+      "native_signed_votes": 9,
+      "scheduled_events": 38
+    },
+    {
+      "name": "native_valid_block_proposal_reuse",
+      "checks": [
+        "the actual round-1 proposer with validBlock@0 reuses that block and publishes POLRound=0",
+        "the locally retained real PoLC makes the reused proposal complete and yields a matching native prevote"
+      ],
+      "native_signed_votes": 9,
+      "scheduled_events": 35
+    }
+  ],
+  "limits": [
+    "Unmodified-source normal-operation conformance, not a fault-injection witness or native disagreement experiment.",
+    "In-process State message/timeout dispatch and official local application fixture; no reactor, sockets, persistent validator signer, or WAL receive loop.",
+    "Actual Ed25519 with deterministic test keys via upstream MockPV; no production key material.",
+    "A fixed deterministic event order; native wall-clock timestamps/signatures are retained and need not be byte-identical across reruns.",
+    "Four finite scenarios validate exercised guards; they are neither exhaustive verification nor a refinement proof."
+  ]
+}

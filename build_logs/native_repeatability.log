@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "normal_repetitions": 3,
+  "race_detector_repetitions": 1,
+  "all_semantic_summaries_identical": true,
+  "output_and_log_routing_verified": true
+}

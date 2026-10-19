@@ -1,30 +1,67 @@
+formal/smt/results.csv: OK
+formal/smt/summary.json: OK
+manuscript/pdf/final_lipics_manuscript.pdf: OK
+results/generated/certificate_verification.json: OK
+results/generated/cometbft_cross_language_check.txt: OK
 results/generated/cometbft_refinement_results.json: OK
 results/generated/cometbft_refinement_results_go.json: OK
 results/generated/cometbft_refinement_summary.json: OK
-results/generated/cometbft_cross_language_check.txt: OK
-results/generated/independent_proof_checks.json: OK
-results/generated/certificate_verification.json: OK
-results/generated/smt_summary.json: OK
 results/generated/formal_source_hygiene.json: OK
 results/generated/formal_verification.json: OK
+results/generated/independent_proof_checks.json: OK
 results/generated/lean_verification.json: OK
-formal/smt/results.csv: OK
-formal/smt/summary.json: OK
-results/new/concrete_trace.json: OK
+results/generated/smt_summary.json: OK
+results/native/native_conformance.json: OK
+results/native/native_provenance.json: OK
+results/native/native_repeatability.json: OK
+results/native/native_signature_audit.json: OK
+results/native/native_summary.json: OK
+results/native/native_test_events.jsonl: OK
+results/native/native_test_stderr.txt: OK
 results/new/concrete_trace.csv: OK
-results/revision/frontier_summary.json: OK
-results/revision/frontier_graph_cases.csv: OK
+results/new/concrete_trace.json: OK
 results/revision/frontier_common_cases.csv: OK
+results/revision/frontier_graph_cases.csv: OK
+results/revision/frontier_summary.json: OK
 results/revision/frontier_weighted_cases.csv: OK
-manuscript/pdf/final_lipics_manuscript.pdf: OK
+results/synthesis/certificates/bow_tie_blocks_k12.json.gz: OK
+results/synthesis/certificates/bow_tie_blocks_k30.json.gz: OK
+results/synthesis/certificates/crossed_pairs_k12.json.gz: OK
+results/synthesis/certificates/crossed_pairs_k48.json.gz: OK
+results/synthesis/certificates/dense_scc_k10.json.gz: OK
+results/synthesis/certificates/dense_scc_k8.json.gz: OK
+results/synthesis/certificates/single_cycle_k10.json.gz: OK
+results/synthesis/certificates/sparse_dag_k12.json.gz: OK
+results/synthesis/certificates/sparse_dag_k48.json.gz: OK
+results/synthesis/certificates/weighted_common_deadline_k24.json.gz: OK
+results/synthesis/certificates/weighted_common_deadline_k48.json.gz: OK
+results/synthesis/certificates/weighted_quota_cycles_k24.json.gz: OK
+results/synthesis/certificates/weighted_quota_cycles_tight_k24.json.gz: OK
+results/synthesis/examples/bow_tie_cost.certificate.json: OK
+results/synthesis/examples/bow_tie_cost.input.json: OK
+results/synthesis/examples/crossed_deadlines.certificate.json: OK
+results/synthesis/examples/crossed_deadlines.input.json: OK
+results/synthesis/examples/one_pivot_forced_repair.certificate.json: OK
+results/synthesis/examples/one_pivot_forced_repair.input.json: OK
+results/synthesis/examples/one_pivot_post_signature.certificate.json: OK
+results/synthesis/examples/one_pivot_post_signature.input.json: OK
+results/synthesis/examples/weighted_granularity.certificate.json: OK
+results/synthesis/examples/weighted_granularity.input.json: OK
+results/synthesis/order_oracle.json: OK
+results/synthesis/synthesis_benchmarks.csv: OK
+results/synthesis/synthesis_oracle_cases.csv: OK
+results/synthesis/synthesis_raw_observations.json.gz: OK
+results/synthesis/synthesis_summary.json: OK
 {
   "main_theorems": [
     "1",
     "2",
-    "3"
+    "3",
+    "4",
+    "5"
   ],
   "problems": [],
   "status": "PASS",
   "synchronized_pairs": 2
 }
-RESULTS MATCH reference_count=18
+RESULTS MATCH reference_count=47

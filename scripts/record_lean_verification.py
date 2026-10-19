@@ -21,6 +21,6 @@ if __name__ == "__main__":
     receipt = {"status": "PASS", "toolchain": (ROOT / "lean-toolchain").read_text().strip(),
                "lake_build_exit": 0, "axiom_audit_exit": 0, "leanchecker_exit": 0,
                "source_sha256": source_hashes(),
-               "scope": "Imported Lean declarations; graph-to-execution and concrete client refinement are not mechanized."}
+               "scope": "Imported Lean declarations include graph/event-order realization and Bellman certificate soundness. Python checker implementation and production-client refinement are not mechanized."}
     (generated / "lean_verification.json").write_text(
         json.dumps(receipt, indent=2, sort_keys=True) + "\n", encoding="utf-8")

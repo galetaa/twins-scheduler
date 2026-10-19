@@ -7,3 +7,5 @@ import SchedulerClosure.ParametricFamily
 import SchedulerClosure.CometBFTInstantiation
 import SchedulerClosure.PremiseBoundary
 import SchedulerClosure.RepairFrontier
+import SchedulerClosure.GraphRealization
+import SchedulerClosure.CertificateOptimality

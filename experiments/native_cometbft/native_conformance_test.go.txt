@@ -1,0 +1,462 @@
+// This test is copied into the pinned, UNMODIFIED CometBFT consensus package.
+// It uses the upstream State implementation and official test-state constructor.
+// No production source is patched, no validator is mutated, and no conflicting
+// commit is sought. The scheduler only delivers real emitted messages and fires
+// timeout records that the implementation has actually scheduled.
+package consensus
+
+import (
+	"bytes"
+	"encoding/hex"
+	"encoding/json"
+	"fmt"
+	"os"
+	"path/filepath"
+	"sort"
+	"testing"
+	"time"
+
+	"github.com/cometbft/cometbft/abci/example/kvstore"
+	cfg "github.com/cometbft/cometbft/config"
+	cstypes "github.com/cometbft/cometbft/consensus/types"
+	"github.com/cometbft/cometbft/crypto/ed25519"
+	"github.com/cometbft/cometbft/libs/log"
+	"github.com/cometbft/cometbft/p2p"
+	cmtproto "github.com/cometbft/cometbft/proto/tendermint/types"
+	sm "github.com/cometbft/cometbft/state"
+	"github.com/cometbft/cometbft/types"
+	"github.com/stretchr/testify/require"
+)
+
+const nativeChainID = "repair-frontier-native-conformance"
+
+// This ticker records the real implementation's requests. There is no timer
+// goroutine: fire() consumes a recorded request at the exact scripted point.
+type nativeTicker struct {
+	requests []timeoutInfo
+	channel  chan timeoutInfo
+}
+
+func (n *nativeTicker) Start() error                  { return nil }
+func (n *nativeTicker) Stop() error                   { return nil }
+func (n *nativeTicker) SetLogger(log.Logger)          {}
+func (n *nativeTicker) Chan() <-chan timeoutInfo      { return n.channel }
+func (n *nativeTicker) ScheduleTimeout(t timeoutInfo) { n.requests = append(n.requests, t) }
+func (n *nativeTicker) has(h int64, r int32, step cstypes.RoundStepType) bool {
+	for _, ti := range n.requests {
+		if ti.Height == h && ti.Round == r && ti.Step == step {
+			return true
+		}
+	}
+	return false
+}
+
+type nativeSnapshot struct {
+	Height       int64  `json:"height"`
+	Round        int32  `json:"round"`
+	Step         string `json:"step"`
+	LockedRound  int32  `json:"locked_round"`
+	LockedBlock  string `json:"locked_block"`
+	ValidRound   int32  `json:"valid_round"`
+	ValidBlock   string `json:"valid_block"`
+	StoredHeight int64  `json:"stored_height"`
+}
+type nativeEvent struct {
+	Index  int            `json:"index"`
+	Action string         `json:"action"`
+	Node   int            `json:"node"`
+	Detail string         `json:"detail"`
+	State  nativeSnapshot `json:"state"`
+}
+type nativeVoteRecord struct {
+	Node      int    `json:"node"`
+	Height    int64  `json:"height"`
+	Round     int32  `json:"round"`
+	Type      string `json:"type"`
+	BlockHash string `json:"block_hash"`
+	Address   string `json:"validator_address"`
+	Timestamp string `json:"timestamp"`
+	SignBytes string `json:"sign_bytes_hex"`
+	Signature string `json:"ed25519_signature_hex"`
+	Verified  bool   `json:"signature_verified"`
+}
+type nativeResult struct {
+	Name        string             `json:"name"`
+	Checks      []string           `json:"checks"`
+	Events      []nativeEvent      `json:"events"`
+	Votes       []nativeVoteRecord `json:"native_signed_votes"`
+	PublicKeys  []string           `json:"ed25519_public_keys_hex"`
+	FinalStates []nativeSnapshot   `json:"final_states"`
+	Passed      bool               `json:"passed"`
+}
+type nativeNet struct {
+	t       *testing.T
+	nodes   []*State
+	tickers []*nativeTicker
+	keys    []types.PrivValidator
+	outbox  [][]msgInfo
+	result  nativeResult
+}
+
+func nativeHash(b *types.Block) string {
+	if b == nil {
+		return ""
+	}
+	return hex.EncodeToString(b.Hash())
+}
+func nativeSnap(cs *State) nativeSnapshot {
+	return nativeSnapshot{cs.Height, cs.Round, cs.Step.String(), cs.LockedRound, nativeHash(cs.LockedBlock), cs.ValidRound, nativeHash(cs.ValidBlock), cs.blockStore.Height()}
+}
+func (n *nativeNet) record(node int, action, detail string) {
+	n.result.Events = append(n.result.Events, nativeEvent{len(n.result.Events), action, node, detail, nativeSnap(n.nodes[node])})
+}
+func nativeNew(t *testing.T, name string) *nativeNet {
+	t.Helper()
+	n := &nativeNet{t: t, result: nativeResult{Name: name}}
+	for i := 0; i < 4; i++ {
+		key := ed25519.GenPrivKeyFromSecret([]byte(fmt.Sprintf("native-conformance-test-key-%d", i)))
+		pv := types.NewMockPVWithParams(key, false, false)
+		n.keys = append(n.keys, pv)
+	}
+	sort.Sort(types.PrivValidatorsByAddress(n.keys))
+	vals := make([]types.GenesisValidator, 4)
+	for i, pv := range n.keys {
+		pk, err := pv.GetPubKey()
+		require.NoError(t, err)
+		vals[i] = types.GenesisValidator{PubKey: pk, Power: 10}
+		n.result.PublicKeys = append(n.result.PublicKeys, hex.EncodeToString(pk.Bytes()))
+	}
+	g := &types.GenesisDoc{GenesisTime: time.Date(2026, 1, 1, 0, 0, 0, 0, time.UTC), InitialHeight: 1, ChainID: nativeChainID, Validators: vals, ConsensusParams: types.DefaultConsensusParams()}
+	state, err := sm.MakeGenesisState(g)
+	require.NoError(t, err)
+	for i := 0; i < 4; i++ {
+		conf := cfg.TestConfig().SetRoot(t.TempDir())
+		conf.Consensus.SkipTimeoutCommit = false
+		cs := newStateWithConfig(conf, state.Copy(), n.keys[i], kvstore.NewInMemoryApplication())
+		cs.SetLogger(log.NewNopLogger())
+		ticker := &nativeTicker{channel: make(chan timeoutInfo)}
+		cs.SetTimeoutTicker(ticker)
+		n.nodes = append(n.nodes, cs)
+		n.tickers = append(n.tickers, ticker)
+		n.outbox = append(n.outbox, nil)
+		t.Cleanup(func() { _ = cs.eventBus.Stop() })
+	}
+	for i, cs := range n.nodes {
+		cs.enterNewRound(1, 0)
+		n.drain(i)
+		n.record(i, "START", "upstream enterNewRound(1,0)")
+	}
+	pk, err := n.keys[0].GetPubKey()
+	require.NoError(t, err)
+	require.True(t, bytes.Equal(n.nodes[0].Validators.GetProposer().Address, pk.Address()), "native proposer order must start at index 0")
+	return n
+}
+
+// Every honest vote and proposal comes from the real State's internal queue.
+// Draining emulates its ordinary self-delivery; peer deliveries are explicit.
+func (n *nativeNet) drain(i int) {
+	for count := 0; count < 1000; count++ {
+		select {
+		case mi := <-n.nodes[i].internalMsgQueue:
+			n.outbox[i] = append(n.outbox[i], mi)
+			if vm, ok := mi.Msg.(*VoteMessage); ok {
+				v := vm.Vote
+				pk, err := n.keys[i].GetPubKey()
+				require.NoError(n.t, err)
+				require.NoError(n.t, v.Verify(nativeChainID, pk))
+				kind := "PREVOTE"
+				if v.Type == cmtproto.PrecommitType {
+					kind = "PRECOMMIT"
+				}
+				for _, old := range n.result.Votes {
+					if old.Node == i && old.Height == v.Height && old.Round == v.Round && old.Type == kind {
+						require.Equal(n.t, old.BlockHash, hex.EncodeToString(v.BlockID.Hash), "no same-slot equivocation is permitted")
+					}
+				}
+				n.result.Votes = append(n.result.Votes, nativeVoteRecord{i, v.Height, v.Round, kind, hex.EncodeToString(v.BlockID.Hash), hex.EncodeToString(v.ValidatorAddress), v.Timestamp.UTC().Format(time.RFC3339Nano), hex.EncodeToString(types.VoteSignBytes(nativeChainID, v.ToProto())), hex.EncodeToString(v.Signature), true})
+			}
+			n.nodes[i].handleMsg(mi)
+			n.record(i, "NATIVE_EMIT_AND_SELF_DELIVER", fmt.Sprintf("%T", mi.Msg))
+		default:
+			return
+		}
+	}
+	n.t.Fatal("unexpectedly unbounded internal queue")
+}
+func (n *nativeNet) proposal(from int, round int32) []msgInfo {
+	var messages []msgInfo
+	for _, mi := range n.outbox[from] {
+		switch m := mi.Msg.(type) {
+		case *ProposalMessage:
+			if m.Proposal.Height == 1 && m.Proposal.Round == round {
+				messages = append(messages, mi)
+			}
+		case *BlockPartMessage:
+			if m.Height == 1 && m.Round == round {
+				messages = append(messages, mi)
+			}
+		}
+	}
+	require.Greater(n.t, len(messages), 1, "native proposal and block parts must already be emitted")
+	return messages
+}
+func (n *nativeNet) deliver(from, to int, mi msgInfo) {
+	n.nodes[to].handleMsg(msgInfo{mi.Msg, p2p.ID(fmt.Sprintf("native-%d", from))})
+	n.record(to, "PEER_DELIVER", fmt.Sprintf("from=%d type=%T", from, mi.Msg))
+	n.drain(to)
+}
+func (n *nativeNet) sendProposal(from, to int, round int32) {
+	for _, mi := range n.proposal(from, round) {
+		n.deliver(from, to, mi)
+	}
+}
+func (n *nativeNet) vote(from int, round int32, kind cmtproto.SignedMsgType) *types.Vote {
+	for _, mi := range n.outbox[from] {
+		if vm, ok := mi.Msg.(*VoteMessage); ok {
+			v := vm.Vote
+			if v.Height == 1 && v.Round == round && v.Type == kind {
+				return v
+			}
+		}
+	}
+	n.t.Fatalf("native node %d has emitted no %v in round %d", from, kind, round)
+	return nil
+}
+func (n *nativeNet) sendVote(from, to int, round int32, kind cmtproto.SignedMsgType) {
+	n.deliver(from, to, msgInfo{&VoteMessage{n.vote(from, round, kind)}, ""})
+}
+func (n *nativeNet) fire(i int, round int32, step cstypes.RoundStepType) {
+	n.t.Helper()
+	for j, ti := range n.tickers[i].requests {
+		if ti.Height == 1 && ti.Round == round && ti.Step == step {
+			n.tickers[i].requests = append(n.tickers[i].requests[:j], n.tickers[i].requests[j+1:]...)
+			n.nodes[i].handleTimeout(ti, n.nodes[i].getRoundState())
+			n.record(i, "FIRE_SCHEDULED_TIMEOUT", step.String())
+			n.drain(i)
+			return
+		}
+	}
+	n.t.Fatalf("no native scheduled timeout for node=%d round=%d step=%s", i, round, step.String())
+}
+func (n *nativeNet) check(s string) { n.result.Checks = append(n.result.Checks, s) }
+func (n *nativeNet) finish() nativeResult {
+	for _, cs := range n.nodes {
+		n.result.FinalStates = append(n.result.FinalStates, nativeSnap(cs))
+	}
+	n.result.Passed = true
+	return n.result
+}
+
+func nativeCommitAndCatchup(t *testing.T) nativeResult {
+	n := nativeNew(t, "native_commit_missing_block_and_vote_immutability")
+	n.sendProposal(0, 1, 0)
+	n.sendProposal(0, 2, 0)
+	block := n.nodes[0].ProposalBlock
+	require.NotNil(t, block)
+	// Duplicate gossip is normal traffic, and must not increase voting power.
+	n.sendVote(1, 0, 0, cmtproto.PrevoteType)
+	require.Len(t, n.nodes[0].Votes.Prevotes(0).List(), 2)
+	n.sendVote(1, 0, 0, cmtproto.PrevoteType)
+	require.Len(t, n.nodes[0].Votes.Prevotes(0).List(), 2)
+	require.Nil(t, n.nodes[0].LockedBlock)
+	n.check("retransmitting an authentic vote leaves two distinct prevotes and no lock")
+	n.sendVote(2, 0, 0, cmtproto.PrevoteType)
+	for _, to := range []int{1, 2} {
+		for _, from := range []int{0, 1, 2} {
+			if from != to {
+				n.sendVote(from, to, 0, cmtproto.PrevoteType)
+			}
+		}
+	}
+	for _, i := range []int{0, 1, 2} {
+		require.Equal(t, int32(0), n.nodes[i].LockedRound)
+		require.Equal(t, nativeHash(block), nativeHash(n.nodes[i].LockedBlock))
+		require.Equal(t, int32(0), n.nodes[i].ValidRound)
+		require.Equal(t, nativeHash(block), nativeHash(n.nodes[i].ValidBlock))
+		require.True(t, n.vote(i, 0, cmtproto.PrecommitType).BlockID.Equals(n.vote(0, 0, cmtproto.PrevoteType).BlockID))
+	}
+	n.check("three actual prevotes update both native lock and valid-block fields before a non-nil precommit")
+	v := n.vote(0, 0, cmtproto.PrecommitType)
+	before, err := v.ToProto().Marshal()
+	require.NoError(t, err)
+	for _, from := range []int{1, 2} {
+		n.sendVote(from, 0, 0, cmtproto.PrecommitType)
+	}
+	require.Equal(t, int64(2), n.nodes[0].Height)
+	require.Equal(t, int64(1), n.nodes[0].blockStore.Height())
+	require.Equal(t, nativeHash(block), nativeHash(n.nodes[0].blockStore.LoadBlock(1)))
+	commit := n.nodes[0].blockStore.LoadSeenCommit(1)
+	require.NotNil(t, commit)
+	require.NoError(t, n.nodes[1].Validators.VerifyCommit(nativeChainID, commit.BlockID, 1, commit))
+	n.check("the native executor validates, persists, and applies a normal three-signature commit")
+	after, err := v.ToProto().Marshal()
+	require.NoError(t, err)
+	require.Equal(t, before, after)
+	pk, err := n.keys[0].GetPubKey()
+	require.NoError(t, err)
+	require.NoError(t, v.Verify(nativeChainID, pk))
+	n.check("the same emitted precommit bytes and Ed25519 verification survive local height advancement")
+	for _, from := range []int{0, 1, 2} {
+		n.sendVote(from, 3, 0, cmtproto.PrecommitType)
+	}
+	require.Equal(t, cstypes.RoundStepCommit, n.nodes[3].Step)
+	require.Equal(t, int64(1), n.nodes[3].Height)
+	require.Equal(t, int64(0), n.nodes[3].blockStore.Height())
+	require.Nil(t, n.nodes[3].ProposalBlock)
+	n.check("three real precommits enter Commit but do not invent missing block data")
+	// The first node's emitted authenticated block parts are now gossiped.
+	for _, mi := range n.proposal(0, 0) {
+		if _, ok := mi.Msg.(*BlockPartMessage); ok {
+			n.deliver(0, 3, mi)
+		}
+	}
+	require.Equal(t, int64(2), n.nodes[3].Height)
+	require.Equal(t, nativeHash(block), nativeHash(n.nodes[3].blockStore.LoadBlock(1)))
+	n.check("delivery of the corresponding Merkle-checked block parts completes the same normal commit at a catching-up node")
+	return n.finish()
+}
+
+func nativeMixedTimeout(t *testing.T) nativeResult {
+	n := nativeNew(t, "native_mixed_quorum_timeout_guards")
+	n.sendProposal(0, 1, 0)
+	n.fire(2, 0, cstypes.RoundStepPropose)
+	n.fire(3, 0, cstypes.RoundStepPropose)
+	require.True(t, n.vote(2, 0, cmtproto.PrevoteType).BlockID.IsZero())
+	n.check("a scheduled proposal timeout without block data emits a native nil prevote")
+	n.sendVote(0, 2, 0, cmtproto.PrevoteType)
+	require.False(t, n.tickers[2].has(1, 0, cstypes.RoundStepPrevoteWait))
+	n.sendVote(1, 2, 0, cmtproto.PrevoteType)
+	require.True(t, n.nodes[2].Votes.Prevotes(0).HasTwoThirdsAny())
+	require.False(t, n.nodes[2].Votes.Prevotes(0).HasTwoThirdsMajority())
+	require.True(t, n.tickers[2].has(1, 0, cstypes.RoundStepPrevoteWait))
+	n.fire(2, 0, cstypes.RoundStepPrevoteWait)
+	require.True(t, n.vote(2, 0, cmtproto.PrecommitType).BlockID.IsZero())
+	n.check("two distinct prevotes do not schedule prevote-wait; a mixed three-vote quorum does, and its timeout signs nil")
+	for _, to := range []int{0, 3} {
+		for _, from := range []int{0, 1, 3} {
+			if to != from {
+				n.sendVote(from, to, 0, cmtproto.PrevoteType)
+			}
+		}
+		n.fire(to, 0, cstypes.RoundStepPrevoteWait)
+		require.True(t, n.vote(to, 0, cmtproto.PrecommitType).BlockID.IsZero())
+	}
+	n.sendVote(0, 2, 0, cmtproto.PrecommitType)
+	require.False(t, n.tickers[2].has(1, 0, cstypes.RoundStepPrecommitWait))
+	n.sendVote(3, 2, 0, cmtproto.PrecommitType)
+	require.True(t, n.tickers[2].has(1, 0, cstypes.RoundStepPrecommitWait))
+	n.fire(2, 0, cstypes.RoundStepPrecommitWait)
+	require.Equal(t, int32(1), n.nodes[2].Round)
+	require.Equal(t, int64(1), n.nodes[2].Height)
+	n.check("two distinct precommits do not schedule round advancement; three nil precommits schedule a timeout whose firing advances exactly one round")
+	return n.finish()
+}
+
+func nativeLockAcrossRound(t *testing.T) nativeResult {
+	n := nativeNew(t, "native_lock_persistence_and_locked_prevote")
+	n.sendProposal(0, 1, 0)
+	n.sendProposal(0, 2, 0)
+	n.fire(3, 0, cstypes.RoundStepPropose)
+	block0 := n.nodes[0].ProposalBlock
+	n.sendVote(1, 0, 0, cmtproto.PrevoteType)
+	n.sendVote(2, 0, 0, cmtproto.PrevoteType)
+	for _, to := range []int{1, 2} {
+		n.sendVote(0, to, 0, cmtproto.PrevoteType)
+		n.sendVote(3, to, 0, cmtproto.PrevoteType)
+		n.fire(to, 0, cstypes.RoundStepPrevoteWait)
+		require.True(t, n.vote(to, 0, cmtproto.PrecommitType).BlockID.IsZero())
+	}
+	for _, to := range []int{0, 1} {
+		for _, from := range []int{0, 1, 2} {
+			if from != to {
+				n.sendVote(from, to, 0, cmtproto.PrecommitType)
+			}
+		}
+		n.fire(to, 0, cstypes.RoundStepPrecommitWait)
+	}
+	require.Equal(t, int32(1), n.nodes[0].Round)
+	require.Equal(t, int32(0), n.nodes[0].LockedRound)
+	require.Equal(t, nativeHash(block0), nativeHash(n.nodes[0].LockedBlock))
+	require.Equal(t, int32(0), n.nodes[0].ValidRound)
+	require.Equal(t, nativeHash(block0), nativeHash(n.nodes[0].ValidBlock))
+	n.check("legal mixed-precommit timeout advances the round while preserving native lock and valid-block state")
+	require.NotNil(t, n.nodes[1].ProposalBlock)
+	require.NotEqual(t, nativeHash(block0), nativeHash(n.nodes[1].ProposalBlock))
+	n.sendProposal(1, 0, 1)
+	require.Equal(t, nativeHash(block0), hex.EncodeToString(n.vote(0, 1, cmtproto.PrevoteType).BlockID.Hash))
+	n.check("the unchanged native prevote rule votes for its old lock after receiving a different valid proposal from the actual next proposer")
+	for _, cs := range n.nodes {
+		require.Equal(t, int64(0), cs.blockStore.Height())
+	}
+	n.check("this conformance scenario produces no commit and no agreement violation")
+	return n.finish()
+}
+
+func nativeValidReuse(t *testing.T) nativeResult {
+	n := nativeNew(t, "native_valid_block_proposal_reuse")
+	n.sendProposal(0, 1, 0)
+	n.sendProposal(0, 2, 0)
+	n.fire(3, 0, cstypes.RoundStepPropose)
+	block0 := n.nodes[0].ProposalBlock
+	for _, to := range []int{0, 1} {
+		for _, from := range []int{0, 1, 2} {
+			if from != to {
+				n.sendVote(from, to, 0, cmtproto.PrevoteType)
+			}
+		}
+	}
+	for _, to := range []int{2, 3} {
+		froms := []int{0, 3}
+		if to == 3 {
+			froms = []int{0, 1}
+		}
+		for _, from := range froms {
+			n.sendVote(from, to, 0, cmtproto.PrevoteType)
+		}
+		n.fire(to, 0, cstypes.RoundStepPrevoteWait)
+	}
+	n.sendVote(2, 1, 0, cmtproto.PrecommitType)
+	n.sendVote(3, 1, 0, cmtproto.PrecommitType)
+	n.fire(1, 0, cstypes.RoundStepPrecommitWait)
+	require.Equal(t, int32(1), n.nodes[1].Round)
+	require.Equal(t, nativeHash(block0), nativeHash(n.nodes[1].ProposalBlock))
+	require.Equal(t, int32(0), n.nodes[1].Proposal.POLRound)
+	require.Equal(t, int32(0), n.nodes[1].ValidRound)
+	n.check("the actual round-1 proposer with validBlock@0 reuses that block and publishes POLRound=0")
+	require.Equal(t, nativeHash(block0), hex.EncodeToString(n.vote(1, 1, cmtproto.PrevoteType).BlockID.Hash))
+	n.check("the locally retained real PoLC makes the reused proposal complete and yields a matching native prevote")
+	return n.finish()
+}
+
+func TestNativeConformance(t *testing.T) {
+	var results []nativeResult
+	scenarios := []struct {
+		name string
+		run  func(*testing.T) nativeResult
+	}{
+		{"CommitCatchupAndImmutability", nativeCommitAndCatchup},
+		{"MixedQuorumTimeoutGuards", nativeMixedTimeout},
+		{"LockPersistence", nativeLockAcrossRound},
+		{"ValidBlockReuse", nativeValidReuse},
+	}
+	for _, scenario := range scenarios {
+		t.Run(scenario.name, func(t *testing.T) { results = append(results, scenario.run(t)) })
+	}
+	if t.Failed() {
+		return
+	}
+	if output := os.Getenv("NATIVE_CONFORMANCE_OUTPUT"); output != "" {
+		require.NoError(t, os.MkdirAll(filepath.Dir(output), 0755))
+		data, err := json.MarshalIndent(map[string]interface{}{
+			"schema":                     "native-cometbft-conformance-v1",
+			"upstream_commit":            "49b82838fcca442b2445f76605c101609ed04130",
+			"chain_id":                   nativeChainID,
+			"production_source_modified": false,
+			"execution_scope":            "synchronous in-process execution of unmodified upstream consensus.State; official local application/state fixture; no reactor, sockets, live peers, fault mutation, or conflicting commit",
+			"determinism":                "fixed keys, genesis, event order, and assertions; native wall-clock vote/proposal timestamps and resulting signatures are intentionally not normalized",
+			"scenarios":                  results,
+		}, "", "  ")
+		require.NoError(t, err)
+		require.NoError(t, os.WriteFile(output, append(data, '\n'), 0644))
+	}
+}

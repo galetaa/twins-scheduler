@@ -124,8 +124,7 @@ No file main.aux.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg) [1.1{/var/lib/te
 xmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/dvips/lm/lm-
-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fon
-ts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}]
+ec.enc}]
 TWINS-MAIN-FIRST:2
 (./body.tex
 
@@ -144,89 +143,108 @@ LaTeX Warning: Citation `louroneto2025byzzbench' on page 2 undefined on input l
 ine 9.
 
 (/usr/share/texmf/tex/latex/lm/ts1lmr.fd) [2.2{/usr/share/texmf/fonts/enc/dvips
-/lm/lm-ts1.enc} </workspace/scratch/bd0bdcfbe2ce/twins-scheduler/vendor/lipics/
-lipics-logo-bw.pdf> </workspace/scratch/bd0bdcfbe2ce/twins-scheduler/vendor/lip
-ics/cc-by.pdf>] (/usr/share/texmf/tex/latex/lm/ot1lmss.fd) [3.3]
+/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc} </workspace/
+scratch/bd0bdcfbe2ce/twins-scheduler/vendor/lipics/lipics-logo-bw.pdf> </worksp
+ace/scratch/bd0bdcfbe2ce/twins-scheduler/vendor/lipics/cc-by.pdf>]
+(/usr/share/texmf/tex/latex/lm/ot1lmss.fd) [3.3{/usr/share/texmf/fonts/enc/dvip
+s/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}]
 
 LaTeX Warning: Citation `lynch1995simulations' on page 4 undefined on input lin
-e 132.
+e 138.
 
 [4.4{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}] [5.5]
 
 LaTeX Warning: Citation `streib2014dimension' on page 6 undefined on input line
- 334.
+ 320.
 
-[6.6] [7.7] [8.8 <../figures/repair_frontier_boundary.pdf>]
+[6.6] [7.7]
+
+LaTeX Warning: Reference `fig:frontier' on page 8 undefined on input line 477.
+
+[8.8]
 
 LaTeX Warning: Citation `karp1972reducibility' on page 9 undefined on input lin
-e 538.
+e 525.
+
+[9.9]
+
+LaTeX Warning: Citation `karp1972reducibility' on page 10 undefined on input li
+ne 585.
+
+[10.10]
+
+LaTeX Warning: Citation `mcconnell2011certifying' on page 11 undefined on input
+ line 670.
 
 (/usr/share/texmf/tex/latex/lm/t1lmtt.fd)
 
-LaTeX Warning: Citation `cometbft0393' on page 9 undefined on input line 551.
+LaTeX Warning: Citation `cometbft0393' on page 11 undefined on input line 689.
 
 
-LaTeX Warning: Citation `cometbft0393code' on page 9 undefined on input line 55
-1.
+LaTeX Warning: Citation `cometbft0393code' on page 11 undefined on input line 6
+89.
 
-[9.9] [10.10]
-Underfull \hbox (badness 1917) in paragraph at lines 724--725
-[]|\T1/lmr/m/n/9 (+20) 4,164 checks; no mis-
+[11.11] [12.12] [13.13]
 
-Underfull \hbox (badness 10000) in paragraph at lines 725--726
-[]|\T1/lmr/m/n/9 (+20) Order-to-graph checks
+LaTeX Warning: Reference `tab:validation' on page 14 undefined on input line 90
+0.
 
-Underfull \hbox (badness 2103) in paragraph at lines 726--726
-[]|$\OML/lmm/m/it/9 k \OT1/lmr/m/n/9 (+20) = 1 [] 8$\T1/lmr/m/n/9 (+20) , all f
-orced-repair
-[11.11] [12.12]
+[14.14]
 
-LaTeX Warning: Citation `dragoi2020communication' on page 13 undefined on input
- line 788.
+LaTeX Warning: Citation `dragoi2020communication' on page 15 undefined on input
+ line 964.
 
 
-LaTeX Warning: Citation `bano2021twins' on page 13 undefined on input line 798.
+LaTeX Warning: Citation `bano2021twins' on page 15 undefined on input line 973.
 
 
 
-LaTeX Warning: Citation `winter2023randomized' on page 13 undefined on input li
-ne 803.
+LaTeX Warning: Citation `winter2023randomized' on page 15 undefined on input li
+ne 976.
 
 
-LaTeX Warning: Citation `dragoi2024netrix' on page 13 undefined on input line 8
-03.
+LaTeX Warning: Citation `dragoi2024netrix' on page 15 undefined on input line 9
+76.
 
 
-LaTeX Warning: Citation `louroneto2025byzzbench' on page 13 undefined on input 
-line 803.
+LaTeX Warning: Citation `louroneto2025byzzbench' on page 15 undefined on input 
+line 976.
 
 
-LaTeX Warning: Citation `lynch1995simulations' on page 13 undefined on input li
-ne 808.
+LaTeX Warning: Citation `li2026fest' on page 15 undefined on input line 978.
 
 
-LaTeX Warning: Citation `neele2021labelling' on page 13 undefined on input line
- 811.
+LaTeX Warning: Citation `lynch1995simulations' on page 15 undefined on input li
+ne 985.
 
 
-LaTeX Warning: Citation `streib2014dimension' on page 13 undefined on input lin
-e 814.
+LaTeX Warning: Citation `neele2021labelling' on page 15 undefined on input line
+ 988.
 
 
-LaTeX Warning: Citation `karp1972reducibility' on page 13 undefined on input li
-ne 816.
+LaTeX Warning: Citation `streib2014dimension' on page 15 undefined on input lin
+e 991.
 
-[13.13]) [14.14]
-TWINS-MAIN-END-EXCLUSIVE:15
+
+LaTeX Warning: Citation `karp1972reducibility' on page 15 undefined on input li
+ne 993.
+
+
+LaTeX Warning: Citation `mcconnell2011certifying' on page 15 undefined on input
+ line 1000.
+
+
+Underfull \vbox (badness 3536) has occurred while \output is active [15.15])
+[16.16]
+TWINS-MAIN-END-EXCLUSIVE:17
 No file main.bbl.
 (./appendices.tex
 
-LaTeX Warning: Citation `karp1972reducibility' on page 15 undefined on input li
+LaTeX Warning: Citation `karp1972reducibility' on page 17 undefined on input li
 ne 25.
 
-[15.15]) [16.16]
-(/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.cache/final-reproduction/.wor
-k/lipics.uQooLI/main.aux)
+[17.17] [18.18]) [19.19 <../figures/repair_frontier_boundary.pdf>]
+(/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.work/lipics.remFE6/main.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -255,10 +273,10 @@ lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy9.pfb></usr/share/texmf/f
 onts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
 ic/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
 c/amsfonts/symbols/msbm10.pfb>
-Output written on /workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.cache/final-
-reproduction/.work/lipics.uQooLI/main.pdf (16 pages, 551053 bytes).
-Transcript written on /workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.cache/fi
-nal-reproduction/.work/lipics.uQooLI/main.log.
+Output written on /workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.work/lipics.
+remFE6/main.pdf (19 pages, 570631 bytes).
+Transcript written on /workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.work/lip
+ics.remFE6/main.log.
 This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
 The top-level auxiliary file: main.aux
 The style file: plainurl.bst
@@ -370,8 +388,7 @@ Excluding comment 'comment') Excluding comment 'CCSXML'
 (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/xurl/xurl.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-(/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.cache/final-reproduction/.wor
-k/lipics.uQooLI/main.aux)
+(/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.work/lipics.remFE6/main.aux)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
 (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
@@ -380,10 +397,9 @@ k/lipics.uQooLI/main.aux)
 [Loading MPS to PDF converter (version 2006.09.02).]
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
-(/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.cache/final-reproduction/.wor
-k/lipics.uQooLI/main.out)
-(/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.cache/final-reproduction/.wor
-k/lipics.uQooLI/main.out) (/usr/share/texmf/tex/latex/lm/t1lmss.fd)
+(/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.work/lipics.remFE6/main.out)
+(/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.work/lipics.remFE6/main.out)
+(/usr/share/texmf/tex/latex/lm/t1lmss.fd)
 (/usr/share/texmf/tex/latex/lm/ot1lmr.fd)
 (/usr/share/texmf/tex/latex/lm/omllmm.fd)
 (/usr/share/texmf/tex/latex/lm/omslmsy.fd)
@@ -393,8 +409,7 @@ k/lipics.uQooLI/main.out) (/usr/share/texmf/tex/latex/lm/t1lmss.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg) [1.1{/var/lib/te
 xmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/dvips/lm/lm-
-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fon
-ts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}]
+ec.enc}]
 TWINS-MAIN-FIRST:2
 (./body.tex
 
@@ -413,90 +428,99 @@ LaTeX Warning: Citation `louroneto2025byzzbench' on page 2 undefined on input l
 ine 9.
 
 (/usr/share/texmf/tex/latex/lm/ts1lmr.fd) [2.2{/usr/share/texmf/fonts/enc/dvips
-/lm/lm-ts1.enc} </workspace/scratch/bd0bdcfbe2ce/twins-scheduler/vendor/lipics/
-lipics-logo-bw.pdf> </workspace/scratch/bd0bdcfbe2ce/twins-scheduler/vendor/lip
-ics/cc-by.pdf>] (/usr/share/texmf/tex/latex/lm/ot1lmss.fd) [3.3]
+/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc} </workspace/
+scratch/bd0bdcfbe2ce/twins-scheduler/vendor/lipics/lipics-logo-bw.pdf> </worksp
+ace/scratch/bd0bdcfbe2ce/twins-scheduler/vendor/lipics/cc-by.pdf>]
+(/usr/share/texmf/tex/latex/lm/ot1lmss.fd) [3.3{/usr/share/texmf/fonts/enc/dvip
+s/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}]
 
 LaTeX Warning: Citation `lynch1995simulations' on page 4 undefined on input lin
-e 132.
+e 138.
 
 [4.4{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}] [5.5]
 
 LaTeX Warning: Citation `streib2014dimension' on page 6 undefined on input line
- 334.
+ 320.
 
-[6.6] [7.7] [8.8 <../figures/repair_frontier_boundary.pdf>]
+[6.6] [7.7] [8.8]
 
 LaTeX Warning: Citation `karp1972reducibility' on page 9 undefined on input lin
-e 538.
+e 525.
+
+[9.9]
+
+LaTeX Warning: Citation `karp1972reducibility' on page 10 undefined on input li
+ne 585.
+
+[10.10]
+
+LaTeX Warning: Citation `mcconnell2011certifying' on page 11 undefined on input
+ line 670.
 
 (/usr/share/texmf/tex/latex/lm/t1lmtt.fd)
 
-LaTeX Warning: Citation `cometbft0393' on page 9 undefined on input line 551.
+LaTeX Warning: Citation `cometbft0393' on page 11 undefined on input line 689.
 
 
-LaTeX Warning: Citation `cometbft0393code' on page 9 undefined on input line 55
-1.
+LaTeX Warning: Citation `cometbft0393code' on page 11 undefined on input line 6
+89.
 
-[9.9] [10.10]
-Underfull \hbox (badness 1917) in paragraph at lines 724--725
-[]|\T1/lmr/m/n/9 (+20) 4,164 checks; no mis-
+[11.11] [12.12] [13.13] [14.14]
 
-Underfull \hbox (badness 10000) in paragraph at lines 725--726
-[]|\T1/lmr/m/n/9 (+20) Order-to-graph checks
-
-Underfull \hbox (badness 2103) in paragraph at lines 726--726
-[]|$\OML/lmm/m/it/9 k \OT1/lmr/m/n/9 (+20) = 1 [] 8$\T1/lmr/m/n/9 (+20) , all f
-orced-repair
-[11.11] [12.12]
-
-LaTeX Warning: Citation `dragoi2020communication' on page 13 undefined on input
- line 788.
+LaTeX Warning: Citation `dragoi2020communication' on page 15 undefined on input
+ line 964.
 
 
-LaTeX Warning: Citation `bano2021twins' on page 13 undefined on input line 798.
+LaTeX Warning: Citation `bano2021twins' on page 15 undefined on input line 973.
 
 
 
-LaTeX Warning: Citation `winter2023randomized' on page 13 undefined on input li
-ne 803.
+LaTeX Warning: Citation `winter2023randomized' on page 15 undefined on input li
+ne 976.
 
 
-LaTeX Warning: Citation `dragoi2024netrix' on page 13 undefined on input line 8
-03.
+LaTeX Warning: Citation `dragoi2024netrix' on page 15 undefined on input line 9
+76.
 
 
-LaTeX Warning: Citation `louroneto2025byzzbench' on page 13 undefined on input 
-line 803.
+LaTeX Warning: Citation `louroneto2025byzzbench' on page 15 undefined on input 
+line 976.
 
 
-LaTeX Warning: Citation `lynch1995simulations' on page 13 undefined on input li
-ne 808.
+LaTeX Warning: Citation `li2026fest' on page 15 undefined on input line 978.
 
 
-LaTeX Warning: Citation `neele2021labelling' on page 13 undefined on input line
- 811.
+LaTeX Warning: Citation `lynch1995simulations' on page 15 undefined on input li
+ne 985.
 
 
-LaTeX Warning: Citation `streib2014dimension' on page 13 undefined on input lin
-e 814.
+LaTeX Warning: Citation `neele2021labelling' on page 15 undefined on input line
+ 988.
 
 
-LaTeX Warning: Citation `karp1972reducibility' on page 13 undefined on input li
-ne 816.
+LaTeX Warning: Citation `streib2014dimension' on page 15 undefined on input lin
+e 991.
 
-[13.13]) [14.14]
-TWINS-MAIN-END-EXCLUSIVE:15
 
-(/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.cache/final-reproduction/.wor
-k/lipics.uQooLI/main.bbl) [15.15] (./appendices.tex
+LaTeX Warning: Citation `karp1972reducibility' on page 15 undefined on input li
+ne 993.
 
-LaTeX Warning: Citation `karp1972reducibility' on page 16 undefined on input li
+
+LaTeX Warning: Citation `mcconnell2011certifying' on page 15 undefined on input
+ line 1000.
+
+
+Underfull \vbox (badness 3536) has occurred while \output is active [15.15])
+[16.16]
+TWINS-MAIN-END-EXCLUSIVE:17
+(/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.work/lipics.remFE6/main.bbl)
+[17.17] (./appendices.tex
+
+LaTeX Warning: Citation `karp1972reducibility' on page 18 undefined on input li
 ne 25.
 
-[16.16]) [17.17]
-(/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.cache/final-reproduction/.wor
-k/lipics.uQooLI/main.aux)
+[18.18] [19.19]) [20.20 <../figures/repair_frontier_boundary.pdf>]
+(/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.work/lipics.remFE6/main.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -521,10 +545,10 @@ onts/type1/public/lm/lmsy9.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.p
 fb></usr/share/texmf/fonts/type1/public/lm/lmtt9.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on /workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.cache/final-
-reproduction/.work/lipics.uQooLI/main.pdf (17 pages, 608160 bytes).
-Transcript written on /workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.cache/fi
-nal-reproduction/.work/lipics.uQooLI/main.log.
+Output written on /workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.work/lipics.
+remFE6/main.pdf (20 pages, 632219 bytes).
+Transcript written on /workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.work/lip
+ics.remFE6/main.log.
 This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
 entering extended mode
@@ -632,8 +656,7 @@ Excluding comment 'comment') Excluding comment 'CCSXML'
 (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/xurl/xurl.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-(/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.cache/final-reproduction/.wor
-k/lipics.uQooLI/main.aux)
+(/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.work/lipics.remFE6/main.aux)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
 (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
@@ -642,10 +665,9 @@ k/lipics.uQooLI/main.aux)
 [Loading MPS to PDF converter (version 2006.09.02).]
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
-(/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.cache/final-reproduction/.wor
-k/lipics.uQooLI/main.out)
-(/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.cache/final-reproduction/.wor
-k/lipics.uQooLI/main.out) (/usr/share/texmf/tex/latex/lm/t1lmss.fd)
+(/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.work/lipics.remFE6/main.out)
+(/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.work/lipics.remFE6/main.out)
+(/usr/share/texmf/tex/latex/lm/t1lmss.fd)
 (/usr/share/texmf/tex/latex/lm/ot1lmr.fd)
 (/usr/share/texmf/tex/latex/lm/omllmm.fd)
 (/usr/share/texmf/tex/latex/lm/omslmsy.fd)
@@ -655,32 +677,25 @@ k/lipics.uQooLI/main.out) (/usr/share/texmf/tex/latex/lm/t1lmss.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg) [1.1{/var/lib/te
 xmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/dvips/lm/lm-
-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fon
-ts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}]
+ec.enc}]
 TWINS-MAIN-FIRST:2
 (./body.tex (/usr/share/texmf/tex/latex/lm/ts1lmr.fd) [2.2{/usr/share/texmf/fon
-ts/enc/dvips/lm/lm-ts1.enc} </workspace/scratch/bd0bdcfbe2ce/twins-scheduler/ve
-ndor/lipics/lipics-logo-bw.pdf> </workspace/scratch/bd0bdcfbe2ce/twins-schedule
-r/vendor/lipics/cc-by.pdf>] (/usr/share/texmf/tex/latex/lm/ot1lmss.fd) [3.3]
-[4.4{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}] [5.5] [6.6] [7.7]
-[8.8 <../figures/repair_frontier_boundary.pdf>]
-(/usr/share/texmf/tex/latex/lm/t1lmtt.fd) [9.9] [10.10]
-Underfull \hbox (badness 1917) in paragraph at lines 724--725
-[]|\T1/lmr/m/n/9 (+20) 4,164 checks; no mis-
-
-Underfull \hbox (badness 10000) in paragraph at lines 725--726
-[]|\T1/lmr/m/n/9 (+20) Order-to-graph checks
-
-Underfull \hbox (badness 2103) in paragraph at lines 726--726
-[]|$\OML/lmm/m/it/9 k \OT1/lmr/m/n/9 (+20) = 1 [] 8$\T1/lmr/m/n/9 (+20) , all f
-orced-repair
-[11.11] [12.12] [13.13]) [14.14]
-TWINS-MAIN-END-EXCLUSIVE:15
-
-(/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.cache/final-reproduction/.wor
-k/lipics.uQooLI/main.bbl) [15.15] (./appendices.tex [16.16]) [17.17]
-(/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.cache/final-reproduction/.wor
-k/lipics.uQooLI/main.aux) )
+ts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc} 
+</workspace/scratch/bd0bdcfbe2ce/twins-scheduler/vendor/lipics/lipics-logo-bw.p
+df> </workspace/scratch/bd0bdcfbe2ce/twins-scheduler/vendor/lipics/cc-by.pdf>]
+(/usr/share/texmf/tex/latex/lm/ot1lmss.fd) [3.3{/usr/share/texmf/fonts/enc/dvip
+s/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}] [4.4{/usr/s
+hare/texmf/fonts/enc/dvips/lm/lm-mathex.enc}] [5.5] [6.6] [7.7] [8.8] [9.9]
+[10.10] (/usr/share/texmf/tex/latex/lm/t1lmtt.fd) [11.11] [12.12] [13.13]
+[14.14]
+Underfull \vbox (badness 3536) has occurred while \output is active [15.15])
+[16.16]
+TWINS-MAIN-END-EXCLUSIVE:17
+(/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.work/lipics.remFE6/main.bbl)
+[17.17] (./appendices.tex [18.18] [19.19]) [20.20 <../figures/repair_frontier_b
+oundary.pdf>]
+(/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.work/lipics.remFE6/main.aux) 
+)
 (see the transcript file for additional information)</usr/share/texmf/fonts/typ
 e1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></us
 r/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/pu
@@ -698,7 +713,7 @@ onts/type1/public/lm/lmsy9.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.p
 fb></usr/share/texmf/fonts/type1/public/lm/lmtt9.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on /workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.cache/final-
-reproduction/.work/lipics.uQooLI/main.pdf (17 pages, 609267 bytes).
-Transcript written on /workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.cache/fi
-nal-reproduction/.work/lipics.uQooLI/main.log.
+Output written on /workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.work/lipics.
+remFE6/main.pdf (20 pages, 633189 bytes).
+Transcript written on /workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.work/lip
+ics.remFE6/main.log.

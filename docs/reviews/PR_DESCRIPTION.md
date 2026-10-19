@@ -1,59 +1,54 @@
-# Strengthen phase-erasure paper with repair frontiers and a guarded BFT trace
+# Certifying minimum-cost phase refinement
 
 ## Why this revision is needed
 
-The original single-pivot statement left positive persistence implicit and
-compared repair with the second certificate rather than the irreversible
-signature it needs. The original bounded classifier also did not provide a
-complete local-message trace or characterize weaker delivery-order domains.
+A reachability counterexample and a unit-weight phase budget do not tell an
+adapter designer which feasible keys to expose at minimum cost. The first
+revision also left its central graph/order argument outside the mechanized
+proof and supported protocol assumptions with a guarded local model.
 
-## What changes
+## Resulting behavior
 
-- State the behavioral, observation and scheduler contracts separately and
-  prove the corrected one-pivot theorem over arbitrary behavior functions.
-- Derive the exact multi-pivot repair-frontier criterion for finite opportunity
-  orders, with classical alternating-cycle attribution, a weighted extension,
-  crossed deadlines and the optimal phase-splitting budget for unit weights.
-- Add a four-validator Tendermint-style message executor, with one omitted
-  P/round-0 lock assignment, explicit local quorums, nil votes and guarded
-  timeouts. The canonical witness and late-precommit controls disagree at the
-  unmutated A/C observers. A separate relay control has the declared FIFO scope.
-- Pin the source bridge to the verified v0.39.3 commit, preserving the existing
-  v0.40.0 fixture as separately labelled history.
-- Rewrite the manuscript, move replay material to an appendix, synchronize both
-  Markdown/LaTeX pairs, and update the claim/evidence ledgers and reviewer reply.
-- Integrate all new checks into the reproduction command, bind the successful
-  Lean receipt to source hashes, pin the Z3 wheel and normalize generated CSV.
+The revision adds weighted cost synthesis with allowed/required keys, a complete
+legal model witness, and independently checked optimality or infeasibility
+certificates. The exact four-role theorem connects admission choices to weighted
+quorum support. A small counterexample proves non-submodularity and an unbounded
+ratio for one precisely specified immediate-benefit heuristic.
 
-## Validation
+Graph reversal, finite event-order realization and the Bellman certificate
+principle now have Lean proofs. Separate native conformance executes unchanged
+CometBFT v0.39.3 under four ordinary-operation scenarios with actual Ed25519
+votes, native timeout requests, normal commits and source-integrity checks.
 
-`./reproduce_revision.sh` passes all mandatory stages, including 35 Python
-tests, all active Go packages, the retained 384-row cross-language classifier,
-eight positive UNSAT and four damaged SAT checks, the 12-job Lean build,
-20-declaration axiom audit, independent leanchecker and source hygiene.
+The article is reorganized around this constructive result. Existing timing,
+frontier, concrete-model and replay material remains with its exact scope;
+the detailed trace and the unit-budget illustration are in appendices.
 
-The new event oracle checks all 530 directed repair graphs through three
-pivots, 50,363 legal orders and 1,357,209 admission/split executions. It compares
-13,074 boundary cases and 13,074 separate budget cases without mismatches.
-General partial-order, common-frontier and weighted sweeps have separately
-declared scopes. All 12 constructed protocol cases pass their legality audits.
-Eighteen deterministic result files match their references byte for byte.
+## Evidence
 
-The LIPIcs PDF has 13 main-text and 17 physical pages. It passes source-sync,
-page-budget, overflow, citation, bibliography and embedded-font checks.
+- 47 Python tests and retained Go/384-row cross-language checks pass.
+- Two raw-event oracle suites give 35,223 and 3,253 weighted optimum/certificate
+  comparisons, with zero mismatches; 103,460 prescribed-split boundaries pass.
+- A 15-case structural study produces 13 saved, independently checked optima,
+  up to 48 pivots. Two configured SCC cutoffs return unknown.
+- Lean 4.33.0 completes 14 jobs, audits 27 declarations, and passes independent
+  kernel rechecking; source hygiene covers 22 Lean files. SMT controls give
+  eight expected UNSAT and four expected SAT results.
+- Native conformance passes 14 checks on 32 signed votes and 132 events.
+  Independent signature/metadata audit, three repetitions and a race-detector
+  execution pass.
+- The official LIPIcs build has 15 main-text and 20 physical pages, with no
+  overfull boxes or unresolved references/citations and embedded fonts.
 
-## Assurance and submission limits
+`./reproduce_revision.sh` integrates all research stages, including signature
+and repeatability checks, and fails on a mandatory error. Synthesis outputs and
+the native semantic summary are deterministic references; raw native signatures
+and receipts retain their actual timestamps and are revalidated per run.
 
-The complete graph correspondence and optimal graph capacity are paper proofs
-with finite validation. The new Lean module checks the behavioral contract,
-capacity arithmetic and persistent-output components; it does not mechanize
-the complete graph proof or establish production CometBFT refinement.
+## Scope for review
 
-FIFO compatibility covers admitted vote envelopes in the stated relay
-skeleton. The direct late-precommit control explicitly diagnoses its ordering
-inversion. No claim of a production vulnerability, bug prevalence or universal
-testing-framework incompleteness is made.
-
-Authors still need to confirm student-paper eligibility and choose an
-appropriate anonymous artifact URL for submission. This is a research revision
-prepared for review, without requesting reviewers or merging changes.
+The weighted four-role correspondence, Python checker implementation and full
+client refinement are not mechanized. The solver is exponential in the largest
+remaining SCC and pseudo-polynomial in quotas. Costs are synthetic inputs.
+Native conformance does not execute the model's mutation or demonstrate native
+disagreement. The claims concern the declared finite behavioral/order contract.

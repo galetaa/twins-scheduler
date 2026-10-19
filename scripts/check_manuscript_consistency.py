@@ -23,7 +23,7 @@ for stem, target in (("manuscript", "body"), ("appendices", "appendices")):
 
 main = documents["manuscript"]
 theorems = re.findall(r"\*\*Theorem ([0-9]+)", main)
-if theorems != ["1", "2", "3"]:
+if theorems != ["1", "2", "3", "4", "5"]:
     problems.append(f"main theorem sequence={theorems}")
 required = {
     "behavioral contract": "Explicit persistence",
@@ -33,7 +33,12 @@ required = {
     "weighted boundary": r"w(I\setminus A)+w(J)\ge d_1",
     "phase budget": r"t_* = \max(0,d_0+d_1-k-\alpha(H))",
     "source pin": "49b82838fcca442b2445f76605c101609ed04130",
-    "scope of Lean": "not** claimed to be fully mechanized",
+    "scope of Lean": "completeness of the Python checker",
+    "distinct event kinds": r"R_i\ne V_j",
+    "cost synthesis": "weighted refinement characterization",
+    "independent optimality": "certificate soundness",
+    "resource scope": "resource-limit result",
+    "native scope": "not a native reproduction of the mutant disagreement",
     "transport scope": "FIFO-compatible admitted vote-envelope order",
 }
 for name, phrase in required.items():

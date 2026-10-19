@@ -1,0 +1,293 @@
+raw oracle: all directed graphs on 1 pivots checked
+raw oracle: all directed graphs on 2 pivots checked
+raw oracle: all directed graphs on 3 pivots checked
+benchmark sparse_dag_k12: optimum 0, certificate PASS
+benchmark sparse_dag_k48: optimum 0, certificate PASS
+benchmark crossed_pairs_k12: optimum 16, certificate PASS
+benchmark crossed_pairs_k48: optimum 75, certificate PASS
+benchmark bow_tie_blocks_k12: optimum 8, certificate PASS
+benchmark bow_tie_blocks_k30: optimum 20, certificate PASS
+benchmark weighted_common_deadline_k24: optimum 18, certificate PASS
+benchmark weighted_common_deadline_k48: optimum 35, certificate PASS
+benchmark dense_scc_k8: optimum 13, certificate PASS
+benchmark dense_scc_k10: optimum 20, certificate PASS
+benchmark single_cycle_k10: optimum 1, certificate PASS
+benchmark weighted_quota_cycles_k24: optimum 0, certificate PASS
+benchmark weighted_quota_cycles_tight_k24: optimum 5, certificate PASS
+{
+  "benchmarks": {
+    "cases": 15,
+    "configured_max_component_size": 10,
+    "interpretation": "Deterministic synthetic opportunity domains; resource cutoffs are unknown, not infeasible.",
+    "largest_solved_k": 48,
+    "optimal_and_independently_checked": 13,
+    "resource_limited_unknown": 2
+  },
+  "certificate": "Concrete replay plus SCC Bellman lower-bound potentials; separate checker never invokes global optimizer.",
+  "contract": "Initially-ready independent pivots; positive integer weights; nonnegative integer split costs; immutable votes; full opportunity order retained.",
+  "fixtures": {
+    "bow_tie_cost": {
+      "minimum_cost": 2,
+      "order": [
+        [
+          "R",
+          1
+        ],
+        [
+          "R",
+          2
+        ],
+        [
+          "V",
+          0
+        ],
+        [
+          "R",
+          0
+        ],
+        [
+          "V",
+          1
+        ],
+        [
+          "V",
+          2
+        ]
+      ],
+      "split": [
+        1,
+        2
+      ],
+      "verification": {
+        "checked_local_assignments": 57,
+        "kind": "scc-bellman-v1",
+        "replayed_events": 6,
+        "status": "PASS",
+        "verified_inequalities": 160
+      }
+    },
+    "crossed_deadlines": {
+      "minimum_cost": 1,
+      "order": [
+        [
+          "R",
+          1
+        ],
+        [
+          "V",
+          0
+        ],
+        [
+          "R",
+          0
+        ],
+        [
+          "V",
+          1
+        ]
+      ],
+      "split": [
+        1
+      ],
+      "verification": {
+        "checked_local_assignments": 15,
+        "kind": "scc-bellman-v1",
+        "replayed_events": 4,
+        "status": "PASS",
+        "verified_inequalities": 54
+      }
+    },
+    "equal_cardinality_different_effect": {
+      "deficits": [
+        3,
+        3
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "effective_capacity": 3,
+      "effective_split": [
+        1
+      ],
+      "ineffective_capacity": 2,
+      "ineffective_split": [
+        2
+      ],
+      "k": 3
+    },
+    "non_submodular_capacity": {
+      "both_leaves": 3,
+      "empty": 2,
+      "leaf1": 2,
+      "leaf2": 2
+    },
+    "one_pivot_forced_repair": {
+      "minimum_cost": 1,
+      "order": [
+        [
+          "R",
+          0
+        ],
+        [
+          "V",
+          0
+        ]
+      ],
+      "split": [
+        0
+      ],
+      "verification": {
+        "checked_local_assignments": 3,
+        "kind": "scc-bellman-v1",
+        "replayed_events": 2,
+        "status": "PASS",
+        "verified_inequalities": 12
+      }
+    },
+    "one_pivot_post_signature": {
+      "minimum_cost": 0,
+      "order": [
+        [
+          "V",
+          0
+        ],
+        [
+          "R",
+          0
+        ]
+      ],
+      "split": [],
+      "verification": {
+        "checked_local_assignments": 4,
+        "kind": "scc-bellman-v1",
+        "replayed_events": 2,
+        "status": "PASS",
+        "verified_inequalities": 12
+      }
+    },
+    "specified_myopic_greedy_trap": [
+      {
+        "center_cost": 3,
+        "greedy": {
+          "cost": 3,
+          "split": [
+            0
+          ],
+          "status": "FEASIBLE"
+        },
+        "optimal_cost": 2,
+        "optimal_split": [
+          1,
+          2
+        ],
+        "ratio": "3/2"
+      },
+      {
+        "center_cost": 10,
+        "greedy": {
+          "cost": 10,
+          "split": [
+            0
+          ],
+          "status": "FEASIBLE"
+        },
+        "optimal_cost": 2,
+        "optimal_split": [
+          1,
+          2
+        ],
+        "ratio": "5"
+      },
+      {
+        "center_cost": 100,
+        "greedy": {
+          "cost": 100,
+          "split": [
+            0
+          ],
+          "status": "FEASIBLE"
+        },
+        "optimal_cost": 2,
+        "optimal_split": [
+          1,
+          2
+        ],
+        "ratio": "50"
+      },
+      {
+        "center_cost": 1000,
+        "greedy": {
+          "cost": 1000,
+          "split": [
+            0
+          ],
+          "status": "FEASIBLE"
+        },
+        "optimal_cost": 2,
+        "optimal_split": [
+          1,
+          2
+        ],
+        "ratio": "500"
+      }
+    ],
+    "weighted_granularity": {
+      "minimum_cost": 1,
+      "order": [
+        [
+          "R",
+          0
+        ],
+        [
+          "R",
+          1
+        ],
+        [
+          "V",
+          0
+        ],
+        [
+          "V",
+          1
+        ]
+      ],
+      "split": [
+        1
+      ],
+      "verification": {
+        "checked_local_assignments": 6,
+        "kind": "scc-bellman-v1",
+        "replayed_events": 4,
+        "status": "PASS",
+        "verified_inequalities": 48
+      }
+    }
+  },
+  "mismatch_count": 0,
+  "oracle": {
+    "arbitrary_linear_extensions": 960,
+    "arbitrary_partial_orders": 219,
+    "arbitrary_raw_executions": 8640,
+    "arbitrary_weighted_optima": 10731,
+    "directed_graphs": 530,
+    "graph_linear_extensions": 50363,
+    "graph_raw_executions": 1357209,
+    "independently_verified_certificates": 35223,
+    "mismatches": 0,
+    "prescribed_split_boundary_checks": 103460,
+    "prescribed_split_checks_sha256": "66b29fea5d1c553e5ef28a8f9ebbae1a70643a5fb416d13b8c79c0db5a6ed6c9",
+    "restricted_key_optima": 128,
+    "weighted_all_quota_optima": 21804,
+    "weighted_three_pivot_optima": 2560
+  },
+  "schema": "phase-refinement-study/v1",
+  "scope": "The corpus checks a finite certificate schema. It is not a production-client test or a prevalence estimate.",
+  "status": "PASS"
+}

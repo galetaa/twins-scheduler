@@ -7,6 +7,9 @@ requires-python = ">=3.11,<3.14"
 license = { file = "LICENSE" }
 dependencies = []
 
+[project.optional-dependencies]
+native-audit = ["cryptography==50.0.2"]
+
 [dependency-groups]
 dev = [
     "pytest==8.3.5",

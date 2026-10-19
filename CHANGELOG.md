@@ -1,6 +1,38 @@
 # Changelog
 
-## Unreleased — reviewer revision, 2026-10-19
+## Unreleased — certifying synthesis revision, 2026-10-19
+
+- Reframed the manuscript around minimum-cost phase refinement, with an exact
+  weighted four-role characterization, unequal nonnegative costs, and
+  allowed/required keys. The earlier prescribed-set capacity formula is retained
+  as a starting lemma, not re-labelled as a new discovery.
+- Added component-wise synthesis, quota dynamic programming, complete legal
+  model witnesses and independently checked optimality/infeasibility certificates.
+  Explicit resource limits return unknown. Verification and optimization retain
+  their exponential local and pseudo-polynomial quota dependence.
+- Proved non-submodularity and an unbounded approximation ratio for the specified
+  immediate-gain-per-cost heuristic; repeated two-cycle motifs give optimum 20
+  versus heuristic cost 1000.
+- Added two independent raw-event oracle suites: 35,223 and 3,253 optimum and
+  certificate comparisons, with zero mismatches; 103,460 prescribed-set checks.
+  Saved all 13 solved certificates in a 15-case structural study up to 48 pivots.
+- Mechanized the full graph/event-order equivalence, finite schedule construction
+  and cover-edge bridge, plus the Bellman lower-bound and infeasibility principle.
+  The integrated Lean build passes 14 jobs, a 27-declaration axiom audit and
+  independent kernel rechecking; source hygiene covers 22 Lean files.
+- Added unchanged native CometBFT conformance: four scenarios, fourteen checks,
+  thirty-two native Ed25519 votes, actual quorum/timeouts and normal commits.
+  An independent signature/metadata audit, three repeated runs and one
+  race-detector run pass. This does not reproduce the local model's mutation.
+- Added twelve synthesis tests, bringing the active Python suite to 47 passing
+  tests; integrated all new evidence stages into one-command reproduction and
+  a dedicated GitHub Actions workflow. Native raw timestamps are retained and
+  audited, while deterministic summaries/certificates are byte-compared.
+- Updated the manuscript, evidence ledger, formal maps, reviewer response and
+  Russian research report; added current primary-source positioning against
+  adaptive distributed-system testing and established certifying algorithms.
+
+## First reviewer revision — 2026-10-19 (8007cef)
 
 - Corrected the one-pivot separation theorem with explicit persistence,
   first-vote necessity, observation coverage, and repair before the second

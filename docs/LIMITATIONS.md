@@ -2,10 +2,13 @@
 
 ## What the mathematical result covers
 
-The repair-frontier theorem quantifies over arbitrary finite instances of the
-declared independent-pivot certificate schema. Its proof is not restricted to
-the small instances enumerated by the artifact. Its application to a protocol
-does require discharging the schema's behavioral and scheduling assumptions.
+The repair-frontier theorem and weighted refinement characterization quantify
+over arbitrary finite instances of the declared independent-pivot certificate
+schema. Their proofs are not restricted to the small instances enumerated by
+the artifact. Applying them to a protocol requires discharging the schema's
+behavioral and scheduling assumptions. The certifying synthesis procedure takes
+this schema as input; it does not extract a faithful abstraction from arbitrary
+client code.
 
 In particular, enabling admission must characterize first-family participation;
 pivots must be initially ready for their second signatures; and, whenever the
@@ -47,16 +50,63 @@ $$
 
 requires **unit weights**, fine feasibility, and optimal choice of independent
 split keys. It does not say that every set of $t_*$ arbitrary message exceptions
-works. Weighted pivots require the stated attainable-subset criterion. The
-common-deadline interval cannot be replaced by a continuous total-capacity
-inequality, and the unit-weight budget cannot be generalized by substituting
-total weight for $k$. Membership and weights are fixed; dynamic validators,
-staking behavior, and changing quorum systems are outside this model.
+works. A prescribed set has capacity $|S|+\alpha(H[I\setminus S])$; its size
+alone does not determine its effectiveness. Weighted pivots require the exact
+four-role support condition, or the attainable-subset criterion in the common
+deadline special case. The common-deadline interval cannot be replaced by a
+continuous total-capacity inequality, and the unit-weight budget cannot be
+generalized by substituting total weight for $k$. Membership and weights are
+fixed; dynamic validators, staking behavior, and changing quorum systems are
+outside this model.
+
+## Synthesis, certificates, and resource bounds
+
+The optimizer supports positive integer vote weights, nonnegative integer
+split costs, and declared allowed/required keys. These are inputs to a finite
+design problem. The synthetic control costs are not measured latency, network
+overhead, engineering effort, or a framework's empirical bug-finding cost.
+The returned order is a legal execution of the supplied opportunity schema;
+implementing it in an adapter still requires the behavioral correspondence and
+schedule realizability obligations above.
+
+Each finite optimum combines a replayed feasible execution with independently
+checked Bellman lower-bound potentials. A feasible execution alone proves only
+an upper bound. The separate checker reconstructs reachability, components and
+all legal local assignments; checking only the optimizer's chosen assignments
+would not establish minimality. The certificate may also prove infeasibility
+using an infinite initial potential. The Python parser, reconstruction,
+enumeration, execution checker, and their connection to the formal state graph
+remain executable obligations rather than mechanically verified source code.
+
+The reference algorithm enumerates assignments within strongly connected
+components and uses a quota-indexed potential table. It is exponential in the
+largest component after self-loop exclusion, and pseudo-polynomial in integer
+quota values. There is no polynomial-time claim, no fixed-parameter tractability
+claim in component size alone for binary-encoded weights, and no guarantee of
+polynomial-size certificates. Independent verification need not be faster than
+optimization on every instance.
+
+The default component-size limit is 10 and the potential-table limit is two
+million cells. An optional wall-clock budget is available for standalone runs.
+Exhaustion is `RESOURCE_LIMIT` (unknown), not infeasibility; a standalone CLI
+request exits with code 2 in that case. The deterministic scale study contains
+15 cases: 13 certified optima and 2 expected unknowns caused by the explicit
+component-size cutoff, not by measured timeouts. Solved structured cases reach
+48 pivots; this does not establish that arbitrary 48-pivot problems are easy.
+A 24-vertex single cycle is deliberately retained as unknown for this generic
+implementation even though a specialized cycle algorithm could solve it.
+
+The non-submodularity example and unbounded approximation ratio concern the
+specified maximum-positive-immediate-gain-per-cost rule. They are not a lower
+bound for every heuristic or for established feedback-vertex-set solvers. The
+single-run timing record is separate from deterministic results and supports
+no statistical performance or speedup claim.
 
 ## Concrete protocol and source correspondence
 
-The new execution is a bounded local model derived from selected CometBFT
-v0.39.3 rules. It uses four equal-weight validators, one height, two rounds, and
+The guarded disagreement execution is a bounded local model derived from
+selected CometBFT v0.39.3 rules. It uses four equal-weight validators, one height,
+two rounds, and
 the declared proposer prefix. Only the pivot's round-0 lock assignment is
 omitted; its valid-block state and round-1 lock update are retained. The
 conflicting designated observers are unmutated. The baseline and mutant are
@@ -82,26 +132,64 @@ the original fixed trace or a full transport-stack execution.
 The verified v0.39.3 snapshot preserves exact source bytes, Git blob identifiers,
 and SHA-256 manifests. The older v0.40.0 snapshot remains separately identified.
 These checks establish source identity; source matching alone does not establish
-execution equivalence. A production-level conformance claim would require an
-adapter that runs the pinned client, realizes the stated admission and delivery
-orders, and checks its emitted votes and observer decisions against the model.
-No deployed-client vulnerability or such adapter result is claimed here.
+execution equivalence. Reproducing the model's disagreement in a production
+adapter would require running the pinned client under the same declared program
+variant, realizing the stated admission and delivery orders, and checking its
+emitted votes and observer decisions against the model. No deployed-client
+vulnerability or such adapter result is claimed here.
+
+## Targeted execution of unchanged implementation code
+
+A separate conformance bridge executes the unmodified CometBFT v0.39.3 consensus
+package with Go 1.25.0. Four ordinary-operation scenarios instantiate four
+unchanged native states each. Actual native queues supply all proposals, block
+parts and votes; timeout dispatch consumes requests actually made by the native
+implementation. The real proposer-priority, vote validation, locking, block
+validation, block-store and local ABCI application code execute. The 14 checks
+cover 32 native Ed25519 votes and 132 recorded events. Three additional normal
+runs preserve the semantic summaries, and one race-detector run passes.
+
+Dispatch is synchronous and in process. The reactor, sockets, WAL receive loop,
+production timer goroutines, and persistent private-validator signer are not
+exercised. The upstream `MockPV` uses deterministic test keys; the native block
+store and application use in-memory fixtures, so a store write is not evidence
+of disk durability or crash recovery. Both deciding observers in the normal
+commit scenario store the same block. These scenarios neither inject the model's
+mutation nor reproduce its disagreement.
+
+The independent Python/OpenSSL audit verifies all 32 signatures and parses the
+canonical protobuf vote metadata, including nanosecond timestamps. It is an
+independent cryptographic and evidence check, not an independent implementation
+of consensus. Output immutability is directly observed across normal height
+advancement; the model's stronger repair-timing argument retains its separate
+proof and bounded-execution evidence. Four finite native scenarios validate
+the exercised implementation obligations, not all schedules or a full refinement.
 
 ## Proof and experiment boundaries
 
 Lean 4.33.0 checks the corrected one-pivot theorem over an arbitrary behavioral
 contract, the capacity and split-budget arithmetic under their hypotheses, the
-weighted interval, and a small persistent-output machine. The integrated build,
-20-declaration axiom audit, source-hygiene check, and `leanchecker` rechecking
-pass. These successes do not discharge the assumptions for an arbitrary
-protocol instance.
+weighted interval, and a small persistent-output machine. The expanded integrated
+build has 14 jobs, its axiom audit covers 27 named declarations, the hygiene
+check covers 22 source files, and `leanchecker` rechecking passes. Verification
+receipts are bound to the current Lean source hashes. These successes do not
+discharge the assumptions for an arbitrary protocol instance.
 
-Graph reversal, graph-to-execution correspondence, attainment of optimal graph
-capacity, and the explicit-schema NP-completeness reduction are paper proofs.
-The graph theorem and capacity construction also have finite executable
-cross-checks. They are not fully mechanized by the arithmetic Lean module. The
-concrete transition model has neither a Lean refinement proof nor an independent
-Go implementation.
+`GraphRealization.lean` fully proves the graph-reversal equivalence, finite
+acyclicity versus existence of an injective event schedule, and the graph-to-order
+bridge, including input supplied as cover edges. It derives the graph from
+transitive event precedence and does not assume a capacity formula or a
+compatible schedule. `CertificateOptimality.lean` proves the generic Bellman
+lower-bound, matching-witness optimality, and infinite-potential infeasibility
+principles for arbitrary nonnegative-cost paths.
+
+The weighted four-role correspondence, maximum-acyclic-set optimization and
+optimal graph-capacity attainment, Python SCC decomposition and exhaustive
+enumeration, and the explicit-schema NP-completeness reduction remain paper
+proofs or executable obligations. The concrete transition model has neither a
+Lean refinement proof nor an independent Go implementation. The new native Go
+conformance checks exercise unchanged implementation rules; they do not fill
+those formal refinement gaps.
 
 The general graph and four-event-order suites exhaust the legal orders of their
 stated finite instances. The common-deadline sweep uses support-equivalent
@@ -109,6 +197,16 @@ barrier representatives; the weighted sweep uses an extremal late order and
 all admissions. These latter suites do not enumerate every event permutation.
 The millions of policy executions count executions in one declared schema,
 not independent protocols, bug prevalence, or probabilities of discovery.
+
+The synthesis study compares and independently verifies 35,223 optimization
+certificates over its stated graph, weighting, quota, restricted-key and
+four-event-order subcorpora. A separately written oracle checks another 3,253
+problems from 48 seeded arbitrary three-pivot event DAGs. It exhausts the orders,
+admissible modes and quota pairs for those 48 inputs, not every three-pivot DAG,
+weighting or cost vector. The synthesis graph corpus overlaps the older frontier
+corpus; matching execution totals provide a cross-check and are not additional
+independent protocol samples. The 15-case scale corpus is synthetic and reported
+separately, including its two resource-limited cases.
 
 The retained 384 Python/Go observations compare the old Boolean terminal
 classifier. The historical declaration named
@@ -121,7 +219,8 @@ Replay erasure still requires relevant-state and output congruence, stable
 processed keys, projected duplicate stutter, and silent duplicate output. The
 `X,X,Y` controls show why immediate silence alone is insufficient. The classical
 reversible-set criterion, graph reductions, simulation arguments, and the
-preexisting Twins preferred-round repair mechanism are credited in the
+previously reported certificate-driven round advancement in Twins' preferred-round
+mutation experiment are credited in the
 [literature audit](research/LITERATURE_AND_PROVENANCE_AUDIT.md).
 
 ## Reproduction and scientific scope
@@ -130,16 +229,26 @@ The results concern finite agreement observations. They do not establish
 liveness, unbounded partial synchrony, timing performance, exploitability,
 prevalence, discovery probabilities, or completeness of a production tester.
 
-Empty caches require external dependency downloads. Lean, the TeX overlay,
-uv-managed Python packages, and source fixtures have their stated pins;
+Empty caches require external dependency downloads. Lean, the native Go 1.25.0
+toolchain, the TeX overlay, uv-managed Python packages (including the
+`native-audit` extra), and source fixtures have their stated pins;
 Pandoc, the host TeX engine, and other executed tools are recorded in build
 logs. The container base image is pinned, while its package installation also
 depends on the configured Debian package repositories.
 
-Deterministic data results are compared byte-for-byte. The PDF is validated by
+All synthesis outputs, including compressed certificates with deterministic
+gzip headers, and the other listed deterministic results are compared
+byte-for-byte. Native execution retains wall-clock timestamps. Only its semantic
+`native_summary.json` is byte-compared; native raw votes, signatures, provenance,
+signature-audit output, repeatability receipts and execution logs are regenerated
+and checked rather than required to match old bytes. The full reproduction also
+reruns the three normal repetitions and one race-detector execution.
+
+The PDF is validated by
 successful build, source synchronization, page-budget checks, diagnostic checks,
 and embedded fonts. Different TeX engines may produce different PDF bytes;
 cross-engine SHA-256 identity is not a promised reproducibility property.
-The current checked document has 13 main-text pages within the enforced
-15-page limit. See [expected outputs](reproduction/EXPECTED_OUTPUTS.md) and the
+The enforced main-text limit is 15 pages; actual page counts for a build are
+recorded in `build_logs/lipics_page_budget.log`. See
+[expected outputs](reproduction/EXPECTED_OUTPUTS.md) and the
 [claim-to-evidence ledger](CLAIM_EVIDENCE_LEDGER.md) for the exact gates.

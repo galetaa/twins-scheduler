@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "upstream_commit": "49b82838fcca442b2445f76605c101609ed04130",
+  "independently_verified_ed25519_signatures": 32,
+  "canonical_metadata_checks_per_vote": [
+    "type",
+    "height",
+    "round",
+    "block_hash",
+    "chain_id",
+    "timestamp_nanoseconds",
+    "validator_address"
+  ],
+  "conflicting_same_slot_records": 0,
+  "scenario_vote_counts": {
+    "native_commit_missing_block_and_vote_immutability": 7,
+    "native_mixed_quorum_timeout_guards": 7,
+    "native_lock_persistence_and_locked_prevote": 9,
+    "native_valid_block_proposal_reuse": 9
+  },
+  "cryptography_version": "50.0.2",
+  "openssl_version": "OpenSSL 4.0.3 29 Sep 2026",
+  "auditor_sha256": "7819216faf241b7393b48e3dd43673e9c5be30231f6859677ab52631cc64fa8a",
+  "input_evidence_sha256": "bd9196d3e657a20ec31c0a3c113dc06fb425281b19b33ac87a18e0ba5bef311f",
+  "scope": "independent Ed25519 and canonical vote metadata audit of recorded positive native evidence; not an independent consensus implementation"
+}

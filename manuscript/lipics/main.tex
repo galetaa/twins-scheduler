@@ -10,15 +10,15 @@
 \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \newcommand{\UnsafeObs}{\mathsf{UnsafeObs}}
 
-\title{Phase Erasure in BFT Testing: Repair Frontiers and Irreversible Votes}
-\titlerunning{Repair Frontiers in BFT Testing}
+\title{Certifying Minimum-Cost Phase Refinements for BFT Testing}
+\titlerunning{Certifying Phase Refinements}
 \author{Anonymous Author}{Anonymous Institution}{anonymous@example.invalid}{}{}
 \authorrunning{Anonymous Author}
 \Copyright{Anonymous Author}
 \ccsdesc[500]{Theory of computation~Distributed algorithms}
 \ccsdesc[500]{Computer systems organization~Dependable and fault-tolerant systems and networks}
 \ccsdesc[300]{Software and its engineering~Formal methods}
-\keywords{Byzantine fault tolerance, consensus testing, scheduler semantics, communication closure, safety, formal methods}
+\keywords{Byzantine fault tolerance, consensus testing, scheduler synthesis, certifying algorithms, phase refinement, formal methods}
 \category{}
 \relatedversion{}
 \supplement{}
@@ -42,11 +42,11 @@
 \begin{titlepage}
 \centering
 \vspace*{22mm}
-{\LARGE\bfseries Phase Erasure in BFT Testing: Repair Frontiers and Irreversible Votes\par}
+{\LARGE\bfseries Certifying Minimum-Cost Phase Refinements for BFT Testing\par}
 \vspace{12mm}
 \begin{minipage}{0.88\textwidth}
 \textbf{Abstract.}
-Aggregating protocol phases into one network admission bit can remove a finite agreement counterexample by delivering evidence that prevents an indispensable vote. We identify the correct boundary: repair must precede vote issuance, because later repair cannot retract signed output. For an independent-pivot certificate schema with arbitrary finite opportunity orders, a derived repair graph characterizes jointly reusable contributors. With $k$ unit-weight pivots and quorum deficits $d_0,d_1$, coarse unsafe reachability is equivalent to $\max(d_0,d_1)\le k$ and $d_0+d_1\le k+\alpha(H)$, where $\alpha(H)$ is the maximum induced-acyclic cardinality. We derive the exact minimum phase-splitting budget and a weighted extension. A complete four-validator Tendermint-style trace includes actual local quorums, nil votes, guarded timeouts, and one omitted round-0 lock update; a late-repair control retains conflicting decisions even with FIFO-compatible vote delivery through gossip. Exhaustive finite checks and scoped Lean proofs support the result. The graph argument uses classical order-reversal theory; the application concerns explicitly declared scheduler contracts, not universal framework incompleteness or production-client conformance.
+Sharing one admission bit across voting phases can remove a BFT test's agreement counterexample: additional evidence may repair a validator before it signs an indispensable conflicting vote. We turn this observation into a constructive design problem: which phase distinctions restore a witness at minimum cost? For an explicit independent-pivot certificate schema, we characterize weighted feasibility under arbitrary finite opportunity orders, unequal control costs, and allowed or required keys. A derived repair graph connects reusable contributors to jointly realizable event reversals. Component-wise enumeration and quota dynamic programming produce a legal model execution plus independently checked optimality or infeasibility certificates. A three-key family shows that the control value is not submodular and that immediate-gain-per-cost selection can be arbitrarily expensive. Lean mechanizes graph/event-order realization and the Bellman certificate principle. Two raw-event oracles validate 35,223 and 3,253 optimum certificates; structural cases reach 48 pivots with explicit resource limits. A guarded four-validator model supplies the disagreement witness. Separately, four normal-operation scenarios execute unchanged CometBFT code and validate 32 native signatures. These conformance checks support selected abstraction obligations; they do not reproduce the model's mutation or establish a full client refinement.
 \end{minipage}
 \vfill
 {\small Best student paper eligibility: to be confirmed by the authors.\par}
@@ -55,7 +55,7 @@ Aggregating protocol phases into one network admission bit can remove a finite a
 \maketitle
 
 \begin{abstract}
-Aggregating protocol phases into one network admission bit can remove a finite agreement counterexample by delivering evidence that prevents an indispensable vote. We identify the correct boundary: repair must precede vote issuance, because later repair cannot retract signed output. For an independent-pivot certificate schema with arbitrary finite opportunity orders, a derived repair graph characterizes jointly reusable contributors. With $k$ unit-weight pivots and quorum deficits $d_0,d_1$, coarse unsafe reachability is equivalent to $\max(d_0,d_1)\le k$ and $d_0+d_1\le k+\alpha(H)$, where $\alpha(H)$ is the maximum induced-acyclic cardinality. We derive the exact minimum phase-splitting budget and a weighted extension. A complete four-validator Tendermint-style trace includes actual local quorums, nil votes, guarded timeouts, and one omitted round-0 lock update; a late-repair control retains conflicting decisions even with FIFO-compatible vote delivery through gossip. Exhaustive finite checks and scoped Lean proofs support the result. The graph argument uses classical order-reversal theory; the application concerns explicitly declared scheduler contracts, not universal framework incompleteness or production-client conformance.
+Sharing one admission bit across voting phases can remove a BFT test's agreement counterexample: additional evidence may repair a validator before it signs an indispensable conflicting vote. We turn this observation into a constructive design problem: which phase distinctions restore a witness at minimum cost? For an explicit independent-pivot certificate schema, we characterize weighted feasibility under arbitrary finite opportunity orders, unequal control costs, and allowed or required keys. A derived repair graph connects reusable contributors to jointly realizable event reversals. Component-wise enumeration and quota dynamic programming produce a legal model execution plus independently checked optimality or infeasibility certificates. A three-key family shows that the control value is not submodular and that immediate-gain-per-cost selection can be arbitrarily expensive. Lean mechanizes graph/event-order realization and the Bellman certificate principle. Two raw-event oracles validate 35,223 and 3,253 optimum certificates; structural cases reach 48 pivots with explicit resource limits. A guarded four-validator model supplies the disagreement witness. Separately, four normal-operation scenarios execute unchanged CometBFT code and validate 32 native signatures. These conformance checks support selected abstraction obligations; they do not reproduce the model's mutation or establish a full client refinement.
 \end{abstract}
 
 \typeout{TWINS-MAIN-FIRST:\thepage}

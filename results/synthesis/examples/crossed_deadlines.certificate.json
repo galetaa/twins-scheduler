@@ -1,0 +1,136 @@
+{
+  "minimum_cost": 1,
+  "problem": {
+    "allowed_split": [
+      0,
+      1
+    ],
+    "costs": [
+      3,
+      1
+    ],
+    "deficits": [
+      2,
+      2
+    ],
+    "initially_ready": true,
+    "precedence": [
+      [
+        [
+          "R",
+          0
+        ],
+        [
+          "V",
+          1
+        ]
+      ],
+      [
+        [
+          "R",
+          1
+        ],
+        [
+          "V",
+          0
+        ]
+      ]
+    ],
+    "required_split": [],
+    "weights": [
+      1,
+      1
+    ]
+  },
+  "proof": {
+    "components": [
+      [
+        0,
+        1
+      ]
+    ],
+    "kind": "scc-bellman-v1",
+    "potentials": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    ]
+  },
+  "schema": "phase-refinement-certificate/v1",
+  "statistics": {
+    "bellman_transitions": 54,
+    "components": 1,
+    "compressed_local_options": 6,
+    "largest_component": 2,
+    "local_assignments": 16,
+    "potential_cells": 18,
+    "valid_local_assignments": 15
+  },
+  "status": "optimal",
+  "witness": {
+    "first_signers": [
+      0,
+      1
+    ],
+    "first_weight": 2,
+    "labels": [
+      "reversible",
+      "split"
+    ],
+    "opened": [
+      0,
+      1
+    ],
+    "order": [
+      [
+        "R",
+        1
+      ],
+      [
+        "V",
+        0
+      ],
+      [
+        "R",
+        0
+      ],
+      [
+        "V",
+        1
+      ]
+    ],
+    "repaired_at_end": [
+      0
+    ],
+    "reversible": [
+      0
+    ],
+    "second_signers": [
+      0,
+      1
+    ],
+    "second_weight": 2,
+    "split": [
+      1
+    ]
+  }
+}

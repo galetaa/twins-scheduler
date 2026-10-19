@@ -1,0 +1,16 @@
+case,seed,k,total_weight,deficit0,deficit1,status,minimum_cost,split_count,components,largest_component,local_assignments,potential_cells,bellman_transitions,verified_inequalities,greedy_cost,certificate_bytes,certificate_sha256,detail
+sparse_dag_k12,20261019,12,12,12,12,OPTIMAL,0,0,12,1,48,2197,6084,6084,0,9894,67f555c1124f9f6561297b9c93bc9b86cd08ef4ee3934bbc68dbfd443703478b,certificates/sparse_dag_k12.json.gz
+sparse_dag_k48,20261019,48,48,48,48,OPTIMAL,0,0,48,1,192,117649,345744,345744,0,472310,cdd30efd69390a998566440e60f0feb6273f33d01216c165cacd22e58821cb93,certificates/sparse_dag_k48.json.gz
+crossed_pairs_k12,20261019,12,12,12,12,OPTIMAL,16,6,6,2,96,1183,6084,6084,16,5964,41548f29a37a55e5eb45fa3fcd86d89a3e5cb976031b28a8337924748aaf2228,certificates/crossed_pairs_k12.json.gz
+crossed_pairs_k48,20261019,48,48,48,48,OPTIMAL,75,24,24,2,384,60025,345744,345744,75,242792,908525393a2ff6dcd2c2ae7a1c846c06beacdaded1943b0b5847a690145045ae,certificates/crossed_pairs_k48.json.gz
+bow_tie_blocks_k12,20261019,12,12,12,12,OPTIMAL,8,8,4,3,256,845,6760,6760,400,4684,dad9d504b046ffb9d26c3ead13f241be52b07eeea13a8cb53dfacca54b903f29,certificates/bow_tie_blocks_k12.json.gz
+bow_tie_blocks_k30,20261019,30,30,30,30,OPTIMAL,20,20,10,3,640,10571,96100,96100,1000,44391,ef9c3961cc88f14e32e6e4e19d358716400e0a955fef2a741bfb0f32068cdb02,certificates/bow_tie_blocks_k30.json.gz
+weighted_common_deadline_k24,20261019,24,48,36,39,OPTIMAL,18,7,24,1,78,37000,106560,106560,,140579,ef25da67d0ba1b25fe4bbc93293a03835d11c3f3815a010057fe43e2d3cb4ad8,certificates/weighted_common_deadline_k24.json.gz
+weighted_common_deadline_k48,20261019,48,96,72,77,OPTIMAL,35,13,48,1,156,279006,819936,819936,,1030339,067433407fcc7f96d9da6b6173d94b2d807907688a0fdd7cfb5403c402012d36,certificates/weighted_common_deadline_k48.json.gz
+dense_scc_k8,20261019,8,8,8,8,OPTIMAL,13,5,1,8,65536,162,3645,3645,13,2219,c464955ecc012db6344207d16b69a2a63b693530c7624f9ac1274afb7c35523b,certificates/dense_scc_k8.json.gz
+dense_scc_k10,20261019,10,10,10,10,OPTIMAL,20,7,1,10,1048576,242,7986,7986,22,2931,24e33dc88b4201bb5a7d96b7882f1feb5377d06718f62fd07ca788c62ce11976,certificates/dense_scc_k10.json.gz
+dense_scc_k12,20261019,12,12,12,12,RESOURCE_LIMIT,,,,,,,,,,,,largest component 12 exceeds configured limit 10
+single_cycle_k10,20261019,10,10,10,10,OPTIMAL,1,1,1,10,1048576,242,7986,7986,1,2124,d603304fe0c38282a2c2421e00c9103c0d108cdb5c59bc12e16d51b0af6003ab,certificates/single_cycle_k10.json.gz
+single_cycle_k24,20261019,24,24,24,24,RESOURCE_LIMIT,,,,,,,,,,,,largest component 24 exceeds configured limit 10
+weighted_quota_cycles_k24,20261019,24,75,60,68,OPTIMAL,0,0,6,4,1536,29463,1338462,1338462,,107807,0ca71fafeb8b9b76e20aceb691c9ab5c9141234ed816a4d20984d3448c84fc26,certificates/weighted_quota_cycles_k24.json.gz
+weighted_quota_cycles_tight_k24,20261019,24,75,74,73,OPTIMAL,5,4,6,4,1536,38850,1764900,1764900,,149989,4fdf641751ac636da674931a9e6bb221d2e48115c23be8c7f9bcc227bc1a7c0e,certificates/weighted_quota_cycles_tight_k24.json.gz

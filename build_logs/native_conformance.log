@@ -1,0 +1,8 @@
+{
+  "scenarios_passed": 4,
+  "checks_passed": 14,
+  "native_signed_votes": 32,
+  "scheduled_events": 132,
+  "all_recorded_signatures_verified": true,
+  "race_detector": false
+}

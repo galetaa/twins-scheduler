@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this artifact, please cite the accompanying anonymous manuscript."
-title: "Twins Scheduler Closure: Reproducible Artifact"
+title: "Twins Scheduler: Certifying Minimum-Cost Phase Refinements"
 type: software
 version: 1.0.0
 date-released: 2026-08-22
@@ -8,5 +8,6 @@ authors:
   - name: "Anonymous artifact authors"
 license: MIT
 abstract: >-
-  Kernel-checked and executable evidence for bounded safety-observation
-  separation caused by protocol-phase erasure in scheduler grammars.
+  Certifying minimum-cost phase refinement for explicit BFT-testing contracts,
+  with weighted synthesis, graph/event-order and certificate-principle proofs,
+  independent executable checks, and unchanged-client conformance evidence.

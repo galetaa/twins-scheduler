@@ -27,53 +27,59 @@ too late. We call the collection of second-vote opportunities a
 \textbf{repair frontier} and study which pivotal contributions can
 jointly survive across it.
 
-The one-pivot example is useful but does not characterize broader
-scheduler domains. With several initially ready pivots, a coarse policy
-can assign different validators to the two branches. With individual
-vote deadlines, a repair may be movable on its own but incompatible with
-delaying another repair. We connect these two effects. A graph derived
-from a finite opportunity partial order describes the compatible sets of
-unrepaired contributors; quorum deficits determine how large such a set
-must be.
+The practical question is constructive: \textbf{which admission keys
+must distinguish phases, and at what minimum cost?} Some keys may be
+unavailable to an adapter; others may already be required. A coarse
+policy can assign different initially ready validators to the two
+branches, while dependencies may prevent several individually delayable
+repairs from being delayed together. Quorum deficits, indivisible vote
+weights and the chosen keys therefore have to be considered jointly.
 
 \hypertarget{contributions-and-scope}{%
 \subsection{Contributions and scope}\label{contributions-and-scope}}
 
-The main contribution is an exact scheduler characterization for an
-explicit independent-pivot certificate schema. If there are \(k\)
-unit-weight pivots, the two quorums need \(d_0,d_1\) pivotal
-contributions, and \(\alpha(H)\) is the largest jointly reusable pivot
-set in the derived repair graph, a coarse unsafe execution exists
-exactly when
+We give a certifying procedure that minimizes phase-refinement cost in
+an explicit independent-pivot certificate schema. Its starting point is
+an exact characterization: if there are \(k\) unit-weight pivots, quorum
+deficits \(d_0,d_1\), and maximum jointly reusable capacity
+\(\alpha(H)\) in a derived repair graph, a coarse unsafe execution
+exists exactly when
 
 \[
 \max(d_0,d_1)\le k,
 \qquad d_0+d_1\le k+\alpha(H).
 \]
 
-This yields the exact minimum number of independently phase-split
-channels required to recover a witness, a weighted extension, and a
-precise account of how relaxing delivery order changes the result. The
-graph reversal argument and its underlying optimization are classical;
-the contribution is their connection to admission coupling, persistent
-signed outputs, and quorum requirements.
+The refinement procedure extends this cardinality criterion to unequal
+vote weights, unequal nonnegative control costs, and allowed/required
+keys. It returns the selected keys, actual admissions, a legal model
+execution and Bellman lower-bound potentials. A separate checker replays
+the execution and verifies every local potential inequality,
+establishing optimality without rerunning the global optimizer. It can
+also certify infeasibility; a resource limit is reported as unknown. The
+split-capacity function is not submodular: we give a three-key family on
+which immediate-gain-per-cost selection has an unbounded approximation
+ratio.
 
-We also repair the one-pivot criterion by stating persistence, enabling
-necessity, observation coverage, and the correct repair deadline
-explicitly. A complete four-validator execution realizes the mechanism
-using guarded Tendermint-style transitions under one omitted round-0
-lock update. It includes actual signed vote sets, nil votes, legal
-timeout transitions, and a late-repair control whose two conflicting
-decisions occur at unmutated validators. Exhaustive finite checks and a
-scoped Lean development accompany these results.
+The supporting theory makes persistence, enabling necessity, observation
+coverage and the signature deadline explicit. Lean proves the central
+graph-reversal equivalence, finite event-order realization, and the
+soundness of Bellman certificates, including infinity-valued
+infeasibility. Independent event-permutation oracles test the
+implementation beyond graph-generated orders. A guarded four-validator
+model supplies the disagreement witness; separately, targeted tests
+execute unchanged pinned CometBFT consensus code with native signatures
+and normal commits to check selected implementation obligations.
 
-The claims concern finite agreement observations and declared scheduling
-domains. The four-validator model is derived from pinned CometBFT rules;
-it does not execute the production client. The multi-pivot graph theorem
-assumes independent behavioral contracts and complete coverage of the
-stated opportunity orders. No universal ordering of test frameworks,
-unbounded completeness, liveness result, or deployed-client
-vulnerability follows.
+Order reversal, strongly connected components, feedback vertex sets and
+certifying algorithms are established tools. Our contribution is the
+exact translation between phase-control choices and weighted quorum
+support, its executable optimality certificates, and the connected proof
+and protocol evidence. The schema must be supplied and its behavioral
+assumptions discharged; the procedure does not extract a faithful
+abstraction from arbitrary code. Native conformance tests do not
+reproduce the model's mutant disagreement or establish a
+production-network refinement.
 
 \hypertarget{executions-observations-and-scheduling-domains}{%
 \section{Executions, observations, and scheduling
@@ -231,31 +237,10 @@ still hold, but the fine witness would disappear. Likewise, the order
 already signed vote. Both errors disappear when behavior and signature
 timing are stated explicitly.
 
-\hypertarget{the-original-quorum-family-and-its-extension}{%
-\subsection{The original quorum family and its
-extension}\label{the-original-quorum-family-and-its-extension}}
-
-For every \(f\ge1\), take \(n=3f+1\), \(q=2f+1\), Byzantine set \(B\) of
-size \(f\), correct exclusive sets \(A,C\) of size \(f\), and pivot
-\(p\). Then
-
-\[
-Q_0=B\cup A\cup\{p\},\qquad Q_1=B\cup C\cup\{p\}
-\]
-
-have size \(q\) and each nonpivot base has size \(q-1\). Under the
-behavioral contract, Theorem 2 applies. This arithmetic does not assert
-that every locking protocol realizes the contract.
-
-More generally, for \(1\le k\le f\), use \(k\) pivots, exclusive sets
-\(A,C\) of size \(f+1-k\), Byzantine set \(B\) of size \(f\), and
-\(k-1\) unused correct identities. The total is still \(3f+1\). Both
-quorums contain \(B\), their exclusive set, and all \(k\) pivots; each
-base has size \(q-k\). Distinct correct observers exist in nonempty
-\(A,C\). The next theorem characterizes precisely which opportunity
-orders can preserve these \(k\) required double contributions. The
-extension is a certificate schema; the concrete protocol trace below
-establishes the single-pivot case.
+The familiar \(n=3f+1\), \(q=2f+1\) family instantiates the two bases
+with \(q-1\) fixed signatures. Appendix D gives its arithmetic and a
+\(k\)-pivot extension; realizability of their behavior remains a
+separate obligation.
 
 \hypertarget{repair-frontiers-for-several-independent-channels}{%
 \section{Repair frontiers for several independent
@@ -286,8 +271,9 @@ cannot be unsafe in this two-family observation domain. This
 qualification accommodates repairs whose commit evidence depends on
 available first votes.
 
-A finite strict partial order \(\prec\) describes opportunities,
-including the fixed anchors
+A finite strict partial order \(\prec\) describes opportunities. Repair
+and vote slots are distinct event kinds: \(R_i\ne V_j\) for all \(i,j\).
+The fixed anchors include
 
 \[
 E_i\prec V_0\prec C_0\prec V_i\prec C_1,
@@ -354,6 +340,13 @@ self-loops. \(\square\)
 The graph can have cycles even though the opportunity order does not.
 Its cycles describe incompatible \emph{requests to delay repair}, not a
 causal cycle in an actual execution.
+
+The full lemma is machine-checked, including existence of the finite
+topological order. The Lean construction assigns an injective time using
+the number of strict predecessors and an enumeration index. A separate
+theorem accepts cover edges and derives the graph from their transitive
+closure. Thus neither realizability nor the treatment of suppressed
+slots is an assumed capacity premise.
 
 \hypertarget{exact-capacity-and-separation}{%
 \subsection{Exact capacity and
@@ -450,13 +443,6 @@ admission is unsafe. This is a separation over several event orders and
 two independently controlled channels, rather than two executions of one
 fixed edge.
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.96\textwidth]{../figures/repair_frontier_boundary.pdf}
-\caption{Exact phase-control budget in the independent-pivot schema. Each cell is the minimum number of phase-split keys required to expose an unsafe witness. Blank cells exceed the available pivot count. Panels differ only in the capacity of jointly late repair, not in quorum size.}
-\label{fig:frontier}
-\end{figure}
-
 \hypertarget{optimal-phase-splitting-budget}{%
 \subsection{Optimal phase-splitting
 budget}\label{optimal-phase-splitting-budget}}
@@ -488,11 +474,12 @@ keys needed for an unsafe witness is
 into (2). Since \(d_0,d_1\le k\), the resulting inequality holds exactly
 when \(t\) covers the deficit in (4). \(\square\)
 
-The statement is existential over the choice of split keys. It does not
-claim that every set of \(t_*\) arbitrary message exceptions suffices. A
-witness can be constructed by choosing an acyclic reusable set,
-selecting the necessary split keys and open keys, adding its lateness
-constraints, and topologically sorting the opportunity graph.
+Figure \ref{fig:frontier} in Appendix E illustrates the unit-weight
+boundary. The statement is existential over the choice of split keys. It
+does not claim that every set of \(t_*\) arbitrary message exceptions
+suffices. A witness can be constructed by choosing an acyclic reusable
+set, selecting the necessary split keys and open keys, adding its
+lateness constraints, and topologically sorting the opportunity graph.
 
 \hypertarget{order-relaxation-extra-edges-and-weights}{%
 \subsection{Order relaxation, extra edges, and
@@ -538,9 +525,160 @@ reduction using a classical graph construction
 \cite{karp1972reducibility}; the contribution is the scheduler
 correspondence, not a new graph-hardness result.
 
-\hypertarget{a-complete-four-validator-tendermint-style-execution}{%
-\section{A complete four-validator Tendermint-style
-execution}\label{a-complete-four-validator-tendermint-style-execution}}
+\hypertarget{certifying-minimum-cost-phase-refinement}{%
+\section{Certifying minimum-cost phase
+refinement}\label{certifying-minimum-cost-phase-refinement}}
+
+Assign each pivot a control cost \(c_i\in\mathbb N\). Let
+\(D\subseteq I\) be the keys the adapter can split and \(Q\subseteq D\)
+those that must already be split. The synthesis problem selects
+\(Q\subseteq S\subseteq D\), admissible message phases and a linear
+extension, minimizes \(c(S)=\sum_{i\in S}c_i\), and requires both
+certificate deficits to be met. Costs express a declared control budget,
+not measured network latency.
+
+\hypertarget{an-exact-weighted-choice-problem}{%
+\subsection{An exact weighted choice
+problem}\label{an-exact-weighted-choice-problem}}
+
+\textbf{Theorem 4 (weighted refinement characterization).} Under the
+independent-pivot and opportunity-order contracts, a selected set \(S\)
+admits an unsafe model execution exactly when there is a disjoint
+partition
+
+\[
+I=S\mathbin{\dot\cup}J\mathbin{\dot\cup}X\mathbin{\dot\cup}Y
+\]
+
+satisfying
+
+\[
+H[J]\text{ acyclic},\qquad
+w(S\cup J\cup X)\ge d_0,\qquad
+w(S\cup J\cup Y)\ge d_1. \tag{6}
+\]
+
+Consequently minimizing \(c(S)\) over these partitions and
+\(Q\subseteq S\subseteq D\) gives the exact minimum control cost.
+
+\textbf{Proof.} Normalize each split key to admit enabling and suppress
+repair; under the stated independent contract this cannot reduce either
+support. Such keys contribute to both families. For unsplit keys, an
+open key contributes first; a closed key contributes second. Let \(J\)
+be the open keys whose second signatures precede their repairs, \(X\)
+the other open keys, and \(Y\) the closed keys. Lemma 1 gives acyclicity
+and the two support inequalities. Conversely, split \(S\), open
+\(J\cup X\), and close \(Y\). Topologically sort the complete
+opportunity order augmented with \(V_i<R_i\) for \(i\in J\). These
+choices provide the guaranteed contributions in (6). A member of \(X\)
+may happen to give an additional second vote; this only increases
+support. Coverage and irreversible outputs give the required
+observation. \(\square\)
+
+For a prescribed split set with unit weights, the available
+double-contribution capacity is \(F(S)=|S|+\alpha(H[I\setminus S])\), as
+used in Corollary 1. The cardinality formula does not choose inexpensive
+keys or respect inaccessible ones. At full quotas \(d_0=d_1=W\), (6)
+requires \(X=Y=\varnothing\); the optimization specializes exactly to a
+weighted directed feedback vertex set, with allowed and required
+deletions. This classical special case explains the worst-case hardness,
+not a claim of a new graph problem \cite{karp1972reducibility}.
+
+\hypertarget{why-immediate-benefit-is-an-unreliable-guide}{%
+\subsection{Why immediate benefit is an unreliable
+guide}\label{why-immediate-benefit-is-an-unreliable-guide}}
+
+Consider \(H\) with two directed two-cycles \(0\leftrightarrow1\) and
+\(0\leftrightarrow2\), unit vote weights, full quotas 3, and control
+costs \((M,1,1)\) with \(M>2\). Splitting the central key costs \(M\);
+splitting both leaves costs 2 and is optimal. Moreover,
+
+\[
+F(\varnothing)=F(\{1\})=F(\{2\})=2,
+\qquad F(\{1,2\})=3.
+\]
+
+The marginal gain of key 1 is zero initially and one after key 2. Thus
+\(F\) is not submodular. A policy selecting the maximum
+\textbf{immediate} gain divided by cost selects the central key and pays
+\(M\), giving ratio \(M/2\). This is an unbounded counterexample to that
+specified myopic rule, not to every heuristic. It also shows why a key
+with zero immediate benefit can be part of the cheapest sufficient
+refinement.
+
+\hypertarget{construction-and-independent-certificates}{%
+\subsection{Construction and independent
+certificates}\label{construction-and-independent-certificates}}
+
+Compute \(H\) using reachability in the full opportunity graph. Vertices
+with self-loops cannot belong to \(J\); treat them as individual blocks,
+then partition the remaining graph into strongly connected components.
+Every directed cycle of a candidate \(H[J]\) lies within one remaining
+component. Enumerate local assignments to the four roles in (6),
+respecting allowed and required keys, and reject cyclic reusable sets.
+Record each assignment's guaranteed supports \((u,v)\) and cost \(c\);
+supports may be capped at the respective deficits.
+
+Let blocks be \(C_0,\ldots,C_{m-1}\) and their local alternatives be
+\(\mathcal A_j\). Dynamic programming over residual deficits gives
+
+\[
+L_j(a,b)=\min_{(u,v,c)\in\mathcal A_j}
+\left[c+L_{j+1}\bigl((a-u)^+,(b-v)^+\bigr)\right], \tag{7}
+\]
+
+with \(L_m(0,0)=0\) and \(L_m(a,b)=\infty\) otherwise. Backtracking
+selects roles, admissions and the requested reversals; topological
+sorting produces a complete event order. A separate event interpreter
+checks the actual immutable-output execution and its quorum support.
+
+The portable certificate contains the input, chosen execution and
+potential table. Its checker independently reconstructs transitive
+reachability, components and \textbf{all} legal local assignments. It
+checks the lower-bound inequalities
+
+\[
+L_j(a,b)\le c+L_{j+1}\bigl((a-u)^+,(b-v)^+\bigr) \tag{8}
+\]
+
+for every local transition, together with the terminal conditions.
+Checking only the optimizer's chosen assignments would not certify
+minimality. Feasibility is checked by replay; the measured witness cost
+must equal the certified root bound. An external expected input can be
+supplied so that a valid certificate for another problem is rejected.
+
+\textbf{Theorem 5 (certificate soundness).} If all conditions in (8) and
+the terminal conditions hold, every feasible refinement represented by
+(6) costs at least \(L_0(d_0,d_1)\). A replayed witness attaining a
+finite root bound is minimum-cost. An infinite root bound certifies
+infeasibility.
+
+\textbf{Proof.} Follow the local assignments of any feasible refinement
+through the residual-deficit states. Repeatedly applying (8) bounds the
+initial potential by the accumulated cost plus the terminal potential,
+which is zero. An infinite potential cannot reach a finite terminal
+along a finite-cost path. Matching the lower bound with a feasible
+witness proves optimality. The completeness of the four-role
+representation, established in Theorem 4, connects this path argument to
+the scheduling problem. \(\square\)
+
+Lean checks this Bellman principle for arbitrary nonnegative-cost
+transition systems, using extended natural bounds. It does not assume
+that the potentials were computed optimally. The Python parser, graph
+extraction and exhaustive local enumeration remain executable proof
+obligations. This follows the established certifying-algorithm approach
+\cite{mcconnell2011certifying}.
+
+Enumeration is exponential in the largest remaining component, and the
+potential grid has \((m+1)(d_0+1)(d_1+1)\) cells. The dependence on
+integer quota values is pseudo-polynomial; verification still enumerates
+local configurations. Neither compact polynomial certificates for all
+instances nor a polynomial-time optimizer are claimed. Explicit
+component, table and time limits return a resource-limit result, never a
+false infeasibility claim.
+
+\hypertarget{concrete-protocol-evidence}{%
+\section{Concrete protocol evidence}\label{concrete-protocol-evidence}}
 
 \hypertarget{source-mutation-and-transport}{%
 \subsection{Source, mutation, and
@@ -591,53 +729,34 @@ height-1 prevotes and precommits; \(\bot\) denotes nil. Self-votes below
 are actual emitted self-envelopes. Each local quorum is formed from
 messages already received.
 
+The decisive steps are as follows; Appendix C gives the complete
+nine-stage trace, and the artifact records every individual envelope and
+transition.
+
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \(A\) receives \(B\)'s block-0 proposal and signs
-  \(\operatorname{PV}(0,0)\). \(A\) relays the proposal to \(P\), which
-  signs the same prevote. \(C\) receives no proposal; its proposal
-  timeout produces \(\operatorname{PV}(0,\bot)\).
+  \(B\)'s block-0 proposal reaches \(A\), then \(P\) by relay. Both emit
+  prevote 0; the missing-proposal timeout makes \(C\) prevote nil. The
+  genuine set \(\{A,P,B\}:0\) gives \(A,P\) their local PoLCs. \(A\)
+  locks 0. The mutant \(P\) keeps valid block 0, omits only its lock
+  assignment, and emits precommit 0.
 \item
-  \(B\) emits its round-0 prevote and precommit. Deliver \(P\)'s and
-  \(B\)'s prevotes to \(A\). The set \(\{A,P,B\}:0\) makes \(A\) persist
-  valid/locked block \(0@0\) and sign \(\operatorname{PC}(0,0)\).
+  The three precommits from \(A,P,B\) make \(A\) decide 0. With \(R\)
+  suppressed, \(P,C\) receive mixed precommit quorums
+  \(\{A:0,P:0,C:\bot\}\). Their native-rule timeout guards permit a
+  transition to round 1 without a block-0 decision.
 \item
-  Deliver \(A\)'s prevote and \(E\) to \(P\). Its same three-signer PoLC
-  sets valid block \(0@0\). The mutation omits only its lock assignment,
-  and \(P\) signs \(\operatorname{PC}(0,0)\) while remaining unlocked.
+  Unlocked \(C\) proposes block 1. The unlocked mutant \(P\) prevotes 1
+  despite retaining valid block 0; it is not the proposer. The actual
+  local prevote sets \(\{P,C,B\}:1\) make \(P,C\) precommit 1, with
+  \(P\)'s normal round-1 lock update retained.
 \item
-  Deliver \(C\)'s nil prevote to \(P\), and the \(A,P\) block-0 prevotes
-  to \(C\). At \(C\), the mixed set \(\{A:0,P:0,C:\bot\}\) enables its
-  prevote timeout without creating a block-0 PoLC. On expiry, \(C\)
-  signs \(\operatorname{PC}(0,\bot)\).
-\item
-  Deliver \(A\)'s precommit to \(P,C\), and \(P\)'s precommit to
-  \(A,C\). Deliver \(B\)'s precommit to \(A\). Its local set
-  \(\{A,P,B\}:0\) reaches three and \(A\) decides 0.
-\item
-  Deliver \(C\)'s nil precommit to \(P\). Both \(P\) and \(C\) now have
-  the mixed set \(\{A:0,P:0,C:\bot\}\). It enables a precommit timeout
-  but does not commit block 0. The fine policy suppresses \(R\). Expiry
-  advances \(P,C\) lawfully to round 1.
-\item
-  \(P\) retains valid block \(0@0\) but no lock; \(C\) has neither.
-  Consequently the unchanged proposer \(C\) can propose new block 1 with
-  valid round \(-1\). \(C\) and the unlocked \(P\) each sign
-  \(\operatorname{PV}(1,1)\). Making \(P\) the proposer instead would
-  require accounting for its cached valid block 0.
-\item
-  \(B\) emits round-1 prevote and precommit for 1. Deliver the \(C,B\)
-  prevotes to \(P\), producing PoLC \(\{P,C,B\}:1\). \(P\) normally
-  updates valid/locked block to \(1@1\) and signs
-  \(\operatorname{PC}(1,1)\). Deliver the \(P,B\) prevotes to \(C\); it
-  obtains the same PoLC and precommits 1.
-\item
-  Deliver the \(P,B\) precommits to \(C\). Together with \(C\)'s
-  self-precommit, they produce decision 1. Delivering the \(C,B\)
-  precommits to \(P\) also lets it decide 1. The unmutated observers
-  have \(A=0,C=1\).
+  \(C\) receives the three precommits from \(P,C,B\) and decides 1. The
+  conflicting observers \(A,C\) contain no injected lock defect. The
+  unmodified baseline retains \(P\)'s round-0 lock and cannot obtain
+  this second quorum in the fixed schedule.
 \end{enumerate}
 
 No unconditional jump between rounds is used. The mixed nil/block
@@ -705,41 +824,93 @@ counterexample without silently attributing arbitrary packet reordering
 to a FIFO transport. Neither control is an execution of the production
 P2P reactor.
 
+\hypertarget{targeted-tests-of-unchanged-implementation-code}{%
+\subsection{Targeted tests of unchanged implementation
+code}\label{targeted-tests-of-unchanged-implementation-code}}
+
+We separately execute the actual consensus package of the pinned
+CometBFT revision using Go 1.25.0. Four ordinary-operation scenarios
+instantiate four unchanged native validators each. Proposals, block
+parts and votes are taken from their real internal queues; timeout
+dispatch consumes requests actually scheduled by the implementation. The
+real proposer-priority algorithm chooses successive proposers. Native
+vote validation, block validation, the in-memory block store and local
+ABCI application execute.
+
+The scenarios cover normal commit with missing-block catch-up and
+emitted-vote immutability, mixed-quorum timeout guards, persistent
+locking across a legal round change, and proposal reuse of a retained
+valid block. They pass 14 checks over 32 native Ed25519 votes and 132
+recorded events. Three further normal executions preserve the semantic
+summaries; one race-detector execution also passes. A separate
+Python/OpenSSL audit verifies all 32 signatures and independently parses
+their canonical protobuf metadata.
+
+The runner verifies that tracked upstream files are unchanged before and
+after adding and removing the test overlay. These are targeted checks of
+implementation obligations, not a native reproduction of the mutant
+disagreement. Dispatch is synchronous; the reactor, network, WAL loop
+and persistent validator signer are outside this experiment. Keys and
+storage use upstream test fixtures. Native timestamps remain untouched,
+so raw signatures and logs may vary while semantic results remain
+stable.
+
 \hypertarget{validation-and-assurance}{%
 \section{Validation and assurance}\label{validation-and-assurance}}
 
-The new experiments vary admission, event order, compatible late-repair
-sets, phase exceptions, and weights. Their role is to falsify incorrect
-encodings of the stated contracts. They do not estimate bug prevalence
-across protocols.
+The synthesis oracle obtains support pairs directly from raw event
+permutations and admission choices, without calling graph extraction,
+SCC routines, the optimizer's event interpreter, or a capacity formula.
+On all 530 directed graphs with loops for \(k\le3\), it examines 50,363
+legal orders and 1,357,209 executions. It checks 103,460
+prescribed-split boundaries and compares 35,223 weighted
+optimum/infeasibility certificates, including all 219 partial orders on
+four event slots and restricted-key cases. Every certificate passes the
+separate checker; no optimum mismatch occurs.
+
+A second implementation tests 48 arbitrary six-event DAGs, including
+repair--repair, repair--vote, vote--repair and vote--vote dependencies.
+Its raw-order oracle examines 4,647 legal orders and 72,117 executions,
+then compares 3,253 additional optima and certificates with zero
+mismatches. These finite suites challenge the input-to-graph and support
+encodings; their execution counts are not numbers of independent
+protocols.
 
 \begin{table}[t]
 \centering\small
-\begin{tabular}{p{0.30\textwidth}p{0.34\textwidth}p{0.25\textwidth}}
+\begin{tabular}{lrrrr}
 \toprule
-Check & Exhaustive or declared scope & Outcome \\
+Synthetic domain & $k$ & $(d_0,d_1)$ & Largest block & Optimum cost \\
 \midrule
-Repair graphs & All 530 directed graphs, including loops, for $k=1,2,3$; 50,363 legal orders & 1,357,209 policy/split executions \\
-Reachability and budget & All deficit pairs $0\ldots k+1$ for each graph & 13,074 checks each; no mismatch \\
-Joint lateness & All requested reusable subsets in those graphs & 4,164 checks; no mismatch \\
-General event precedence & All 219 labelled partial orders on two repairs and two vote opportunities, supplied as cover edges & Order-to-graph checks pass \\
-Common frontier & $k=1\ldots8$, all forced-repair counts; barrier timing representatives & 174,250 executions; 2,636 boundary checks \\
-Weighted common frontier & 258 domains with up to three pivots, weights in $\{1,2,3\}$; extremal late order and all admissions & 15,700 boundary checks \\
-Concrete protocol trace & Six canonical and six timing/route controls & 12 legality audits pass \\
+Crossed pairs & 48 & $(48,48)$ & 2 & 75 \\
+Two-cycle motifs & 30 & $(30,30)$ & 3 & 20 \\
+Weighted common deadline & 48 & $(72,77)$ & 1 & 35 \\
+Weighted cycles & 24 & $(74,73)$ & 4 & 5 \\
+Dense component & 10 & $(10,10)$ & 10 & 20 \\
+Dense component & 12 & $(12,12)$ & 12 & unknown \\
+Single directed cycle & 24 & $(24,24)$ & 24 & unknown \\
 \bottomrule
 \end{tabular}
-\caption{Validation of the revised models. Graph realizations exhaust their legal orders. The common and weighted sweeps use the stated support-equivalent or extremal orders; they are not advertised as all event permutations.}
+\caption{Selected synthesis cases. All finite optima have saved, independently checked certificates. Unknown cases exceed the configured component limit 10; they are not infeasible results or observed timeouts. Costs and graph families are synthetic inputs.}
 \label{tab:validation}
 \end{table}
 
-The graph oracle executes guarded events and preserves emitted
-signatures; it does not derive its outcomes from the theorem's capacity
-formula. Only afterward does the checker compare all observed support
-pairs and minimum split costs with the predictions. The general-order
-suite independently constructs transitive closure, supplies cover edges
-to the implementation, and checks paths passing through suppressed
-opportunity slots. The weighted sweep deliberately retains the
-indivisible-weight counterexample.
+The structural study contains 15 instances: 13 have certified optima, up
+to 48 pivots, and two stop at an explicit component-size cutoff. Table
+\ref{tab:validation} shows representative results. Ten copies of the
+two-cycle motif give optimum 20 while the specified immediate-gain rule
+pays 1000. The weighted-cycle case has total weight 75: tightening
+quotas from \((60,68)\) to \((74,73)\) changes its optimum from 0 to 5.
+These are reproducible structural tests, not a runtime contest against
+specialized feedback-vertex-set solvers. Timings are recorded separately
+from deterministic results.
+
+The retained frontier evaluator independently executes guarded events
+and checks the unit boundary and budget on 530 graphs, all 219
+four-event orders, 44 common-deadline domains and 258 weighted domains.
+The last two sweeps use declared support-equivalent or extremal order
+representatives. Complete case counts, raw support observations, input
+fixtures and all 13 scale certificates are included in the artifact.
 
 The concrete trace has independent post-execution audits for prior
 emission, once-only envelope delivery, authentication, distinct actual
@@ -763,11 +934,16 @@ interval, and a small output machine in which later repair preserves an
 earlier signature. The build includes an axiom audit and independent
 rechecking of the resulting kernel objects.
 
-The graph reversal lemma, the graph-to-execution correspondence, and the
-derivation of optimal graph capacity are proved in the paper and tested
-by finite enumeration. They are \textbf{not} claimed to be fully
-mechanized by the arithmetic Lean module. The concrete message trace is
-executable validation, not a Lean proof of the CometBFT client.
+The new graph module proves reversal equivalence, finite acyclicity
+versus an injective schedule, and the graph-to-event-order bridge,
+including input given as cover edges. It does not assume \(\alpha(H)\)
+or a capacity formula. A second module proves Theorem 5's lower-bound
+principle, minimum-cost witness rule and infeasibility rule over
+arbitrary costed paths with extended-natural potentials. The integrated
+audit covers 27 named declarations. The weighted four-role
+correspondence, completeness of the Python checker and protocol-specific
+behavioral contracts remain paper proofs or executable obligations; the
+concrete traces are not a Lean refinement of CometBFT.
 
 Earlier Lean, SMT, certificate-kernel, Python, and Go checks remain
 available. In particular, agreement of 384 Python/Go rows for
@@ -792,17 +968,18 @@ view key. The counterexample therefore does not refute their
 normalization theorem or the effectiveness of their tester; it
 identifies an obligation for a further aggregation.
 
-\textbf{Byzantine testing.} Twins already describes certificate arrivals
-advancing a stale twin in its preferred-round mutation experiment; its
-underlying network playground can also filter message types
-\cite{bano2021twins}. Consequently neither certificate evidence
-destroying an intended attack state nor phase-selective APIs are claimed
-as new. Distinguish the published partition-scenario generator from the
-full executor's capabilities. ByzzFuzz, Netrix, and ByzzBench supply
-mutation, programmable testing, and controlled benchmark infrastructures
-\cite{winter2023randomized,dragoi2024netrix,louroneto2025byzzbench}. Our
-contribution concerns the safety-observation language of a declared
-admission/order contract, not a capability ranking of those systems.
+\textbf{Controlled and adaptive testing.} Twins already describes
+certificate arrivals advancing a stale twin and supports message-type
+filtering \cite{bano2021twins}. ByzzFuzz, Netrix and ByzzBench supply
+randomized fault testing, programmable implementation testing and
+benchmark infrastructure
+\cite{winter2023randomized,dragoi2024netrix,louroneto2025byzzbench}.
+FEST adapts schedule generation using behavioral and scenario feedback
+while retaining its underlying scheduler constraints \cite{li2026fest}.
+Our procedure solves a different, conditional design problem: selecting
+the cheapest phase distinctions for a supplied finite quorum/order
+contract and certifying that optimum. We do not compare bug-finding
+speed or rank these frameworks.
 
 \textbf{Preservation and partial orders.} Simulation with internal
 actions is established machinery \cite{lynch1995simulations}. The
@@ -816,7 +993,11 @@ induced-acyclic optimization and symmetric-graph hardness construction
 are classical \cite{karp1972reducibility}. The result developed here
 combines this order characterization with initial readiness,
 irreversible vote issuance, and certificate deficits, yielding the exact
-scheduler phase budget and a guarded BFT-rule witness.
+scheduler phase budget, weighted control synthesis and a guarded
+BFT-rule witness. The independent-witness/lower-bound design follows
+certifying algorithms; its value here is the complete input-to-schedule
+certificate for the declared schema, not a new general certification
+principle \cite{mcconnell2011certifying}.
 
 The literature audit supports this specific positioning, not an
 assertion that no equivalent result exists in all prior literature.
@@ -836,38 +1017,41 @@ interdependent locking behavior require a new conformance argument. The
 weighted result concerns indivisible certificate weights with fixed
 membership. It is not a staking or dynamic-quorum theorem.
 
-The concrete source pin is reproducible: the artifact contains exact
-v0.39.3 files, verified Git blob identifiers and SHA-256 hashes. The
-older source snapshot is correctly retained as v0.40.0. Authentication
-in the local model uses deterministic test-only tags to enforce signer
-and envelope integrity; production serialization, cryptographic
-implementation, proposer-priority updates, block-part gossip, and the
-full event loop are not modeled end to end. The supplied proposer prefix
-and aggregate complete-block deliveries are explicit environmental
-choices.
+The artifact contains exact v0.39.3 source files, verified Git blob
+identifiers and SHA-256 hashes; the older snapshot is separately
+retained as v0.40.0. The local mutant model uses test authentication, a
+supplied proposer prefix and aggregate block deliveries. Native
+conformance exercises the real signing, proposer and block routines
+separately, but supplies no formal refinement of that mutant trace. The
+four-role theorem and certificate principle do not automatically
+establish the behavioral contract of a richer client.
 
 The public working artifact is available at
-\url{https://github.com/galetaa/twins-scheduler}. The revision provides
-a single command, \texttt{./reproduce\_revision.sh}, that runs the
-existing checks, new guarded traces and frontier enumeration, the
-integrated Lean build and axiom audit, and the revised LIPIcs build. Raw
-JSON/CSV outcomes, source pins, proof-to-claim mappings, and manuscript
-sources are included. The command fails on a mandatory check failure.
-Reproduction dependencies are pinned by the existing project; build logs
-record the actual tool versions used.
+\url{https://github.com/galetaa/twins-scheduler}. The command
+\texttt{./reproduce\_revision.sh} runs the model tests, frontier and
+synthesis studies, both synthesis oracles, native conformance,
+independent signature audit, repeated/race executions, Lean build and
+axiom audit, and LIPIcs build. A mandatory failure stops the run.
+Deterministic results are compared with committed references; native raw
+timestamps and signatures are revalidated rather than byte-compared.
+Source pins, complete certificates, claim mappings and tool-version logs
+accompany the manuscript. Dependencies require network downloads on an
+empty cache.
 
 \hypertarget{conclusion}{%
 \section{Conclusion}\label{conclusion}}
 
-The effect of phase erasure depends on both admission coupling and the
-latest opportunity at which repair can still prevent an indispensable
-signature. A complete four-validator trace makes the distinction between
-state repair and durable signed output concrete. For an explicit
-multi-pivot schema, the derived repair graph and quorum deficits give an
-exact characterization of coarse unsafe reachability and the minimum
-phase-control budget. This turns a single fixed-order counterexample
-into a quantitative account of when order relaxation and additional
-independently controlled channels preserve or destroy separation.
+Phase control can be synthesized as a minimum-cost design choice once
+the relevant quorum and opportunity contracts are explicit. The repair
+graph identifies incompatible reusable contributors; weighted role
+assignments connect them to certificate deficits. The resulting
+algorithm returns a legal model execution and independently checked
+optimality evidence. Non-submodular control value explains why
+immediate-benefit selection can miss inexpensive combinations. Lean
+closes the central graph/order and certificate-principle proofs, while
+separate native conformance tests strengthen selected implementation
+assumptions. The remaining obligation is to establish these contracts
+for each richer protocol instance and adapter.
 
 \hypertarget{acknowledgments-and-ai-use-disclosure}{%
 \subsection{Acknowledgments and AI-use

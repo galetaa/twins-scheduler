@@ -1,0 +1,45 @@
+{
+  "config": {
+    "admission_modes": [
+      "closed",
+      "coarse_open",
+      "phase_split"
+    ],
+    "allowed_split_probability": 0.7,
+    "cases": 48,
+    "cost_inclusive_range": [
+      0,
+      7
+    ],
+    "forward_edge_probability": 0.27,
+    "pivots": 3,
+    "quota_inclusive_range": "0..total_weight+1",
+    "required_given_allowed_probability": 0.2,
+    "seed": 20261019,
+    "weight_inclusive_range": [
+      1,
+      3
+    ]
+  },
+  "counts": {
+    "certificate_checks": 3253,
+    "certificate_failures": 0,
+    "domains": 48,
+    "minimum_cost_comparisons": 3253,
+    "minimum_cost_mismatches": 0,
+    "raw_admission_executions": 72117,
+    "raw_legal_permutations": 4647
+  },
+  "domains_with_direct_edge_kind": {
+    "R->R": 30,
+    "R->V": 32,
+    "V->R": 32,
+    "V->V": 29
+  },
+  "input_sha256": "a72ea60ffcd8558d72436c68da8e697a19e1b4ea7a7b3b0023348760f0a9ccaa",
+  "mismatch_examples": [],
+  "mismatches": 0,
+  "schema": "phase-refinement-order-oracle/v1",
+  "scope": "48 seeded arbitrary event DAGs; all permutations, admissible modes and quota pairs per DAG",
+  "status": "PASS"
+}

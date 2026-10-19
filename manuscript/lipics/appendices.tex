@@ -97,3 +97,97 @@ interpretation combined vote and certificate formation; it must not be
 reused to infer that repair merely before a later collector suffices.
 The revised frontier model separates these events and makes initially
 ready pivots the primary multi-pivot case.
+
+\hypertarget{detailed-guarded-four-validator-model-trace}{%
+\section{Detailed guarded four-validator model
+trace}\label{detailed-guarded-four-validator-model-trace}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(A\) receives \(B\)'s block-0 proposal and signs
+  \(\operatorname{PV}(0,0)\). \(A\) relays the proposal to \(P\), which
+  signs the same prevote. \(C\) receives no proposal; its proposal
+  timeout produces \(\operatorname{PV}(0,\bot)\).
+\item
+  \(B\) emits its round-0 prevote and precommit. Deliver \(P\)'s and
+  \(B\)'s prevotes to \(A\). The set \(\{A,P,B\}:0\) makes \(A\) persist
+  valid/locked block \(0@0\) and sign \(\operatorname{PC}(0,0)\).
+\item
+  Deliver \(A\)'s prevote and \(E\) to \(P\). Its same three-signer PoLC
+  sets valid block \(0@0\). The mutation omits only its lock assignment,
+  and \(P\) signs \(\operatorname{PC}(0,0)\) while remaining unlocked.
+\item
+  Deliver \(C\)'s nil prevote to \(P\), and the \(A,P\) block-0 prevotes
+  to \(C\). At \(C\), the mixed set \(\{A:0,P:0,C:\bot\}\) enables its
+  prevote timeout without creating a block-0 PoLC. On expiry, \(C\)
+  signs \(\operatorname{PC}(0,\bot)\).
+\item
+  Deliver \(A\)'s precommit to \(P,C\), and \(P\)'s precommit to
+  \(A,C\). Deliver \(B\)'s precommit to \(A\). Its local set
+  \(\{A,P,B\}:0\) reaches three and \(A\) decides 0.
+\item
+  Deliver \(C\)'s nil precommit to \(P\). Both \(P\) and \(C\) now have
+  the mixed set \(\{A:0,P:0,C:\bot\}\). It enables a precommit timeout
+  but does not commit block 0. The fine policy suppresses \(R\). Expiry
+  advances \(P,C\) lawfully to round 1.
+\item
+  \(P\) retains valid block \(0@0\) but no lock; \(C\) has neither.
+  Consequently the unchanged proposer \(C\) can propose new block 1 with
+  valid round \(-1\). \(C\) and the unlocked \(P\) each sign
+  \(\operatorname{PV}(1,1)\). Making \(P\) the proposer instead would
+  require accounting for its cached valid block 0.
+\item
+  \(B\) emits round-1 prevote and precommit for 1. Deliver the \(C,B\)
+  prevotes to \(P\), producing PoLC \(\{P,C,B\}:1\). \(P\) normally
+  updates valid/locked block to \(1@1\) and signs
+  \(\operatorname{PC}(1,1)\). Deliver the \(P,B\) prevotes to \(C\); it
+  obtains the same PoLC and precommits 1.
+\item
+  Deliver the \(P,B\) precommits to \(C\). Together with \(C\)'s
+  self-precommit, they produce decision 1. Delivering the \(C,B\)
+  precommits to \(P\) also lets it decide 1. The unmutated observers
+  have \(A=0,C=1\).
+\end{enumerate}
+
+\hypertarget{parametric-certificate-families}{%
+\section{Parametric certificate
+families}\label{parametric-certificate-families}}
+
+For every \(f\ge1\), take \(n=3f+1\), \(q=2f+1\), Byzantine set \(B\) of
+size \(f\), correct exclusive sets \(A,C\) of size \(f\), and pivot
+\(p\). Then
+
+\[
+Q_0=B\cup A\cup\{p\},\qquad Q_1=B\cup C\cup\{p\}
+\]
+
+have size \(q\) and each nonpivot base has size \(q-1\). Under the
+behavioral contract, Theorem 2 applies. This arithmetic does not assert
+that every locking protocol realizes the contract.
+
+More generally, for \(1\le k\le f\), use \(k\) pivots, exclusive sets
+\(A,C\) of size \(f+1-k\), Byzantine set \(B\) of size \(f\), and
+\(k-1\) unused correct identities. The total is still \(3f+1\). Both
+quorums contain \(B\), their exclusive set, and all \(k\) pivots; each
+base has size \(q-k\). Distinct correct observers exist in nonempty
+\(A,C\). Theorem 3 characterizes precisely which opportunity orders can
+preserve these \(k\) required double contributions. The extension is a
+certificate schema; the concrete protocol trace in Section 7 establishes
+the single-pivot model case.
+
+\hypertarget{unit-weight-budget-illustration}{%
+\section{Unit-weight budget
+illustration}\label{unit-weight-budget-illustration}}
+
+The heat maps instantiate Corollary 1 at three reusable capacities. They
+illustrate the cardinality special case; unequal control costs require
+the optimization in Theorem 4.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.96\textwidth]{../figures/repair_frontier_boundary.pdf}
+\caption{Exact phase-control budget in the independent-pivot schema. Each cell is the minimum number of phase-split keys required to expose an unsafe witness. Blank cells exceed the available pivot count. Panels differ only in the capacity of jointly late repair, not in quorum size.}
+\label{fig:frontier}
+\end{figure}

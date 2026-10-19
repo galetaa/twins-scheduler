@@ -1,6 +1,6 @@
 TWINS SCHEDULER REPRODUCTION: PASS
-runtime_seconds=40
-output_root=/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.cache/final-reproduction
+runtime_seconds=81
+output_root=/workspace/scratch/bd0bdcfbe2ce/twins-scheduler/.cache/reproduction-v2-20261019
 python_tests=PASS
 go_tests=PASS
 cross_language=PASS
@@ -11,6 +11,10 @@ smt_positive_negative=PASS
 lean_build_axioms_leanchecker=PASS
 repair_frontier_exhaustive_checks=PASS
 concrete_trace_legality_timing_fifo=PASS
+minimum_cost_synthesis_and_independent_certificates=PASS
+independent_arbitrary_order_oracle=PASS
+unchanged_native_conformance_and_signature_audit=PASS
+native_semantic_repeatability_and_race_detector=PASS
 official_lipics_build=PASS
 page_budget=PASS
 provenance_and_reference_manifests=PASS

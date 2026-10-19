@@ -162,3 +162,37 @@ Several production branches are outside the exercised subset: weighted voting, p
 The implemented `via_C` control first delivers B's signed round-one prevote to C. C possesses that message before forwarding the same signed record to P, after its own earlier prevote on C-to-P. In the mutant execution, P's local value-1 PoLC therefore forms before R without a newer direct B-to-P vote overtaking R. The original direct copy reaches P only after R; it cannot count as a second signer contribution. The mutant P's already-emitted round-one precommit remains deliverable to C after P commits 0. The checker compares all earlier/later pairs of **admitted PREVOTE/PRECOMMIT envelopes on each directed peer edge across rounds**, including earlier envelopes not yet delivered. It excludes proposal/block traffic and envelopes rejected by the declared admission policy. Passing this check establishes compatibility of this finite admitted vote order with FIFO, not execution of CometBFT networking or a refinement of all production channels. The relay is a separate, explicitly changed gossip skeleton; the original fixed-order separation theorem is not being extended to arbitrary reorderings of its unchanged skeleton.
 
 The concluding source-guard review reconfirmed the single P/round-zero logical lock-update omission, retention of P's round-one lock and valid-block updates, quorum-enabled mixed-vote timeouts, C's lawful round-one proposal, and old-round commit with explicit matching block acquisition. In both late-precommit mutant routes, repair occurs after the eager local transition has issued the indispensable signed precommit. No additional source mutation or unsupported transition is needed by the twelve constructed executions.
+
+## Further revision: synthesis and adaptive testing (19 October 2026)
+
+The second revision uses the existing fixed-set capacity lemma as a starting
+point. Its new application combines weighted certificate deficits, unequal
+control costs, allowed/required keys, a constructed event order and a separately
+checked optimality or infeasibility certificate. This is not a claim that
+feedback vertex set, SCC decomposition, order reversal or Bellman potentials
+are new techniques. At full quotas the optimization specializes to weighted
+directed feedback vertex set, with restricted deletions.
+
+McConnell, Mehlhorn, Näher and Schweitzer, *Certifying algorithms*, Computer
+Science Review 5(2), 119–161 (2011), explicitly supplies the established design
+principle of a result accompanied by independently checkable evidence.
+[Journal metadata](https://doi.org/10.1016/j.cosrev.2010.09.009) and the
+[primary author manuscript](https://www.mpi-sb.mpg.de/~mehlhorn/ftp/CertifyingAlgorithms.pdf)
+were consulted. The current artifact applies that principle to the declared
+phase-control synthesis problem. Its checker can still require exponential
+local enumeration; no universally polynomial certificate is claimed.
+
+Li, Desai and Padhye, *Feedback-guided Adaptive Testing of Distributed Systems
+Designs*, NSDI 2026, pp. 701–719, develops adaptive schedule generation driven by
+behavioral and scenario feedback. The
+[official USENIX paper and presentation](https://www.usenix.org/conference/nsdi26/presentation/li)
+were reviewed for current positioning. The manuscript separates adaptive
+exploration within scheduler constraints from exact minimum-cost changes to a
+supplied phase-admission contract. It does not infer that FEST is incomplete
+or claim a measured bug-finding-speed advantage.
+
+The non-submodular three-key example is an explicit negative result for one
+specified positive immediate-gain-per-cost rule. It is not a survey-based
+impossibility statement about all greedy or approximation algorithms.
+The reviewed sources support this bounded positioning; they do not establish
+absence of equivalent prior results across the full literature.

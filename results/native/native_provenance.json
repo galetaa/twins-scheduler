@@ -1,0 +1,52 @@
+{
+  "upstream_repository": "https://github.com/cometbft/cometbft.git",
+  "upstream_tag": "v0.39.3",
+  "upstream_commit": "49b82838fcca442b2445f76605c101609ed04130",
+  "upstream_tree": "ae9420e96f0fb41ee26588b4d16ca36a30fd1b27",
+  "tracked_source_clean_before_and_after": true,
+  "production_patch": null,
+  "source_sha256": {
+    "consensus/state.go": "f3e271613b995463dbca96cee5c1f3c6fdc85efda3edc1aeb7d358b64602af31",
+    "consensus/common_test.go": "bae14888d37f4eb6e145ab211e95d2842094a7c164480db0f8ced3a65e46fcb9",
+    "types/vote.go": "ef9fc496c0dbebecb810b0c1a117fa7651e6602bb348cde3a2dfe56e1af183f3",
+    "types/vote_set.go": "cf9897a2739df2d7cc56929d878eca22525ec203a3b85d17831f12ff3acb1c08",
+    "types/priv_validator.go": "0d7c3d95991339209bf6f4f454aa279d88bde8e5dbe99da3c76bb76205e4faed",
+    "state/execution.go": "d0559102f542578a0a674a65539e63785e02ea0d5c6c847bbfacca565ef7b8f2",
+    "go.mod": "d7f213a952a95eaeb374903d7f735a37a6f725dbab3a4f83c81549c824c23c82",
+    "go.sum": "75607f5d70b0965f68fb405add19e710902df089698951589ff9233a23ad4a98"
+  },
+  "harness_sha256": "48374e1687e8c7aa3cac717fb1dc583104f1bb7982df7e0501c256ec97be2af2",
+  "runner_sha256": "3a4b42e687e9d2ff96d516e7207e1f81247ef3a28bc9ccef694d9f5ce113d79d",
+  "go_version": "go version go1.25.0 linux/amd64",
+  "go_environment": {
+    "CGO_ENABLED": "1",
+    "GOARCH": "amd64",
+    "GOOS": "linux",
+    "GOTOOLCHAIN": "go1.25.0",
+    "GOVERSION": "go1.25.0"
+  },
+  "command": [
+    "go",
+    "test",
+    "./consensus",
+    "-run",
+    "^TestNativeConformance$",
+    "-count=1",
+    "-timeout=120s",
+    "-json"
+  ],
+  "command_exit_code": 0,
+  "passed_tests": [
+    "TestNativeConformance",
+    "TestNativeConformance/CommitCatchupAndImmutability",
+    "TestNativeConformance/LockPersistence",
+    "TestNativeConformance/MixedQuorumTimeoutGuards",
+    "TestNativeConformance/ValidBlockReuse"
+  ],
+  "result_sha256": {
+    "native_conformance.json": "bd9196d3e657a20ec31c0a3c113dc06fb425281b19b33ac87a18e0ba5bef311f",
+    "native_summary.json": "c41deb16ed95968fe1c232646411fe9639c24e453b61bffc27be8b54079c3f16",
+    "native_test_events.jsonl": "616c2e7b8ab9a786b2fe0f16db5fea6c595a0f97ab5f40caca781219fb39a6f5",
+    "native_test_stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

@@ -1,0 +1,2752 @@
+{
+  "chain_id": "repair-frontier-native-conformance",
+  "determinism": "fixed keys, genesis, event order, and assertions; native wall-clock vote/proposal timestamps and resulting signatures are intentionally not normalized",
+  "execution_scope": "synchronous in-process execution of unmodified upstream consensus.State; official local application/state fixture; no reactor, sockets, live peers, fault mutation, or conflicting commit",
+  "production_source_modified": false,
+  "scenarios": [
+    {
+      "name": "native_commit_missing_block_and_vote_immutability",
+      "checks": [
+        "retransmitting an authentic vote leaves two distinct prevotes and no lock",
+        "three actual prevotes update both native lock and valid-block fields before a non-nil precommit",
+        "the native executor validates, persists, and applies a normal three-signature commit",
+        "the same emitted precommit bytes and Ed25519 verification survive local height advancement",
+        "three real precommits enter Commit but do not invent missing block data",
+        "delivery of the corresponding Merkle-checked block parts completes the same normal commit at a catching-up node"
+      ],
+      "events": [
+        {
+          "index": 0,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 0,
+          "detail": "*consensus.ProposalMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPropose",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 1,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 0,
+          "detail": "*consensus.BlockPartMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 2,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 0,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 3,
+          "action": "START",
+          "node": 0,
+          "detail": "upstream enterNewRound(1,0)",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 4,
+          "action": "START",
+          "node": 1,
+          "detail": "upstream enterNewRound(1,0)",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPropose",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 5,
+          "action": "START",
+          "node": 2,
+          "detail": "upstream enterNewRound(1,0)",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPropose",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 6,
+          "action": "START",
+          "node": 3,
+          "detail": "upstream enterNewRound(1,0)",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPropose",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 7,
+          "action": "PEER_DELIVER",
+          "node": 1,
+          "detail": "from=0 type=*consensus.ProposalMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPropose",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 8,
+          "action": "PEER_DELIVER",
+          "node": 1,
+          "detail": "from=0 type=*consensus.BlockPartMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 9,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 1,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 10,
+          "action": "PEER_DELIVER",
+          "node": 2,
+          "detail": "from=0 type=*consensus.ProposalMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPropose",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 11,
+          "action": "PEER_DELIVER",
+          "node": 2,
+          "detail": "from=0 type=*consensus.BlockPartMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 12,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 2,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 13,
+          "action": "PEER_DELIVER",
+          "node": 0,
+          "detail": "from=1 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 14,
+          "action": "PEER_DELIVER",
+          "node": 0,
+          "detail": "from=1 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 15,
+          "action": "PEER_DELIVER",
+          "node": 0,
+          "detail": "from=2 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": 0,
+            "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "valid_round": 0,
+            "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 16,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 0,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": 0,
+            "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "valid_round": 0,
+            "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 17,
+          "action": "PEER_DELIVER",
+          "node": 1,
+          "detail": "from=0 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 18,
+          "action": "PEER_DELIVER",
+          "node": 1,
+          "detail": "from=2 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": 0,
+            "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "valid_round": 0,
+            "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 19,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 1,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": 0,
+            "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "valid_round": 0,
+            "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 20,
+          "action": "PEER_DELIVER",
+          "node": 2,
+          "detail": "from=0 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 21,
+          "action": "PEER_DELIVER",
+          "node": 2,
+          "detail": "from=1 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": 0,
+            "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "valid_round": 0,
+            "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 22,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 2,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": 0,
+            "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "valid_round": 0,
+            "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 23,
+          "action": "PEER_DELIVER",
+          "node": 0,
+          "detail": "from=1 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": 0,
+            "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "valid_round": 0,
+            "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 24,
+          "action": "PEER_DELIVER",
+          "node": 0,
+          "detail": "from=2 type=*consensus.VoteMessage",
+          "state": {
+            "height": 2,
+            "round": 0,
+            "step": "RoundStepNewHeight",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 1
+          }
+        },
+        {
+          "index": 25,
+          "action": "PEER_DELIVER",
+          "node": 3,
+          "detail": "from=0 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPropose",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 26,
+          "action": "PEER_DELIVER",
+          "node": 3,
+          "detail": "from=1 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPropose",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 27,
+          "action": "PEER_DELIVER",
+          "node": 3,
+          "detail": "from=2 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepCommit",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 28,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 3,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepCommit",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 29,
+          "action": "PEER_DELIVER",
+          "node": 3,
+          "detail": "from=0 type=*consensus.BlockPartMessage",
+          "state": {
+            "height": 2,
+            "round": 0,
+            "step": "RoundStepNewHeight",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 1
+          }
+        }
+      ],
+      "native_signed_votes": [
+        {
+          "node": 0,
+          "height": 1,
+          "round": 0,
+          "type": "PREVOTE",
+          "block_hash": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "validator_address": "6152d40ecc3682ad30088254dfb58877f696f346",
+          "timestamp": "2026-10-19T18:07:39.469425424Z",
+          "sign_bytes_hex": "8701080111010000000000000022480a209de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac31071224080112201378d4861438ea36dd468f89195ab85c894ca844308910ca6c8265b56cf93ccc2a0c08ebb8d9d6061090baebdf0132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "e2b9af3878ad21aadd305c9a934db4684b00dc96289dbfd0e144c424a1ad358caeeef29af30e70a20b6d43eace11b4c70067e06d485e4c93e8c3f4faa22f2807",
+          "signature_verified": true
+        },
+        {
+          "node": 1,
+          "height": 1,
+          "round": 0,
+          "type": "PREVOTE",
+          "block_hash": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "validator_address": "62f5751730f86503776500032fecfbd8505b71a5",
+          "timestamp": "2026-10-19T18:07:39.469632407Z",
+          "sign_bytes_hex": "8701080111010000000000000022480a209de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac31071224080112201378d4861438ea36dd468f89195ab85c894ca844308910ca6c8265b56cf93ccc2a0c08ebb8d9d60610978bf8df0132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "03277b74cf571747ce1f29b1dc3fb9eaf5f414830015fca9ed319b8283dc672a0b5fa0ff1ce2582826fcfbcf67bd02a41d752f9461bc09becbd411d37e7ad800",
+          "signature_verified": true
+        },
+        {
+          "node": 2,
+          "height": 1,
+          "round": 0,
+          "type": "PREVOTE",
+          "block_hash": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "validator_address": "9277bcf5a4d0a7edd82457f0cab5102fc17f2d7d",
+          "timestamp": "2026-10-19T18:07:39.469784072Z",
+          "sign_bytes_hex": "8701080111010000000000000022480a209de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac31071224080112201378d4861438ea36dd468f89195ab85c894ca844308910ca6c8265b56cf93ccc2a0c08ebb8d9d6061088ac81e00132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "77c33deb5a099ab9b34de1417bfd448346bd413e113f88463e44226291cd842710187561d3e215709441eb4032f4ed83a974aabb3d93bcbe2506c26ecaaede0b",
+          "signature_verified": true
+        },
+        {
+          "node": 0,
+          "height": 1,
+          "round": 0,
+          "type": "PRECOMMIT",
+          "block_hash": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "validator_address": "6152d40ecc3682ad30088254dfb58877f696f346",
+          "timestamp": "2026-10-19T18:07:39.46999457Z",
+          "sign_bytes_hex": "8701080211010000000000000022480a209de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac31071224080112201378d4861438ea36dd468f89195ab85c894ca844308910ca6c8265b56cf93ccc2a0c08ebb8d9d60610ca988ee00132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "f9347672f81fc12ab01013228c46b361f88f246458eb4a69ac8c4544c5df0fececd9415a4658a52987dcc7a6bf0e3d875778af67e5f844d612a1a7ff80e08e01",
+          "signature_verified": true
+        },
+        {
+          "node": 1,
+          "height": 1,
+          "round": 0,
+          "type": "PRECOMMIT",
+          "block_hash": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "validator_address": "62f5751730f86503776500032fecfbd8505b71a5",
+          "timestamp": "2026-10-19T18:07:39.47016857Z",
+          "sign_bytes_hex": "8701080211010000000000000022480a209de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac31071224080112201378d4861438ea36dd468f89195ab85c894ca844308910ca6c8265b56cf93ccc2a0c08ebb8d9d60610fae798e00132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "dde38890ff21801f85c7701d1f18763b60459fdcbcfd2c6eb87a55db1f386da2d27717cb0f0884355c103b7a02f01f22e1209207123f5ecb3a3ec30b011aac0b",
+          "signature_verified": true
+        },
+        {
+          "node": 2,
+          "height": 1,
+          "round": 0,
+          "type": "PRECOMMIT",
+          "block_hash": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "validator_address": "9277bcf5a4d0a7edd82457f0cab5102fc17f2d7d",
+          "timestamp": "2026-10-19T18:07:39.470348136Z",
+          "sign_bytes_hex": "8701080211010000000000000022480a209de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac31071224080112201378d4861438ea36dd468f89195ab85c894ca844308910ca6c8265b56cf93ccc2a0c08ebb8d9d60610e8e2a3e00132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "490aa17c1c18ed7aab80309e992d3a8bfd1c78355084fa73a057152f5970b8014c19cefc07bf3dfe9ebbba138afd921576ddd8366714f0206352163c9d8b6806",
+          "signature_verified": true
+        },
+        {
+          "node": 3,
+          "height": 1,
+          "round": 0,
+          "type": "PRECOMMIT",
+          "block_hash": "",
+          "validator_address": "9ff9641b9e6da1f1ec2f2e1fac5ef4991078bc35",
+          "timestamp": "2026-10-19T18:07:39.47241303Z",
+          "sign_bytes_hex": "3d08021101000000000000002a0c08ebb8d9d60610e6e6a1e10132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "5b881eea65295677bc046abffbe220b571d17395b2909068c41aa82bc2f9c8f8ead0a41fce4b9e211d9b973da4a40ffdf1ff7b60f8ab965ea885f692f6c2f00d",
+          "signature_verified": true
+        }
+      ],
+      "ed25519_public_keys_hex": [
+        "497754e5fbc04187ae38e46791bfa39b1036921fd89148b6cec865081e725944",
+        "1b02513d5f83125835dba6774ba4666a0c11017f6f2afa030d272625cfccbf2a",
+        "d4f5057c591b2039f06f8d61935b5694f0286027a9007bee2b3ec35964fd5922",
+        "71dc0e09b9ce005ac8ee0fbd0ace8452458c77ead0db76bff3b936532459a147"
+      ],
+      "final_states": [
+        {
+          "height": 2,
+          "round": 0,
+          "step": "RoundStepNewHeight",
+          "locked_round": -1,
+          "locked_block": "",
+          "valid_round": -1,
+          "valid_block": "",
+          "stored_height": 1
+        },
+        {
+          "height": 1,
+          "round": 0,
+          "step": "RoundStepPrecommit",
+          "locked_round": 0,
+          "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "valid_round": 0,
+          "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "stored_height": 0
+        },
+        {
+          "height": 1,
+          "round": 0,
+          "step": "RoundStepPrecommit",
+          "locked_round": 0,
+          "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "valid_round": 0,
+          "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "stored_height": 0
+        },
+        {
+          "height": 2,
+          "round": 0,
+          "step": "RoundStepNewHeight",
+          "locked_round": -1,
+          "locked_block": "",
+          "valid_round": -1,
+          "valid_block": "",
+          "stored_height": 1
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "native_mixed_quorum_timeout_guards",
+      "checks": [
+        "a scheduled proposal timeout without block data emits a native nil prevote",
+        "two distinct prevotes do not schedule prevote-wait; a mixed three-vote quorum does, and its timeout signs nil",
+        "two distinct precommits do not schedule round advancement; three nil precommits schedule a timeout whose firing advances exactly one round"
+      ],
+      "events": [
+        {
+          "index": 0,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 0,
+          "detail": "*consensus.ProposalMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPropose",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 1,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 0,
+          "detail": "*consensus.BlockPartMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 2,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 0,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 3,
+          "action": "START",
+          "node": 0,
+          "detail": "upstream enterNewRound(1,0)",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 4,
+          "action": "START",
+          "node": 1,
+          "detail": "upstream enterNewRound(1,0)",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPropose",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 5,
+          "action": "START",
+          "node": 2,
+          "detail": "upstream enterNewRound(1,0)",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPropose",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 6,
+          "action": "START",
+          "node": 3,
+          "detail": "upstream enterNewRound(1,0)",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPropose",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 7,
+          "action": "PEER_DELIVER",
+          "node": 1,
+          "detail": "from=0 type=*consensus.ProposalMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPropose",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 8,
+          "action": "PEER_DELIVER",
+          "node": 1,
+          "detail": "from=0 type=*consensus.BlockPartMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 9,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 1,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 10,
+          "action": "FIRE_SCHEDULED_TIMEOUT",
+          "node": 2,
+          "detail": "RoundStepPropose",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 11,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 2,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 12,
+          "action": "FIRE_SCHEDULED_TIMEOUT",
+          "node": 3,
+          "detail": "RoundStepPropose",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 13,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 3,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 14,
+          "action": "PEER_DELIVER",
+          "node": 2,
+          "detail": "from=0 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 15,
+          "action": "PEER_DELIVER",
+          "node": 2,
+          "detail": "from=1 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevoteWait",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 16,
+          "action": "FIRE_SCHEDULED_TIMEOUT",
+          "node": 2,
+          "detail": "RoundStepPrevoteWait",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 17,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 2,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 18,
+          "action": "PEER_DELIVER",
+          "node": 0,
+          "detail": "from=1 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 19,
+          "action": "PEER_DELIVER",
+          "node": 0,
+          "detail": "from=3 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevoteWait",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 20,
+          "action": "FIRE_SCHEDULED_TIMEOUT",
+          "node": 0,
+          "detail": "RoundStepPrevoteWait",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 21,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 0,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 22,
+          "action": "PEER_DELIVER",
+          "node": 3,
+          "detail": "from=0 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 23,
+          "action": "PEER_DELIVER",
+          "node": 3,
+          "detail": "from=1 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevoteWait",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 24,
+          "action": "FIRE_SCHEDULED_TIMEOUT",
+          "node": 3,
+          "detail": "RoundStepPrevoteWait",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 25,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 3,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 26,
+          "action": "PEER_DELIVER",
+          "node": 2,
+          "detail": "from=0 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 27,
+          "action": "PEER_DELIVER",
+          "node": 2,
+          "detail": "from=3 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 28,
+          "action": "FIRE_SCHEDULED_TIMEOUT",
+          "node": 2,
+          "detail": "RoundStepPrecommitWait",
+          "state": {
+            "height": 1,
+            "round": 1,
+            "step": "RoundStepPropose",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        }
+      ],
+      "native_signed_votes": [
+        {
+          "node": 0,
+          "height": 1,
+          "round": 0,
+          "type": "PREVOTE",
+          "block_hash": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "validator_address": "6152d40ecc3682ad30088254dfb58877f696f346",
+          "timestamp": "2026-10-19T18:07:39.473955495Z",
+          "sign_bytes_hex": "8701080111010000000000000022480a209de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac31071224080112201378d4861438ea36dd468f89195ab85c894ca844308910ca6c8265b56cf93ccc2a0c08ebb8d9d60610a7f9ffe10132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "ed0a45d29295141c6a75bfe19de820ebca26ecb845cf60d8ff7bd26767977129ce23511a774bfb60ffd3aece071977b240065418d5fa1818797679539ca2dd03",
+          "signature_verified": true
+        },
+        {
+          "node": 1,
+          "height": 1,
+          "round": 0,
+          "type": "PREVOTE",
+          "block_hash": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "validator_address": "62f5751730f86503776500032fecfbd8505b71a5",
+          "timestamp": "2026-10-19T18:07:39.474137351Z",
+          "sign_bytes_hex": "8701080111010000000000000022480a209de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac31071224080112201378d4861438ea36dd468f89195ab85c894ca844308910ca6c8265b56cf93ccc2a0c08ebb8d9d6061087868be20132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "70bf750c78add1a8920e6cde06a84789d42590db559575ca86bbc0d322db8bbf58989d2f583740cce590ceeffdc5c8164667acd39afa24e208fde0ca9017da0c",
+          "signature_verified": true
+        },
+        {
+          "node": 2,
+          "height": 1,
+          "round": 0,
+          "type": "PREVOTE",
+          "block_hash": "",
+          "validator_address": "9277bcf5a4d0a7edd82457f0cab5102fc17f2d7d",
+          "timestamp": "2026-10-19T18:07:39.474280679Z",
+          "sign_bytes_hex": "3d08011101000000000000002a0c08ebb8d9d60610e7e593e20132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "12e5de6c10185229c436aaf5d372ec7a2b0ece5381495dc8665180ab5d3d1a141c9ddc9b4fc970411c2fa43d8c825d75774e05da9a7a023a1a89e4899263a60e",
+          "signature_verified": true
+        },
+        {
+          "node": 3,
+          "height": 1,
+          "round": 0,
+          "type": "PREVOTE",
+          "block_hash": "",
+          "validator_address": "9ff9641b9e6da1f1ec2f2e1fac5ef4991078bc35",
+          "timestamp": "2026-10-19T18:07:39.474373631Z",
+          "sign_bytes_hex": "3d08011101000000000000002a0c08ebb8d9d60610ffbb99e20132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "5d776cdf771f10641ffc4c5b2307cba6f28d48a00ed062a07380d394538ec24a07429d5269f4d898eeff9f00ec97f613c949c338633736d5c98e9212a8e1b40d",
+          "signature_verified": true
+        },
+        {
+          "node": 2,
+          "height": 1,
+          "round": 0,
+          "type": "PRECOMMIT",
+          "block_hash": "",
+          "validator_address": "9277bcf5a4d0a7edd82457f0cab5102fc17f2d7d",
+          "timestamp": "2026-10-19T18:07:39.474541264Z",
+          "sign_bytes_hex": "3d08021101000000000000002a0c08ebb8d9d60610d0d9a3e20132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "2939802c03acee0a1891da3db067db63df7df1d15d4fd0c1165974d1ca58b6e040dbca5a0c54a2c5c816e34fdbe1e2f8be64e4a922949cf2c81d9e663b10e00f",
+          "signature_verified": true
+        },
+        {
+          "node": 0,
+          "height": 1,
+          "round": 0,
+          "type": "PRECOMMIT",
+          "block_hash": "",
+          "validator_address": "6152d40ecc3682ad30088254dfb58877f696f346",
+          "timestamp": "2026-10-19T18:07:39.474702638Z",
+          "sign_bytes_hex": "3d08021101000000000000002a0c08ebb8d9d60610aec6ade20132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "41b66db73e1a79748030955871bf2e1cb78170e4fca156c659750e63ad9b4a6e6c2634332cef76fdaf6db2c2335f335f11d16f5d5f41a26ed82040a6fcee0500",
+          "signature_verified": true
+        },
+        {
+          "node": 3,
+          "height": 1,
+          "round": 0,
+          "type": "PRECOMMIT",
+          "block_hash": "",
+          "validator_address": "9ff9641b9e6da1f1ec2f2e1fac5ef4991078bc35",
+          "timestamp": "2026-10-19T18:07:39.474855494Z",
+          "sign_bytes_hex": "3d08021101000000000000002a0c08ebb8d9d60610c6f0b6e20132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "fbafca182ab46e5685071506ee003cba31ee205e6430af09b1ab475bd59d2153650e95dedaa59577e37d9b7c35e43d67f3bba29e393e259660bad6ee0f72800a",
+          "signature_verified": true
+        }
+      ],
+      "ed25519_public_keys_hex": [
+        "497754e5fbc04187ae38e46791bfa39b1036921fd89148b6cec865081e725944",
+        "1b02513d5f83125835dba6774ba4666a0c11017f6f2afa030d272625cfccbf2a",
+        "d4f5057c591b2039f06f8d61935b5694f0286027a9007bee2b3ec35964fd5922",
+        "71dc0e09b9ce005ac8ee0fbd0ace8452458c77ead0db76bff3b936532459a147"
+      ],
+      "final_states": [
+        {
+          "height": 1,
+          "round": 0,
+          "step": "RoundStepPrecommit",
+          "locked_round": -1,
+          "locked_block": "",
+          "valid_round": -1,
+          "valid_block": "",
+          "stored_height": 0
+        },
+        {
+          "height": 1,
+          "round": 0,
+          "step": "RoundStepPrevote",
+          "locked_round": -1,
+          "locked_block": "",
+          "valid_round": -1,
+          "valid_block": "",
+          "stored_height": 0
+        },
+        {
+          "height": 1,
+          "round": 1,
+          "step": "RoundStepPropose",
+          "locked_round": -1,
+          "locked_block": "",
+          "valid_round": -1,
+          "valid_block": "",
+          "stored_height": 0
+        },
+        {
+          "height": 1,
+          "round": 0,
+          "step": "RoundStepPrecommit",
+          "locked_round": -1,
+          "locked_block": "",
+          "valid_round": -1,
+          "valid_block": "",
+          "stored_height": 0
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "native_lock_persistence_and_locked_prevote",
+      "checks": [
+        "legal mixed-precommit timeout advances the round while preserving native lock and valid-block state",
+        "the unchanged native prevote rule votes for its old lock after receiving a different valid proposal from the actual next proposer",
+        "this conformance scenario produces no commit and no agreement violation"
+      ],
+      "events": [
+        {
+          "index": 0,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 0,
+          "detail": "*consensus.ProposalMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPropose",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 1,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 0,
+          "detail": "*consensus.BlockPartMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 2,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 0,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 3,
+          "action": "START",
+          "node": 0,
+          "detail": "upstream enterNewRound(1,0)",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 4,
+          "action": "START",
+          "node": 1,
+          "detail": "upstream enterNewRound(1,0)",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPropose",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 5,
+          "action": "START",
+          "node": 2,
+          "detail": "upstream enterNewRound(1,0)",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPropose",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 6,
+          "action": "START",
+          "node": 3,
+          "detail": "upstream enterNewRound(1,0)",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPropose",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 7,
+          "action": "PEER_DELIVER",
+          "node": 1,
+          "detail": "from=0 type=*consensus.ProposalMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPropose",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 8,
+          "action": "PEER_DELIVER",
+          "node": 1,
+          "detail": "from=0 type=*consensus.BlockPartMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 9,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 1,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 10,
+          "action": "PEER_DELIVER",
+          "node": 2,
+          "detail": "from=0 type=*consensus.ProposalMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPropose",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 11,
+          "action": "PEER_DELIVER",
+          "node": 2,
+          "detail": "from=0 type=*consensus.BlockPartMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 12,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 2,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 13,
+          "action": "FIRE_SCHEDULED_TIMEOUT",
+          "node": 3,
+          "detail": "RoundStepPropose",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 14,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 3,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 15,
+          "action": "PEER_DELIVER",
+          "node": 0,
+          "detail": "from=1 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 16,
+          "action": "PEER_DELIVER",
+          "node": 0,
+          "detail": "from=2 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": 0,
+            "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "valid_round": 0,
+            "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 17,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 0,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": 0,
+            "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "valid_round": 0,
+            "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 18,
+          "action": "PEER_DELIVER",
+          "node": 1,
+          "detail": "from=0 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 19,
+          "action": "PEER_DELIVER",
+          "node": 1,
+          "detail": "from=3 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevoteWait",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 20,
+          "action": "FIRE_SCHEDULED_TIMEOUT",
+          "node": 1,
+          "detail": "RoundStepPrevoteWait",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 21,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 1,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 22,
+          "action": "PEER_DELIVER",
+          "node": 2,
+          "detail": "from=0 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 23,
+          "action": "PEER_DELIVER",
+          "node": 2,
+          "detail": "from=3 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevoteWait",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 24,
+          "action": "FIRE_SCHEDULED_TIMEOUT",
+          "node": 2,
+          "detail": "RoundStepPrevoteWait",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 25,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 2,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 26,
+          "action": "PEER_DELIVER",
+          "node": 0,
+          "detail": "from=1 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": 0,
+            "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "valid_round": 0,
+            "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 27,
+          "action": "PEER_DELIVER",
+          "node": 0,
+          "detail": "from=2 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": 0,
+            "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "valid_round": 0,
+            "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 28,
+          "action": "FIRE_SCHEDULED_TIMEOUT",
+          "node": 0,
+          "detail": "RoundStepPrecommitWait",
+          "state": {
+            "height": 1,
+            "round": 1,
+            "step": "RoundStepPropose",
+            "locked_round": 0,
+            "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "valid_round": 0,
+            "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 29,
+          "action": "PEER_DELIVER",
+          "node": 1,
+          "detail": "from=0 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 30,
+          "action": "PEER_DELIVER",
+          "node": 1,
+          "detail": "from=2 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 31,
+          "action": "FIRE_SCHEDULED_TIMEOUT",
+          "node": 1,
+          "detail": "RoundStepPrecommitWait",
+          "state": {
+            "height": 1,
+            "round": 1,
+            "step": "RoundStepPropose",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 32,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 1,
+          "detail": "*consensus.ProposalMessage",
+          "state": {
+            "height": 1,
+            "round": 1,
+            "step": "RoundStepPropose",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 33,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 1,
+          "detail": "*consensus.BlockPartMessage",
+          "state": {
+            "height": 1,
+            "round": 1,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 34,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 1,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 1,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 35,
+          "action": "PEER_DELIVER",
+          "node": 0,
+          "detail": "from=1 type=*consensus.ProposalMessage",
+          "state": {
+            "height": 1,
+            "round": 1,
+            "step": "RoundStepPropose",
+            "locked_round": 0,
+            "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "valid_round": 0,
+            "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 36,
+          "action": "PEER_DELIVER",
+          "node": 0,
+          "detail": "from=1 type=*consensus.BlockPartMessage",
+          "state": {
+            "height": 1,
+            "round": 1,
+            "step": "RoundStepPrevote",
+            "locked_round": 0,
+            "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "valid_round": 0,
+            "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 37,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 0,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 1,
+            "step": "RoundStepPrevote",
+            "locked_round": 0,
+            "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "valid_round": 0,
+            "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "stored_height": 0
+          }
+        }
+      ],
+      "native_signed_votes": [
+        {
+          "node": 0,
+          "height": 1,
+          "round": 0,
+          "type": "PREVOTE",
+          "block_hash": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "validator_address": "6152d40ecc3682ad30088254dfb58877f696f346",
+          "timestamp": "2026-10-19T18:07:39.476384901Z",
+          "sign_bytes_hex": "8701080111010000000000000022480a209de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac31071224080112201378d4861438ea36dd468f89195ab85c894ca844308910ca6c8265b56cf93ccc2a0c08ebb8d9d60610859d94e30132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "e9046ea21458bdcbe80bb921f3d4d841eeaa0db1798e19426f5345a5bc41ce0edd69152996457d7334f1ead2e798e2c2f310b5766523dbf50585d717a67d8805",
+          "signature_verified": true
+        },
+        {
+          "node": 1,
+          "height": 1,
+          "round": 0,
+          "type": "PREVOTE",
+          "block_hash": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "validator_address": "62f5751730f86503776500032fecfbd8505b71a5",
+          "timestamp": "2026-10-19T18:07:39.477292738Z",
+          "sign_bytes_hex": "8701080111010000000000000022480a209de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac31071224080112201378d4861438ea36dd468f89195ab85c894ca844308910ca6c8265b56cf93ccc2a0c08ebb8d9d60610c2d1cbe30132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "f8df63546e6919ad0373aeb831145e3b9cc09faed2723a485427f56ca8c3790e035c9ae421ea58627299b8e8a9540743a7bf79f827763198deb5c3ed2b764400",
+          "signature_verified": true
+        },
+        {
+          "node": 2,
+          "height": 1,
+          "round": 0,
+          "type": "PREVOTE",
+          "block_hash": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "validator_address": "9277bcf5a4d0a7edd82457f0cab5102fc17f2d7d",
+          "timestamp": "2026-10-19T18:07:39.4774698Z",
+          "sign_bytes_hex": "8701080111010000000000000022480a209de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac31071224080112201378d4861438ea36dd468f89195ab85c894ca844308910ca6c8265b56cf93ccc2a0c08ebb8d9d60610e8b8d6e30132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "0408ffcce45e77298eb0210df403f16b53a15601985d41b1733c7c3c32d56af26f8c8686c933a82780e73653fd2626849dbf386df08ff2d188483b0bbbd7f505",
+          "signature_verified": true
+        },
+        {
+          "node": 3,
+          "height": 1,
+          "round": 0,
+          "type": "PREVOTE",
+          "block_hash": "",
+          "validator_address": "9ff9641b9e6da1f1ec2f2e1fac5ef4991078bc35",
+          "timestamp": "2026-10-19T18:07:39.477577158Z",
+          "sign_bytes_hex": "3d08011101000000000000002a0c08ebb8d9d60610c6ffdce30132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "0eff0fe3b70fce6cc8f986fdc342a41cc0216adfdc54a734da6fcfcdba7ddc38c4fffac9fae75496c27a041375e745c134bf31713d142b946a9ad90119c4510d",
+          "signature_verified": true
+        },
+        {
+          "node": 0,
+          "height": 1,
+          "round": 0,
+          "type": "PRECOMMIT",
+          "block_hash": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "validator_address": "6152d40ecc3682ad30088254dfb58877f696f346",
+          "timestamp": "2026-10-19T18:07:39.477753177Z",
+          "sign_bytes_hex": "8701080211010000000000000022480a209de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac31071224080112201378d4861438ea36dd468f89195ab85c894ca844308910ca6c8265b56cf93ccc2a0c08ebb8d9d60610d9dee7e30132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "3f34e775caa96e2378cd93c9614c3afea2dec1ef9144edee3fce3ec1886129eacfbff9293f4b1780ae384c64d0030c02c8d704cfaa4da5070328e97a5e06320a",
+          "signature_verified": true
+        },
+        {
+          "node": 1,
+          "height": 1,
+          "round": 0,
+          "type": "PRECOMMIT",
+          "block_hash": "",
+          "validator_address": "62f5751730f86503776500032fecfbd8505b71a5",
+          "timestamp": "2026-10-19T18:07:39.477951009Z",
+          "sign_bytes_hex": "3d08021101000000000000002a0c08ebb8d9d60610a1e8f3e30132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "ab296e24da489e4084667387b2dc4574ffa520f1ed5b9cc174ce01c57e8e9ad15a712502f1cb1358607c5b66c6d3fe9be7a835d1eb8846b5ee5f2709688f9109",
+          "signature_verified": true
+        },
+        {
+          "node": 2,
+          "height": 1,
+          "round": 0,
+          "type": "PRECOMMIT",
+          "block_hash": "",
+          "validator_address": "9277bcf5a4d0a7edd82457f0cab5102fc17f2d7d",
+          "timestamp": "2026-10-19T18:07:39.478122134Z",
+          "sign_bytes_hex": "3d08021101000000000000002a0c08ebb8d9d6061096a1fee30132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "b7fcafe86a1fc10ec76c3fa3b8ed9df7ec7b7bfc27706a4d94fe9b1430e7ddb8f4fe8a76deb353df289523dc81eb155d11eeef9ff65adcc7ec412362151a9a03",
+          "signature_verified": true
+        },
+        {
+          "node": 1,
+          "height": 1,
+          "round": 1,
+          "type": "PREVOTE",
+          "block_hash": "badb454bddc668dfbd5b8e371db956308d300c11c302573c0ea2de52118f1931",
+          "validator_address": "62f5751730f86503776500032fecfbd8505b71a5",
+          "timestamp": "2026-10-19T18:07:39.478528421Z",
+          "sign_bytes_hex": "9001080111010000000000000019010000000000000022480a20badb454bddc668dfbd5b8e371db956308d300c11c302573c0ea2de52118f193112240801122066c3926efe88fb1f940e1b188fdd30ae0874ceaefcdbca6f25e977e54f95ee692a0c08ebb8d9d60610a58797e40132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "5b03bfb8b08b85161f1dd1e57b2993bdad271788f9fdedda55e61f3b7346048210151a9adbd8bbda6aca0dc0988a1ab338d534948db86ca5a96a7973b45bef0a",
+          "signature_verified": true
+        },
+        {
+          "node": 0,
+          "height": 1,
+          "round": 1,
+          "type": "PREVOTE",
+          "block_hash": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "validator_address": "6152d40ecc3682ad30088254dfb58877f696f346",
+          "timestamp": "2026-10-19T18:07:39.478706672Z",
+          "sign_bytes_hex": "9001080111010000000000000019010000000000000022480a209de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac31071224080112201378d4861438ea36dd468f89195ab85c894ca844308910ca6c8265b56cf93ccc2a0c08ebb8d9d60610f0f7a1e40132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "c3377dccf51e18cfdf8874aa632ac7f0fefe0dbf0e70158a5e85ead5127e5f4f2054187fe5efe42bb99e39ab59068fad6df42636839cec0e640c6867b0389208",
+          "signature_verified": true
+        }
+      ],
+      "ed25519_public_keys_hex": [
+        "497754e5fbc04187ae38e46791bfa39b1036921fd89148b6cec865081e725944",
+        "1b02513d5f83125835dba6774ba4666a0c11017f6f2afa030d272625cfccbf2a",
+        "d4f5057c591b2039f06f8d61935b5694f0286027a9007bee2b3ec35964fd5922",
+        "71dc0e09b9ce005ac8ee0fbd0ace8452458c77ead0db76bff3b936532459a147"
+      ],
+      "final_states": [
+        {
+          "height": 1,
+          "round": 1,
+          "step": "RoundStepPrevote",
+          "locked_round": 0,
+          "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "valid_round": 0,
+          "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "stored_height": 0
+        },
+        {
+          "height": 1,
+          "round": 1,
+          "step": "RoundStepPrevote",
+          "locked_round": -1,
+          "locked_block": "",
+          "valid_round": -1,
+          "valid_block": "",
+          "stored_height": 0
+        },
+        {
+          "height": 1,
+          "round": 0,
+          "step": "RoundStepPrecommit",
+          "locked_round": -1,
+          "locked_block": "",
+          "valid_round": -1,
+          "valid_block": "",
+          "stored_height": 0
+        },
+        {
+          "height": 1,
+          "round": 0,
+          "step": "RoundStepPrevote",
+          "locked_round": -1,
+          "locked_block": "",
+          "valid_round": -1,
+          "valid_block": "",
+          "stored_height": 0
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "native_valid_block_proposal_reuse",
+      "checks": [
+        "the actual round-1 proposer with validBlock@0 reuses that block and publishes POLRound=0",
+        "the locally retained real PoLC makes the reused proposal complete and yields a matching native prevote"
+      ],
+      "events": [
+        {
+          "index": 0,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 0,
+          "detail": "*consensus.ProposalMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPropose",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 1,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 0,
+          "detail": "*consensus.BlockPartMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 2,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 0,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 3,
+          "action": "START",
+          "node": 0,
+          "detail": "upstream enterNewRound(1,0)",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 4,
+          "action": "START",
+          "node": 1,
+          "detail": "upstream enterNewRound(1,0)",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPropose",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 5,
+          "action": "START",
+          "node": 2,
+          "detail": "upstream enterNewRound(1,0)",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPropose",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 6,
+          "action": "START",
+          "node": 3,
+          "detail": "upstream enterNewRound(1,0)",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPropose",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 7,
+          "action": "PEER_DELIVER",
+          "node": 1,
+          "detail": "from=0 type=*consensus.ProposalMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPropose",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 8,
+          "action": "PEER_DELIVER",
+          "node": 1,
+          "detail": "from=0 type=*consensus.BlockPartMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 9,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 1,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 10,
+          "action": "PEER_DELIVER",
+          "node": 2,
+          "detail": "from=0 type=*consensus.ProposalMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPropose",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 11,
+          "action": "PEER_DELIVER",
+          "node": 2,
+          "detail": "from=0 type=*consensus.BlockPartMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 12,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 2,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 13,
+          "action": "FIRE_SCHEDULED_TIMEOUT",
+          "node": 3,
+          "detail": "RoundStepPropose",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 14,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 3,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 15,
+          "action": "PEER_DELIVER",
+          "node": 0,
+          "detail": "from=1 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 16,
+          "action": "PEER_DELIVER",
+          "node": 0,
+          "detail": "from=2 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": 0,
+            "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "valid_round": 0,
+            "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 17,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 0,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": 0,
+            "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "valid_round": 0,
+            "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 18,
+          "action": "PEER_DELIVER",
+          "node": 1,
+          "detail": "from=0 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 19,
+          "action": "PEER_DELIVER",
+          "node": 1,
+          "detail": "from=2 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": 0,
+            "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "valid_round": 0,
+            "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 20,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 1,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": 0,
+            "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "valid_round": 0,
+            "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 21,
+          "action": "PEER_DELIVER",
+          "node": 2,
+          "detail": "from=0 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 22,
+          "action": "PEER_DELIVER",
+          "node": 2,
+          "detail": "from=3 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevoteWait",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 23,
+          "action": "FIRE_SCHEDULED_TIMEOUT",
+          "node": 2,
+          "detail": "RoundStepPrevoteWait",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 24,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 2,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 25,
+          "action": "PEER_DELIVER",
+          "node": 3,
+          "detail": "from=0 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevote",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 26,
+          "action": "PEER_DELIVER",
+          "node": 3,
+          "detail": "from=1 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrevoteWait",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 27,
+          "action": "FIRE_SCHEDULED_TIMEOUT",
+          "node": 3,
+          "detail": "RoundStepPrevoteWait",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 28,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 3,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": -1,
+            "locked_block": "",
+            "valid_round": -1,
+            "valid_block": "",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 29,
+          "action": "PEER_DELIVER",
+          "node": 1,
+          "detail": "from=2 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": 0,
+            "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "valid_round": 0,
+            "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 30,
+          "action": "PEER_DELIVER",
+          "node": 1,
+          "detail": "from=3 type=*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 0,
+            "step": "RoundStepPrecommit",
+            "locked_round": 0,
+            "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "valid_round": 0,
+            "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 31,
+          "action": "FIRE_SCHEDULED_TIMEOUT",
+          "node": 1,
+          "detail": "RoundStepPrecommitWait",
+          "state": {
+            "height": 1,
+            "round": 1,
+            "step": "RoundStepPropose",
+            "locked_round": 0,
+            "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "valid_round": 0,
+            "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 32,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 1,
+          "detail": "*consensus.ProposalMessage",
+          "state": {
+            "height": 1,
+            "round": 1,
+            "step": "RoundStepPropose",
+            "locked_round": 0,
+            "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "valid_round": 0,
+            "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 33,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 1,
+          "detail": "*consensus.BlockPartMessage",
+          "state": {
+            "height": 1,
+            "round": 1,
+            "step": "RoundStepPrevote",
+            "locked_round": 0,
+            "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "valid_round": 0,
+            "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "stored_height": 0
+          }
+        },
+        {
+          "index": 34,
+          "action": "NATIVE_EMIT_AND_SELF_DELIVER",
+          "node": 1,
+          "detail": "*consensus.VoteMessage",
+          "state": {
+            "height": 1,
+            "round": 1,
+            "step": "RoundStepPrevote",
+            "locked_round": 0,
+            "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "valid_round": 0,
+            "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+            "stored_height": 0
+          }
+        }
+      ],
+      "native_signed_votes": [
+        {
+          "node": 0,
+          "height": 1,
+          "round": 0,
+          "type": "PREVOTE",
+          "block_hash": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "validator_address": "6152d40ecc3682ad30088254dfb58877f696f346",
+          "timestamp": "2026-10-19T18:07:39.479632396Z",
+          "sign_bytes_hex": "8701080111010000000000000022480a209de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac31071224080112201378d4861438ea36dd468f89195ab85c894ca844308910ca6c8265b56cf93ccc2a0c08ebb8d9d606108cb8dae40132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "ae559a809e0c5efa4d37c40ef96f02b26a491157894db9bbb74950fe86d74d9926a009a38918641c889fc7cfef13b88e3fad0c7e9b87e8528f2b4eb747b0900b",
+          "signature_verified": true
+        },
+        {
+          "node": 1,
+          "height": 1,
+          "round": 0,
+          "type": "PREVOTE",
+          "block_hash": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "validator_address": "62f5751730f86503776500032fecfbd8505b71a5",
+          "timestamp": "2026-10-19T18:07:39.479830625Z",
+          "sign_bytes_hex": "8701080111010000000000000022480a209de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac31071224080112201378d4861438ea36dd468f89195ab85c894ca844308910ca6c8265b56cf93ccc2a0c08ebb8d9d60610e1c4e6e40132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "94e2e7cbb0eaf02ce82e3404166025fd463495ab6e5c33669406818dba635e94361aa340d6739df16edc431c4cf68108bb79e5fa488658ef8bb2eb249f9a4703",
+          "signature_verified": true
+        },
+        {
+          "node": 2,
+          "height": 1,
+          "round": 0,
+          "type": "PREVOTE",
+          "block_hash": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "validator_address": "9277bcf5a4d0a7edd82457f0cab5102fc17f2d7d",
+          "timestamp": "2026-10-19T18:07:39.479979213Z",
+          "sign_bytes_hex": "8701080111010000000000000022480a209de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac31071224080112201378d4861438ea36dd468f89195ab85c894ca844308910ca6c8265b56cf93ccc2a0c08ebb8d9d60610cdcdefe40132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "c5610df699695768c1b7785ab8f932769f909e5ec74da8f7f872c1ac9907d5760e257aafb54486a4ff8faad56517f571100c5b281a284c5991a0266b18d5fb02",
+          "signature_verified": true
+        },
+        {
+          "node": 3,
+          "height": 1,
+          "round": 0,
+          "type": "PREVOTE",
+          "block_hash": "",
+          "validator_address": "9ff9641b9e6da1f1ec2f2e1fac5ef4991078bc35",
+          "timestamp": "2026-10-19T18:07:39.480072932Z",
+          "sign_bytes_hex": "3d08011101000000000000002a0c08ebb8d9d60610e4a9f5e40132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "8294acc3ee989249ab49f0a875ae3d5d666273dea4fcde5d3dd277d05334fdcc2d99f7a8a5e5a113b038aa4b265a1e60fe19728bc2b6f31f8a16179b0d3e320c",
+          "signature_verified": true
+        },
+        {
+          "node": 0,
+          "height": 1,
+          "round": 0,
+          "type": "PRECOMMIT",
+          "block_hash": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "validator_address": "6152d40ecc3682ad30088254dfb58877f696f346",
+          "timestamp": "2026-10-19T18:07:39.480272428Z",
+          "sign_bytes_hex": "8701080211010000000000000022480a209de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac31071224080112201378d4861438ea36dd468f89195ab85c894ca844308910ca6c8265b56cf93ccc2a0c08ebb8d9d60610acc081e50132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "9d33195051107b91478d41820c7d52c2ebc00e9feabbac9b91ae1a687f2fc51a2772d39efcfb35671b677abcc7946c4c908aefd100350e5007289df26e71fa04",
+          "signature_verified": true
+        },
+        {
+          "node": 1,
+          "height": 1,
+          "round": 0,
+          "type": "PRECOMMIT",
+          "block_hash": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "validator_address": "62f5751730f86503776500032fecfbd8505b71a5",
+          "timestamp": "2026-10-19T18:07:39.480457064Z",
+          "sign_bytes_hex": "8701080211010000000000000022480a209de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac31071224080112201378d4861438ea36dd468f89195ab85c894ca844308910ca6c8265b56cf93ccc2a0c08ebb8d9d60610e8e28ce50132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "3ec7a08cb8014adf9d9866ed5c76b1943dc7b9e34961ae799df3f622beb3af348bceacce929bf96490f93ede157711b984da37baeef631d3ea44bde672e95e09",
+          "signature_verified": true
+        },
+        {
+          "node": 2,
+          "height": 1,
+          "round": 0,
+          "type": "PRECOMMIT",
+          "block_hash": "",
+          "validator_address": "9277bcf5a4d0a7edd82457f0cab5102fc17f2d7d",
+          "timestamp": "2026-10-19T18:07:39.480634392Z",
+          "sign_bytes_hex": "3d08021101000000000000002a0c08ebb8d9d6061098cc97e50132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "efcd8eba7befd0606a37ef6271a30cd8e3f5bc728f27502c09191f12c4126353fa132456eb1524085e600b4fb5f8adbac23b766be1a36352aba74b8594165f09",
+          "signature_verified": true
+        },
+        {
+          "node": 3,
+          "height": 1,
+          "round": 0,
+          "type": "PRECOMMIT",
+          "block_hash": "",
+          "validator_address": "9ff9641b9e6da1f1ec2f2e1fac5ef4991078bc35",
+          "timestamp": "2026-10-19T18:07:39.480784403Z",
+          "sign_bytes_hex": "3d08021101000000000000002a0c08ebb8d9d6061093e0a0e50132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "a6c7f0465fb7f39764793fb187264326e4e1a93567ee13f88398bde18b7794030b6ea6b5301ac9f5b6bb65b64f0b6f90c24702cacdcb8a0eadc6aaa6fa57ea03",
+          "signature_verified": true
+        },
+        {
+          "node": 1,
+          "height": 1,
+          "round": 1,
+          "type": "PREVOTE",
+          "block_hash": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "validator_address": "62f5751730f86503776500032fecfbd8505b71a5",
+          "timestamp": "2026-10-19T18:07:39.481036187Z",
+          "sign_bytes_hex": "9001080111010000000000000019010000000000000022480a209de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac31071224080112201378d4861438ea36dd468f89195ab85c894ca844308910ca6c8265b56cf93ccc2a0c08ebb8d9d606109b8fb0e50132227265706169722d66726f6e746965722d6e61746976652d636f6e666f726d616e6365",
+          "ed25519_signature_hex": "eb37b4ac11d0f95d9cc428089d6a28a492c94b22d288d64999dfe1c8dcabbc78b9c6d608aa9db572e92a5d6f886c7dc8bffe025cb7fbac3811a3b1e69aa39607",
+          "signature_verified": true
+        }
+      ],
+      "ed25519_public_keys_hex": [
+        "497754e5fbc04187ae38e46791bfa39b1036921fd89148b6cec865081e725944",
+        "1b02513d5f83125835dba6774ba4666a0c11017f6f2afa030d272625cfccbf2a",
+        "d4f5057c591b2039f06f8d61935b5694f0286027a9007bee2b3ec35964fd5922",
+        "71dc0e09b9ce005ac8ee0fbd0ace8452458c77ead0db76bff3b936532459a147"
+      ],
+      "final_states": [
+        {
+          "height": 1,
+          "round": 0,
+          "step": "RoundStepPrecommit",
+          "locked_round": 0,
+          "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "valid_round": 0,
+          "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "stored_height": 0
+        },
+        {
+          "height": 1,
+          "round": 1,
+          "step": "RoundStepPrevote",
+          "locked_round": 0,
+          "locked_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "valid_round": 0,
+          "valid_block": "9de91ed00ca3b59f9b677800dc00f768b660a3232e6b775db19be394eaac3107",
+          "stored_height": 0
+        },
+        {
+          "height": 1,
+          "round": 0,
+          "step": "RoundStepPrecommit",
+          "locked_round": -1,
+          "locked_block": "",
+          "valid_round": -1,
+          "valid_block": "",
+          "stored_height": 0
+        },
+        {
+          "height": 1,
+          "round": 0,
+          "step": "RoundStepPrecommit",
+          "locked_round": -1,
+          "locked_block": "",
+          "valid_round": -1,
+          "valid_block": "",
+          "stored_height": 0
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "schema": "native-cometbft-conformance-v1",
+  "upstream_commit": "49b82838fcca442b2445f76605c101609ed04130"
+}

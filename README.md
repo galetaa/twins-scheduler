@@ -1,144 +1,179 @@
-# Twins Scheduler Closure
+# Certifying Minimum-Cost Phase Refinements for BFT Testing
 
-This research artifact studies when coupling admission across protocol phases
-can hide an agreement violation. Its central result now characterizes an
-explicit family of finite scheduling domains with several independently
-controlled pivotal validators, partial delivery orders, and irreversible signed
-outputs. A guarded four-validator Tendermint-style execution supplies a concrete
-bounded witness and timing controls.
+This repository contains the manuscript, mathematical proofs, executable
+synthesis procedure, independent certificate checker, and reproducible
+experiments for **minimum-cost phase control in an explicit BFT-testing
+schema**.
 
-Start with the [revised manuscript](manuscript/pdf/final_lipics_manuscript.pdf),
-the [revision report in Russian](docs/reviews/REVISION_REPORT_RU.md), or the
-[response to the reviewer](docs/reviews/RESPONSE_TO_REVIEWER.md).
+The procedure chooses which admission keys must distinguish voting phases,
+constructs a legal model witness, and supplies evidence that no cheaper choice
+works. Unequal vote weights, nonnegative control costs, unavailable keys and
+already-required keys are supported. The input contract must be supplied and
+justified for the protocol under test.
 
-## Main result: the repair frontier
+- [Current LIPIcs manuscript](manuscript/pdf/final_lipics_manuscript.pdf)
+- [Russian revision report](docs/reviews/REVISION_REPORT_RU.md)
+- [Response to reviewer](docs/reviews/RESPONSE_TO_REVIEWER.md)
+- [Synthesis specification and proofs](docs/research/REFINEMENT_SYNTHESIS.md)
+- [Claim-to-evidence ledger](docs/CLAIM_EVIDENCE_LEDGER.md)
 
-Repair must precede the indispensable **second signature**, not merely the
-second decision. Once a conflicting vote has been signed and remains available
-to its collector, later state repair cannot retract that output.
+## Central result
 
-For the independent-pivot schema, let $k$ be the number of unit-weight pivots
-and let $d_0,d_1$ be the contributions missing from two conflicting certificate
-bases. An open coarse key admits both an enabling envelope $E_i$ and a repair
-envelope $R_i$. A closed key admits neither; its initially ready pivot can still
-contribute to the second branch. Let $V_i$ be the second-vote opportunity and
-derive a directed graph, including self-loops, from **transitive** precedence:
+A repair message can prevent a prospective conflicting signature; it cannot
+withdraw one already issued and available to its collector. For each pivot
+$i$, let $R_i$ be its repair opportunity and $V_i$ its second-vote opportunity.
+Build the repair graph from transitive precedence in the **complete** event
+order, including suppressed slots:
 
 $$
-i\to j\quad\Longleftrightarrow\quad R_i\prec V_j,
+i\to j\iff R_i\prec V_j.
+$$
+
+The graph describes which contributors can remain jointly reusable. A chosen
+split set $S$ admits a witness exactly when the pivot identities have a
+partition $I=S\mathbin{\dot\cup}J\mathbin{\dot\cup}X\mathbin{\dot\cup}Y$ with
+
+$$
+H[J]\text{ acyclic},\qquad
+w(S\cup J\cup X)\ge d_0,\qquad
+w(S\cup J\cup Y)\ge d_1.
+$$
+
+Here $d_0,d_1$ are certificate deficits. Split keys $S$ and unsplit reusable
+keys $J$ contribute to both branches. Open keys $X$ guarantee first support;
+closed, initially ready keys $Y$ provide second support. Additional second
+votes from $X$ are harmless. Costs are minimized over allowed and required
+split choices.
+
+The algorithm enumerates local choices in strongly connected components and
+uses a two-quota dynamic program. It then constructs the complete event order.
+A separate checker verifies every local Bellman lower-bound inequality and
+replays the witness. Matching its cost to the lower bound proves optimality;
+an infinite lower bound proves infeasibility. A resource limit returns
+**unknown**, not infeasible. Verification remains exponential in the largest
+remaining SCC and pseudo-polynomial in integer quota values.
+
+The earlier unit-weight capacity and minimum-cardinality results are retained:
+
+$$
+\text{coarse witness}\iff
+\max(d_0,d_1)\le k\ \land\ d_0+d_1\le k+\alpha(H),
 \qquad
-\alpha(H)=\max\{|J|:H[J]\text{ is acyclic}\}.
-$$
-
-Under the stated behavioral, output, independence, and complete-order
-contracts, a coarse unsafe execution exists exactly when
-
-$$
-\max(d_0,d_1)\le k,
-\qquad d_0+d_1\le k+\alpha(H).
-$$
-
-For **unit weights**, if fine admission can expose a witness, the exact minimum
-number of optimally chosen keys that must distinguish enabling from repair is
-
-$$
 t_* = \max(0,d_0+d_1-k-\alpha(H)).
 $$
 
-The paper also gives a weighted subset characterization. Indivisible weights
-require attainable subset sums; replacing $k$ by total weight in the unit-weight
-budget formula is invalid. The reversible-set argument and underlying graph
-optimization are classical. The contribution is their connection to scheduler
-admission, signature timing, and certificate deficits. See the
-[manuscript sources](manuscript/markdown/manuscript.md) and
-[literature audit](docs/research/LITERATURE_AND_PROVENANCE_AUDIT.md) for proofs,
-attribution, and assumptions.
+Here $\alpha(H)$ is the maximum induced-acyclic cardinality. The prescribed-set
+formula $|S|+\alpha(H[I\setminus S])$ already belonged to the first revision.
+The second revision adds weighted cost synthesis, key restrictions, constructive
+certificates, graph/order mechanization, and native conformance evidence.
 
-## What was checked
+### A reason to optimize combinations
 
-| Evidence | Revised result |
+For two directed cycles $0\leftrightarrow1$ and $0\leftrightarrow2$, unit vote
+weights and full quotas, splitting either leaf alone has zero immediate benefit.
+Splitting both leaves works. With costs $(M,1,1)$ and $M>2$, a rule that maximizes
+immediate capacity gain per cost chooses the center for $M$, although the
+optimum is 2. The ratio $M/2$ is unbounded. This proves non-submodularity and
+failure of that specific myopic rule; it is not a claim about all heuristics.
+
+## Use the certifying synthesizer
+
+```bash
+uv sync --frozen
+uv run python scripts/run_refinement_synthesis.py \
+  --input results/synthesis/examples/bow_tie_cost.input.json \
+  --output .cache/bow_tie_certificate.json
+uv run python scripts/run_refinement_synthesis.py \
+  --verify .cache/bow_tie_certificate.json \
+  --expect-input results/synthesis/examples/bow_tie_cost.input.json
+```
+
+The example's certified optimum is 2. [Five input fixtures](results/synthesis/examples/)
+cover the cost counterexample, crossed deadlines, indivisible weights, and
+one-pivot signature timing. These fixtures are abstract model inputs.
+
+## Evidence obtained
+
+| Evidence | Result and scope |
 | --- | --- |
-| Python tests | 35 pass: 13 retained, 8 frontier tests, 14 concrete-trace tests |
-| General repair graphs | All 530 directed graphs with loops for $k=1,2,3$; 50,363 legal orders; 1,357,209 policy/split executions |
-| Exact boundary and budget | 13,074 checks of each; zero mismatches |
-| General event orders | All 219 labelled partial orders on two repair and two vote opportunities, supplied as cover edges |
-| Common and weighted frontiers | 44 common-deadline domains and 258 weighted domains, with explicitly stated order representatives |
-| Concrete protocol execution | 12 legality-audited baseline, mutant, timing, and relay cases |
-| Lean 4.33.0 | 12 build jobs; 20 audited declarations; build, axiom audit, source hygiene, and `leanchecker` exit successfully |
-| SMT controls | 8 expected UNSAT and 4 expected SAT results using uv-pinned `z3-solver==4.13.3.0` |
+| Active Python tests | **47 pass**: 35 retained and 12 synthesis tests |
+| Main independent synthesis oracle | **35,223** weighted optimum/certificate comparisons; **103,460** prescribed-split checks; zero mismatches |
+| Separate arbitrary-order oracle | **3,253** optimum/certificate comparisons on 48 six-event DAGs; zero mismatches |
+| Structural synthesis study | **13 certified optima** among 15 synthetic cases, up to **48 pivots**; 2 explicit SCC-size cutoffs return unknown |
+| Retained frontier validation | 530 repair graphs, all 219 labelled four-event partial orders, 44 common-deadline and 258 weighted domains |
+| Guarded protocol model | 12 baseline/mutant/timing/relay cases with complete legality audits |
+| Unchanged native CometBFT | **4 scenarios, 14 checks, 32 native Ed25519 votes, 132 events**; independent signature audit passes |
+| Native repeated execution | 3 additional normal runs preserve semantic outcomes; 1 race-detector run passes |
+| Lean 4.33.0 | **14 build jobs, 27 audited declarations, 22 source files**; independent kernel rechecking passes |
+| Retained supporting checks | Go tests and 384-row Python/Go classifier comparison; 8 expected UNSAT and 4 expected SAT SMT controls |
 
-The [frontier evaluator](src/python/twins_scheduler/repair_frontier.py) executes
-guarded events independently of the capacity formula; the
-[runner](scripts/run_repair_frontier.py) compares its outcomes with the theorem.
-The [concrete trace](src/python/twins_scheduler/concrete_trace.py) tracks emitted
-envelopes, actual signer sets, local quorums, nil votes, timeouts, and persistent
-outputs. Its source pin is CometBFT v0.39.3, commit
-`49b82838fcca442b2445f76605c101609ed04130`.
+The two synthesis oracles obtain outcomes from raw permutations and admissions,
+without deriving their observations from the repair graph or capacity formula.
+The graph-based oracle's 1,357,209 executions belong to one declared schema;
+they are not independent protocol instances or a bug-prevalence measurement.
+Complete [synthesis results](results/synthesis/) include all 13 scale proofs.
 
-The concrete execution runs the declared local model. It does not run the
-production CometBFT client. The two conflicting observers are unmutated; only
-the pivot's round-0 lock assignment is omitted. The separate relay control
-passes the stated FIFO audit for admitted vote envelopes; this is not full
-transport-stack conformance. See the [trace explanation](docs/research/CONCRETE_TRACE.md).
+### Formal and implementation scope
 
-### Formal assurance
+[GraphRealization.lean](formal/lean/SchedulerClosure/GraphRealization.lean)
+proves the graph-reversal equivalence and constructs an injective event schedule
+from finite acyclicity, including input given as cover edges.
+[CertificateOptimality.lean](formal/lean/SchedulerClosure/CertificateOptimality.lean)
+proves the Bellman lower-bound, minimum-witness and infeasibility rules for
+arbitrary nonnegative-cost paths. Neither module assumes an optimal capacity
+or an optimally computed potential table.
 
-[RepairFrontier.lean](formal/lean/SchedulerClosure/RepairFrontier.lean) checks the
-corrected one-pivot theorem over an arbitrary behavioral contract, the capacity
-and budget arithmetic under their hypotheses, the weighted admission interval,
-and a small persistent-output machine. The graph reversal proof,
-graph-to-execution correspondence, and attainment of optimal graph capacity are
-paper proofs with finite executable cross-checks; they are not fully mechanized
-by that arithmetic module. The concrete protocol model has no Lean transition
-refinement proof.
+The full weighted behavioral correspondence and Python checker implementation
+are not mechanized. The concrete model has no Lean transition refinement of
+CometBFT. [Native conformance](experiments/native_cometbft/) separately executes
+unchanged CometBFT v0.39.3 at commit
+`49b82838fcca442b2445f76605c101609ed04130`, with pinned Go 1.25.0, native signing,
+locking, proposer priority, actual timeout guards and ordinary commits. It
+uses synchronous dispatch, test keys and in-memory fixtures. It does not
+reproduce the model's mutation or exercise a production network.
 
-The retained 384-row Python/Go agreement checks the earlier Boolean terminal
-classifier. It is supporting evidence, not an independent implementation of the
-new concrete trace. The [claim-to-evidence ledger](docs/CLAIM_EVIDENCE_LEDGER.md)
-records these distinctions.
+## Reproduce all reported checks
 
-## Reproduce the revision
-
-Prerequisites are Python 3.11–3.13, uv 0.6.14, Go 1.24, Pandoc, Git, curl, a C
-compiler, base pdfTeX/BibTeX and Poppler commands, and `dpkg-deb`. Pandoc generates
-the synchronized LaTeX manuscript from Markdown. Lean and the pinned TeX overlay
-are installed into the repository-local cache; the Python dependency lock pins
-the Z3 wheel used by the SMT checks.
+Prerequisites are Python 3.11–3.13, uv 0.6.14, Go 1.24 or later with toolchain
+selection, Pandoc, Git, curl, a C compiler, pdfTeX/BibTeX, Poppler commands and
+`dpkg-deb`. The native runner selects Go 1.25.0. Lean and the pinned TeX overlay
+are installed into the project cache; the Python lock pins Z3 and the independent
+native signature-audit dependencies. Empty caches require network downloads.
 
 ```bash
 ./reproduce_revision.sh
 ```
 
-This entry point delegates to `./reproduce.sh`, which includes the revised
-frontier and concrete-trace runners. The stages are also available through
-`make bootstrap`, `make test`, `make formal`, `make paper`, `make verify`,
-`make reproduce`, and `make release`. A mandatory check failure stops the run.
-For Docker instructions, see [container reproduction](containers/README.md).
+The mandatory pipeline runs the retained checks, both frontier/model runners,
+the new synthesis study and separate oracle, unchanged native conformance,
+independent signature audit, three additional normal runs and one race-detector
+run, the Lean build/audit/rechecking, and the official LIPIcs build. It stops on
+failure. Individual stages are available through `make test`, `make formal`,
+`make synthesis`, `make native`, and `make paper`.
 
-Each reproduction creates an isolated output tree. Deterministic data results
-are compared byte-for-byte with their committed references. The PDF is checked
-by building it, enforcing the main-text page budget, checking warnings and font
-embedding, and checking Markdown/LaTeX synchronization. Identical PDF bytes
-across different TeX engines are not required. The current verified PDF has
-17 physical pages, including 13 main-text pages; the enforced main-text limit is
-15. Detailed counts and output locations are in
-[expected outputs](docs/reproduction/EXPECTED_OUTPUTS.md).
+Each reproduction uses an isolated output tree. Deterministic data, including
+synthesis certificates and the native semantic summary, are compared against
+committed references. Native wall-clock timestamps, signatures and raw receipts
+are revalidated for that execution. PDF gates check source synchronization,
+main text at most **15 pages**, warnings and font embedding; they do not require
+identical PDF bytes across TeX engines. See [expected outputs](docs/reproduction/EXPECTED_OUTPUTS.md)
+and [container reproduction](containers/README.md).
 
 ## Repository guide
 
-- [Manuscript](manuscript/): Markdown sources, official LIPIcs source, figures,
-  and the revised PDF.
-- [Revision results](results/revision/): frontier summary and graph, common,
-  and weighted case tables; [concrete results](results/new/): complete traces.
-- [Code](src/) and [tests](tests/): executable models and checks.
-- [Formal evidence](formal/): Lean, supporting SMT, and certificate checks.
-- [Source fixtures](models/tendermint_style/): verified v0.39.3 snapshot and
-  separately preserved historical v0.40.0 material.
-- [Provenance](provenance/PROVENANCE.md) and [decision log](docs/DECISION_LOG.md):
-  source lineage and canonical choices.
-- [Limitations](docs/LIMITATIONS.md): exact scope of the mathematical,
-  executable, and reproducibility claims.
+- [Manuscript](manuscript/): Markdown, official LIPIcs source, figures and PDF.
+- [Synthesis](src/python/twins_scheduler/refinement_synthesis.py),
+  [frontier model](src/python/twins_scheduler/repair_frontier.py), and
+  [guarded trace](src/python/twins_scheduler/concrete_trace.py).
+- [Synthesis results](results/synthesis/), [native evidence](results/native/),
+  [frontier tables](results/revision/), and [model traces](results/new/).
+- [Formal proof map](formal/lean/ARTIFACT_THEOREM_MAP.md) and
+  [axiom report](formal/lean/AXIOM_REPORT.md).
+- [Source fixtures](models/tendermint_style/) preserve exact v0.39.3 bytes
+  and separately identified historical v0.40.0 material.
+- [Limitations](docs/LIMITATIONS.md),
+  [literature audit](docs/research/LITERATURE_AND_PROVENANCE_AUDIT.md), and
+  [provenance](provenance/PROVENANCE.md).
 
-Citation metadata is in [CITATION.cff](CITATION.cff). Original code and
-documentation use the MIT license; third-party materials retain the terms
-listed in [third-party notices](THIRD_PARTY_NOTICES.md).
+Original code and documentation use the MIT license. Third-party materials
+retain the terms in [third-party notices](THIRD_PARTY_NOTICES.md).

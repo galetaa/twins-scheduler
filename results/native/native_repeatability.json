@@ -1,0 +1,234 @@
+{
+  "status": "PASS",
+  "normal_repetitions": 3,
+  "race_detector_repetitions": 1,
+  "scenarios_per_run": 4,
+  "all_semantic_summaries_identical": true,
+  "race_detector_reported_no_race": true,
+  "output_and_log_routing_verified": true,
+  "reference_summary_sha256": "c41deb16ed95968fe1c232646411fe9639c24e453b61bffc27be8b54079c3f16",
+  "script_sha256": "9506c9028c4dedc3f574841e4e669edf9edaebb4c2e0ca3452fe00ed150bcab5",
+  "receipts": [
+    {
+      "attempt": 1,
+      "race_detector": false,
+      "command_exit_code": 0,
+      "semantic_summary_identical": true,
+      "raw_evidence_sha256": "785390260a43be52d81f041cce4fdf092093063dbcf682f60cd7e292a5f9117a",
+      "go_test_receipt_sha256": "f48047e95abadda979817353550c4611050da0c992a937e412bff71448b98865",
+      "go_test_pass_events": [
+        {
+          "Time": "2026-10-19T11:07:40.617743566-07:00",
+          "Action": "pass",
+          "Package": "github.com/cometbft/cometbft/consensus",
+          "Test": "TestNativeConformance/CommitCatchupAndImmutability",
+          "Elapsed": 0.01
+        },
+        {
+          "Time": "2026-10-19T11:07:40.620448117-07:00",
+          "Action": "pass",
+          "Package": "github.com/cometbft/cometbft/consensus",
+          "Test": "TestNativeConformance/MixedQuorumTimeoutGuards",
+          "Elapsed": 0
+        },
+        {
+          "Time": "2026-10-19T11:07:40.624806797-07:00",
+          "Action": "pass",
+          "Package": "github.com/cometbft/cometbft/consensus",
+          "Test": "TestNativeConformance/LockPersistence",
+          "Elapsed": 0
+        },
+        {
+          "Time": "2026-10-19T11:07:40.627908289-07:00",
+          "Action": "pass",
+          "Package": "github.com/cometbft/cometbft/consensus",
+          "Test": "TestNativeConformance/ValidBlockReuse",
+          "Elapsed": 0
+        },
+        {
+          "Time": "2026-10-19T11:07:40.630308393-07:00",
+          "Action": "pass",
+          "Package": "github.com/cometbft/cometbft/consensus",
+          "Test": "TestNativeConformance",
+          "Elapsed": 0.02
+        },
+        {
+          "Time": "2026-10-19T11:07:40.631156204-07:00",
+          "Action": "pass",
+          "Package": "github.com/cometbft/cometbft/consensus",
+          "Elapsed": 0.035
+        }
+      ],
+      "upstream_source_unchanged": true,
+      "go_version": "go version go1.25.0 linux/amd64",
+      "runner_sha256": "3a4b42e687e9d2ff96d516e7207e1f81247ef3a28bc9ccef694d9f5ce113d79d",
+      "harness_sha256": "48374e1687e8c7aa3cac717fb1dc583104f1bb7982df7e0501c256ec97be2af2"
+    },
+    {
+      "attempt": 2,
+      "race_detector": false,
+      "command_exit_code": 0,
+      "semantic_summary_identical": true,
+      "raw_evidence_sha256": "10b79394c6bc284c570c8fd9f81ce9673701eecd9d73e25c5de726ba5837bea7",
+      "go_test_receipt_sha256": "afafa3944d50ac715e490dff9cbf39c798d0ba96844543b486957175e0889ec4",
+      "go_test_pass_events": [
+        {
+          "Time": "2026-10-19T11:07:41.43158965-07:00",
+          "Action": "pass",
+          "Package": "github.com/cometbft/cometbft/consensus",
+          "Test": "TestNativeConformance/CommitCatchupAndImmutability",
+          "Elapsed": 0.01
+        },
+        {
+          "Time": "2026-10-19T11:07:41.433933759-07:00",
+          "Action": "pass",
+          "Package": "github.com/cometbft/cometbft/consensus",
+          "Test": "TestNativeConformance/MixedQuorumTimeoutGuards",
+          "Elapsed": 0
+        },
+        {
+          "Time": "2026-10-19T11:07:41.440350743-07:00",
+          "Action": "pass",
+          "Package": "github.com/cometbft/cometbft/consensus",
+          "Test": "TestNativeConformance/LockPersistence",
+          "Elapsed": 0
+        },
+        {
+          "Time": "2026-10-19T11:07:41.440479132-07:00",
+          "Action": "pass",
+          "Package": "github.com/cometbft/cometbft/consensus",
+          "Test": "TestNativeConformance/ValidBlockReuse",
+          "Elapsed": 0
+        },
+        {
+          "Time": "2026-10-19T11:07:41.441404097-07:00",
+          "Action": "pass",
+          "Package": "github.com/cometbft/cometbft/consensus",
+          "Test": "TestNativeConformance",
+          "Elapsed": 0.01
+        },
+        {
+          "Time": "2026-10-19T11:07:41.441930862-07:00",
+          "Action": "pass",
+          "Package": "github.com/cometbft/cometbft/consensus",
+          "Elapsed": 0.032
+        }
+      ],
+      "upstream_source_unchanged": true,
+      "go_version": "go version go1.25.0 linux/amd64",
+      "runner_sha256": "3a4b42e687e9d2ff96d516e7207e1f81247ef3a28bc9ccef694d9f5ce113d79d",
+      "harness_sha256": "48374e1687e8c7aa3cac717fb1dc583104f1bb7982df7e0501c256ec97be2af2"
+    },
+    {
+      "attempt": 3,
+      "race_detector": false,
+      "command_exit_code": 0,
+      "semantic_summary_identical": true,
+      "raw_evidence_sha256": "086d66061467ebe587eadadb0031a49e7840814f54e1a566abfb096be116f41d",
+      "go_test_receipt_sha256": "14f3def464da208c443ffe2009c1431227d32af431fd994621e0ce848db8e1a8",
+      "go_test_pass_events": [
+        {
+          "Time": "2026-10-19T11:07:42.276692356-07:00",
+          "Action": "pass",
+          "Package": "github.com/cometbft/cometbft/consensus",
+          "Test": "TestNativeConformance/CommitCatchupAndImmutability",
+          "Elapsed": 0
+        },
+        {
+          "Time": "2026-10-19T11:07:42.280297843-07:00",
+          "Action": "pass",
+          "Package": "github.com/cometbft/cometbft/consensus",
+          "Test": "TestNativeConformance/MixedQuorumTimeoutGuards",
+          "Elapsed": 0
+        },
+        {
+          "Time": "2026-10-19T11:07:42.283775048-07:00",
+          "Action": "pass",
+          "Package": "github.com/cometbft/cometbft/consensus",
+          "Test": "TestNativeConformance/LockPersistence",
+          "Elapsed": 0
+        },
+        {
+          "Time": "2026-10-19T11:07:42.289013737-07:00",
+          "Action": "pass",
+          "Package": "github.com/cometbft/cometbft/consensus",
+          "Test": "TestNativeConformance/ValidBlockReuse",
+          "Elapsed": 0.01
+        },
+        {
+          "Time": "2026-10-19T11:07:42.290763475-07:00",
+          "Action": "pass",
+          "Package": "github.com/cometbft/cometbft/consensus",
+          "Test": "TestNativeConformance",
+          "Elapsed": 0.02
+        },
+        {
+          "Time": "2026-10-19T11:07:42.291399388-07:00",
+          "Action": "pass",
+          "Package": "github.com/cometbft/cometbft/consensus",
+          "Elapsed": 0.037
+        }
+      ],
+      "upstream_source_unchanged": true,
+      "go_version": "go version go1.25.0 linux/amd64",
+      "runner_sha256": "3a4b42e687e9d2ff96d516e7207e1f81247ef3a28bc9ccef694d9f5ce113d79d",
+      "harness_sha256": "48374e1687e8c7aa3cac717fb1dc583104f1bb7982df7e0501c256ec97be2af2"
+    },
+    {
+      "attempt": 4,
+      "race_detector": true,
+      "command_exit_code": 0,
+      "semantic_summary_identical": true,
+      "raw_evidence_sha256": "5efce7f7fec7189c18546677aaef7483b17f51328a7986358d7255794a10a9d7",
+      "go_test_receipt_sha256": "174978676823b1852a9cf4542ed7e89663273a6c1b32002c71089ce4e6984690",
+      "go_test_pass_events": [
+        {
+          "Time": "2026-10-19T11:07:43.841318466-07:00",
+          "Action": "pass",
+          "Package": "github.com/cometbft/cometbft/consensus",
+          "Test": "TestNativeConformance/CommitCatchupAndImmutability",
+          "Elapsed": 0.01
+        },
+        {
+          "Time": "2026-10-19T11:07:43.852611366-07:00",
+          "Action": "pass",
+          "Package": "github.com/cometbft/cometbft/consensus",
+          "Test": "TestNativeConformance/MixedQuorumTimeoutGuards",
+          "Elapsed": 0.01
+        },
+        {
+          "Time": "2026-10-19T11:07:43.867154223-07:00",
+          "Action": "pass",
+          "Package": "github.com/cometbft/cometbft/consensus",
+          "Test": "TestNativeConformance/LockPersistence",
+          "Elapsed": 0.01
+        },
+        {
+          "Time": "2026-10-19T11:07:43.879353185-07:00",
+          "Action": "pass",
+          "Package": "github.com/cometbft/cometbft/consensus",
+          "Test": "TestNativeConformance/ValidBlockReuse",
+          "Elapsed": 0.01
+        },
+        {
+          "Time": "2026-10-19T11:07:43.887354283-07:00",
+          "Action": "pass",
+          "Package": "github.com/cometbft/cometbft/consensus",
+          "Test": "TestNativeConformance",
+          "Elapsed": 0.06
+        },
+        {
+          "Time": "2026-10-19T11:07:44.892654608-07:00",
+          "Action": "pass",
+          "Package": "github.com/cometbft/cometbft/consensus",
+          "Elapsed": 1.1320000000000001
+        }
+      ],
+      "upstream_source_unchanged": true,
+      "go_version": "go version go1.25.0 linux/amd64",
+      "runner_sha256": "3a4b42e687e9d2ff96d516e7207e1f81247ef3a28bc9ccef694d9f5ce113d79d",
+      "harness_sha256": "48374e1687e8c7aa3cac717fb1dc583104f1bb7982df7e0501c256ec97be2af2"
+    }
+  ],
+  "scope": "Three additional fixed-script repetitions and one race-detector run; no random schedule coverage or native safety proof is claimed."
+}

@@ -1,0 +1,42 @@
+{
+  "allowed_split": [
+    0,
+    1
+  ],
+  "costs": [
+    7,
+    1
+  ],
+  "deficits": [
+    1,
+    3
+  ],
+  "initially_ready": true,
+  "precedence": [
+    [
+      [
+        "R",
+        0
+      ],
+      [
+        "V",
+        0
+      ]
+    ],
+    [
+      [
+        "R",
+        1
+      ],
+      [
+        "V",
+        1
+      ]
+    ]
+  ],
+  "required_split": [],
+  "weights": [
+    2,
+    2
+  ]
+}
