@@ -62,10 +62,35 @@ if [[ ! -f "$TEX_MARKER" ]]; then
   )
   for index in "${!files[@]}"; do
     package_path="$TEX_DEBS/${files[$index]}"
-    if [[ ! -f "$package_path" ]]; then
-      curl -fL --retry 3 -o "$package_path" "${urls[$index]}"
+    expected="${sums[$index]}"
+    if [[ ! -f "$package_path" ]] || ! echo "$expected  $package_path" | sha256sum --check --status; then
+      # All mirrors must serve the identical pinned bytes. Never extract a
+      # partial download, a different package version, or unchecked content.
+      pool_path="pool/${urls[$index]#*/pool/}"
+      mirrors=(
+        "https://deb.debian.org/debian/$pool_path"
+        "${urls[$index]}"
+        "https://archive.debian.org/debian/$pool_path"
+      )
+      temporary="$package_path.part"
+      downloaded=false
+      for url in "${mirrors[@]}"; do
+        rm -f "$temporary"
+        if curl -fL --retry 3 --connect-timeout 30 --max-time 300 -o "$temporary" "$url" \
+          && echo "$expected  $temporary" | sha256sum --check --status; then
+          mv "$temporary" "$package_path"
+          downloaded=true
+          break
+        fi
+        echo "Pinned package unavailable or hash mismatch at $url" >&2
+      done
+      rm -f "$temporary"
+      if [[ "$downloaded" != true ]]; then
+        echo "BOOTSTRAP FAIL: cannot obtain verified ${files[$index]}" >&2
+        exit 1
+      fi
     fi
-    echo "${sums[$index]}  $package_path" | sha256sum -c -
+    echo "$expected  $package_path" | sha256sum -c -
     dpkg-deb -x "$package_path" "$TEX_OVERLAY"
   done
   touch "$TEX_MARKER"
