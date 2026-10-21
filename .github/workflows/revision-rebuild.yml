@@ -1,0 +1,26 @@
+name: revision-rebuild
+on:
+  push:
+    branches: [revision/complete-recovery-2026-10-21]
+    paths: [.github/workflows/revision-rebuild.yml, scripts/rebuild_revision.py]
+permissions:
+  contents: read
+jobs:
+  workspace:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Export tracked sources and recovered evidence
+        run: |
+          mkdir -p export
+          git archive --format=tar.gz HEAD > export/workspace.tar.gz
+          git archive --format=tar.gz 19d40f3fbaeaf5cb20b4f4d5649d844f3ff9faeb recovery > export/recovery.tar.gz
+      - uses: actions/upload-artifact@v4
+        with:
+          name: revision-workspace
+          path: export/
+          retention-days: 7
