@@ -117,21 +117,35 @@ class ConcreteTrace:
         repair_timing: str = "before_round_1",
         proposers: tuple[str, str] = ("B", "C"),
         round1_b_prevote_route: str = "direct",
+        validators: tuple[str, ...] = VALIDATORS,
+        byzantine: tuple[str, ...] = ("B",),
+        mutated: tuple[str, ...] = ("P",),
+        quorum: int = QUORUM,
     ) -> None:
+        self.validators = validators
+        self.byzantine = frozenset(byzantine)
+        self.correct = tuple(name for name in validators if name not in self.byzantine)
+        self.mutated = frozenset(mutated)
+        self.quorum = quorum
+        if len(set(validators)) != len(validators) or not self.byzantine <= set(validators):
+            raise ValueError("invalid validator set")
+        if not self.mutated <= set(self.correct) or quorum != 2 * len(validators) // 3 + 1:
+            raise ValueError("invalid mutation set or two-thirds quorum")
         if grammar not in GRAMMARS or variant not in VARIANTS:
             raise ValueError("unknown scheduler grammar or mutation")
         if repair_timing not in REPAIR_TIMINGS:
             raise ValueError("unknown repair timing")
-        if any(name not in VALIDATORS for name in proposers):
+        if any(name not in self.validators for name in proposers):
             raise ValueError("unknown designated proposer")
         if round1_b_prevote_route not in ("direct", "via_C"):
             raise ValueError("unknown round-1 vote route")
         self.grammar, self.variant, self.repair_timing = grammar, variant, repair_timing
         self.proposers = proposers
         self.round1_b_prevote_route = round1_b_prevote_route
-        self.replicas = {name: Replica(name) for name in VALIDATORS}
-        self.replicas["B"].step = "BYZANTINE"
-        self.replicas["B"].timers.clear()
+        self.replicas = {name: Replica(name) for name in self.validators}
+        for name in self.byzantine:
+            self.replicas[name].step = "BYZANTINE"
+            self.replicas[name].timers.clear()
         self.messages: dict[str, SignedMessage] = {}
         self.envelopes: dict[str, Envelope] = {}
         self.log: list[dict[str, Any]] = []
@@ -140,9 +154,12 @@ class ConcreteTrace:
         self._certificate_keys: set[tuple[str, int, str, int | None]] = set()
         self._keys = {
             name: hashlib.sha256(f"concrete-trace-test-key:{name}".encode()).digest()
-            for name in VALIDATORS
+            for name in self.validators
         }
         self._record("INITIAL", detail="height 1, round 0; empty vote sets and locks")
+
+    def _quorum_word(self) -> str:
+        return "three" if self.quorum == 3 else str(self.quorum)
 
     def _snapshot(self) -> dict[str, Any]:
         return {
@@ -206,7 +223,7 @@ class ConcreteTrace:
         return message
 
     def _emit_envelope(self, sender: str, receiver: str, message: SignedMessage) -> str:
-        if sender not in VALIDATORS or receiver not in VALIDATORS:
+        if sender not in self.validators or receiver not in self.validators:
             raise IllegalAction("unknown transport endpoint")
         if message.id not in self.messages or not self._authenticate(message):
             raise IllegalAction("an envelope must carry an already emitted authentic message")
@@ -228,33 +245,35 @@ class ConcreteTrace:
             self.deliver(local)
 
     def _live(self, name: str) -> Replica:
-        if name not in CORRECT:
+        if name not in self.correct:
             raise IllegalAction("a correct transition needs a non-Byzantine validator")
         state = self.replicas[name]
         if state.height != 1 or state.step == "COMMIT" or state.committed is not None:
             raise IllegalAction("validator already entered commit or advanced height")
         return state
 
-    def byzantine_vote(self, round_: int, kind: VoteType, value: int | None) -> str:
+    def byzantine_vote(self, round_: int, kind: VoteType, value: int | None, *, signer: str = "B") -> str:
         if kind not in ("PREVOTE", "PRECOMMIT") or round_ not in (0, 1):
             raise IllegalAction("unsupported Byzantine vote")
-        state = self.replicas["B"]
+        if signer not in self.byzantine:
+            raise IllegalAction("Byzantine action requires a declared Byzantine signer")
+        state = self.replicas[signer]
         slot = (1, round_, kind)
         if slot in state.signed_votes:
             raise IllegalAction("this bounded trace uses one B vote per slot")
-        message = self._new_signed("B", round_, kind, value)
+        message = self._new_signed(signer, round_, kind, value)
         state.round = round_
         state.signed_votes[slot] = message.id
-        self._record("SIGN", actor="B", message=message.id,
+        self._record("SIGN", actor=signer, message=message.id,
                      rule="authenticated Byzantine action; honest vote guard exempt")
-        self._multicast(message, CORRECT)
+        self._multicast(message, self.correct)
         return message.id
 
     def propose(self, name: str, candidate: int, recipients: tuple[str, ...]) -> str:
         state = self.replicas[name]
         if state.round not in (0, 1) or self.proposers[state.round] != name:
             raise IllegalAction("only the designated proposer can produce an accepted proposal")
-        if name != "B":
+        if name not in self.byzantine:
             self._live(name)
             if state.step != "PROPOSE":
                 raise IllegalAction("correct proposal must be made at the propose step")
@@ -354,18 +373,18 @@ class ConcreteTrace:
 
     def _majority(self, name: str, round_: int, kind: str) -> tuple[bool, int | None]:
         for value in (0, 1, None):
-            if len(self._votes(name, round_, kind, value)) >= QUORUM:
+            if len(self._votes(name, round_, kind, value)) >= self.quorum:
                 return True, value
         return False, None
 
     def _certificate(self, name: str, round_: int, kind: str, value: int | None) -> dict[str, Any]:
         votes = self._votes(name, round_, kind, value)
-        if len({message.signer for message in votes}) < QUORUM:
+        if len({message.signer for message in votes}) < self.quorum:
             raise IllegalAction("certificate lacks three distinct delivered signers")
         certificate = {
             "receiver": name, "height": 1, "round": round_, "kind": kind,
             "value": value, "signers": sorted(message.signer for message in votes),
-            "vote_ids": sorted(message.id for message in votes), "threshold": QUORUM,
+            "vote_ids": sorted(message.id for message in votes), "threshold": self.quorum,
         }
         key = (name, round_, kind, value)
         if key not in self._certificate_keys:
@@ -377,7 +396,7 @@ class ConcreteTrace:
 
     def _receive(self, name: str, message: SignedMessage) -> None:
         state = self.replicas[name]
-        if name == "B":
+        if name in self.byzantine:
             state.received_messages.add(message.id)
             self._record("BYZANTINE_RECEIVE", actor=name, message=message.id)
             return
@@ -450,7 +469,7 @@ class ConcreteTrace:
         message = self._new_signed(name, state.round, kind, value)
         state.signed_votes[slot] = message.id
         self._record("SIGN", actor=name, message=message.id, rule=rule)
-        self._multicast(message, VALIDATORS)
+        self._multicast(message, self.validators)
 
     def _enter_prevote(self, name: str) -> None:
         state = self._live(name)
@@ -475,7 +494,7 @@ class ConcreteTrace:
             raise IllegalAction("non-timeout precommit entry requires a PoLC")
         if not has_polka:
             required_kind = "PREVOTE" if timeout_kind == "PREVOTE" else "PRECOMMIT"
-            if len(self._votes(name, state.round, required_kind)) < QUORUM:
+            if len(self._votes(name, state.round, required_kind)) < self.quorum:
                 raise IllegalAction("timeout precommit requires a received any-vote quorum")
             value, rule = None, "expired quorum-enabled timeout without PoLC: precommit nil"
         elif value is None:
@@ -483,8 +502,8 @@ class ConcreteTrace:
             rule = "nil PoLC: unlock and precommit nil"
         elif value == state.proposal_block or value == state.locked_value:
             self._certificate(name, state.round, "PREVOTE", value)
-            if name == "P" and state.round == 0 and self.variant == "MISSING_LOCK_UPDATE":
-                rule = "PoLC: omit only P round-0 lock assignment; still sign precommit"
+            if name in self.mutated and state.round == 0 and self.variant == "MISSING_LOCK_UPDATE":
+                rule = f"PoLC: omit only {name} round-0 lock assignment; still sign precommit"
             else:
                 state.locked_value, state.locked_round = value, state.round
                 rule = "PoLC: persist locked value and round before signing precommit"
@@ -502,7 +521,7 @@ class ConcreteTrace:
         has_majority, value = self._majority(name, round_, kind)
         any_count = len(self._votes(name, round_, kind))
         if round_ > state.round:
-            if any_count >= QUORUM:
+            if any_count >= self.quorum:
                 raise IllegalAction("future-round skip is outside this two-round trace's transition subset")
             return
         if kind == "PRECOMMIT":
@@ -510,13 +529,13 @@ class ConcreteTrace:
                 raise IllegalAction("precommit-majority auto entry before own precommit is outside this trace subset")
             if has_majority and value is not None:
                 self._start_commit(name, round_, value)
-            elif round_ == state.round and any_count >= QUORUM:
+            elif round_ == state.round and any_count >= self.quorum:
                 timer = (round_, "PRECOMMIT")
                 if timer not in state.timers:
                     state.timers.add(timer)
                     self._record("ARM_TIMEOUT", actor=name, timer="PRECOMMIT", round=round_,
                                  evidence=[v.id for v in self._votes(name, round_, kind)],
-                                 rule="three distinct precommits, possibly for mixed values")
+                                 rule=f"{self._quorum_word()} distinct precommits, possibly for mixed values")
             return
         if has_majority:
             self._certificate(name, round_, kind, value)
@@ -540,13 +559,13 @@ class ConcreteTrace:
         if state.step == "PREVOTE":
             if has_majority and (value is None or self._proposal_complete(name)):
                 self._enter_precommit(name)
-            elif any_count >= QUORUM:
+            elif any_count >= self.quorum:
                 timer = (round_, "PREVOTE")
                 if timer not in state.timers:
                     state.timers.add(timer)
                     self._record("ARM_TIMEOUT", actor=name, timer="PREVOTE", round=round_,
                                  evidence=[v.id for v in self._votes(name, round_, kind)],
-                                 rule="three distinct prevotes, possibly for mixed values")
+                                 rule=f"{self._quorum_word()} distinct prevotes, possibly for mixed values")
 
     def timeout(self, name: str, kind: str) -> None:
         state = self._live(name)
@@ -559,7 +578,7 @@ class ConcreteTrace:
             raise IllegalAction("stale prevote timeout")
         if kind not in ("PROPOSE", "PREVOTE", "PRECOMMIT"):
             raise IllegalAction("unknown timeout")
-        if kind != "PROPOSE" and len(self._votes(name, state.round, kind)) < QUORUM:
+        if kind != "PROPOSE" and len(self._votes(name, state.round, kind)) < self.quorum:
             raise IllegalAction("timeout lacks three distinct delivered votes")
         state.timers.remove(timer)
         self._record("TIMEOUT", actor=name, timer=kind, round=state.round,
@@ -585,7 +604,7 @@ class ConcreteTrace:
         state = self._live(name)
         if state.round != 0:
             raise IllegalAction("only the round-0 to round-1 timeout belongs to this trace")
-        if len(self._votes(name, 0, "PRECOMMIT")) < QUORUM:
+        if len(self._votes(name, 0, "PRECOMMIT")) < self.quorum:
             raise IllegalAction("round advance lacks an any-precommit quorum")
         state.round = 1
         state.step = "PROPOSE"
@@ -607,7 +626,7 @@ class ConcreteTrace:
             state.proposal_block = None
         self._record("COMMIT_ENTRY", actor=name, value=value, round=round_,
                      evidence=certificate["vote_ids"],
-                     rule="three matching precommits; stop signing at this height")
+                     rule=f"{self._quorum_word()} matching precommits; stop signing at this height")
         self._finalize_commit(name)
 
     def _finalize_commit(self, name: str) -> None:
@@ -655,7 +674,7 @@ class ConcreteTrace:
         for certificate in self.certificates:
             votes = [self.messages[key] for key in certificate["vote_ids"]]
             certificates_valid &= (
-                len({vote.signer for vote in votes}) >= QUORUM
+                len({vote.signer for vote in votes}) >= self.quorum
                 and sorted(vote.signer for vote in votes) == certificate["signers"]
                 and all((vote.height, vote.round, vote.kind, vote.value) == (
                     certificate["height"], certificate["round"], certificate["kind"], certificate["value"]
@@ -669,7 +688,7 @@ class ConcreteTrace:
         correct_single_vote = all(
             len([message for message in self.messages.values() if message.signer == name
                  and message.kind in ("PREVOTE", "PRECOMMIT")]) == len(state.signed_votes)
-            for name, state in self.replicas.items() if name in CORRECT
+            for name, state in self.replicas.items() if name in self.correct
         )
         decisions_justified = all(
             any(certificate["receiver"] == name and certificate["kind"] == "PRECOMMIT"
@@ -682,12 +701,12 @@ class ConcreteTrace:
             if row["action"] == "ARM_TIMEOUT":
                 evidence = [self.messages[key] for key in row["evidence"]]
                 timers_guarded &= (
-                    len({vote.signer for vote in evidence}) >= QUORUM
+                    len({vote.signer for vote in evidence}) >= self.quorum
                     and all(vote.kind == row["timer"] and vote.round == row["round"]
                             and accepted_at.get((row["actor"], vote.id), len(self.log)) < row["index"]
                             for vote in evidence)
                 )
-            if row["action"] != "SIGN" or row["actor"] not in CORRECT:
+            if row["action"] != "SIGN" or row["actor"] not in self.correct:
                 continue
             vote = self.messages[row["message"]]
             if vote.kind not in ("PREVOTE", "PRECOMMIT"):
@@ -704,12 +723,12 @@ class ConcreteTrace:
                 support = [previous for previous in prior_prevotes
                            if previous.kind == "PREVOTE" and previous.round == vote.round
                            and previous.value == vote.value]
-                correct_vote_guards &= len({previous.signer for previous in support}) >= QUORUM
+                correct_vote_guards &= len({previous.signer for previous in support}) >= self.quorum
                 correct_vote_guards &= all(
                     accepted_at.get((row["actor"], previous.id), len(self.log)) < row["index"]
                     for previous in support
                 )
-                if row["actor"] != "P" or vote.round != 0 or self.variant == "BASELINE":
+                if row["actor"] not in self.mutated or vote.round != 0 or self.variant == "BASELINE":
                     correct_vote_guards &= (state["locked_value"], state["locked_round"]) == (
                         vote.value, vote.round
                     )
@@ -719,17 +738,17 @@ class ConcreteTrace:
                             if previous.kind == "PREVOTE" and previous.round == vote.round]
                 precommits = [previous for previous in received
                               if previous.kind == "PRECOMMIT" and previous.round == vote.round]
-                nil_polka = len({previous.signer for previous in prevotes if previous.value is None}) >= QUORUM
+                nil_polka = len({previous.signer for previous in prevotes if previous.value is None}) >= self.quorum
                 prior_timeouts = {previous["timer"] for previous in self.log[:row["index"]]
                                   if previous["action"] == "TIMEOUT" and previous["actor"] == row["actor"]
                                   and previous["round"] == vote.round}
                 quorum_timeout = (
-                    "PREVOTE" in prior_timeouts and len({previous.signer for previous in prevotes}) >= QUORUM
+                    "PREVOTE" in prior_timeouts and len({previous.signer for previous in prevotes}) >= self.quorum
                 ) or (
-                    "PRECOMMIT" in prior_timeouts and len({previous.signer for previous in precommits}) >= QUORUM
+                    "PRECOMMIT" in prior_timeouts and len({previous.signer for previous in precommits}) >= self.quorum
                 )
                 unavailable_polka = any(
-                    len({previous.signer for previous in prevotes if previous.value == value}) >= QUORUM
+                    len({previous.signer for previous in prevotes if previous.value == value}) >= self.quorum
                     and state["proposal_block"] != value and state["locked_value"] != value
                     for value in (0, 1)
                 )
@@ -749,7 +768,7 @@ class ConcreteTrace:
 
     def result(self) -> dict[str, Any]:
         decisions = {name: state.committed for name, state in self.replicas.items()
-                     if name in CORRECT and state.committed is not None}
+                     if name in self.correct and state.committed is not None}
         observers = {name: value for name, value in decisions.items() if name in ("A", "C")}
         return {
             "grammar": self.grammar, "variant": self.variant, "repair_timing": self.repair_timing,

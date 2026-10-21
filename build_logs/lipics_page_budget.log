@@ -1,11 +1,12 @@
 status=PASS
-physical_pages=24
+physical_pages=27
 cover_pages=1
-main_text_pages=12
+main_text_pages=13
 main_starts_on_numbered_page=2
-main_ends_before_numbered_page=14
-bibliography_starts_on_numbered_page=14
+main_ends_before_numbered_page=15
 opodis_2026_main_text_limit=15
 class=lipics-v2021 v3.1.3
-pdfTeX 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian)
-pandoc 3.1.3
+variant=main
+texmf_dist=/artifact/.cache/texlive-overlay/usr/share/texlive/texmf-dist
+pdfTeX 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian)
+pandoc 3.1.11.1

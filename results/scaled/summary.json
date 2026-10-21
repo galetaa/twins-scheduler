@@ -1,0 +1,268 @@
+{
+  "additional_independent_replays": 18,
+  "all_total_policy_queries": 12288,
+  "baseline": {
+    "BASELINE": {
+      "edges": 55160,
+      "oracle_policies": 4096,
+      "states": 48071,
+      "unsafe_states": 0
+    },
+    "ONLY_P0_MUTATED": {
+      "edges": 55233,
+      "oracle_policies": 4096,
+      "states": 48141,
+      "unsafe_states": 0
+    }
+  },
+  "cases": [
+    {
+      "all_edge_simulation_checks_total": 552830,
+      "case": "unit",
+      "direct_certificate_edge_checks": 10474,
+      "direct_certificate_states": 7103,
+      "direct_statistics": {
+        "certificate_states": 7103,
+        "discovered_product_states": 21544,
+        "examined_input_transitions": 24982,
+        "product_state_upper_bound": 25615987641,
+        "settled_nonunsafe_states": 18909
+      },
+      "edges": 55283,
+      "false_policies": 9,
+      "final_abstract_edges": 961,
+      "final_abstract_states": 562,
+      "final_certificate_states": 7130,
+      "guarded_replay": {
+        "checks": 11,
+        "decisions": {
+          "A": 0,
+          "C": 1,
+          "P0": 1,
+          "P1": 1
+        },
+        "events": 418,
+        "messages": 26
+      },
+      "initial_abstract_states": 449,
+      "iterations": 10,
+      "lower_bound_history": [
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2
+      ],
+      "minimum_cost": 2,
+      "oracle_policies": 4096,
+      "policy_reachable_states_total": 372,
+      "refinement_certificate_edge_checks_total": 48417,
+      "refinement_certificate_states_total": 30552,
+      "refinement_discovered_product_states_peak": 21627,
+      "refinement_discovered_product_states_total": 121615,
+      "states": 48201,
+      "unsafe_policies": 36
+    },
+    {
+      "all_edge_simulation_checks_total": 221132,
+      "case": "weighted",
+      "direct_certificate_edge_checks": 6434,
+      "direct_certificate_states": 3894,
+      "direct_statistics": {
+        "certificate_states": 3894,
+        "discovered_product_states": 8308,
+        "examined_input_transitions": 9553,
+        "product_state_upper_bound": 25615987641,
+        "settled_nonunsafe_states": 5971
+      },
+      "edges": 55283,
+      "false_policies": 3,
+      "final_abstract_edges": 874,
+      "final_abstract_states": 496,
+      "final_certificate_states": 3855,
+      "guarded_replay": {
+        "checks": 11,
+        "decisions": {
+          "A": 0,
+          "C": 1,
+          "P0": 1,
+          "P1": 1
+        },
+        "events": 418,
+        "messages": 26
+      },
+      "initial_abstract_states": 449,
+      "iterations": 4,
+      "lower_bound_history": [
+        0,
+        2,
+        3,
+        5
+      ],
+      "minimum_cost": 5,
+      "oracle_policies": 4096,
+      "policy_reachable_states_total": 129,
+      "refinement_certificate_edge_checks_total": 13818,
+      "refinement_certificate_states_total": 8073,
+      "refinement_discovered_product_states_peak": 8319,
+      "refinement_discovered_product_states_total": 20159,
+      "states": 48201,
+      "unsafe_policies": 36
+    },
+    {
+      "all_edge_simulation_checks_total": 497547,
+      "case": "p1_controls_fixed",
+      "direct_certificate_edge_checks": 11060,
+      "direct_certificate_states": 7904,
+      "direct_statistics": {
+        "certificate_states": 7904,
+        "discovered_product_states": 7904,
+        "examined_input_transitions": 11060,
+        "product_state_upper_bound": 25615987641,
+        "settled_nonunsafe_states": 7904
+      },
+      "edges": 55283,
+      "false_policies": 8,
+      "final_abstract_edges": 935,
+      "final_abstract_states": 547,
+      "final_certificate_states": 7727,
+      "guarded_replay": null,
+      "initial_abstract_states": 449,
+      "iterations": 9,
+      "lower_bound_history": [
+        0,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        null
+      ],
+      "minimum_cost": null,
+      "oracle_policies": 4096,
+      "policy_reachable_states_total": 326,
+      "refinement_certificate_edge_checks_total": 50334,
+      "refinement_certificate_states_total": 32570,
+      "refinement_discovered_product_states_peak": 7728,
+      "refinement_discovered_product_states_total": 53155,
+      "states": 48201,
+      "unsafe_policies": 36
+    }
+  ],
+  "coarse_fibres": [
+    "A->P0:H1:R0",
+    "B0->P0:H1:R0",
+    "B1->P0:H1:R0",
+    "A->P1:H1:R0",
+    "B0->P1:H1:R0",
+    "B1->P1:H1:R0"
+  ],
+  "coarse_seed_control": {
+    "initial_states": 32,
+    "max_product_states": 10000,
+    "max_refinements": 8,
+    "reason": "abstraction-refinement limit exhausted; result remains unknown",
+    "status": "unknown"
+  },
+  "dependency_controls": [
+    {
+      "complete_graph": true,
+      "control": "NO_CROSS_PREVOTE",
+      "edges": 57374,
+      "states": 50411,
+      "unsafe_states": 0
+    },
+    {
+      "complete_graph": true,
+      "control": "NO_NIL_TIMEOUT_SUPPORT",
+      "edges": 51630,
+      "states": 44363,
+      "unsafe_states": 0
+    },
+    {
+      "complete_graph": true,
+      "control": "NO_ROUND1_P1_PREVOTE",
+      "edges": 55283,
+      "states": 48201,
+      "unsafe_states": 0
+    }
+  ],
+  "fine_keys": [
+    "A->P0:H1:R0:PREVOTE",
+    "A->P0:H1:R0:PRECOMMIT",
+    "B0->P0:H1:R0:PREVOTE",
+    "B0->P0:H1:R0:PRECOMMIT",
+    "B1->P0:H1:R0:PREVOTE",
+    "B1->P0:H1:R0:PRECOMMIT",
+    "A->P1:H1:R0:PREVOTE",
+    "A->P1:H1:R0:PRECOMMIT",
+    "B0->P1:H1:R0:PREVOTE",
+    "B0->P1:H1:R0:PRECOMMIT",
+    "B1->P1:H1:R0:PREVOTE",
+    "B1->P1:H1:R0:PRECOMMIT"
+  ],
+  "guard_controls": [
+    {
+      "audits": {
+        "all_certificates_have_distinct_actual_signed_votes": true,
+        "all_decisions_have_local_precommit_certificates": true,
+        "all_messages_authenticate": true,
+        "certificate_votes_received_before_certificate_formation": true,
+        "correct_identities_sign_once_per_height_round_type": true,
+        "correct_vote_and_lock_guards_hold_at_signing": true,
+        "every_delivery_has_prior_emission": true,
+        "once_only_envelope_delivery": true,
+        "vote_timeouts_have_prior_distinct_received_quorums": true
+      },
+      "case": "support_before_timeouts",
+      "decisions": {
+        "A": 0,
+        "C": 1,
+        "P0": 1,
+        "P1": 1
+      },
+      "matched_successors": 23,
+      "unsafe": true
+    },
+    {
+      "audits": {
+        "all_certificates_have_distinct_actual_signed_votes": true,
+        "all_decisions_have_local_precommit_certificates": true,
+        "all_messages_authenticate": true,
+        "certificate_votes_received_before_certificate_formation": true,
+        "correct_identities_sign_once_per_height_round_type": true,
+        "correct_vote_and_lock_guards_hold_at_signing": true,
+        "every_delivery_has_prior_emission": true,
+        "once_only_envelope_delivery": true,
+        "vote_timeouts_have_prior_distinct_received_quorums": true
+      },
+      "case": "timeouts_before_support",
+      "decisions": {
+        "A": 0
+      },
+      "matched_successors": 23,
+      "unsafe": false
+    }
+  ],
+  "minimum_requires_both_targets": true,
+  "opportunities": 23,
+  "oracle_mismatches": 0,
+  "quorum": 5,
+  "resource_limit": "unknown",
+  "schema": "scaled-study/v2",
+  "scope": "complete stated finite staged environment, fixed batches, static controls; no client-wide claim",
+  "source_sha256": {
+    "src/python/twins_scheduler/concrete_trace.py": "02940b6386941e5b44f36a12e64c742a710b4efcc4cd84580aecd50e4942ded6",
+    "src/python/twins_scheduler/scaled_protocol.py": "593bd4c456ca496dc2d885060001de8b17fff8f168fc2c774bb2f342fd62859c"
+  },
+  "stages": 16,
+  "status": "PASS",
+  "validators": 7
+}

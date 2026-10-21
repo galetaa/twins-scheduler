@@ -1,18 +1,18 @@
 [
   {
     "phase": "small_graph_oracle",
-    "wall_seconds": 1.7326145810002345
+    "wall_seconds": 1.257695713999965
   },
   {
     "phase": "two_complete_protocol_graphs",
-    "wall_seconds": 9.985660338999878
+    "wall_seconds": 9.211786699999948
   },
   {
     "phase": "direct_protocol_all_policies",
-    "wall_seconds": 30.801856022997526
+    "wall_seconds": 26.955393611999966
   },
   {
     "phase": "whole_study",
-    "wall_seconds": 44.461099153999385
+    "wall_seconds": 39.327681809999945
   }
 ]

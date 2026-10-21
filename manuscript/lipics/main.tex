@@ -1,7 +1,11 @@
 \pdfinfoomitdate=1
 \pdftrailerid{[<5457494E535343484544554C45523236><5457494E535343484544554C45523236>]}
 \pdfsuppressptexinfo=15
+\ifdefined\TwinsAnonymous
 \documentclass[a4paper,USenglish,cleveref,autoref,anonymous]{lipics-v2021}
+\else
+\documentclass[a4paper,USenglish,cleveref,autoref]{lipics-v2021}
+\fi
 
 \usepackage{booktabs}
 \usepackage{graphicx}
@@ -12,9 +16,15 @@
 
 \title{Certified Minimum-Cost Scheduler Refinement for Stateful BFT Testing}
 \titlerunning{Certified Stateful Scheduler Refinement}
-\author{Anonymous Author}{Anonymous Institution}{anonymous@example.invalid}{}{}
+\ifdefined\TwinsAnonymous
+\author{Anonymous Author}{Anonymous Institution}{}{}{}
 \authorrunning{Anonymous Author}
 \Copyright{Anonymous Author}
+\else
+\author{Mikhail Alexandrovich Galeta}{Saint Petersburg State University of Aerospace Instrumentation (SUAI), Saint Petersburg, Russia}{}{}{}
+\authorrunning{M. A. Galeta}
+\Copyright{Mikhail Alexandrovich Galeta}
+\fi
 \ccsdesc[500]{Theory of computation~Distributed algorithms}
 \ccsdesc[500]{Computer systems organization~Dependable and fault-tolerant systems and networks}
 \ccsdesc[300]{Software and its engineering~Formal methods}
@@ -46,16 +56,16 @@
 \vspace{12mm}
 \begin{minipage}{0.88\textwidth}
 \textbf{Abstract.}
-Sharing one admission decision across message phases can remove a BFT agreement counterexample. We formulate the least-cost phase distinctions needed to recover an unsafe execution over arbitrary control-labelled protocol transition systems. A static policy must preserve each fine key's answer across repeated queries; the least refinement of a consistent trace is exactly its required and mixed coarse fibres. Exact finite-state search returns a witness and an independently checked closed-sublevel certificate, without assuming independent pivots or additive quorum contributions. A labelled simulation transfers abstract lower bounds to a detailed model; a concrete witness of matching cost establishes its optimum. An invariant-guided abstraction procedure eliminates entire spurious policies and makes finite progress. In a coupled four-validator model with 2,516 states and 5,856 transitions, it certifies cost 2 using a final 26-state quotient, with every concrete edge checked and the witness replayed through protocol guards. Independent policy oracles and a Set Cover reduction validate the general solver, while a repair-graph specialization retains weighted quota synthesis up to 48 pivots. Lean mechanizes the policy, certificate, simulation and invariant-refinement principles. Separate tests execute unchanged CometBFT code with native signatures. The executable optimum is relative to a complete supplied model and static control interface; applying it to arbitrary client code requires transition and observation coverage.
+Sharing one admission decision across message phases can remove a BFT agreement counterexample. We formulate the least-cost phase distinctions needed to recover an unsafe execution over arbitrary control-labelled protocol transition systems. A static policy must preserve each fine key's answer across repeated queries; the least refinement of a consistent trace is exactly its required and mixed coarse fibres. Exact finite-state search returns a witness and an independently checked closed-sublevel certificate, without assuming independent pivots or additive quorum contributions. A labelled simulation transfers abstract lower bounds to a detailed model; a concrete witness of matching cost establishes its optimum. An invariant-guided abstraction procedure eliminates entire spurious policies and makes finite progress. A seven-validator study has six coupled control fibres, 48,201 states and 55,283 transitions. Refinement rejects nine spurious policies before a 562-state quotient and guarded witness certify a minimum of two splits. Baselines, dependency ablations and complete-policy checks support this bounded result; total refinement work exceeds direct search. Independent policy oracles and a Set Cover reduction validate the general solver, while a repair-graph specialization retains weighted quota synthesis up to 48 pivots. Lean mechanizes the policy, certificate, simulation and invariant-refinement principles. Separate tests execute unchanged CometBFT code with native signatures. The executable optimum is relative to a complete supplied model and static control interface; applying it to arbitrary client code requires transition and observation coverage.
 \end{minipage}
 \vfill
-{\small Best student paper eligibility: to be confirmed by the authors.\par}
+{\small Best student paper award: not nominated (eligibility not claimed).\par}
 \end{titlepage}
 
 \maketitle
 
 \begin{abstract}
-Sharing one admission decision across message phases can remove a BFT agreement counterexample. We formulate the least-cost phase distinctions needed to recover an unsafe execution over arbitrary control-labelled protocol transition systems. A static policy must preserve each fine key's answer across repeated queries; the least refinement of a consistent trace is exactly its required and mixed coarse fibres. Exact finite-state search returns a witness and an independently checked closed-sublevel certificate, without assuming independent pivots or additive quorum contributions. A labelled simulation transfers abstract lower bounds to a detailed model; a concrete witness of matching cost establishes its optimum. An invariant-guided abstraction procedure eliminates entire spurious policies and makes finite progress. In a coupled four-validator model with 2,516 states and 5,856 transitions, it certifies cost 2 using a final 26-state quotient, with every concrete edge checked and the witness replayed through protocol guards. Independent policy oracles and a Set Cover reduction validate the general solver, while a repair-graph specialization retains weighted quota synthesis up to 48 pivots. Lean mechanizes the policy, certificate, simulation and invariant-refinement principles. Separate tests execute unchanged CometBFT code with native signatures. The executable optimum is relative to a complete supplied model and static control interface; applying it to arbitrary client code requires transition and observation coverage.
+Sharing one admission decision across message phases can remove a BFT agreement counterexample. We formulate the least-cost phase distinctions needed to recover an unsafe execution over arbitrary control-labelled protocol transition systems. A static policy must preserve each fine key's answer across repeated queries; the least refinement of a consistent trace is exactly its required and mixed coarse fibres. Exact finite-state search returns a witness and an independently checked closed-sublevel certificate, without assuming independent pivots or additive quorum contributions. A labelled simulation transfers abstract lower bounds to a detailed model; a concrete witness of matching cost establishes its optimum. An invariant-guided abstraction procedure eliminates entire spurious policies and makes finite progress. A seven-validator study has six coupled control fibres, 48,201 states and 55,283 transitions. Refinement rejects nine spurious policies before a 562-state quotient and guarded witness certify a minimum of two splits. Baselines, dependency ablations and complete-policy checks support this bounded result; total refinement work exceeds direct search. Independent policy oracles and a Set Cover reduction validate the general solver, while a repair-graph specialization retains weighted quota synthesis up to 48 pivots. Lean mechanizes the policy, certificate, simulation and invariant-refinement principles. Separate tests execute unchanged CometBFT code with native signatures. The executable optimum is relative to a complete supplied model and static control interface; applying it to arbitrary client code requires transition and observation coverage.
 \end{abstract}
 
 \typeout{TWINS-MAIN-FIRST:\thepage}

@@ -1,38 +1,38 @@
 [
   {
     "case": "static_key_cycle",
-    "seconds": 0.001429
+    "seconds": 0.001461
   },
   {
     "case": "three_phase_paid_once",
-    "seconds": 0.00178
+    "seconds": 0.001737
   },
   {
     "case": "dependent_cost_choice",
-    "seconds": 0.00246
+    "seconds": 0.002025
   },
   {
     "case": "required_unused_fibre",
-    "seconds": 0.000425
+    "seconds": 0.000477
   },
   {
     "case": "zero_cost_split",
-    "seconds": 0.001095
+    "seconds": 0.001127
   },
   {
     "case": "spurious_state_merge",
-    "seconds": 0.001143
+    "seconds": 0.00114
   },
   {
     "case": "coupled_quorum_from_coarsest",
-    "seconds": 0.459839
+    "seconds": 0.553548
   },
   {
     "case": "coupled_quorum_audit_quotient",
-    "seconds": 0.325687
+    "seconds": 0.409917
   },
   {
     "case": "coupled_quorum_baseline",
-    "seconds": 0.206872
+    "seconds": 0.12629
   }
 ]

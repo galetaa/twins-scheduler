@@ -56,6 +56,21 @@ if "% STATEFUL_TABLE" in main:
 if "Supporting proposition (replay erasure)" not in documents["appendices"]:
     problems.append("supporting replay result absent from appendix")
 
+# Prevent editorial regressions at the Markdown -> LaTeX boundary.
+for target in ("body", "appendices"):
+    generated_text = (ROOT / f"manuscript/lipics/{target}.tex").read_text()
+    if re.search(r"(?:Appendix|Table|Section|Figure|Theorem)\\textasciitilde", generated_text):
+        problems.append(f"literal reference tilde in {target}")
+metadata = (ROOT / "manuscript/lipics/main.tex").read_text()
+if "to be confirmed" in metadata or "not specified in the research brief" in metadata:
+    problems.append("unresolved student-award statement")
+if "Best student paper award: not nominated (eligibility not claimed)." not in metadata:
+    problems.append("definite non-nomination missing")
+if "Mikhail Alexandrovich Galeta" not in metadata or "Aerospace Instrumentation" not in metadata:
+    problems.append("author metadata missing")
+check = subprocess.run(["python", str(ROOT / "scripts/sync_review_matrix.py"), "--check"], capture_output=True, text=True)
+if check.returncode:
+    problems.append(check.stdout + check.stderr)
 print(json.dumps({"status": "FAIL" if problems else "PASS",
                   "synchronized_pairs": 2, "main_theorems": theorems,
                   "problems": problems}, indent=2, sort_keys=True))

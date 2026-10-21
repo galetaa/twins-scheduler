@@ -27,6 +27,8 @@ Appendix C, parametric families in Appendix D, and the budget illustration in
 Appendix F. Appendix A distinguishes general finite-LTS complexity (C28) from
 the retained independent-pivot reduction (C16).
 
+C36 records the reconstructed and freshly executed seven-validator extension in Section 6.3 and Appendix G.
+
 ## Evidence interpretation
 
 The general semantic results remove pivot independence from policy completion,
@@ -92,9 +94,9 @@ status validates only the scope stated in its row.
 
 **Lean coverage.** SchedulerClosure.merged_trace_lifting; SchedulerClosure.legal_scheduler_closure_preserves_unsafe
 
-**Executable evidence.** Existing independent finite legal-target check; target legality checked separately
+**SMT coverage.** Existing T2 insertion/retained/upward verification conditions
 
-**Supporting SMT.** Existing T2 insertion/retained/upward verification conditions
+**Executable evidence.** Existing independent finite legal-target check; target legality checked separately
 
 **Scope.** Finite merged traces under the stated relation and legal coarse-language membership; theorem is sufficient, not necessary.
 
@@ -114,9 +116,9 @@ status validates only the scope stated in its row.
 
 **Lean coverage.** SchedulerClosure.RepairFrontier.behavioral_quorum_pivot_separation; SchedulerClosure.RepairFrontier.persistence_hypothesis_independent
 
-**Executable evidence.** Concrete canonical runs and persistence/late-output controls provide examples, not a proof that every protocol meets the contract
+**SMT coverage.** No new SMT encoding of the arbitrary behavioral contract; old T3 checks only its prior fixed Boolean schema
 
-**Supporting SMT.** No new SMT encoding of the arbitrary behavioral contract; old T3 checks only its prior fixed Boolean schema
+**Executable evidence.** Concrete canonical runs and persistence/late-output controls provide examples, not a proof that every protocol meets the contract
 
 **Scope.** Lean quantifies over arbitrary run, vote, and unsafe functions satisfying the contract; legal scheduler realization and discharge of the behavioral assumptions remain external obligations.
 
@@ -136,9 +138,9 @@ status validates only the scope stated in its row.
 
 **Lean coverage.** SchedulerClosure.parametric_family_separation (old single-pivot Boolean family only)
 
-**Executable evidence.** Existing exact quorum arithmetic, Go big.Int checks, and Python large-f checks; multi-pivot participant allocation is a paper argument
+**SMT coverage.** Existing T3 arithmetic verification conditions for the original family
 
-**Supporting SMT.** Existing T3 arithmetic verification conditions for the original family
+**Executable evidence.** Existing exact quorum arithmetic, Go big.Int checks, and Python large-f checks; multi-pivot participant allocation is a paper argument
 
 **Scope.** Unweighted certificate arithmetic and explicitly supplied behavior; old Lean declaration does not formalize the new k-pivot participant allocation or its protocol realization.
 
@@ -158,9 +160,9 @@ status validates only the scope stated in its row.
 
 **Lean coverage.** SchedulerClosure.strictSeparation_eq_characterization; SchedulerClosure.strictSeparation_iff_three
 
-**Executable evidence.** Existing exhaustive 128-assignment cross-check
+**SMT coverage.** Existing T6 operational equivalence and three-assignment verification conditions
 
-**Supporting SMT.** Existing T6 operational equivalence and three-assignment verification conditions
+**Executable evidence.** Existing exhaustive 128-assignment cross-check
 
 **Scope.** This seven-flag abstraction; the revised interpretation of T concerns the second-vote opportunity, not a later collector. The old atomic opportunity combined these events.
 
@@ -180,9 +182,9 @@ status validates only the scope stated in its row.
 
 **Lean coverage.** SchedulerClosure.bounded_baseline_safe; SchedulerClosure.bounded_missing_lock_phase_specific_unsafe; SchedulerClosure.bounded_missing_lock_directed_safe; SchedulerClosure.bounded_tendermint_refines_quorum_pivot
 
-**Executable evidence.** Existing 384-row Python/Go comparison; old independent f=1..128 sweep (768 classifier cases)
+**SMT coverage.** No SMT transition refinement of the production client
 
-**Supporting SMT.** No SMT transition refinement of the production client
+**Executable evidence.** Existing 384-row Python/Go comparison; old independent f=1..128 sweep (768 classifier cases)
 
 **Scope.** Definitions compute terminal flags from admission/lock formulas. The declaration containing refines proves terminal classification only. Legacy artifact filenames and report field names are retained for provenance.
 
@@ -202,9 +204,9 @@ status validates only the scope stated in its row.
 
 **Lean coverage.** SchedulerClosure.replay_erasure_with_outputs; SchedulerClosure.replay_erasure_state_observation
 
-**Executable evidence.** Existing T1 certificate and independent replay checks
+**SMT coverage.** Existing T1 projection and duplicate-stutter verification conditions
 
-**Supporting SMT.** Existing T1 projection and duplicate-stutter verification conditions
+**Executable evidence.** Existing T1 certificate and independent replay checks
 
 **Scope.** Finite traces, the declared relevant projection and output function, and observations factoring through that projection.
 
@@ -224,9 +226,9 @@ status validates only the scope stated in its row.
 
 **Lean coverage.** SchedulerClosure.hidden_state_counterexample; SchedulerClosure.hidden_state_breaks_output_congruence
 
-**Executable evidence.** Existing independent replay check: full observation 1, erased observation 0
+**SMT coverage.** Existing T1 hidden-state XXY satisfiable negative control
 
-**Supporting SMT.** Existing T1 hidden-state XXY satisfiable negative control
+**Executable evidence.** Existing independent replay check: full observation 1, erased observation 0
 
 **Scope.** The supplied hidden-state/output machine demonstrates necessity of the appropriate congruence conditions.
 
@@ -242,7 +244,11 @@ status validates only the scope stated in its row.
 
 **Evidence kind.** Typed semantic definition
 
+**Historical reference.** 
+
 **Lean coverage.** SchedulerClosure.UnsafeObservationSet; SchedulerClosure.unsafe_observation_has_unsafe_terminal
+
+**SMT coverage.** 
 
 **Executable evidence.** Existing independent unsafe-observation typing check
 
@@ -260,7 +266,11 @@ status validates only the scope stated in its row.
 
 **Evidence kind.** Scheduler semantics for the original fixed-order filter
 
+**Historical reference.** 
+
 **Lean coverage.** SchedulerClosure.typeClosure; SchedulerClosure.delivered_was_emitted; SchedulerClosure.delivered_preserves_order; SchedulerClosure.enabling_implies_closed_edge
+
+**SMT coverage.** 
 
 **Executable evidence.** Existing scheduler checks; new concrete no-synthesis and once-only audits; separate frontier order checks in C11
 
@@ -282,9 +292,9 @@ status validates only the scope stated in its row.
 
 **Lean coverage.** formal/lean/AxiomAudit.lean; retained RepairFrontier, GraphRealization and CertificateOptimality results; nineteen selected TransitionRefinement results detailed in C35.
 
-**Executable evidence.** lake build: 15 jobs; selected axiom audit: 46 declarations; leanchecker exit 0; source hygiene: 23 Lean/Coq files PASS. Retained SMT obligations are 8 expected UNSAT and 4 expected SAT; Python/Go aggregate execution is recorded separately in its logs.
+**SMT coverage.** Supporting SMT checks: 8 positive UNSAT and 4 negative-control SAT, pinned z3-solver 4.13.3.0; these do not replace Lean kernel checking
 
-**Supporting SMT.** Supporting SMT checks: 8 positive UNSAT and 4 negative-control SAT, pinned z3-solver 4.13.3.0; these do not replace Lean kernel checking
+**Executable evidence.** lake build: 15 jobs; selected axiom audit: 46 declarations; leanchecker exit 0; source hygiene: 23 Lean/Coq files PASS. Retained SMT obligations are 8 expected UNSAT and 4 expected SAT; Python/Go aggregate execution is recorded separately in its logs. The seven-validator revision changes no Lean source; fresh integrated CI validation is recorded independently.
 
 **Scope.** Counts denote build jobs, selected audited declarations and source-hygiene files, respectively; none is a count of independently verified protocols. The successful receipt records SHA-256 hashes and the report assembler rejects missing, unsuccessful or stale receipts. The earlier 27-declaration/14-job gate remains historical evidence. Coq remains secondary.
 
@@ -304,9 +314,9 @@ status validates only the scope stated in its row.
 
 **Lean coverage.** GraphRealization.repair_graph_reversal_iff; finite_acyclic_iff_schedule; repair_graph_iff_realizable_schedule; repair_graph_from_covers_iff_schedule; RepairFrontier.directed_unsafe_iff and strict_separation_iff (arithmetic)
 
-**Executable evidence.** 530 directed graphs including loops for k=1..3; 50,363 legal orders; 1,357,209 executions; 13,074 boundary and 4,164 joint-lateness checks; additionally all 219 labelled four-event partial orders via cover edges
+**SMT coverage.** No new SMT proof of the graph-to-execution correspondence
 
-**Supporting SMT.** No new SMT proof of the graph-to-execution correspondence
+**Executable evidence.** 530 directed graphs including loops for k=1..3; 50,363 legal orders; 1,357,209 executions; 13,074 boundary and 4,164 joint-lateness checks; additionally all 219 labelled four-event partial orders via cover edges
 
 **Scope.** The full graph/order lemma is proved for a strict partial order and distinct repair/vote event kinds; finite event coverage supplies a schedule. The behavioral contribution law, collector coverage and capacity optimization remain separate paper obligations. No capacity formula or alpha(H) premise is assumed by the graph module.
 
@@ -325,6 +335,8 @@ status validates only the scope stated in its row.
 **Historical reference.** New phase budget
 
 **Lean coverage.** SchedulerClosure.RepairFrontier.split_capacity_bound; SchedulerClosure.RepairFrontier.minimum_phase_splits
+
+**SMT coverage.** 
 
 **Executable evidence.** 13,074 exhaustive minimum-budget comparisons across the 530 graph domains
 
@@ -346,6 +358,8 @@ status validates only the scope stated in its row.
 
 **Lean coverage.** None for the concrete transition model or client; the small abstract output component is separately identified in C15
 
+**SMT coverage.** 
+
 **Executable evidence.** 12 trace legality audits; 14 dedicated unit tests; 6 canonical cases, 4 direct timing controls, 2 relay controls; all 6 canonical and both relay controls pass admitted-vote FIFO checks
 
 **Scope.** Equal weights, H=1, rounds 0/1, proposer prefix B/C, fixed other type-uniform edges and declared block/relay opportunities; deterministic test-only authentication. Unsupported transition branches are explicit. A and C are unmutated.
@@ -365,6 +379,8 @@ status validates only the scope stated in its row.
 **Historical reference.** New weighted boundary
 
 **Lean coverage.** SchedulerClosure.RepairFrontier.weighted_admission_interval; SchedulerClosure.RepairFrontier.weighted_granularity_counterexample
+
+**SMT coverage.** 
 
 **Executable evidence.** 258 weighted domains, weights in {1,2,3}, up to 3 pivots; 15,700 boundary checks using extremal late order and all admissions; explicit weights (2,2), deficits (1,3) control
 
@@ -386,6 +402,8 @@ status validates only the scope stated in its row.
 
 **Lean coverage.** SchedulerClosure.RepairFrontier.repair_preserves_signed_output; SchedulerClosure.RepairFrontier.late_repair_before_certificate_is_unsafe; SchedulerClosure.RepairFrontier.repair_before_second_vote_is_safe; SchedulerClosure.RepairFrontier.closed_edge_still_permits_second_vote
 
+**SMT coverage.** 
+
 **Executable evidence.** Frontier immutable-output control; concrete direct and FIFO-compatible relay late-repair cases; direct transport inversion is explicitly diagnosed
 
 **Scope.** The Lean output machine is deliberately small; signed/enqueued support persists under its transitions. The concrete protocol trace independently instantiates the issue inside its declared bound.
@@ -406,9 +424,9 @@ status validates only the scope stated in its row.
 
 **Lean coverage.** None
 
-**Executable evidence.** No finite enumeration is offered as proof of the complexity result; the paper supplies the reduction and polynomial certificate verification
+**SMT coverage.** None
 
-**Supporting SMT.** None
+**Executable evidence.** No finite enumeration is offered as proof of the complexity result; the paper supplies the reduction and polynomial certificate verification
 
 **Scope.** The explicit abstract opportunity schema with complete-order coverage; graph size varies. Classical graph hardness is credited rather than claimed as new.
 
@@ -418,7 +436,7 @@ status validates only the scope stated in its row.
 
 **Recorded status.** PAPER_PROOF_ONLY
 
-### C17: Section 6.1 (guarded-model source pin); Section 6.3 (native source identity)
+### C17: Section 6.1 (guarded-model source pin); Section 6.4 (native source identity)
 
 **Claim.** The new trace cites exact CometBFT v0.39.3 commit 49b82838fcca442b2445f76605c101609ed04130; the older upstream_fragments snapshot is correctly retained as v0.40.0.
 
@@ -428,9 +446,9 @@ status validates only the scope stated in its row.
 
 **Lean coverage.** None
 
-**Executable evidence.** Exact GitHub tag/commit receipts, Git blob identifiers and SHA-256 manifests; documented inspection of the exercised guards
+**SMT coverage.** None
 
-**Supporting SMT.** None
+**Executable evidence.** Exact GitHub tag/commit receipts, Git blob identifiers and SHA-256 manifests; documented inspection of the exercised guards
 
 **Scope.** Source verification proves identity of the evidence files; it does not prove execution equivalence. v0.39.3 state path is consensus/state.go, while local source fixtures have .go.txt suffixes.
 
@@ -449,6 +467,8 @@ status validates only the scope stated in its row.
 **Historical reference.** Second revision: weighted synthesis
 
 **Lean coverage.** GraphRealization realizes selected reversals; the full weighted four-role correspondence is not mechanized.
+
+**SMT coverage.** 
 
 **Executable evidence.** 35,223 raw-event optimum comparisons and independent certificate checks; separate 3,253-case arbitrary-order oracle; 12 dedicated tests.
 
@@ -470,6 +490,8 @@ status validates only the scope stated in its row.
 
 **Lean coverage.** CertificateOptimality.bellman_path_lower_bound; certified_witness_is_minimum; certified_infeasibility
 
+**SMT coverage.** 
+
 **Executable evidence.** All 38,476 certificates in the two oracle suites checked independently; 13 full scale certificates retained; suboptimal witness, input substitution, terminal-table corruption and lost-slot controls rejected.
 
 **Scope.** Lean covers arbitrary nonnegative-cost paths and extended-natural potentials, without assuming optimal potentials. Python parsing, graph reconstruction, local enumeration completeness and model replay remain implemented obligations.
@@ -489,6 +511,8 @@ status validates only the scope stated in its row.
 **Historical reference.** Second revision: myopic lower bound
 
 **Lean coverage.** Not mechanized.
+
+**SMT coverage.** 
 
 **Executable evidence.** M=3,10,100,1000 controls match the proof; ten repeated motifs at k=30 produce certified optimum 20 and myopic cost 1000.
 
@@ -510,6 +534,8 @@ status validates only the scope stated in its row.
 
 **Lean coverage.** General certificate principle only.
 
+**SMT coverage.** 
+
 **Executable evidence.** All 13 full certificates saved; weighted 24-pivot W=75 case changes optimum from 0 to 5 as quotas tighten from (60,68) to (74,73).
 
 **Scope.** Synthetic weights/costs and seeded graph families; configured size cutoffs, not observed timeouts. Timing observations are separate and nondeterministic.
@@ -520,7 +546,7 @@ status validates only the scope stated in its row.
 
 **Recorded status.** 13_OPTIMAL_2_UNKNOWN
 
-### C22: Section 6.3 (unchanged native conformance); Section 7.3 (scope)
+### C22: Section 6.4 (unchanged native conformance); Section 7.3 (scope)
 
 **Claim.** Four ordinary-operation scenarios execute unchanged CometBFT v0.39.3 at the pinned commit, pass 14 checks, record 32 native Ed25519 votes and 132 events, and preserve the specified semantic outcomes over three repeats plus one race-detector run.
 
@@ -529,6 +555,8 @@ status validates only the scope stated in its row.
 **Historical reference.** Second revision: native conformance
 
 **Lean coverage.** No protocol transition refinement is mechanized.
+
+**SMT coverage.** 
 
 **Executable evidence.** Native emitted proposals, votes, actual scheduled timeout guards, lock/valid state, proposer priority, missing-block catch-up, in-memory BlockStore and local ABCI. Separate cryptography/OpenSSL audit validates all 32 canonical signed votes. Source and evidence hashes checked.
 
@@ -550,6 +578,8 @@ status validates only the scope stated in its row.
 
 **Lean coverage.** TransitionRefinement.policy_realizable_iff; least_split_set; admissible_refinement_exists_iff; minimum_trace_refinement
 
+**SMT coverage.** 
+
 **Executable evidence.** Total-policy completion, required unused splits, more than two phases, repeated-key contradictions and zero-cost cases in test_transition_synthesis.py; the independent model corpora are counted separately in C31-C33.
 
 **Scope.** All dependence on the selected static policy must be represented by labelled queries. Internal protocol-state dependencies, nondeterminism and finite traces through cyclic or infinite-state relations are permitted. Costs are nonnegative; splitting distinguishes fine keys, not successive answers to the same key.
@@ -569,6 +599,8 @@ status validates only the scope stated in its row.
 **Historical reference.** Third revision: general finite-state synthesis
 
 **Lean coverage.** TransitionRefinement.query_guard_iff_consistent_extension; remember_occurrences_iff; memory_update_cost_mono; trace_cost_mono. These prove semantic ingredients, not the complete Python product constructor or search implementation.
+
+**SMT coverage.** 
 
 **Executable evidence.** Priority-queue search supports shared-state dependencies, repeated labels, zero-cost/internal cycles and nondeterministic successors; raw total-policy reachability comparisons in C31 and C32; state/time-limit and merged-state memory controls.
 
@@ -590,6 +622,8 @@ status validates only the scope stated in its row.
 
 **Lean coverage.** TransitionRefinement.sublevel_certificate_lower_bound; sublevel_certified_minimum; closed_certificate_infeasible
 
+**SMT coverage.** 
+
 **Executable evidence.** Checker independently regenerates successors from the bound input and replays the path; it rejects missing initial/successor states, substituted expensive witnesses, changed expected inputs, malformed integer/Boolean fields and inconsistent repeated answers. Tests disable every optimizer transition/replay helper while verification still succeeds.
 
 **Scope.** Closure and monotone-cost proof principles do not need finite protocol state; the executable checker consumes an explicit finite model and proof set. A safe inductive overapproximation may contain unreachable states. The expected external input, not the self-contained digest alone, binds the claim to the intended model.
@@ -609,6 +643,8 @@ status validates only the scope stated in its row.
 **Historical reference.** Third revision: all-edge model transfer
 
 **Lean coverage.** TransitionRefinement.labelled_execution_simulates; bad_trace_coverage; abstract_lower_bound_transfers; matching_concrete_witness_is_minimum; abstract_infeasibility_transfers
+
+**SMT coverage.** 
 
 **Executable evidence.** verify_simulation checks all concrete input edges and the complete scheduler interface; verify_optimality_bridge verifies the abstract certificate and independently replays the concrete witness. Missing-edge, erased-visible-admission, hidden-unsafe-state and mismatched-input controls reject invalid bridges.
 
@@ -630,6 +666,8 @@ status validates only the scope stated in its row.
 
 **Lean coverage.** TransitionRefinement.invariant_quotient_excludes_goal; invariant_split_saturated; invariant_split_eliminates_policy; spurious_policy_forces_strict_split. The numerical finite-iteration bound is a paper argument.
 
+**SMT coverage.** 
+
 **Executable evidence.** Every saved iteration checks the complete abstract certificate, safe policy invariant, exact existential quotient shape and strict partition refinement. Histories and eliminated-policy counts are recorded in C32 and C34; a configured zero-refinement limit produces unknown.
 
 **Scope.** Exact existential quotient edges and bad groups come from the supplied complete concrete graph. A safe inductive superset of concrete policy reachability also suffices. The implementation constructs that graph first; it does not automatically infer symbolic invariants from arbitrary code. This instantiates established CEGAR methodology.
@@ -649,6 +687,8 @@ status validates only the scope stated in its row.
 **Historical reference.** Third revision: general complexity boundary
 
 **Lean coverage.** Not mechanized.
+
+**SMT coverage.** 
 
 **Executable evidence.** All 512 ordered three-set families on three universe elements are independently checked against the Set Cover exporter. These are the same 512 cases included in C32, not an additional corpus. No finite check is presented as proof of NP-hardness or undecidability.
 
@@ -670,6 +710,8 @@ status validates only the scope stated in its row.
 
 **Lean coverage.** No mechanized proof of this protocol exporter or its correspondence to CometBFT. C23-C27 supply the general mathematical principles.
 
+**SMT coverage.** 
+
 **Executable evidence.** Seven permission/cost model configurations independently certified; mutant coarse-only infeasible, B->P-only optimum 5, A->P-only optimum 2, required B->P optimum 5, both required optimum 7. The minimum guarded replay yields A=0,C=1 and passes all 12 audits.
 
 **Scope.** n=4 with quorum 3, one explicitly Byzantine B and only P round-0 lock assignment mutated; unmutated A/C define unsafety. Height 1, two rounds, 12 ordered groups and 32 once-only slots, all within-group permutations, atomic bootstrap/proposal/block sequences and declared fixed admissions. Test-only HMAC, actual emitted/received distinct-signer certificates and synthetic control costs.
@@ -689,6 +731,8 @@ status validates only the scope stated in its row.
 **Historical reference.** Third revision: exporter and dependency controls
 
 **Lean coverage.** No protocol-specific transition correspondence to native client code is mechanized.
+
+**SMT coverage.** 
 
 **Executable evidence.** 128 direct policy checks generate 17,690 states and 42,750 transitions summed over those explorations, with zero mismatches. The optimized witness replays 30 opportunity slots, 172 log events, 16 signed messages and six local certificates, checking every semantic successor and all 12 guard/admission audits.
 
@@ -710,6 +754,8 @@ status validates only the scope stated in its row.
 
 **Lean coverage.** General semantic/certificate principles only; finite enumeration is not a proof of Python correctness.
 
+**SMT coverage.** 
+
 **Executable evidence.** 7,776 exhaustive configurations plus 128 random configurations; 35,368 total-policy enumerations and 40,008 compatible policy/split pairs; 7,904 independent certificate checks and zero mismatches. Six semantic example models and the seven coupled configurations are separately recorded, not added to the 7,904 count.
 
 **Scope.** The exhaustive family has three states and four fixed directed positions, each with six absent/internal/Boolean-label choices. It is not every directed three-state graph. Random seed 20261019 generates 128 systems with 4-8 states and 3-6 fine keys. Counts are configurations/enumerations, not distinct protocols or globally unique policies.
@@ -729,6 +775,8 @@ status validates only the scope stated in its row.
 **Historical reference.** Third revision: independent direct-and-CEGAR audit
 
 **Lean coverage.** General semantic, certificate and invariant-elimination principles; the audited programs themselves are not mechanized.
+
+**SMT coverage.** 
 
 **Executable evidence.** 2,960 direct certificates and 2,960 full abstraction-run checks; all 6,857 abstract certificates comprise 2,960 final and 3,897 rejected iterations, with each eliminated-policy step checked. 291,804 policy/split pairs after permission filtering, of which 132,626 satisfy fibre coherence; 4,096 independent cover-subset checks. Exact input/outcome hashes and all generator settings are recorded; no runtimes enter deterministic output.
 
@@ -750,6 +798,8 @@ status validates only the scope stated in its row.
 
 **Lean coverage.** Graph/order and memory/certificate components are mechanized; the exporter, full specialization normalization and weighted four-role optimization are not kernel-checked.
 
+**SMT coverage.** 
+
 **Executable evidence.** 1,507 queries produce 3,014 optimum comparisons and 3,014 certificate checks with zero mismatches. The raw oracle covers 221 order domains, 963 legal orders and 15,372 Boolean-policy/order executions. All 1,189 feasible general witnesses normalize at equal cost. All 18 graphs with k<=2 including loops and all 219 labelled four-event posets are represented; maximum export is 199 states and 398 transitions.
 
 **Scope.** Positive integer weights; nonnegative costs; allowed/required sets; initial readiness, first signatures exactly when the corresponding enabling admissions are true, enabling/repair availability on first-certificate-feasible executions, independent contribution laws and complete opportunity coverage. Includes reversed E=0,R=1 fine policies before normalization. The 1,507 count comprises 706 all-quota graph queries, 144 permission controls and 657 poset/quota queries; reused graph/poset families are not additional unique protocols.
@@ -769,6 +819,8 @@ status validates only the scope stated in its row.
 **Historical reference.** Third revision: checked protocol abstraction runs
 
 **Lean coverage.** The principles in C26-C27; finite instance construction and all Python checks remain executable obligations.
+
+**SMT coverage.** 
 
 **Executable evidence.** Complete input/certificate history for all nine runs; 11 false policies eliminated in the coarsest-start coupled mutant run. The supplied audit-field quotient certifies the same optimum in one iteration at 1,978 states/4,628 edges; the 2,372-state baseline is certified infeasible from one abstract state. Both concrete mutant replays pass 12 guard audits.
 
@@ -790,6 +842,8 @@ status validates only the scope stated in its row.
 
 **Lean coverage.** TransitionRefinement declarations selected in AxiomAudit.lean; full mapping in ARTIFACT_THEOREM_MAP.md and TRANSITION_MECHANIZATION.md; all reported standard axiom dependencies in AXIOM_REPORT.md.
 
+**SMT coverage.** 
+
 **Executable evidence.** Source-bound successful lake build, selected #print axioms audit and independent leanchecker SchedulerClosure exits are recorded in results/generated/lean_verification.json; checked source hashes match. Source hygiene reports no admitted proofs, user-declared axioms or unsafe declarations in its 23-file scope.
 
 **Scope.** General semantic proofs need neither finite protocol state nor pivot independence when their stated premises hold. The finite iteration-count bound, full weighted partition correspondence, executable product construction, Python search/checker/exporter and production-client correspondence remain paper or executable obligations. This is the same integrated gate counted in C10, not an additional build or corpus.
@@ -799,3 +853,26 @@ status validates only the scope stated in its row.
 **Artifact paths.** [formal/lean/SchedulerClosure/TransitionRefinement.lean](../formal/lean/SchedulerClosure/TransitionRefinement.lean); [formal/lean/AxiomAudit.lean](../formal/lean/AxiomAudit.lean); [formal/lean/AXIOM_REPORT.md](../formal/lean/AXIOM_REPORT.md); [formal/lean/ARTIFACT_THEOREM_MAP.md](../formal/lean/ARTIFACT_THEOREM_MAP.md); [docs/research/TRANSITION_MECHANIZATION.md](../docs/research/TRANSITION_MECHANIZATION.md); [results/generated/lean_verification.json](../results/generated/lean_verification.json); [build_logs/lean_build.log](../build_logs/lean_build.log); [build_logs/lean_axiom_audit.log](../build_logs/lean_axiom_audit.log); [build_logs/leanchecker.log](../build_logs/leanchecker.log); [build_logs/formal_verification.log](../build_logs/formal_verification.log)
 
 **Recorded status.** LEAN_POLICY_MEMORY_CUT_TRANSFER_INVARIANT_SCOPE_PASS
+
+### C36: Section 6.3, Table 2; Appendix G
+
+**Claim.** The complete declared seven-validator environment has 48,201 mutant states and 55,283 edges. Both exact methods and total-policy reachability establish minimum two split fibres (one into each pivot); weighted costs (2,5,9,3,7,11) give minimum five; disallowing P1-target splits is infeasible. The unit run rejects nine false policies before a 562-state/961-edge quotient and a guarded concrete witness match at cost two.
+
+**Evidence kind.** Bounded multi-control protocol study with independently checked optimality and replay
+
+**Historical reference.** Completed interrupted seven-validator revision
+
+**Lean coverage.** Semantic principles C23-C27; no new Lean module or production-client refinement.
+
+**SMT coverage.** No new SMT claim.
+
+**Executable evidence.** 12,288 total-policy assignments across three distinct operational variants; 4,096 per variant. All three cost/permission cases agree across graph oracle, direct certificate and full refinement history. Unit/weighted witnesses pass eleven guarded audits and every one of 23 compact/dictionary state comparisons (26 model messages, 418 log events). Eighteen additional replays and three missing-support ablations are safe where stated. Guard-blind seed and export-cap controls return unknown.
+
+**Scope.** One height, two rounds, seven unit-weight validators, two injected lock omissions, sixteen stages/twenty-three opportunities with fixed batch order. Only within-stage permutations are complete. The compact exporter and dictionary guards are separately implemented but share the environment list. Guard-aware 449-group seed is exploratory; the concrete graph is fully built first. Direct search discovers 21,544 states; refinement totals 121,615 (peak 21,627). Final quotient size is not total memory. New source was reconstructed and rerun, not recovered byte-for-byte.
+
+**Unsupported extension.** A production bug; all seven-validator schedules; a formal source-to-client refinement; a general speedup; using only final abstraction size as total work; equating 36 unsafe states with 36 policies; counting reused price queries as independent protocol families; claiming nomination eligibility from student enrollment alone.
+
+**Artifact paths.** [src/python/twins_scheduler/scaled_protocol.py](../src/python/twins_scheduler/scaled_protocol.py); [scripts/run_scaled_study.py](../scripts/run_scaled_study.py); [tests/unit/test_scaled_protocol.py](../tests/unit/test_scaled_protocol.py); [results/scaled/summary.json](../results/scaled/summary.json); [results/scaled/histories/](../results/scaled/histories/); [results/scaled/certificates/](../results/scaled/certificates/); [docs/research/SCALED_PROTOCOL.md](../docs/research/SCALED_PROTOCOL.md)
+
+**Recorded status.** RECOMPUTED_THREE_WAY_OPTIMUM_FULL_HISTORY_GUARDED_REPLAY_PASS
+
