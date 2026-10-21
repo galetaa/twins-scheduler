@@ -1,4 +1,5 @@
 name: complete-revision
+# Retry with checksum-verified Debian mirror failover; research source unchanged.
 on:
   push:
     branches: [maintenance/complete-revision-2026-10-21]
