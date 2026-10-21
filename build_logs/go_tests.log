@@ -1,3 +1,3 @@
 ?   	example.org/twins-scheduler-closure/src/go/cometbft_refinement	[no test files]
-ok  	example.org/twins-scheduler-closure/src/go/full_event_loop	(cached)
-ok  	example.org/twins-scheduler-closure/src/go/proof_crosscheck	(cached)
+ok  	example.org/twins-scheduler-closure/src/go/full_event_loop	0.002s
+ok  	example.org/twins-scheduler-closure/src/go/proof_crosscheck	0.002s

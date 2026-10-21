@@ -1,5 +1,21 @@
 # Certified Minimum-Cost Scheduler Refinement for Stateful BFT Testing
 
+## Completed seven-validator and editorial revision
+
+Named author: **Mikhail Alexandrovich Galeta**, SUAI, Saint Petersburg.
+The [author PDF](manuscript/pdf/final_lipics_manuscript.pdf) and
+[anonymous review PDF](manuscript/pdf/review_lipics_manuscript.pdf) are built
+from the same source. Both state **not nominated** for the student award;
+this does not assert ineligibility. [Metadata rationale](docs/reviews/AUTHOR_METADATA.md).
+
+The new [seven-validator study](docs/research/SCALED_PROTOCOL.md) has six coupled
+control fibres, 48,201 states and 55,283 edges. Its unit-price optimum is two;
+nine false-policy eliminations precede a 562-state quotient. The full work
+accounting shows no speedup over direct search. Run `make scaled` or the full
+`./reproduce_revision.sh`. The [reviewer matrix](docs/reviews/REVIEWER_COMPLETION_MATRIX.md)
+is generated from the current claim ledger and checked for drift.
+
+
 This repository contains a research manuscript, Lean proofs, executable optimizers,
 independent certificate checkers and reproducible experiments for selecting the
 cheapest scheduler phase distinctions that expose a finite agreement violation.

@@ -36,7 +36,7 @@ from pathlib import Path
 import sys
 
 root, output = map(Path, sys.argv[1:])
-files = sorted(path for directory in ("results/synthesis", "results/transition", "results/transition_bridge")
+files = sorted(path for directory in ("results/synthesis", "results/transition", "results/transition_bridge", "results/scaled")
                for path in (root / directory).rglob("*") if path.is_file())
 for reference in files:
     relative = reference.relative_to(root)
@@ -49,5 +49,7 @@ PY
 # authenticates the committed PDF; a fresh build has separate layout/content gates.
 grep -qx 'status=PASS' "$OUTPUT_ROOT/build_logs/lipics_page_budget.log"
 grep -qx 'status=PASS' "$OUTPUT_ROOT/build_logs/lipics_warnings.log"
+grep -qx 'status=PASS' "$OUTPUT_ROOT/build_logs/review_lipics_page_budget.log"
+grep -qx 'status=PASS' "$OUTPUT_ROOT/build_logs/review_lipics_warnings.log"
 python "$ROOT/scripts/check_manuscript_consistency.py"
 echo "RESULTS MATCH reference_count=$((${#files[@]} + SYNTHESIS_COUNT))"

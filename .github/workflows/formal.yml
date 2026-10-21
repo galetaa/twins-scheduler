@@ -8,6 +8,8 @@ on:
       - "lean-toolchain"
       - "lakefile.toml"
       - "scripts/build_formal.sh"
+      - "scripts/bootstrap.sh"
+      - ".github/workflows/formal.yml"
 
 permissions:
   contents: read

@@ -89,7 +89,7 @@ $$
 
 have size $q$ and each nonpivot base has size $q-1$. Under the behavioral contract, Proposition E2 applies. This arithmetic does not assert that every locking protocol realizes the contract.
 
-More generally, for $1\le k\le f$, use $k$ pivots, exclusive sets $A,C$ of size $f+1-k$, Byzantine set $B$ of size $f$, and $k-1$ unused correct identities. The total is still $3f+1$. Both quorums contain $B$, their exclusive set, and all $k$ pivots; each base has size $q-k$. Distinct correct observers exist in nonempty $A,C$. Proposition E3 characterizes precisely which opportunity orders can preserve these $k$ required double contributions. The extension is a certificate schema; the guarded trace in Appendix~\ref{app:trace} establishes the single-pivot model case.
+More generally, for $1\le k\le f$, use $k$ pivots, exclusive sets $A,C$ of size $f+1-k$, Byzantine set $B$ of size $f$, and $k-1$ unused correct identities. The total is still $3f+1$. Both quorums contain $B$, their exclusive set, and all $k$ pivots; each base has size $q-k$. Distinct correct observers exist in nonempty $A,C$. Proposition E3 characterizes precisely which opportunity orders can preserve these $k$ required double contributions. The extension is a certificate schema; the guarded trace in `Appendix~\ref{app:trace}`{=latex} establishes the single-pivot model case.
 
 
 
@@ -143,7 +143,7 @@ $$
 
 The persistence obligation cannot be inferred from the absence of $R$. For example, a fixed local transition after $C_0$ could disable $p$ even when $R$ is suppressed. The endpoint and quorum conditions would still hold, but the fine witness would disappear. Likewise, the order $R<C_1$ is insufficient if $V_1<R<C_1$: repair cannot retract the already signed vote. Both errors disappear when behavior and signature timing are stated explicitly.
 
-The familiar $n=3f+1$, $q=2f+1$ family instantiates the two bases with $q-1$ fixed signatures. Appendix~\ref{app:families} gives its arithmetic and a $k$-pivot extension; realizability of their behavior remains a separate obligation.
+The familiar $n=3f+1$, $q=2f+1$ family instantiates the two bases with $q-1$ fixed signatures. `Appendix~\ref{app:families}`{=latex} gives its arithmetic and a $k$-pivot extension; realizability of their behavior remains a separate obligation.
 
 ## Repair frontiers for several independent channels
 
@@ -262,7 +262,7 @@ $$
 
 **Proof.** Substitute the best capacity $\min(k,\alpha(H)+t)$ into \eqref{eq:frontier-unit}. Since $d_0,d_1\le k$, the resulting inequality holds exactly when $t$ covers the deficit in \eqref{eq:frontier-budget}. $\square$
 
-Figure \ref{fig:frontier} in Appendix~\ref{app:heatmap} illustrates the unit-weight boundary. The statement is existential over the choice of split keys. It does not claim that every set of $t_*$ arbitrary message exceptions suffices. A witness can be constructed by choosing an acyclic reusable set, selecting the necessary split keys and open keys, adding its lateness constraints, and topologically sorting the opportunity graph.
+Figure \ref{fig:frontier} in `Appendix~\ref{app:heatmap}`{=latex} illustrates the unit-weight boundary. The statement is existential over the choice of split keys. It does not claim that every set of $t_*$ arbitrary message exceptions suffices. A witness can be constructed by choosing an acyclic reusable set, selecting the necessary split keys and open keys, adding its lateness constraints, and topologically sorting the opportunity graph.
 
 ### Order relaxation, extra edges, and weights
 
@@ -278,7 +278,7 @@ $$
 
 Open every key in $L$ and delay those repairs; choose $K$ among the forced-early keys. The two supports become $W_L+w(K)$ and $W-w(K)$. Opening all $L$ cannot hurt either branch, which proves necessity as well as sufficiency. Indivisible weights matter: weights $2,2$, no late repair, and deficits $1,3$ require an unattainable subset weight $1$. A total-weight relaxation would give the wrong answer. This is an abstract weighted certificate result, not a weighted CometBFT refinement.
 
-For arbitrary individual deadlines, deciding whether a coarse unsafe execution exists is NP-complete for explicitly represented finite opportunity orders with unbounded $k$. Appendix~\ref{app:complexity} gives the short reduction using a classical graph construction \cite{karp1972reducibility}; the contribution is the scheduler correspondence, not a new graph-hardness result.
+For arbitrary individual deadlines, deciding whether a coarse unsafe execution exists is NP-complete for explicitly represented finite opportunity orders with unbounded $k$. `Appendix~\ref{app:complexity}`{=latex} gives the short reduction using a classical graph construction \cite{karp1972reducibility}; the contribution is the scheduler correspondence, not a new graph-hardness result.
 
 
 ## Construction and independent certificates
@@ -323,3 +323,53 @@ The heat maps instantiate Corollary E1 at three reusable capacities. They illust
 \caption{Exact phase-control budget in the independent-pivot schema. Each cell is the minimum number of phase-split keys required to expose an unsafe witness. Blank cells exceed the available pivot count. Panels differ only in the capacity of jointly late repair, not in quorum size.}
 \label{fig:frontier}
 \end{figure}
+
+
+# Seven-validator environment and reconstruction
+
+\label{app:scaled}
+
+## States, emissions and opportunities
+
+The compact explorer stores for each non-Byzantine replica its round, step, lock and valid pairs, proposal metadata, known-block set, commit-wait and decision state, four received-signer bitsets and enabled timer flags. A separate array stores every emitted vote slot. No certificate is preloaded. Deliveries require prior production, and precommit/round-change timeouts require a locally received quorum. A state bound raises an exception; no truncated frontier is classified as safe.
+
+The dictionary-based replay reuses the guarded message implementation of `Appendix~\ref{app:trace}`{=latex}, generalized to seven named validators and quorum five without changing its four-validator defaults. It creates and verifies deterministic HMAC-authenticated envelopes and checks locally collected certificates. The compact explorer implements its own integer/bitset rules. Only the declared environment batches are shared. Replay compares the two semantic states after every selected opportunity; this is an independently implemented witness check, not a proof that every exported transition matches an unbounded production client.
+
+The common height is 1; rounds are 0 and 1. The voters are $A,P_0,P_1,C,D,B_0,B_1$. Correct-rule replicas are the first five, with injected lock omissions only in the selected variant. The unsafe predicate compares unmutated $A,C$. The six fibres, in cost-vector order, are $(A,B_0,B_1)\to P_0$ followed by $(A,B_0,B_1)\to P_1$, all at height 1, round 0. Each contains PREVOTE then PRECOMMIT as its two fine keys. Other deliveries are the fixed environment, not additional optimized controls.
+
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{cl}
+\toprule
+Stage & Once-only opportunities (separate entries permute within a stage) \\
+\midrule
+0 & Initial proposals, nil timeouts and explicit Byzantine emissions \\
+1 & Fixed round-0 prevotes, including cross-pivot prevotes \\
+2--4 & Controlled prevotes from $A,B_0,B_1$, respectively, to both pivots \\
+5 & Fixed mixed prevotes and guarded prevote-timeout attempts \\
+6 & Fixed round-0 precommits \\
+7--8 & Controlled precommits from $A,B_0$ to both pivots \\
+9 & $B_1\to P_0$ precommit versus $P_0$ precommit timeout \\
+10 & $B_1\to P_1$ precommit versus $P_1$ precommit timeout \\
+11 & $C$ precommit-timeout attempt \\
+12 & Guarded round-1 proposal and explicit Byzantine emissions \\
+13--15 & Fixed round-1 prevotes, timeout attempts, precommits \\
+\bottomrule
+\end{tabular}
+\caption{Sixteen stages and twenty-three opportunities. A batch is one environment action with a fixed internal order, not a claim to enumerate all its internal permutations.}
+\label{tab:scaled-stages}
+\end{table}
+
+At bootstrap $C,D$ time out to nil; $B_0$ proposes 0 to $A,P_0,P_1,D$ and both Byzantine identities emit round-0 value-0 prevotes and precommits. Fixed prevotes deliver $P_0,P_1,B_0,B_1$ to $A$ and the two cross-pivot votes. Stage 5 delivers nil prevotes from $C,D$ to each pivot, then votes from $A,B_0,B_1$ and the other nil voter to $C,D$, before the declared timeout attempts. Stage 6 delivers $P_0,P_1,B_0,B_1$ precommits to $A$, the other pivot and $C,D$ to each pivot, and $A,P_0,P_1,D$ to $C$. Every recipient sees only votes actually emitted before its slot. Round-1 proposal generation by $C$ requires its live proposal step. Later value-1 votes from $B_0,B_1,C,P_0,P_1$ are delivered only at their listed opportunities; self-receipts are not duplicated. The precise loop order is in \texttt{run\_batch}; absent messages and disabled one-shot timers are recorded as conditional no-ops, not retried automatically.
+
+## Seed selection, certificates and negative controls
+
+The main seed retains $(\text{stage},\text{remaining slots},\text{unsafe})$ and, for each pivot, its count of received round-0 value-0 prevotes and its emitted round-0 precommit value (including absent/nil). The complete state is never erased from the concrete graph. The initial quotient has 449 groups and 795 edges. With unit costs it grows through $449,466,481,494,504,519,532,539,552,562$ groups. The guard-aware seed was selected after exploratory coarse-seed behavior; it is not a benchmark-selected proof assumption. All-edge coverage verifies its soundness. A separate 32-group control-flow-only seed has an explicit capped run returning unknown. No ratio between these bounded runs is called an asymptotic speedup.
+
+The unit, weighted and permission-constrained runs save every quotient, rejected policy, safe reachable set, closed-cost certificate and final bridge. The independent verifier checks the full history; the final concrete witness is re-executed through the message guards. Costs $(2,5,9,3,7,11)$ assign the cheaper $A$ fibres prices 2 and 3; they are not weights of consensus votes. All validators have unit voting power. Restricting allowed splits to the first three fibres cannot bypass the need for a second receiver-side split. Repeated costs and permission queries are not counted as additional protocol variants.
+
+Complete-policy enumeration gives 4,096 assignments per structural variant and zero mismatches with the optimized costs. The three ablations remove cross-pivot prevotes, nil precommits enabling round changes, or $P_1$'s round-1 prevote. They produce respectively 50,411, 44,363 and 48,201 states with no unsafe state. Eighteen additional deterministic dictionary-engine replays cover safe and mixed policies, besides the four optimized witness replays. A deliberately tiny export cap must raise an unknown result. None of these controls changes the mutation into a production-client finding.
+
+## Recovery provenance
+
+This source revision reconstructs an interrupted experiment from the preserved models and manuscript, then regenerates its outputs. It does not assert the lost source hash. The reconstructed mutant has exactly the preserved graph's numbered source/target/key/value edge relation and unsafe-state set; state strings and provenance hashes are regenerated. Baseline and one-pivot-mutant exports now retain their distinct complete operational states. The new weighted-price example is separately declared. Fresh source SHA-256 values and deterministic histories accompany the results; previous interrupted build reports are not treated as current execution evidence.

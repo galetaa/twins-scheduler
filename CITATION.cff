@@ -1,11 +1,13 @@
 cff-version: 1.2.0
-message: "If you use this artifact, please cite the accompanying anonymous manuscript."
+message: "If you use this artifact, please cite the accompanying manuscript."
 title: "Twins Scheduler: Certified Minimum-Cost Scheduler Refinement for Stateful BFT Testing"
 type: software
 version: 1.0.0
 date-released: 2026-08-22
 authors:
-  - name: "Anonymous artifact authors"
+  - family-names: "Galeta"
+    given-names: "Mikhail Alexandrovich"
+    affiliation: "Saint Petersburg State University of Aerospace Instrumentation (SUAI)"
 license: MIT
 abstract: >-
   Certified minimum-cost scheduler refinement for arbitrary control-labelled

@@ -1,0 +1,172 @@
+[
+  {
+    "action": "refine-false-policy",
+    "certificate_edge_checks": 0,
+    "certificate_product_states": 0,
+    "edges": 795,
+    "iteration": 1,
+    "lower_bound": 0,
+    "policy_reachable_states": 52,
+    "solver_statistics": {
+      "certificate_states": 0,
+      "discovered_product_states": 2326,
+      "examined_input_transitions": 2687,
+      "product_state_upper_bound": 238617009,
+      "settled_nonunsafe_states": 1527
+    },
+    "states": 449
+  },
+  {
+    "action": "refine-false-policy",
+    "certificate_edge_checks": 2686,
+    "certificate_product_states": 1527,
+    "edges": 824,
+    "iteration": 2,
+    "lower_bound": 1,
+    "policy_reachable_states": 37,
+    "solver_statistics": {
+      "certificate_states": 1527,
+      "discovered_product_states": 9071,
+      "examined_input_transitions": 10773,
+      "product_state_upper_bound": 247651506,
+      "settled_nonunsafe_states": 7130
+    },
+    "states": 466
+  },
+  {
+    "action": "refine-false-policy",
+    "certificate_edge_checks": 2686,
+    "certificate_product_states": 1527,
+    "edges": 849,
+    "iteration": 3,
+    "lower_bound": 1,
+    "policy_reachable_states": 37,
+    "solver_statistics": {
+      "certificate_states": 1527,
+      "discovered_product_states": 9070,
+      "examined_input_transitions": 10772,
+      "product_state_upper_bound": 255623121,
+      "settled_nonunsafe_states": 7129
+    },
+    "states": 481
+  },
+  {
+    "action": "refine-false-policy",
+    "certificate_edge_checks": 2686,
+    "certificate_product_states": 1527,
+    "edges": 868,
+    "iteration": 4,
+    "lower_bound": 1,
+    "policy_reachable_states": 37,
+    "solver_statistics": {
+      "certificate_states": 1527,
+      "discovered_product_states": 9069,
+      "examined_input_transitions": 10771,
+      "product_state_upper_bound": 262531854,
+      "settled_nonunsafe_states": 7128
+    },
+    "states": 494
+  },
+  {
+    "action": "refine-false-policy",
+    "certificate_edge_checks": 2686,
+    "certificate_product_states": 1527,
+    "edges": 880,
+    "iteration": 5,
+    "lower_bound": 1,
+    "policy_reachable_states": 40,
+    "solver_statistics": {
+      "certificate_states": 1527,
+      "discovered_product_states": 9068,
+      "examined_input_transitions": 10770,
+      "product_state_upper_bound": 267846264,
+      "settled_nonunsafe_states": 7127
+    },
+    "states": 504
+  },
+  {
+    "action": "refine-false-policy",
+    "certificate_edge_checks": 2686,
+    "certificate_product_states": 1527,
+    "edges": 905,
+    "iteration": 6,
+    "lower_bound": 1,
+    "policy_reachable_states": 40,
+    "solver_statistics": {
+      "certificate_states": 1527,
+      "discovered_product_states": 9067,
+      "examined_input_transitions": 10769,
+      "product_state_upper_bound": 275817879,
+      "settled_nonunsafe_states": 7126
+    },
+    "states": 519
+  },
+  {
+    "action": "refine-false-policy",
+    "certificate_edge_checks": 2686,
+    "certificate_product_states": 1527,
+    "edges": 924,
+    "iteration": 7,
+    "lower_bound": 1,
+    "policy_reachable_states": 40,
+    "solver_statistics": {
+      "certificate_states": 1527,
+      "discovered_product_states": 9066,
+      "examined_input_transitions": 10768,
+      "product_state_upper_bound": 282726612,
+      "settled_nonunsafe_states": 7125
+    },
+    "states": 532
+  },
+  {
+    "action": "refine-false-policy",
+    "certificate_edge_checks": 10767,
+    "certificate_product_states": 7130,
+    "edges": 930,
+    "iteration": 8,
+    "lower_bound": 2,
+    "policy_reachable_states": 52,
+    "solver_statistics": {
+      "certificate_states": 7130,
+      "discovered_product_states": 21627,
+      "examined_input_transitions": 25672,
+      "product_state_upper_bound": 286446699,
+      "settled_nonunsafe_states": 18908
+    },
+    "states": 539
+  },
+  {
+    "action": "refine-false-policy",
+    "certificate_edge_checks": 10767,
+    "certificate_product_states": 7130,
+    "edges": 949,
+    "iteration": 9,
+    "lower_bound": 2,
+    "policy_reachable_states": 37,
+    "solver_statistics": {
+      "certificate_states": 7130,
+      "discovered_product_states": 21626,
+      "examined_input_transitions": 25671,
+      "product_state_upper_bound": 293355432,
+      "settled_nonunsafe_states": 18907
+    },
+    "states": 552
+  },
+  {
+    "action": "matched-concrete-witness",
+    "certificate_edge_checks": 10767,
+    "certificate_product_states": 7130,
+    "edges": 961,
+    "iteration": 10,
+    "lower_bound": 2,
+    "policy_reachable_states": 0,
+    "solver_statistics": {
+      "certificate_states": 7130,
+      "discovered_product_states": 21625,
+      "examined_input_transitions": 25670,
+      "product_state_upper_bound": 298669842,
+      "settled_nonunsafe_states": 18906
+    },
+    "states": 562
+  }
+]

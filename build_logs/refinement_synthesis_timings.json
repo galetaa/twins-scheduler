@@ -2,101 +2,101 @@
   "cases": [
     {
       "case": "sparse_dag_k12",
-      "checker_seconds": 0.0015723939977760892,
-      "solver_seconds": 0.0016377370011468884,
+      "checker_seconds": 0.0022881860001007226,
+      "solver_seconds": 0.0020721999999295804,
       "status": "OPTIMAL"
     },
     {
       "case": "sparse_dag_k48",
-      "checker_seconds": 0.08454010299828951,
-      "solver_seconds": 0.07162374400286353,
+      "checker_seconds": 0.11945832200001405,
+      "solver_seconds": 0.09776570300005005,
       "status": "OPTIMAL"
     },
     {
       "case": "crossed_pairs_k12",
-      "checker_seconds": 0.0019596660022216383,
-      "solver_seconds": 0.002108962999045616,
+      "checker_seconds": 0.0025007059999779813,
+      "solver_seconds": 0.0024820979999731207,
       "status": "OPTIMAL"
     },
     {
       "case": "crossed_pairs_k48",
-      "checker_seconds": 0.07565838799928315,
-      "solver_seconds": 0.06799826999849756,
+      "checker_seconds": 0.10884195400001317,
+      "solver_seconds": 0.09266040500006056,
       "status": "OPTIMAL"
     },
     {
       "case": "bow_tie_blocks_k12",
-      "checker_seconds": 0.0029582559982372914,
-      "solver_seconds": 0.003027665999979945,
+      "checker_seconds": 0.003191047999962393,
+      "solver_seconds": 0.003186650999964513,
       "status": "OPTIMAL"
     },
     {
       "case": "bow_tie_blocks_k30",
-      "checker_seconds": 0.02745570800107089,
-      "solver_seconds": 0.02244453700041049,
+      "checker_seconds": 0.03081026099994233,
+      "solver_seconds": 0.02766632300006222,
       "status": "OPTIMAL"
     },
     {
       "case": "weighted_common_deadline_k24",
-      "checker_seconds": 0.03263422899908619,
-      "solver_seconds": 0.023914360001072055,
+      "checker_seconds": 0.04701900099996692,
+      "solver_seconds": 0.03307687600010922,
       "status": "OPTIMAL"
     },
     {
       "case": "weighted_common_deadline_k48",
-      "checker_seconds": 0.21973665799669106,
-      "solver_seconds": 0.182882202003384,
+      "checker_seconds": 0.3118625399999928,
+      "solver_seconds": 0.25063195699999596,
       "status": "OPTIMAL"
     },
     {
       "case": "dense_scc_k8",
-      "checker_seconds": 0.2754987959997379,
-      "solver_seconds": 0.2695485880030901,
+      "checker_seconds": 0.3016962729999477,
+      "solver_seconds": 0.33058960599998954,
       "status": "OPTIMAL"
     },
     {
       "case": "dense_scc_k10",
-      "checker_seconds": 4.786322817999462,
-      "solver_seconds": 5.544815666999057,
+      "checker_seconds": 5.0493532829999594,
+      "solver_seconds": 5.802529143000015,
       "status": "OPTIMAL"
     },
     {
       "case": "dense_scc_k12",
       "checker_seconds": null,
-      "solver_seconds": 0.00020569399930536747,
+      "solver_seconds": 0.0002505779999637525,
       "status": "RESOURCE_LIMIT"
     },
     {
       "case": "single_cycle_k10",
-      "checker_seconds": 6.125937704000535,
-      "solver_seconds": 4.702367978999973,
+      "checker_seconds": 6.376729390000037,
+      "solver_seconds": 5.953862604000051,
       "status": "OPTIMAL"
     },
     {
       "case": "single_cycle_k24",
       "checker_seconds": null,
-      "solver_seconds": 0.0004696690011769533,
+      "solver_seconds": 0.00045662800005175086,
       "status": "RESOURCE_LIMIT"
     },
     {
       "case": "weighted_quota_cycles_k24",
-      "checker_seconds": 0.2635570029997325,
-      "solver_seconds": 0.2472469100030139,
+      "checker_seconds": 0.3609262130000843,
+      "solver_seconds": 0.3283536299999241,
       "status": "OPTIMAL"
     },
     {
       "case": "weighted_quota_cycles_tight_k24",
-      "checker_seconds": 0.35212634799972875,
-      "solver_seconds": 0.3215588389975892,
+      "checker_seconds": 0.4737716020000562,
+      "solver_seconds": 0.42664513399995485,
       "status": "OPTIMAL"
     }
   ],
   "informational_only": true,
   "machine": "x86_64",
   "not_a_performance_comparison": "Single observed run; excludes synthesis output files and greedy baseline from solver/checker intervals.",
-  "oracle_seconds": 12.49130060600146,
-  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "oracle_seconds": 13.142561608000051,
+  "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.41",
   "python": "3.11.12",
   "repetitions": 1,
-  "total_seconds": 37.68181452000135
+  "total_seconds": 41.480825604000074
 }

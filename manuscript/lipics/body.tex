@@ -1,5 +1,4 @@
-\hypertarget{introduction}{%
-\section{Introduction}\label{introduction}}
+\section{Introduction}\label{introduction}
 
 A fault-injection scheduler determines which behaviors a
 distributed-system test can observe. Twins, randomized Byzantine
@@ -32,9 +31,8 @@ quorum assembly and event order otherwise remain in the transition
 relation. Unequal nonnegative integer costs and allowed/required
 refinements are explicit inputs.
 
-\hypertarget{contributions-and-assurance-boundary}{%
 \subsection{Contributions and assurance
-boundary}\label{contributions-and-assurance-boundary}}
+boundary}\label{contributions-and-assurance-boundary}
 
 First, we characterize the exact least refinement of any consistent
 finite execution: it consists of required fibres and the fibres in which
@@ -57,14 +55,16 @@ system, and refine the quotient using the reachable-state invariant of a
 false policy. This eliminates that policy globally. Each failed
 iteration strictly refines a finite partition.
 
-Third, a guarded four-validator model makes two control fibres interact
-through the same local quorum, persistent messages and subsequent round
-changes. Complete enumeration covers its declared bounded opportunity
-language; a separate exploration routine regenerates each total policy
-from the shared protocol guards. The optimizer and abstraction procedure
-agree with independent policy/subset oracles. The previous repair-graph
-algorithm remains an efficient structural specialization, with weighted
-quota certificates and cases up to 48 pivots.
+Third, guarded four- and seven-validator models exercise dependencies
+through shared quorums, persistent messages and round changes. The
+larger instance has six controlled fibres and 48,201 states; nine
+rejected abstract policies precede a certified optimum of two
+refinements. A separately implemented rule engine replays the final
+witness. Safe baselines, missing-support controls and every total policy
+in each of three variants challenge the construction. We report total
+refinement work, not just the final quotient size: refinement is not a
+speedup here. The repair-graph solver remains a structural acceleration,
+with weighted quota cases up to 48 pivots.
 
 Lean mechanizes policy completion, persistent-memory updates, closed-set
 certificates, local simulation transfer and invariant-guided quotient
@@ -76,9 +76,8 @@ covering simulation. Our checked transition bridge is between explicit
 models. Separate ordinary-operation tests of unchanged CometBFT code
 support selected protocol obligations.
 
-\hypertarget{protocol-semantics-and-the-control-interface}{%
 \section{Protocol semantics and the control
-interface}\label{protocol-semantics-and-the-control-interface}}
+interface}\label{protocol-semantics-and-the-control-interface}
 
 Let \(P=(S,s_0,\to,B)\) be a labelled transition system with unsafe
 states \(B\subseteq S\). In an agreement test, \(B\) means conflicting
@@ -129,13 +128,11 @@ and a finite interface. A bounded exporter specifies the environment,
 heights, rounds and opportunities it represents; its bound is part of
 the theorem instance.
 
-\hypertarget{exact-refinement-without-independent-pivots}{%
 \section{Exact refinement without independent
-pivots}\label{exact-refinement-without-independent-pivots}}
+pivots}\label{exact-refinement-without-independent-pivots}
 
-\hypertarget{least-refinement-of-a-trace}{%
 \subsection{Least refinement of a
-trace}\label{least-refinement-of-a-trace}}
+trace}\label{least-refinement-of-a-trace}
 
 For a finite path \(\tau\), let
 \(\mathcal O_\tau\subseteq F\times\{0,1\}\) be its observed queries.
@@ -172,9 +169,8 @@ quorums, alternative support, recovery, repeated messages and cycles.
 Such behavior changes which paths are legal; it does not change the
 policy-completion argument.
 
-\hypertarget{protocol-state-times-persistent-policy-memory}{%
 \subsection{Protocol state times persistent policy
-memory}\label{protocol-state-times-persistent-policy-memory}}
+memory}\label{protocol-state-times-persistent-policy-memory}
 
 Use product states \((s,\mu)\), where \(\mu:F\to\{\bot,0,1\}\) records
 unseen or previously selected answers. Initially \(\mu\) is everywhere
@@ -220,16 +216,14 @@ problem is NP-complete already on acyclic input graphs with two fine
 keys per fibre. A weighted Set Cover instance is represented by first
 querying one phase negatively for each set, then selecting a positive
 second-phase edge for a covering set at every element layer. The path
-pays each used set once. Appendix\textasciitilde{}\ref{app:complexity}
-gives the reduction and polynomial verification argument. This relates
-the problem to established minimum-label and specification-revision
-optimization \cite{karp1972reducibility,kim2015revision,kumar2021color};
-the product search is a generic exact procedure, not a polynomial-time
-claim.
+pays each used set once. Appendix~\ref{app:complexity} gives the
+reduction and polynomial verification argument. This relates the problem
+to established minimum-label and specification-revision optimization
+\cite{karp1972reducibility,kim2015revision,kumar2021color}; the product
+search is a generic exact procedure, not a polynomial-time claim.
 
-\hypertarget{independent-lower-bound-certificates}{%
 \subsection{Independent lower-bound
-certificates}\label{independent-lower-bound-certificates}}
+certificates}\label{independent-lower-bound-certificates}
 
 An unsafe witness proves only an upper bound. For a proposed optimum
 \(C\), the certificate also supplies a set \(Z\) of product states
@@ -278,13 +272,11 @@ certifying-algorithm methodology \cite{mcconnell2011certifying}; the
 contribution is their connection to static scheduler refinement and
 protocol-labelled reachability.
 
-\hypertarget{transferring-optimality-across-model-boundaries}{%
 \section{Transferring optimality across model
-boundaries}\label{transferring-optimality-across-model-boundaries}}
+boundaries}\label{transferring-optimality-across-model-boundaries}
 
-\hypertarget{abstract-lower-bound-and-concrete-witness}{%
 \subsection{Abstract lower bound and concrete
-witness}\label{abstract-lower-bound-and-concrete-witness}}
+witness}\label{abstract-lower-bound-and-concrete-witness}
 
 Let \(P_C\) be a concrete transition model and \(P_A\) an abstraction
 with the same fine keys, fibre map, allowed/required sets and costs. A
@@ -344,8 +336,7 @@ local-simulation theorem itself has no finite-state restriction; using
 it for an infinite implementation requires a proved relation covering
 that implementation, rather than a finite test sample.
 
-\hypertarget{refining-a-false-policy}{%
-\subsection{Refining a false policy}\label{refining-a-false-policy}}
+\subsection{Refining a false policy}\label{refining-a-false-policy}
 
 We use existential quotients to search for a sufficient abstraction. For
 a partition \(h\), quotient edges are projections of concrete edges and
@@ -402,9 +393,8 @@ constructing that graph. Symbolic invariants or code-level simulations
 could replace explicit enumeration in the theorem; they are not supplied
 automatically by this implementation.
 
-\hypertarget{independent-pivots-as-a-structural-specialization}{%
 \section{Independent pivots as a structural
-specialization}\label{independent-pivots-as-a-structural-specialization}}
+specialization}\label{independent-pivots-as-a-structural-specialization}
 
 The general result subsumes arbitrary state dependencies, while a
 stronger behavioral contract permits a more structured algorithm. Let
@@ -430,7 +420,7 @@ extensions, retains suppressed slots and has distinct event kinds
 delaying repairs for \(J\) is possible exactly when \(H[J]\) is acyclic.
 The alternating-cycle/order-reversal proof and the finite schedule
 construction are mechanized; full statements and proofs appear in
-Appendix\textasciitilde{}\ref{app:frontier} \cite{streib2014dimension}.
+Appendix~\ref{app:frontier} \cite{streib2014dimension}.
 
 \textbf{Theorem 6 (weighted refinement characterization).} Under this
 independent-pivot contract, an admissible refinement is feasible exactly
@@ -495,12 +485,10 @@ gain. The only positively improving singleton is the centre, costing
 rule. Ten disjoint copies give certified optimum 20 versus its cost 1000
 in the saved study.
 
-\hypertarget{stateful-protocol-instance-and-experiments}{%
 \section{Stateful protocol instance and
-experiments}\label{stateful-protocol-instance-and-experiments}}
+experiments}\label{stateful-protocol-instance-and-experiments}
 
-\hypertarget{a-coupled-guarded-model}{%
-\subsection{A coupled guarded model}\label{a-coupled-guarded-model}}
+\subsection{A coupled guarded model}\label{a-coupled-guarded-model}
 
 The executable rule model follows the pinned CometBFT v0.39.3 source
 \nolinkurl{49b82838fcca442b2445f76605c101609ed04130}
@@ -547,9 +535,9 @@ readiness. One peer precommit can enable progress when the other is
 withheld, yet complete repair when both are present. Unlocked proposer
 \(C\) proposes 1; the unlocked mutant \(P\) can support it even while
 retaining valid block 0. The locally collected second quorum makes \(C\)
-decide 1. Appendix\textasciitilde{}\ref{app:trace} details the original
-guarded trace; the coupled artifact records every action of the
-optimized witness and replays each successor through the protocol code.
+decide 1. Appendix~\ref{app:trace} details the original guarded trace;
+the coupled artifact records every action of the optimized witness and
+replays each successor through the protocol code.
 
 Repair is tested against \textbf{signature issuance}. Once the
 indispensable conflicting precommit has been emitted, a later repair
@@ -559,9 +547,8 @@ separate relay schedule preserves FIFO-compatible admitted vote-envelope
 order. Those timing controls use stated gossip languages and are not
 executions of the production P2P reactor.
 
-\hypertarget{general-synthesis-and-checked-abstraction}{%
 \subsection{General synthesis and checked
-abstraction}\label{general-synthesis-and-checked-abstraction}}
+abstraction}\label{general-synthesis-and-checked-abstraction}
 
 The general study compares complete graph reachability under every total
 policy and every allowed split subset with the product optimizer. It
@@ -598,12 +585,12 @@ observer decisions. This tests the exporter separately from optimizing
 its graph.
 
 The final quantitative state counts and abstraction history are supplied
-in Table\textasciitilde{}\ref{tab:stateful}. The coarse-start procedure
-repeatedly rejects unrealizable policies before its lower bound is
-attained by a concrete witness. The audit-only quotient, which forgets a
-first-arrival diagnostic field, is a separate check of projection
-correctness. Its compression ratio is not a claim about minimizing a
-production client's natural state representation.
+in Table~\ref{tab:stateful}. The coarse-start procedure repeatedly
+rejects unrealizable policies before its lower bound is attained by a
+concrete witness. The audit-only quotient, which forgets a first-arrival
+diagnostic field, is a separate check of projection correctness. Its
+compression ratio is not a claim about minimizing a production client's
+natural state representation.
 
 \begin{table}[t]
 \centering\small
@@ -629,9 +616,97 @@ model messages, and passes 12 guard/evidence audits. With only the
 expensive fibre refinable the optimum is 5; requiring both costs 7;
 forbidding all splits is infeasible. These prices are declared inputs.
 
-\hypertarget{structural-and-native-controls}{%
+\subsection{Seven validators and dependent
+controls}\label{seven-validators-and-dependent-controls}
+
+The larger study uses seven validators and quorum five: Byzantine
+identities \(B_0,B_1\), unmutated observers \(A,C\), supporting replica
+\(D\), and replicas \(P_0,P_1\) with explicit missing-lock-update
+mutations. Each receiver \(P_i\) has three controlled incoming round-0
+fibres, from \(A,B_0,B_1\); each fibre couples PREVOTE with PRECOMMIT.
+There are six paid refinements, twelve persistent Boolean keys and
+\(2^{12}=4,096\) total policies. The environment fixes one height, two
+rounds, sixteen stages and twenty-three once-only opportunities. Every
+within-stage order is included, but declared multi-message batches have
+fixed internal order and stages cannot interleave. The graph is complete
+for this bound, not for all seven-validator schedules.
+Appendix~\ref{app:scaled} specifies the environment and seed.
+
+\textbf{Why independent controls are insufficient.} A round-0 prevote
+from each pivot helps the other obtain five votes; neither receiver can
+be replaced by an independent arithmetic contribution. Votes from
+\(C,D\) provide mixed-quorum timeout support without supplying the
+value-0 repair certificate. In round 1, \(P_1\)'s prevote is needed for
+\(P_0\) and \(C\) to emit the precommits completing \(C\)'s conflicting
+decision. Delivery and timeout order also matter: one fixed fine policy
+is unsafe when supporting precommits precede the two timeout attempts,
+but safe when those attempts occur first. Suppressing repair does not by
+itself enable the second signature.
+
+The mutant export has 48,201 states, 55,283 edges and 36 unsafe states.
+A raw reachability oracle enumerates every total policy in each of the
+baseline, one-mutated-pivot and two-mutated-pivot variants: 12,288
+assignments in total. The two-mutant graph has 36 unsafe policies, all
+requiring a split into each pivot. The baseline has 48,071 states and
+the one-pivot mutant 48,141; neither has an unsafe state. Removing
+cross-pivot round-0 prevotes, nil-precommit timeout support, or the
+round-1 \(P_1\) prevote separately removes all unsafe states in the
+corresponding complete export. These controls test actual guards, rather
+than merely changing a quorum-deficit parameter.
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{lrrrr}
+\toprule
+Input costs / permission & Optimum & Rejections & Final states & Edges \\
+\midrule
+All six unit-cost splits & 2 & 9 & 562 & 961 \\
+Costs $(2,5,9,3,7,11)$ & 5 & 3 & 496 & 874 \\
+Only $P_0$-target splits allowed & $\infty$ & 8 & 547 & 935 \\
+\bottomrule
+\end{tabular}
+\caption{Seven-validator results from the same 449-group guard-aware seed. Direct synthesis, complete-policy enumeration and independently checked refinement histories agree. Input prices are illustrative instrumentation costs, not measured runtime costs.}
+\label{tab:scaled}
+\end{table}
+
+\textbf{What certification changes.} The initial 449-group quotient
+retains control progress and each pivot's round-0 value-0 prevote count
+and emitted precommit; it forgets other guard-relevant evidence. This
+seed was chosen after an exploratory coarse-seed run, not learned
+automatically. Its apparent cost-0 violation is spurious. Across ten
+unit-cost iterations the lower bounds are \(0,1,1,1,1,1,1,2,2,2\). The
+first nine policies are rejected by complete concrete-policy
+reachability and excluded by invariant refinement. Every one of the
+55,283 input edges is checked at every iteration. Only the final cost-2
+lower bound is attained by an actual witness. The guarded
+dictionary-based replay checks all twenty-three successors against the
+independent compact explorer, emits twenty-six authenticated model
+messages and records 418 events, passing eleven audits. Its unmutated
+observers decide \(A=0,C=1\).
+
+With unit costs the witness splits \(A\to P_0\) and \(A\to P_1\): it
+admits the enabling prevotes while withholding the corresponding repair
+precommits. No cheaper choice can expose a disagreement in this bound.
+The weighted case chooses the same two fibres for cost \(2+3=5\);
+allowing refinement only toward \(P_0\) is certified infeasible. Thus
+the output is an actionable interface change or an infeasibility
+diagnosis, not just an abstract bad path.
+
+\textbf{Cost of the reduction.} Direct search discovers 21,544 product
+states. Refinement discovers 121,615 cumulatively, with a maximum of
+21,627 in one iteration; 562 is only the final protocol quotient size,
+not total memory. Its final lower-bound certificate has 7,130 product
+states, compared with 7,103 for direct search. All ten abstract
+certificates together contain 30,552 product states, and their
+simulation checks cover 552,830 concrete edges with repetition. The full
+concrete graph is built before refinement. These figures support a
+smaller explanatory model and checked false-policy elimination, not a
+time or memory advantage. A guard-blind 32-group seed is also run with
+fixed limits of eight refinements and 10,000 product states; exhaustion
+is recorded as unknown, not safety.
+
 \subsection{Structural and native
-controls}\label{structural-and-native-controls}}
+controls}\label{structural-and-native-controls}
 
 The repair-schema studies remain complementary evidence. A raw-event
 oracle examines all 530 directed graphs with loops for \(k\le3\), 50,363
@@ -662,13 +737,11 @@ are outside their scope. Native timestamps remain untouched, so semantic
 summaries are compared while raw signatures are independently
 revalidated.
 
-\hypertarget{formal-assurance-related-work-and-reproducibility}{%
 \section{Formal assurance, related work and
-reproducibility}\label{formal-assurance-related-work-and-reproducibility}}
+reproducibility}\label{formal-assurance-related-work-and-reproducibility}
 
-\hypertarget{mechanized-and-executable-obligations}{%
 \subsection{Mechanized and executable
-obligations}\label{mechanized-and-executable-obligations}}
+obligations}\label{mechanized-and-executable-obligations}
 
 The Lean 4.33.0 project checks 46 selected declarations. The new module
 constructs total realizing policies, proves least required/mixed splits,
@@ -699,9 +772,8 @@ terminal classifier. The historical declaration named
 classification, not a transition refinement. The new all-edge bridge is
 separately identified in the claim ledger.
 
-\hypertarget{relationship-to-prior-methods}{%
 \subsection{Relationship to prior
-methods}\label{relationship-to-prior-methods}}
+methods}\label{relationship-to-prior-methods}
 
 Communication-closure testing compares asynchronous and lossy
 synchronous executions under explicit implementation conditions
@@ -727,17 +799,30 @@ Product-state reachability, simulation with internal actions,
 independently checked witnesses and abstraction refinement are
 established techniques
 \cite{lynch1995simulations,mcconnell2011certifying,clarke2003cegar}.
-Minimum-label paths and minimal specification revision also charge
-reusable labels or changes rather than each transition
-\cite{kumar2021color,kim2015revision}. The specific result here connects
-persistent fine-key consistency, paid coarse-fibre distinctions,
-complete lower-bound certificates and a checked protocol-model bridge.
-In the structured case it further connects order reversal to weighted
-quorum deficits. We do not claim invention of general CEGAR, Dijkstra
-search or simulation, or absence of every equivalent prior result.
+Minimum-label paths and minimal specification revision already optimize
+reusable labels or changes instead of paying per transition
+\cite{kumar2021color,kim2015revision}. Once compiled into our policy
+product, shortest-path optimization itself is conventional. Our
+contribution is the admission semantics and its end-to-end assurance
+contract: persistent fine-key answers, a one-time cost for splitting a
+coarse fibre, independently checked cheaper-policy exclusion, and
+matching concrete replay through a checked covering relation. The
+refinement invariant rejects an entire fixed policy rather than only one
+abstract path. We do not claim general CEGAR, simulation, shortest
+paths, or the idea of minimal revision as new.
 
-\hypertarget{scope-and-reproduction}{%
-\subsection{Scope and reproduction}\label{scope-and-reproduction}}
+This distinction also identifies a practical use. Given a bounded
+regression scenario, a harness developer supplies controllable fibres
+and estimated implementation costs. A finite optimum identifies which
+phase predicates must be exposed; infeasibility under an allowed set
+diagnoses an insufficient interface within the bound. Neither outcome
+alone establishes safety of the unbounded client. The seven-validator
+study demonstrates this decision with interacting controls and
+explicitly shows why an unchecked cost-0 abstract witness would give the
+wrong instrumentation advice. The certificates make that advice
+auditable even when abstraction is slower than direct search.
+
+\subsection{Scope and reproduction}\label{scope-and-reproduction}
 
 Optimality now covers every execution of a supplied complete finite
 transition model under its declared static control interface.
@@ -751,26 +836,30 @@ problem and invalidates the corresponding claim.
 
 For arbitrary unbounded client programs, a terminating complete
 reachability optimizer cannot be expected in general;
-Appendix\textasciitilde{}\ref{app:complexity} gives the direct halting
-reduction. Nevertheless the semantic transfer theorem can cover an
-infinite concrete implementation when its local simulation and
-cost/observation obligations are proved. The present source-backed
-guarded model and native conformance tests do not discharge that
-universal client correspondence.
+Appendix~\ref{app:complexity} gives the direct halting reduction.
+Nevertheless the semantic transfer theorem can cover an infinite
+concrete implementation when its local simulation and cost/observation
+obligations are proved. The present source-backed guarded model and
+native conformance tests do not discharge that universal client
+correspondence.
 
-The public artifact is \url{https://github.com/galetaa/twins-scheduler}.
-Running \texttt{./reproduce\_revision.sh} executes all general and
-structural studies, both forms of independent policy oracle, guarded
-exporter/replay checks, native conformance/signature/repeatability
-checks, Lean build and axiom audit, and the LIPIcs build. Mandatory
-failures stop the run. Input hashes, complete certificates, raw
-observations, claim mappings and tool-version logs accompany the paper.
-Deterministic results are compared to committed references; resource
-limits remain explicit unknown results. An empty dependency cache
-requires network downloads.
+\ifdefined\TwinsAnonymous
 
-\hypertarget{conclusion}{%
-\section{Conclusion}\label{conclusion}}
+The accompanying artifact is referenced by repository-relative paths; an
+identity-free archive is needed for an actual anonymous submission.
+\else The public artifact is
+\url{https://github.com/galetaa/twins-scheduler}. \fi Running
+\texttt{./reproduce\_revision.sh} executes all general and structural
+studies, both forms of independent policy oracle, the seven-validator
+study and its policy/guard controls, guarded exporter/replay checks,
+native conformance/signature/repeatability checks, Lean build and axiom
+audit, and the LIPIcs build. Mandatory failures stop the run. Input
+hashes, complete certificates, raw observations, claim mappings and
+tool-version logs accompany the paper. Deterministic results are
+compared to committed references; resource limits remain explicit
+unknown results. An empty dependency cache requires network downloads.
+
+\section{Conclusion}\label{conclusion}
 
 Minimum-cost phase control can be proved directly from protocol
 transitions and persistent admission decisions. The exact mixed-fibre
@@ -785,12 +874,11 @@ implementation obligation is explicit transition, control and
 observation coverage for the client and execution language being
 claimed.
 
-\hypertarget{acknowledgments-and-ai-use-disclosure}{%
 \subsection{Acknowledgments and AI-use
-disclosure}\label{acknowledgments-and-ai-use-disclosure}}
+disclosure}\label{acknowledgments-and-ai-use-disclosure}
 
 An OpenAI language model assisted with research organization, literature
 discovery, proof exploration, manuscript drafting, code generation and
-consistency checking. The authors retain responsibility for correctness,
+consistency checking. The author retains responsibility for correctness,
 originality, citations and experimental claims. The model is not an
 author.

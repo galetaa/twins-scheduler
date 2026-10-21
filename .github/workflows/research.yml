@@ -14,6 +14,9 @@ on:
       - "scripts/run_transition*.py"
       - "scripts/check_transition*.py"
       - "scripts/run_native_conformance.sh"
+      - "src/python/twins_scheduler/scaled_protocol.py"
+      - "scripts/run_scaled_study.py"
+      - "results/scaled/**"
       - "experiments/native_cometbft/**"
       - "results/synthesis/**"
       - "results/native/**"
@@ -53,6 +56,8 @@ jobs:
         run: make synthesis
       - name: Recompute general transition synthesis and certified abstraction
         run: make transition
+      - name: Recompute seven-validator dependent controls and all certificates
+        run: make scaled
       - name: Execute unchanged native code, audit signatures, repeat with race detector
         run: make native
       - name: Compare deterministic evidence
@@ -64,6 +69,7 @@ jobs:
           files = sorted(Path("results/synthesis").rglob("*"))
           files.extend(sorted(Path("results/transition").rglob("*")))
           files.extend(sorted(Path("results/transition_bridge").rglob("*")))
+          files.extend(sorted(Path("results/scaled").rglob("*")))
           files.append(Path("results/native/native_summary.json"))
           for reference in files:
               if reference.is_file():

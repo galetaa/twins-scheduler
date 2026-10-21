@@ -1,12 +1,10 @@
-\hypertarget{complexity-and-proof-boundaries}{%
 \section{Complexity and proof
-boundaries}\label{complexity-and-proof-boundaries}}
+boundaries}\label{complexity-and-proof-boundaries}
 
 \label{app:complexity}
 
-\hypertarget{general-finite-transition-systems}{%
 \subsection{General finite transition
-systems}\label{general-finite-transition-systems}}
+systems}\label{general-finite-transition-systems}
 
 For the explicit finite LTS decision problem with binary-encoded budget
 \(C\), guess a total fine policy and an allowed split set containing the
@@ -38,9 +36,8 @@ simulation and lower-bound theorems themselves require no finite-state
 assumption; a supplied inductive invariant can cover an infinite
 concrete system.
 
-\hypertarget{independent-pivot-specialization}{%
 \subsection{Independent-pivot
-specialization}\label{independent-pivot-specialization}}
+specialization}\label{independent-pivot-specialization}
 
 In the unweighted independent-pivot schema, the decision problem of
 whether a coarse unsafe execution exists is NP-complete when the number
@@ -68,15 +65,13 @@ a complexity bound for the fixed four-validator trace nor claims that
 every constructed order is realizable by a production consensus
 implementation.
 
-\hypertarget{supporting-replay-and-diagnostic-results}{%
 \section{Supporting replay and diagnostic
-results}\label{supporting-replay-and-diagnostic-results}}
+results}\label{supporting-replay-and-diagnostic-results}
 
 \label{app:replay}
 
-\hypertarget{replay-erasure-with-outputs}{%
 \subsection{Replay erasure with
-outputs}\label{replay-erasure-with-outputs}}
+outputs}\label{replay-erasure-with-outputs}
 
 Let \(\pi:S\to S_{\mathrm{rel}}\) project relevant state, including
 processed message keys. For every retained message \(m\), require
@@ -109,9 +104,8 @@ This proposition is standard congruence reasoning; it supports the
 distinction between internal state and persistent outputs without
 constituting the revised paper's main contribution.
 
-\hypertarget{the-earlier-seven-flag-diagnostic}{%
 \subsection{The earlier seven-flag
-diagnostic}\label{the-earlier-seven-flag-diagnostic}}
+diagnostic}\label{the-earlier-seven-flag-diagnostic}
 
 For Boolean flags \(S_1,S_2,R_q,D,T,E_d,X\), the earlier operational
 abstraction uses
@@ -140,9 +134,8 @@ reused to infer that repair merely before a later collector suffices.
 The revised frontier model separates these events and makes initially
 ready pivots the primary multi-pivot case.
 
-\hypertarget{detailed-guarded-four-validator-model-trace}{%
 \section{Detailed guarded four-validator model
-trace}\label{detailed-guarded-four-validator-model-trace}}
+trace}\label{detailed-guarded-four-validator-model-trace}
 
 \label{app:trace}
 
@@ -201,9 +194,8 @@ execution is recorded separately in the artifact.
   have \(A=0,C=1\).
 \end{enumerate}
 
-\hypertarget{parametric-certificate-families}{%
 \section{Parametric certificate
-families}\label{parametric-certificate-families}}
+families}\label{parametric-certificate-families}
 
 \label{app:families}
 
@@ -226,13 +218,11 @@ quorums contain \(B\), their exclusive set, and all \(k\) pivots; each
 base has size \(q-k\). Distinct correct observers exist in nonempty
 \(A,C\). Proposition E3 characterizes precisely which opportunity orders
 can preserve these \(k\) required double contributions. The extension is
-a certificate schema; the guarded trace in
-Appendix\textasciitilde{}\ref{app:trace} establishes the single-pivot
-model case.
+a certificate schema; the guarded trace in Appendix~\ref{app:trace}
+establishes the single-pivot model case.
 
-\hypertarget{structural-special-case-proofs}{%
 \section{Structural special-case
-proofs}\label{structural-special-case-proofs}}
+proofs}\label{structural-special-case-proofs}
 
 \label{app:frontier}
 
@@ -245,9 +235,8 @@ scheduler \(G\) and declared opportunity bound \(\mathcal B\), and
 executions whose terminal state satisfies the designated unsafe
 predicate.
 
-\hypertarget{a-standard-sufficient-preservation-condition}{%
 \subsection{A standard sufficient preservation
-condition}\label{a-standard-sufficient-preservation-condition}}
+condition}\label{a-standard-sufficient-preservation-condition}
 
 The useful positive baseline is a specialized simulation argument
 \cite{lynch1995simulations}. Let a candidate coarse trace retain the
@@ -260,7 +249,8 @@ preserve \(\mathcal R\), and unsafety is upward closed in
 \textbf{Proposition E1 (legal relational preservation).} If the
 candidate trace \(C(\tau)\) is legal in the coarse language,
 \(C(\tau)\in L_{G_D}(P,\mathcal B)\), these conditions imply
-\(\mathsf{Unsafe}(\operatorname{last}(\tau))\Rightarrow \mathsf{Unsafe}(\operatorname{last}(C(\tau)))\).
+\(\mathsf{Unsafe}(\operatorname{last}(\tau))\Rightarrow
+\mathsf{Unsafe}(\operatorname{last}(C(\tau)))\).
 
 \textbf{Proof.} Induct over the merged action sequence. At an insertion,
 the target's increasing step composes with the current relation by
@@ -276,9 +266,8 @@ negative results instead rerun guarded opportunities; a disabled
 opportunity emits no vote. Proposition E1 is supporting machinery, not a
 new general simulation principle.
 
-\hypertarget{a-corrected-one-pivot-separation-criterion}{%
 \subsection{A corrected one-pivot separation
-criterion}\label{a-corrected-one-pivot-separation-criterion}}
+criterion}\label{a-corrected-one-pivot-separation-criterion}
 
 Let \(q\ge1\) be a certificate threshold. Two conflicting certificate
 families have fixed nonpivot support \(q-1\) each. The same pivot \(p\)
@@ -353,14 +342,12 @@ already signed vote. Both errors disappear when behavior and signature
 timing are stated explicitly.
 
 The familiar \(n=3f+1\), \(q=2f+1\) family instantiates the two bases
-with \(q-1\) fixed signatures.
-Appendix\textasciitilde{}\ref{app:families} gives its arithmetic and a
-\(k\)-pivot extension; realizability of their behavior remains a
-separate obligation.
+with \(q-1\) fixed signatures. Appendix~\ref{app:families} gives its
+arithmetic and a \(k\)-pivot extension; realizability of their behavior
+remains a separate obligation.
 
-\hypertarget{repair-frontiers-for-several-independent-channels}{%
 \subsection{Repair frontiers for several independent
-channels}\label{repair-frontiers-for-several-independent-channels}}
+channels}\label{repair-frontiers-for-several-independent-channels}
 
 Let \(I=\{1,\ldots,k\}\) be pivotal identities, each with positive
 integer weight \(w_i\). Write \(w(X)=\sum_{i\in X}w_i\) and \(W=w(I)\).
@@ -368,9 +355,8 @@ The two certificate families have fixed base weights \(b_a\), thresholds
 \(q_a\), and deficits \(d_a=\max(0,q_a-b_a)\), for \(a\in\{0,1\}\). Unit
 weights give \(W=k\).
 
-\hypertarget{behavioral-and-order-contracts}{%
 \subsubsection{Behavioral and order
-contracts}\label{behavioral-and-order-contracts}}
+contracts}\label{behavioral-and-order-contracts}
 
 Pivot \(i\) emits exactly one first-family signature if and only if
 \(E_i\) is admitted. No substitute first-family contribution is
@@ -419,9 +405,8 @@ If a real harness admits fewer orders, the model gives a sound
 coarse-safety overapproximation, but an existential witness needs a
 realizable order in that harness.
 
-\hypertarget{a-graph-of-simultaneous-repair-obstructions}{%
 \subsubsection{A graph of simultaneous repair
-obstructions}\label{a-graph-of-simultaneous-repair-obstructions}}
+obstructions}\label{a-graph-of-simultaneous-repair-obstructions}
 
 Define a directed graph \(H\), including possible self-loops, by
 
@@ -471,9 +456,8 @@ theorem accepts cover edges and derives the graph from their transitive
 closure. Thus neither realizability nor the treatment of suppressed
 slots is an assumed capacity premise.
 
-\hypertarget{exact-capacity-and-separation}{%
 \subsubsection{Exact capacity and
-separation}\label{exact-capacity-and-separation}}
+separation}\label{exact-capacity-and-separation}
 
 \textbf{Proposition E3 (repair-frontier characterization).} Under the
 contracts above, fine unsafety is feasible exactly when
@@ -538,13 +522,11 @@ branches. Coarse reachability is decided by whether the scheduler can
 keep that many jointly reusable contributors, not by the number of
 admission bits alone.
 
-\hypertarget{robustness-and-the-amount-of-phase-control-required}{%
 \subsection{Robustness and the amount of phase control
-required}\label{robustness-and-the-amount-of-phase-control-required}}
+required}\label{robustness-and-the-amount-of-phase-control-required}
 
-\hypertarget{common-deadlines-and-crossed-deadlines}{%
 \subsubsection{Common deadlines and crossed
-deadlines}\label{common-deadlines-and-crossed-deadlines}}
+deadlines}\label{common-deadlines-and-crossed-deadlines}
 
 If all second signatures share one opportunity \(V\), let
 \(F=\{i:R_i\prec V\}\) and \(\ell=k-|F|\). Members of \(F\) have
@@ -570,9 +552,8 @@ admission is unsafe. This is a separation over several event orders and
 two independently controlled channels, rather than two executions of one
 fixed edge.
 
-\hypertarget{optimal-phase-splitting-budget}{%
 \subsubsection{Optimal phase-splitting
-budget}\label{optimal-phase-splitting-budget}}
+budget}\label{optimal-phase-splitting-budget}
 
 A split key admits its enabling phase while suppressing repair.
 Splitting leaves the opportunity partial order intact. With a chosen
@@ -603,17 +584,16 @@ into \eqref{eq:frontier-unit}. Since \(d_0,d_1\le k\), the resulting
 inequality holds exactly when \(t\) covers the deficit in
 \eqref{eq:frontier-budget}. \(\square\)
 
-Figure \ref{fig:frontier} in Appendix\textasciitilde{}\ref{app:heatmap}
-illustrates the unit-weight boundary. The statement is existential over
-the choice of split keys. It does not claim that every set of \(t_*\)
-arbitrary message exceptions suffices. A witness can be constructed by
-choosing an acyclic reusable set, selecting the necessary split keys and
-open keys, adding its lateness constraints, and topologically sorting
-the opportunity graph.
+Figure \ref{fig:frontier} in Appendix~\ref{app:heatmap} illustrates the
+unit-weight boundary. The statement is existential over the choice of
+split keys. It does not claim that every set of \(t_*\) arbitrary
+message exceptions suffices. A witness can be constructed by choosing an
+acyclic reusable set, selecting the necessary split keys and open keys,
+adding its lateness constraints, and topologically sorting the
+opportunity graph.
 
-\hypertarget{order-relaxation-extra-edges-and-weights}{%
 \subsubsection{Order relaxation, extra edges, and
-weights}\label{order-relaxation-extra-edges-and-weights}}
+weights}\label{order-relaxation-extra-edges-and-weights}
 
 Removing precedence constraints cannot add an edge to \(H\), so it
 cannot decrease \(\alpha(H)\). Thus order relaxation weakens separation
@@ -650,15 +630,13 @@ refinement.
 
 For arbitrary individual deadlines, deciding whether a coarse unsafe
 execution exists is NP-complete for explicitly represented finite
-opportunity orders with unbounded \(k\).
-Appendix\textasciitilde{}\ref{app:complexity} gives the short reduction
-using a classical graph construction \cite{karp1972reducibility}; the
-contribution is the scheduler correspondence, not a new graph-hardness
-result.
+opportunity orders with unbounded \(k\). Appendix~\ref{app:complexity}
+gives the short reduction using a classical graph construction
+\cite{karp1972reducibility}; the contribution is the scheduler
+correspondence, not a new graph-hardness result.
 
-\hypertarget{construction-and-independent-certificates}{%
 \subsection{Construction and independent
-certificates}\label{construction-and-independent-certificates}}
+certificates}\label{construction-and-independent-certificates}
 
 Compute \(H\) using reachability in the full opportunity graph. Vertices
 with self-loops cannot belong to \(J\); treat them as individual blocks,
@@ -728,9 +706,8 @@ instances nor a polynomial-time optimizer are claimed. Explicit
 component, table and time limits return a resource-limit result, never a
 false infeasibility claim.
 
-\hypertarget{unit-weight-budget-illustration}{%
 \section{Unit-weight budget
-illustration}\label{unit-weight-budget-illustration}}
+illustration}\label{unit-weight-budget-illustration}
 
 \label{app:heatmap}
 
@@ -744,3 +721,127 @@ require the optimization in Theorem 6.
 \caption{Exact phase-control budget in the independent-pivot schema. Each cell is the minimum number of phase-split keys required to expose an unsafe witness. Blank cells exceed the available pivot count. Panels differ only in the capacity of jointly late repair, not in quorum size.}
 \label{fig:frontier}
 \end{figure}
+
+\section{Seven-validator environment and
+reconstruction}\label{seven-validator-environment-and-reconstruction}
+
+\label{app:scaled}
+
+\subsection{States, emissions and
+opportunities}\label{states-emissions-and-opportunities}
+
+The compact explorer stores for each non-Byzantine replica its round,
+step, lock and valid pairs, proposal metadata, known-block set,
+commit-wait and decision state, four received-signer bitsets and enabled
+timer flags. A separate array stores every emitted vote slot. No
+certificate is preloaded. Deliveries require prior production, and
+precommit/round-change timeouts require a locally received quorum. A
+state bound raises an exception; no truncated frontier is classified as
+safe.
+
+The dictionary-based replay reuses the guarded message implementation of
+Appendix~\ref{app:trace}, generalized to seven named validators and
+quorum five without changing its four-validator defaults. It creates and
+verifies deterministic HMAC-authenticated envelopes and checks locally
+collected certificates. The compact explorer implements its own
+integer/bitset rules. Only the declared environment batches are shared.
+Replay compares the two semantic states after every selected
+opportunity; this is an independently implemented witness check, not a
+proof that every exported transition matches an unbounded production
+client.
+
+The common height is 1; rounds are 0 and 1. The voters are
+\(A,P_0,P_1,C,D,B_0,B_1\). Correct-rule replicas are the first five,
+with injected lock omissions only in the selected variant. The unsafe
+predicate compares unmutated \(A,C\). The six fibres, in cost-vector
+order, are \((A,B_0,B_1)\to P_0\) followed by \((A,B_0,B_1)\to P_1\),
+all at height 1, round 0. Each contains PREVOTE then PRECOMMIT as its
+two fine keys. Other deliveries are the fixed environment, not
+additional optimized controls.
+
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{cl}
+\toprule
+Stage & Once-only opportunities (separate entries permute within a stage) \\
+\midrule
+0 & Initial proposals, nil timeouts and explicit Byzantine emissions \\
+1 & Fixed round-0 prevotes, including cross-pivot prevotes \\
+2--4 & Controlled prevotes from $A,B_0,B_1$, respectively, to both pivots \\
+5 & Fixed mixed prevotes and guarded prevote-timeout attempts \\
+6 & Fixed round-0 precommits \\
+7--8 & Controlled precommits from $A,B_0$ to both pivots \\
+9 & $B_1\to P_0$ precommit versus $P_0$ precommit timeout \\
+10 & $B_1\to P_1$ precommit versus $P_1$ precommit timeout \\
+11 & $C$ precommit-timeout attempt \\
+12 & Guarded round-1 proposal and explicit Byzantine emissions \\
+13--15 & Fixed round-1 prevotes, timeout attempts, precommits \\
+\bottomrule
+\end{tabular}
+\caption{Sixteen stages and twenty-three opportunities. A batch is one environment action with a fixed internal order, not a claim to enumerate all its internal permutations.}
+\label{tab:scaled-stages}
+\end{table}
+
+At bootstrap \(C,D\) time out to nil; \(B_0\) proposes 0 to
+\(A,P_0,P_1,D\) and both Byzantine identities emit round-0 value-0
+prevotes and precommits. Fixed prevotes deliver \(P_0,P_1,B_0,B_1\) to
+\(A\) and the two cross-pivot votes. Stage 5 delivers nil prevotes from
+\(C,D\) to each pivot, then votes from \(A,B_0,B_1\) and the other nil
+voter to \(C,D\), before the declared timeout attempts. Stage 6 delivers
+\(P_0,P_1,B_0,B_1\) precommits to \(A\), the other pivot and \(C,D\) to
+each pivot, and \(A,P_0,P_1,D\) to \(C\). Every recipient sees only
+votes actually emitted before its slot. Round-1 proposal generation by
+\(C\) requires its live proposal step. Later value-1 votes from
+\(B_0,B_1,C,P_0,P_1\) are delivered only at their listed opportunities;
+self-receipts are not duplicated. The precise loop order is in
+\texttt{run\_batch}; absent messages and disabled one-shot timers are
+recorded as conditional no-ops, not retried automatically.
+
+\subsection{Seed selection, certificates and negative
+controls}\label{seed-selection-certificates-and-negative-controls}
+
+The main seed retains
+\((\text{stage},\text{remaining slots},\text{unsafe})\) and, for each
+pivot, its count of received round-0 value-0 prevotes and its emitted
+round-0 precommit value (including absent/nil). The complete state is
+never erased from the concrete graph. The initial quotient has 449
+groups and 795 edges. With unit costs it grows through
+\(449,466,481,494,504,519,532,539,552,562\) groups. The guard-aware seed
+was selected after exploratory coarse-seed behavior; it is not a
+benchmark-selected proof assumption. All-edge coverage verifies its
+soundness. A separate 32-group control-flow-only seed has an explicit
+capped run returning unknown. No ratio between these bounded runs is
+called an asymptotic speedup.
+
+The unit, weighted and permission-constrained runs save every quotient,
+rejected policy, safe reachable set, closed-cost certificate and final
+bridge. The independent verifier checks the full history; the final
+concrete witness is re-executed through the message guards. Costs
+\((2,5,9,3,7,11)\) assign the cheaper \(A\) fibres prices 2 and 3; they
+are not weights of consensus votes. All validators have unit voting
+power. Restricting allowed splits to the first three fibres cannot
+bypass the need for a second receiver-side split. Repeated costs and
+permission queries are not counted as additional protocol variants.
+
+Complete-policy enumeration gives 4,096 assignments per structural
+variant and zero mismatches with the optimized costs. The three
+ablations remove cross-pivot prevotes, nil precommits enabling round
+changes, or \(P_1\)'s round-1 prevote. They produce respectively 50,411,
+44,363 and 48,201 states with no unsafe state. Eighteen additional
+deterministic dictionary-engine replays cover safe and mixed policies,
+besides the four optimized witness replays. A deliberately tiny export
+cap must raise an unknown result. None of these controls changes the
+mutation into a production-client finding.
+
+\subsection{Recovery provenance}\label{recovery-provenance}
+
+This source revision reconstructs an interrupted experiment from the
+preserved models and manuscript, then regenerates its outputs. It does
+not assert the lost source hash. The reconstructed mutant has exactly
+the preserved graph's numbered source/target/key/value edge relation and
+unsafe-state set; state strings and provenance hashes are regenerated.
+Baseline and one-pivot-mutant exports now retain their distinct complete
+operational states. The new weighted-price example is separately
+declared. Fresh source SHA-256 values and deterministic histories
+accompany the results; previous interrupted build reports are not
+treated as current execution evidence.

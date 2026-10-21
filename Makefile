@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-.PHONY: bootstrap test formal paper revision synthesis transition native reproduce verify release
+.PHONY: bootstrap test formal paper revision synthesis transition scaled native reproduce verify release
 
 bootstrap:
 	./scripts/bootstrap.sh
@@ -22,6 +22,7 @@ revision:
 	uv run python scripts/run_concrete_trace.py
 	$(MAKE) synthesis
 	$(MAKE) transition
+	$(MAKE) scaled
 
 synthesis:
 	uv run python scripts/run_refinement_synthesis.py --study
@@ -32,6 +33,9 @@ transition:
 	uv run python scripts/run_transition_bridge.py --study
 	uv run python scripts/check_transition_oracle.py
 	uv run python scripts/check_transition_specialization.py
+
+scaled:
+	uv run python scripts/run_scaled_study.py
 
 native:
 	./scripts/run_native_conformance.sh

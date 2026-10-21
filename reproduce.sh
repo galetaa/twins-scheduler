@@ -27,6 +27,7 @@ uv run python scripts/run_transition_study.py | tee "$TWINS_LOG_DIR/transition_s
 uv run python scripts/run_transition_bridge.py --study | tee "$TWINS_LOG_DIR/transition_bridge.log"
 uv run python scripts/check_transition_oracle.py | tee "$TWINS_LOG_DIR/transition_oracle.log"
 uv run python scripts/check_transition_specialization.py | tee "$TWINS_LOG_DIR/transition_specialization.log"
+uv run python scripts/run_scaled_study.py | tee "$TWINS_LOG_DIR/scaled_study.log"
 ./scripts/run_native_conformance.sh
 uv run --extra native-audit python experiments/native_cometbft/audit_evidence.py | tee "$TWINS_LOG_DIR/native_signature_audit.log"
 python3 experiments/native_cometbft/check_repeatability.py | tee "$TWINS_LOG_DIR/native_repeatability.log"
@@ -55,6 +56,9 @@ ELAPSED_SECONDS=$((SECONDS - START_SECONDS))
   echo "all_edge_abstraction_and_policy_refinement=PASS"
   echo "coupled_protocol_exporter_and_guarded_replay=PASS"
   echo "structural_specialization_cross_check=PASS"
+  echo "seven_validator_dependent_controls_and_full_history=PASS"
+  echo "author_and_review_pdf_metadata_references=PASS"
+  echo "reviewer_matrix_synchronization=PASS"
   echo "unchanged_native_conformance_and_signature_audit=PASS"
   echo "native_semantic_repeatability_and_race_detector=PASS"
   echo "official_lipics_build=PASS"

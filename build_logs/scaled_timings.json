@@ -1,0 +1,35 @@
+[
+  {
+    "seconds": 2.1429508559999704,
+    "task": "export:BASELINE"
+  },
+  {
+    "seconds": 2.3798601329999656,
+    "task": "export:ONLY_P0_MUTATED"
+  },
+  {
+    "seconds": 2.358184161000054,
+    "task": "export:MISSING_LOCK_UPDATE"
+  },
+  {
+    "direct_check_seconds": 0.7052662840000039,
+    "direct_seconds": 0.6669301230000428,
+    "refinement_check_seconds": 2.445627146999982,
+    "refinement_seconds": 6.3827750819999665,
+    "task": "unit"
+  },
+  {
+    "direct_check_seconds": 0.5475893450000058,
+    "direct_seconds": 0.38189017700005934,
+    "refinement_check_seconds": 1.3444619729999658,
+    "refinement_seconds": 2.2460207390000733,
+    "task": "weighted"
+  },
+  {
+    "direct_check_seconds": 0.5988510639999731,
+    "direct_seconds": 0.5018751850000172,
+    "refinement_check_seconds": 2.259505372000035,
+    "refinement_seconds": 4.662619199000005,
+    "task": "p1_controls_fixed"
+  }
+]

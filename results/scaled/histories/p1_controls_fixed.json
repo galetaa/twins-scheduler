@@ -1,0 +1,155 @@
+[
+  {
+    "action": "refine-false-policy",
+    "certificate_edge_checks": 0,
+    "certificate_product_states": 0,
+    "edges": 795,
+    "iteration": 1,
+    "lower_bound": 0,
+    "policy_reachable_states": 52,
+    "solver_statistics": {
+      "certificate_states": 0,
+      "discovered_product_states": 1919,
+      "examined_input_transitions": 2687,
+      "product_state_upper_bound": 238617009,
+      "settled_nonunsafe_states": 1527
+    },
+    "states": 449
+  },
+  {
+    "action": "refine-false-policy",
+    "certificate_edge_checks": 2686,
+    "certificate_product_states": 1527,
+    "edges": 824,
+    "iteration": 2,
+    "lower_bound": 1,
+    "policy_reachable_states": 37,
+    "solver_statistics": {
+      "certificate_states": 1527,
+      "discovered_product_states": 4837,
+      "examined_input_transitions": 6956,
+      "product_state_upper_bound": 247651506,
+      "settled_nonunsafe_states": 4436
+    },
+    "states": 466
+  },
+  {
+    "action": "refine-false-policy",
+    "certificate_edge_checks": 2686,
+    "certificate_product_states": 1527,
+    "edges": 849,
+    "iteration": 3,
+    "lower_bound": 1,
+    "policy_reachable_states": 37,
+    "solver_statistics": {
+      "certificate_states": 1527,
+      "discovered_product_states": 4836,
+      "examined_input_transitions": 6955,
+      "product_state_upper_bound": 255623121,
+      "settled_nonunsafe_states": 4435
+    },
+    "states": 481
+  },
+  {
+    "action": "refine-false-policy",
+    "certificate_edge_checks": 2686,
+    "certificate_product_states": 1527,
+    "edges": 868,
+    "iteration": 4,
+    "lower_bound": 1,
+    "policy_reachable_states": 37,
+    "solver_statistics": {
+      "certificate_states": 1527,
+      "discovered_product_states": 4835,
+      "examined_input_transitions": 6954,
+      "product_state_upper_bound": 262531854,
+      "settled_nonunsafe_states": 4434
+    },
+    "states": 494
+  },
+  {
+    "action": "refine-false-policy",
+    "certificate_edge_checks": 6953,
+    "certificate_product_states": 4436,
+    "edges": 880,
+    "iteration": 5,
+    "lower_bound": 2,
+    "policy_reachable_states": 52,
+    "solver_statistics": {
+      "certificate_states": 4436,
+      "discovered_product_states": 7092,
+      "examined_input_transitions": 10242,
+      "product_state_upper_bound": 267846264,
+      "settled_nonunsafe_states": 6954
+    },
+    "states": 504
+  },
+  {
+    "action": "refine-false-policy",
+    "certificate_edge_checks": 6953,
+    "certificate_product_states": 4436,
+    "edges": 899,
+    "iteration": 6,
+    "lower_bound": 2,
+    "policy_reachable_states": 37,
+    "solver_statistics": {
+      "certificate_states": 4436,
+      "discovered_product_states": 7091,
+      "examined_input_transitions": 10241,
+      "product_state_upper_bound": 274754997,
+      "settled_nonunsafe_states": 6953
+    },
+    "states": 517
+  },
+  {
+    "action": "refine-false-policy",
+    "certificate_edge_checks": 6953,
+    "certificate_product_states": 4436,
+    "edges": 911,
+    "iteration": 7,
+    "lower_bound": 2,
+    "policy_reachable_states": 37,
+    "solver_statistics": {
+      "certificate_states": 4436,
+      "discovered_product_states": 7090,
+      "examined_input_transitions": 10240,
+      "product_state_upper_bound": 280069407,
+      "settled_nonunsafe_states": 6952
+    },
+    "states": 527
+  },
+  {
+    "action": "refine-false-policy",
+    "certificate_edge_checks": 10239,
+    "certificate_product_states": 6954,
+    "edges": 923,
+    "iteration": 8,
+    "lower_bound": 3,
+    "policy_reachable_states": 37,
+    "solver_statistics": {
+      "certificate_states": 6954,
+      "discovered_product_states": 7728,
+      "examined_input_transitions": 11179,
+      "product_state_upper_bound": 285383817,
+      "settled_nonunsafe_states": 7727
+    },
+    "states": 537
+  },
+  {
+    "action": "certified-infeasible",
+    "certificate_edge_checks": 11178,
+    "certificate_product_states": 7727,
+    "edges": 935,
+    "iteration": 9,
+    "lower_bound": null,
+    "policy_reachable_states": 0,
+    "solver_statistics": {
+      "certificate_states": 7727,
+      "discovered_product_states": 7727,
+      "examined_input_transitions": 11178,
+      "product_state_upper_bound": 290698227,
+      "settled_nonunsafe_states": 7727
+    },
+    "states": 547
+  }
+]
