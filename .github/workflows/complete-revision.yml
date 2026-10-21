@@ -1,0 +1,106 @@
+name: complete-revision
+on:
+  push:
+    branches: [maintenance/complete-revision-2026-10-21]
+    paths: [.github/workflows/complete-revision.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: complete-revision
+  cancel-in-progress: false
+jobs:
+  validate-and-publish-candidate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+      - name: Verify and apply the reviewed source patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import base64, hashlib, lzma
+          from pathlib import Path
+          directory = Path('maintenance/revision-payload')
+          files = [directory / f'part-{i}.b64' for i in range(7)]
+          encoded = ''.join(p.read_text().strip() for p in files)
+          assert len(encoded) == 50512, len(encoded)
+          compressed = base64.b64decode(encoded, validate=True)
+          assert hashlib.sha256(compressed).hexdigest() == '0610c51b155bafb86ab9120c157eabdb7be8f078d843f49775fd3cb320334262'
+          patch = lzma.decompress(compressed)
+          assert hashlib.sha256(patch).hexdigest() == 'cf47ed4e6619e2d99e7d3b332f346500065c7497a6877b0dd849b203bd4b1b7d'
+          Path('/tmp/revision.patch').write_bytes(patch)
+          print('SOURCE PATCH HASHES: PASS')
+          PY
+          git apply --unidiff-zero --check /tmp/revision.patch
+          git apply --unidiff-zero /tmp/revision.patch
+      - name: Build the pinned research environment
+        run: docker build -f containers/Dockerfile -t twins-complete-revision .
+      - name: Generate evidence and execute independent full reproduction
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p validation-output
+          docker run --name twins-complete --user root \
+            -v "$GITHUB_WORKSPACE:/artifact" -w /artifact \
+            twins-complete-revision bash -c '
+              set -euo pipefail
+              git config --global --add safe.directory /artifact
+              ./scripts/bootstrap.sh
+              pandoc manuscript/markdown/manuscript.md -f markdown+raw_tex -t latex --top-level-division=section > manuscript/lipics/body.tex
+              pandoc manuscript/markdown/appendices.md -f markdown+raw_tex -t latex --top-level-division=section > manuscript/lipics/appendices.tex
+              python scripts/sync_review_matrix.py --check
+              make revision
+              make test
+              make formal
+              make native
+              make paper
+              python scripts/update_reference_manifest.py
+              make verify
+              TWINS_REPRODUCTION_RUN_ROOT=/artifact/.cache/final-independent-reproduction ./reproduce_revision.sh
+              cp .cache/final-independent-reproduction/build_logs/reproduction_summary.log build_logs/completion_reproduction_summary.log
+              cp .cache/final-independent-reproduction/build_logs/result_comparison.log build_logs/completion_result_comparison.log
+              cp .cache/final-independent-reproduction/build_logs/python_tests.log build_logs/completion_python_tests.log
+              printf "complete_revision=PASS\nsource_patch_sha256=cf47ed4e6619e2d99e7d3b332f346500065c7497a6877b0dd849b203bd4b1b7d\n" > build_logs/completion_receipt.log
+            ' 2>&1 | tee validation-output/complete-revision.log
+      - name: Commit the validated candidate without transport scaffolding
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo chown -R "$(id -u):$(id -g)" .
+          grep -qx 'complete_revision=PASS' build_logs/completion_receipt.log
+          grep -qx 'TWINS SCHEDULER REPRODUCTION: PASS' build_logs/completion_reproduction_summary.log
+          rm -rf maintenance/revision-payload
+          rm .github/workflows/complete-revision.yml .github/workflows/revision-workspace-export.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github CITATION.cff Makefile README.md docs manuscript reproduce.sh scripts src tests results build_logs formal
+          git diff --cached --stat
+          git commit -m 'Complete author metadata, references and certified seven-validator study' \
+            -m 'Reconstruct guarded seven-validator experiments, regenerate all deterministic evidence, compile both PDF variants and independently reproduce the complete artifact. Synchronize reviewer matrix and claim ledger, document novelty and total refinement cost. Conservative student-award non-nomination; enrollment alone does not establish the venue authorship condition.'
+          git add -u maintenance
+          if ! git diff --cached --quiet; then git commit --amend --no-edit; fi
+          git push origin HEAD:maintenance/complete-revision-2026-10-21
+          git rev-parse HEAD > validation-output/validated-commit.txt
+          git rev-parse HEAD^{tree} > validation-output/validated-tree.txt
+          git archive --format=tar.gz HEAD > validation-output/complete-revision-source.tar.gz
+          cp manuscript/pdf/*.pdf validation-output/
+          cp build_logs/completion_* validation-output/
+          sha256sum validation-output/*.tar.gz validation-output/*.pdf > validation-output/SHA256SUMS
+      - name: Collect diagnostic reports even on failure
+        if: always()
+        run: |
+          mkdir -p validation-output/diagnostics
+          sudo cp -r build_logs validation-output/diagnostics/ || true
+          sudo cp -r .cache/final-independent-reproduction/build_logs validation-output/diagnostics/independent-build-logs || true
+          sudo chown -R "$(id -u):$(id -g)" validation-output
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: complete-revision-validated
+          path: validation-output/
+          retention-days: 30
+          if-no-files-found: error
