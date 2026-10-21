@@ -1,5 +1,5 @@
 name: complete-revision
-# Retry with checksum-verified Debian mirror failover; research source unchanged.
+# Rebuild identical research sources; explicitly preserve audit logs and archive before push.
 on:
   push:
     branches: [maintenance/complete-revision-2026-10-21]
@@ -67,36 +67,53 @@ jobs:
               cp .cache/final-independent-reproduction/build_logs/python_tests.log build_logs/completion_python_tests.log
               printf "complete_revision=PASS\nsource_patch_sha256=cf47ed4e6619e2d99e7d3b332f346500065c7497a6877b0dd849b203bd4b1b7d\n" > build_logs/completion_receipt.log
             ' 2>&1 | tee validation-output/complete-revision.log
-      - name: Commit the validated candidate without transport scaffolding
+      - name: Preserve complete validated candidate and commit source
         shell: bash
         run: |
           set -euo pipefail
           sudo chown -R "$(id -u):$(id -g)" .
           grep -qx 'complete_revision=PASS' build_logs/completion_receipt.log
           grep -qx 'TWINS SCHEDULER REPRODUCTION: PASS' build_logs/completion_reproduction_summary.log
+          # Keep workflow publication separate from the job's contents-only token.
+          # The authenticated repository connector will install this exact CI file
+          # and remove temporary workflow files when promoting the scientific tree.
+          cp .github/workflows/research.yml validation-output/research-workflow.yml
+          git restore --source=HEAD -- .github/workflows
           rm -rf maintenance/revision-payload
-          rm .github/workflows/complete-revision.yml .github/workflows/revision-workspace-export.yml
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add .github CITATION.cff Makefile README.md docs manuscript reproduce.sh scripts src tests results build_logs formal
+          git add -u
+          git add CITATION.cff Makefile README.md docs manuscript reproduce.sh scripts src tests results formal
+          python3 - <<'PY'
+          import subprocess
+          from pathlib import Path
+          files = [str(p) for p in Path('build_logs').iterdir()
+                   if p.is_file() and p.suffix in {'.log', '.json'} and p.stat().st_size < 2000000]
+          if files:
+              subprocess.run(['git', 'add', '-f', '--', *sorted(files)], check=True)
+          PY
           git diff --cached --stat
           git commit -m 'Complete author metadata, references and certified seven-validator study' \
-            -m 'Reconstruct guarded seven-validator experiments, regenerate all deterministic evidence, compile both PDF variants and independently reproduce the complete artifact. Synchronize reviewer matrix and claim ledger, document novelty and total refinement cost. Conservative student-award non-nomination; enrollment alone does not establish the venue authorship condition.'
-          git add -u maintenance
-          if ! git diff --cached --quiet; then git commit --amend --no-edit; fi
-          git push origin HEAD:maintenance/complete-revision-2026-10-21
+            -m 'Regenerate all deterministic evidence, compile both PDF variants and independently reproduce the complete artifact. Synchronize reviewer matrix and claim ledger, document novelty and total refinement cost. Conservative student-award non-nomination; enrollment alone does not establish the venue authorship condition.'
+          # Preserve the full tested source, generated outputs and PDFs even if push fails.
           git rev-parse HEAD > validation-output/validated-commit.txt
           git rev-parse HEAD^{tree} > validation-output/validated-tree.txt
           git archive --format=tar.gz HEAD > validation-output/complete-revision-source.tar.gz
           cp manuscript/pdf/*.pdf validation-output/
           cp build_logs/completion_* validation-output/
           sha256sum validation-output/*.tar.gz validation-output/*.pdf > validation-output/SHA256SUMS
-      - name: Collect diagnostic reports even on failure
-        if: always()
+      - name: Publish validated candidate branch
+        shell: bash
         run: |
-          mkdir -p validation-output/diagnostics
-          sudo cp -r build_logs validation-output/diagnostics/ || true
-          sudo cp -r .cache/final-independent-reproduction/build_logs validation-output/diagnostics/independent-build-logs || true
+          set -euo pipefail
+          git push origin HEAD:maintenance/complete-revision-2026-10-21
+      - name: Collect compact diagnostic reports even on failure
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p validation-output/diagnostics/build_logs validation-output/diagnostics/independent-build-logs
+          sudo find build_logs -maxdepth 1 -type f -size -2M \( -name '*.log' -o -name '*.json' \) -exec cp {} validation-output/diagnostics/build_logs/ \; || true
+          sudo find .cache/final-independent-reproduction/build_logs -maxdepth 1 -type f -size -2M \( -name '*.log' -o -name '*.json' \) -exec cp {} validation-output/diagnostics/independent-build-logs/ \; || true
           sudo chown -R "$(id -u):$(id -g)" validation-output
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
