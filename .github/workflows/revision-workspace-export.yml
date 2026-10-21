@@ -1,0 +1,35 @@
+name: revision-workspace-export
+on:
+  push:
+    branches: [maintenance/complete-revision-2026-10-21]
+    paths: [.github/workflows/revision-workspace-export.yml]
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 452b6497de40de0f56b16905088896dc94bbeeb5
+          path: source
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: 19d40f3fbaeaf5cb20b4f4d5649d844f3ff9faeb
+          path: recovered
+          persist-credentials: false
+      - name: Export tracked source and preserved evidence only
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p export
+          git -C source archive --format=tar.gz HEAD > export/base-source.tar.gz
+          git -C recovered archive --format=tar.gz HEAD recovery > export/recovered-evidence.tar.gz
+          sha256sum export/*.tar.gz > export/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: revision-source-workspace
+          path: export/
+          retention-days: 30
+          if-no-files-found: error
